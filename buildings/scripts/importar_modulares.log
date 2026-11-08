@@ -1,0 +1,388 @@
+====================================================================
+Construyendo biblioteca Modulares_OMR.blend...
+====================================================================
+
+---> Importando 10182-1 (Cafe_Corner) a colección MOD_10182-1_Cafe_Corner...
+12:23:11.77 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:11.77 [importldraw] Standard-res primitives selected
+12:23:11.77 [importldraw] Use LSynth Parts requested
+12:23:11.77 [importldraw] Loading files
+12:23:11.89 [importldraw] Creating NodeGroups
+12:23:11.89 [importldraw] createBlenderDistanceToCenterNodeGroup #create
+12:23:11.89 [importldraw] createBlenderVectorElementPowerNodeGroup #create
+12:23:11.90 [importldraw] createBlenderConvertToNormalsNodeGroup #create
+12:23:11.90 [importldraw] createBlenderConcaveWallsNodeGroup #create
+12:23:11.90 [importldraw] createBlenderSlopeTextureNodeGroup #create
+12:23:11.90 [importldraw] createBlenderFresnelNodeGroup #create
+12:23:11.90 [importldraw] createBlenderReflectionNodeGroup #create
+12:23:11.90 [importldraw] createBlenderDielectricNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoStandardNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoTransparentNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoTransparentFluorescentNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoRubberNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoRubberTranslucentNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoEmissionNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoChromeNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoPearlescentNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoMetalNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoGlitterNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoSpeckleNodeGroup #create
+12:23:11.90 [importldraw] createBlenderLegoMilkyWhiteNodeGroup #create
+12:23:11.90 [importldraw] Creating Blender objects
+12:23:15.29 [importldraw] Number of vertices: 0
+12:23:15.29 [importldraw] Number of convex hull vertices: 0
+12:23:15.29 [importldraw] Adding 2596 objects to scene
+12:23:15.41 [importldraw] Load Done
+Info: 12:23:11.77 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:11.77 [importldraw] Standard-res primitives selected
+Info: 12:23:11.77 [importldraw] Use LSynth Parts requested
+Info: 12:23:11.77 [importldraw] Loading files
+Info: 12:23:11.89 [importldraw] Creating NodeGroups
+Info: 12:23:11.89 [importldraw] createBlenderDistanceToCenterNodeGroup #create
+Info: 12:23:11.89 [importldraw] createBlenderVectorElementPowerNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderConvertToNormalsNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderConcaveWallsNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderSlopeTextureNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderFresnelNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderReflectionNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderDielectricNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoStandardNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoTransparentNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoTransparentFluorescentNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoRubberNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoRubberTranslucentNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoEmissionNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoChromeNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoPearlescentNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoMetalNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoGlitterNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoSpeckleNodeGroup #create
+Info: 12:23:11.90 [importldraw] createBlenderLegoMilkyWhiteNodeGroup #create
+Info: 12:23:11.90 [importldraw] Creating Blender objects
+Info: 12:23:15.29 [importldraw] Number of vertices: 0
+Info: 12:23:15.29 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:15.29 [importldraw] Adding 2596 objects to scene
+Info: 12:23:15.41 [importldraw] Load Done
+  -> OK: 2422 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=36.16 BU
+
+---> Importando 10185-1 (Green_Grocer) a colección MOD_10185-1_Green_Grocer...
+12:23:15.73 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:15.73 [importldraw] Standard-res primitives selected
+12:23:15.73 [importldraw] Use LSynth Parts requested
+12:23:15.76 [importldraw] Loading files
+12:23:15.96 [importldraw] Creating NodeGroups
+12:23:15.96 [importldraw] Creating Blender objects
+12:23:19.07 [importldraw] Number of vertices: 0
+12:23:19.07 [importldraw] Number of convex hull vertices: 0
+12:23:19.07 [importldraw] Adding 2654 objects to scene
+12:23:19.28 [importldraw] Load Done
+Info: 12:23:15.73 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:15.73 [importldraw] Standard-res primitives selected
+Info: 12:23:15.73 [importldraw] Use LSynth Parts requested
+Info: 12:23:15.76 [importldraw] Loading files
+Info: 12:23:15.96 [importldraw] Creating NodeGroups
+Info: 12:23:15.96 [importldraw] Creating Blender objects
+Info: 12:23:19.07 [importldraw] Number of vertices: 0
+Info: 12:23:19.07 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:19.07 [importldraw] Adding 2654 objects to scene
+Info: 12:23:19.28 [importldraw] Load Done
+  -> OK: 2414 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=33.44 BU
+
+---> Importando 10190-1 (Market_Street) a colección MOD_10190-1_Market_Street...
+12:23:19.78 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:19.78 [importldraw] Standard-res primitives selected
+12:23:19.78 [importldraw] Use LSynth Parts requested
+12:23:19.81 [importldraw] Loading files
+12:23:19.99 [importldraw] Creating NodeGroups
+12:23:19.99 [importldraw] Creating Blender objects
+12:23:22.10 [importldraw] Number of vertices: 0
+12:23:22.10 [importldraw] Number of convex hull vertices: 0
+12:23:22.10 [importldraw] Adding 1578 objects to scene
+12:23:22.34 [importldraw] Load Done
+Info: 12:23:19.78 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:19.78 [importldraw] Standard-res primitives selected
+Info: 12:23:19.78 [importldraw] Use LSynth Parts requested
+Info: 12:23:19.81 [importldraw] Loading files
+Info: 12:23:19.99 [importldraw] Creating NodeGroups
+Info: 12:23:19.99 [importldraw] Creating Blender objects
+Info: 12:23:22.10 [importldraw] Number of vertices: 0
+Info: 12:23:22.10 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:22.10 [importldraw] Adding 1578 objects to scene
+Info: 12:23:22.34 [importldraw] Load Done
+  -> OK: 1490 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=32.64 BU
+
+---> Importando 10197-1 (Fire_Brigade) a colección MOD_10197-1_Fire_Brigade...
+12:23:22.88 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:22.88 [importldraw] Standard-res primitives selected
+12:23:22.88 [importldraw] Use LSynth Parts requested
+12:23:22.91 [importldraw] Loading files
+12:23:23.12 [importldraw] Creating NodeGroups
+12:23:23.12 [importldraw] Creating Blender objects
+12:23:26.45 [importldraw] Number of vertices: 0
+12:23:26.45 [importldraw] Number of convex hull vertices: 0
+12:23:26.45 [importldraw] Adding 2594 objects to scene
+12:23:26.81 [importldraw] Load Done
+Info: 12:23:22.88 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:22.88 [importldraw] Standard-res primitives selected
+Info: 12:23:22.88 [importldraw] Use LSynth Parts requested
+Info: 12:23:22.91 [importldraw] Loading files
+Info: 12:23:23.12 [importldraw] Creating NodeGroups
+Info: 12:23:23.12 [importldraw] Creating Blender objects
+Info: 12:23:26.45 [importldraw] Number of vertices: 0
+Info: 12:23:26.45 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:26.45 [importldraw] Adding 2594 objects to scene
+Info: 12:23:26.81 [importldraw] Load Done
+  -> OK: 2392 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=38.88 BU
+
+---> Importando 10218-1 (Pet_Shop) a colección MOD_10218-1_Pet_Shop...
+12:23:27.65 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:27.65 [importldraw] Standard-res primitives selected
+12:23:27.65 [importldraw] Use LSynth Parts requested
+12:23:27.68 [importldraw] Loading files
+12:23:27.91 [importldraw] Creating NodeGroups
+12:23:27.91 [importldraw] Creating Blender objects
+12:23:31.90 [importldraw] Number of vertices: 0
+12:23:31.90 [importldraw] Number of convex hull vertices: 0
+12:23:31.90 [importldraw] Adding 2129 objects to scene
+12:23:32.32 [importldraw] Load Done
+Info: 12:23:27.65 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:27.65 [importldraw] Standard-res primitives selected
+Info: 12:23:27.65 [importldraw] Use LSynth Parts requested
+Info: 12:23:27.68 [importldraw] Loading files
+Info: 12:23:27.91 [importldraw] Creating NodeGroups
+Info: 12:23:27.91 [importldraw] Creating Blender objects
+Info: 12:23:31.90 [importldraw] Number of vertices: 0
+Info: 12:23:31.90 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:31.90 [importldraw] Adding 2129 objects to scene
+Info: 12:23:32.32 [importldraw] Load Done
+  -> OK: 2077 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=28.32 BU
+
+---> Importando 10224-1 (Town_Hall) a colección MOD_10224-1_Town_Hall...
+12:23:33.28 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:33.28 [importldraw] Standard-res primitives selected
+12:23:33.28 [importldraw] Use LSynth Parts requested
+12:23:33.32 [importldraw] Loading files
+12:23:33.59 [importldraw] Creating NodeGroups
+12:23:33.59 [importldraw] Creating Blender objects
+12:23:37.20 [importldraw] Number of vertices: 0
+12:23:37.20 [importldraw] Number of convex hull vertices: 0
+12:23:37.20 [importldraw] Adding 2978 objects to scene
+12:23:37.73 [importldraw] Load Done
+Info: 12:23:33.28 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:33.28 [importldraw] Standard-res primitives selected
+Info: 12:23:33.28 [importldraw] Use LSynth Parts requested
+Info: 12:23:33.32 [importldraw] Loading files
+Info: 12:23:33.59 [importldraw] Creating NodeGroups
+Info: 12:23:33.59 [importldraw] Creating Blender objects
+Info: 12:23:37.20 [importldraw] Number of vertices: 0
+Info: 12:23:37.20 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:37.20 [importldraw] Adding 2978 objects to scene
+Info: 12:23:37.73 [importldraw] Load Done
+  -> OK: 2810 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=49.44 BU
+
+---> Importando 10232-1 (Palace_Cinema) a colección MOD_10232-1_Palace_Cinema...
+12:23:39.00 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:39.00 [importldraw] Standard-res primitives selected
+12:23:39.00 [importldraw] Use LSynth Parts requested
+12:23:39.04 [importldraw] Loading files
+12:23:39.25 [importldraw] Creating NodeGroups
+12:23:39.25 [importldraw] Creating Blender objects
+12:23:44.01 [importldraw] 91% (410 of 428 different parts made)
+12:23:44.08 [importldraw] Number of vertices: 0
+12:23:44.08 [importldraw] Number of convex hull vertices: 0
+12:23:44.09 [importldraw] Adding 2338 objects to scene
+12:23:44.68 [importldraw] Load Done
+12:23:44.68 [importldraw] Finished in 5.7 seconds
+Info: 12:23:39.00 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:39.00 [importldraw] Standard-res primitives selected
+Info: 12:23:39.00 [importldraw] Use LSynth Parts requested
+Info: 12:23:39.04 [importldraw] Loading files
+Info: 12:23:39.25 [importldraw] Creating NodeGroups
+Info: 12:23:39.25 [importldraw] Creating Blender objects
+Info: 12:23:44.08 [importldraw] Number of vertices: 0
+Info: 12:23:44.08 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:44.09 [importldraw] Adding 2338 objects to scene
+Info: 12:23:44.68 [importldraw] Load Done
+  -> OK: 2219 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=38.01 BU
+
+---> Importando 10243-1 (Parisian_Restaurant) a colección MOD_10243-1_Parisian_Restaurant...
+12:23:46.07 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:46.07 [importldraw] Standard-res primitives selected
+12:23:46.07 [importldraw] Use LSynth Parts requested
+12:23:46.10 [importldraw] Loading files
+12:23:46.39 [importldraw] Creating NodeGroups
+12:23:46.39 [importldraw] Creating Blender objects
+12:23:50.11 [importldraw] Number of vertices: 0
+12:23:50.11 [importldraw] Number of convex hull vertices: 0
+12:23:50.12 [importldraw] Adding 2638 objects to scene
+12:23:50.81 [importldraw] Load Done
+Info: 12:23:46.07 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:46.07 [importldraw] Standard-res primitives selected
+Info: 12:23:46.07 [importldraw] Use LSynth Parts requested
+Info: 12:23:46.10 [importldraw] Loading files
+Info: 12:23:46.39 [importldraw] Creating NodeGroups
+Info: 12:23:46.39 [importldraw] Creating Blender objects
+Info: 12:23:50.11 [importldraw] Number of vertices: 0
+Info: 12:23:50.11 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:50.12 [importldraw] Adding 2638 objects to scene
+Info: 12:23:50.81 [importldraw] Load Done
+  -> OK: 2504 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=30.56 BU
+
+---> Importando 10246-1 (Detective_s_Office) a colección MOD_10246-1_Detective_s_Office...
+12:23:52.46 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:52.46 [importldraw] Standard-res primitives selected
+12:23:52.46 [importldraw] Use LSynth Parts requested
+12:23:52.50 [importldraw] Loading files
+12:23:52.60 [importldraw] WARNING: Found double-sided polygons in file /home/kheiron/ldraw/parts/57895p02.dat
+12:23:52.82 [importldraw] Creating NodeGroups
+12:23:52.83 [importldraw] Creating Blender objects
+12:23:57.21 [importldraw] Number of vertices: 0
+12:23:57.21 [importldraw] Number of convex hull vertices: 0
+12:23:57.21 [importldraw] Adding 2437 objects to scene
+12:23:58.01 [importldraw] Load Done
+12:23:58.01 [importldraw] Finished in 5.5 seconds
+Info: 12:23:52.46 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:52.46 [importldraw] Standard-res primitives selected
+Info: 12:23:52.46 [importldraw] Use LSynth Parts requested
+Info: 12:23:52.50 [importldraw] Loading files
+Info: 12:23:52.60 [importldraw] WARNING: Found double-sided polygons in file /home/kheiron/ldraw/parts/57895p02.dat
+Warning: Found double-sided polygons in file /home/kheiron/ldraw/parts/57895p02.dat
+Info: 12:23:52.82 [importldraw] Creating NodeGroups
+Info: 12:23:52.83 [importldraw] Creating Blender objects
+Info: 12:23:57.21 [importldraw] Number of vertices: 0
+Info: 12:23:57.21 [importldraw] Number of convex hull vertices: 0
+Info: 12:23:57.21 [importldraw] Adding 2437 objects to scene
+Info: 12:23:58.01 [importldraw] Load Done
+  -> OK: 2308 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=27.52 BU
+
+---> Importando 10251-1 (Brick_Bank) a colección MOD_10251-1_Brick_Bank...
+12:23:59.81 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:23:59.81 [importldraw] Standard-res primitives selected
+12:23:59.81 [importldraw] Use LSynth Parts requested
+12:23:59.85 [importldraw] Loading files
+12:24:00.12 [importldraw] Creating NodeGroups
+12:24:00.12 [importldraw] Creating Blender objects
+12:24:03.39 [importldraw] Number of vertices: 0
+12:24:03.39 [importldraw] Number of convex hull vertices: 0
+12:24:03.40 [importldraw] Adding 2435 objects to scene
+12:24:04.27 [importldraw] Load Done
+Info: 12:23:59.81 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:23:59.81 [importldraw] Standard-res primitives selected
+Info: 12:23:59.81 [importldraw] Use LSynth Parts requested
+Info: 12:23:59.85 [importldraw] Loading files
+Info: 12:24:00.12 [importldraw] Creating NodeGroups
+Info: 12:24:00.12 [importldraw] Creating Blender objects
+Info: 12:24:03.39 [importldraw] Number of vertices: 0
+Info: 12:24:03.39 [importldraw] Number of convex hull vertices: 0
+Info: 12:24:03.40 [importldraw] Adding 2435 objects to scene
+Info: 12:24:04.27 [importldraw] Load Done
+  -> OK: 2403 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=25.96 BU
+
+---> Importando 10264-1 (Corner_Garage) a colección MOD_10264-1_Corner_Garage...
+12:24:06.29 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:24:06.29 [importldraw] Standard-res primitives selected
+12:24:06.29 [importldraw] Use LSynth Parts requested
+12:24:06.33 [importldraw] Loading files
+12:24:06.72 [importldraw] Creating NodeGroups
+12:24:06.73 [importldraw] Creating Blender objects
+12:24:11.30 [importldraw] 76% (646 of 793 different parts made)
+12:24:12.68 [importldraw] Number of vertices: 0
+12:24:12.68 [importldraw] Number of convex hull vertices: 0
+12:24:12.69 [importldraw] Adding 2913 objects to scene
+12:24:13.69 [importldraw] Load Done
+12:24:13.69 [importldraw] Finished in 7.4 seconds
+Info: 12:24:06.29 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:24:06.29 [importldraw] Standard-res primitives selected
+Info: 12:24:06.29 [importldraw] Use LSynth Parts requested
+Info: 12:24:06.33 [importldraw] Loading files
+Info: 12:24:06.72 [importldraw] Creating NodeGroups
+Info: 12:24:06.73 [importldraw] Creating Blender objects
+Info: 12:24:12.68 [importldraw] Number of vertices: 0
+Info: 12:24:12.68 [importldraw] Number of convex hull vertices: 0
+Info: 12:24:12.69 [importldraw] Adding 2913 objects to scene
+Info: 12:24:13.69 [importldraw] Load Done
+  -> OK: 2598 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=31.84 BU
+
+---> Importando 10270-1 (Bookshop) a colección MOD_10270-1_Bookshop...
+12:24:15.96 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:24:15.96 [importldraw] Standard-res primitives selected
+12:24:15.96 [importldraw] Use LSynth Parts requested
+12:24:16.01 [importldraw] Loading files
+12:24:16.30 [importldraw] Creating NodeGroups
+12:24:16.30 [importldraw] Creating Blender objects
+12:24:20.97 [importldraw] 48% (281 of 547 different parts made)
+12:24:23.83 [importldraw] Number of vertices: 0
+12:24:23.83 [importldraw] Number of convex hull vertices: 0
+12:24:23.83 [importldraw] Adding 2495 objects to scene
+12:24:24.91 [importldraw] Load Done
+12:24:24.91 [importldraw] Finished in 8.9 seconds
+Info: 12:24:15.96 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:24:15.96 [importldraw] Standard-res primitives selected
+Info: 12:24:15.96 [importldraw] Use LSynth Parts requested
+Info: 12:24:16.01 [importldraw] Loading files
+Info: 12:24:16.30 [importldraw] Creating NodeGroups
+Info: 12:24:16.30 [importldraw] Creating Blender objects
+Info: 12:24:23.83 [importldraw] Number of vertices: 0
+Info: 12:24:23.83 [importldraw] Number of convex hull vertices: 0
+Info: 12:24:23.83 [importldraw] Adding 2495 objects to scene
+Info: 12:24:24.91 [importldraw] Load Done
+  -> OK: 2456 piezas, huella=(32.0, 32.0) studs, z_top=0.0, altura=18.88 BU
+
+---> Importando 10278-1 (Police_Station) a colección MOD_10278-1_Police_Station...
+12:24:26.80 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:24:26.80 [importldraw] Standard-res primitives selected
+12:24:26.80 [importldraw] Use LSynth Parts requested
+12:24:26.86 [importldraw] Loading files
+12:24:27.21 [importldraw] Creating NodeGroups
+12:24:27.21 [importldraw] Creating Blender objects
+12:24:31.80 [importldraw] 76% (529 of 649 different parts made)
+12:24:34.03 [importldraw] Number of vertices: 0
+12:24:34.03 [importldraw] Number of convex hull vertices: 0
+12:24:34.04 [importldraw] Adding 3038 objects to scene
+12:24:35.23 [importldraw] Load Done
+12:24:35.24 [importldraw] Finished in 8.4 seconds
+Info: 12:24:26.80 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:24:26.80 [importldraw] Standard-res primitives selected
+Info: 12:24:26.80 [importldraw] Use LSynth Parts requested
+Info: 12:24:26.86 [importldraw] Loading files
+Info: 12:24:27.21 [importldraw] Creating NodeGroups
+Info: 12:24:27.21 [importldraw] Creating Blender objects
+Info: 12:24:34.03 [importldraw] Number of vertices: 0
+Info: 12:24:34.03 [importldraw] Number of convex hull vertices: 0
+Info: 12:24:34.04 [importldraw] Adding 3038 objects to scene
+Info: 12:24:35.23 [importldraw] Load Done
+  -> OK: 2959 piezas, huella=(32.0, 32.0) studs, z_top=-0.0, altura=37.44 BU
+
+---> Importando 10297-1 (Boutique_Hotel) a colección MOD_10297-1_Boutique_Hotel...
+12:24:38.02 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+12:24:38.02 [importldraw] Standard-res primitives selected
+12:24:38.02 [importldraw] Use LSynth Parts requested
+12:24:38.07 [importldraw] Loading files
+12:24:38.53 [importldraw] Creating NodeGroups
+12:24:38.53 [importldraw] Creating Blender objects
+12:24:43.05 [importldraw] 58% (461 of 745 different parts made)
+12:24:46.56 [importldraw] Number of vertices: 0
+12:24:46.56 [importldraw] Number of convex hull vertices: 0
+12:24:46.57 [importldraw] Adding 3198 objects to scene
+12:24:47.88 [importldraw] Load Done
+12:24:47.88 [importldraw] Finished in 9.9 seconds
+Info: 12:24:38.02 [importldraw] The LDraw Parts Library path to be used is: /home/kheiron/ldraw
+Info: 12:24:38.02 [importldraw] Standard-res primitives selected
+Info: 12:24:38.02 [importldraw] Use LSynth Parts requested
+Info: 12:24:38.07 [importldraw] Loading files
+Info: 12:24:38.53 [importldraw] Creating NodeGroups
+Info: 12:24:38.53 [importldraw] Creating Blender objects
+Info: 12:24:46.56 [importldraw] Number of vertices: 0
+Info: 12:24:46.56 [importldraw] Number of convex hull vertices: 0
+Info: 12:24:46.57 [importldraw] Adding 3198 objects to scene
+Info: 12:24:47.88 [importldraw] Load Done
+  -> OK: 3113 piezas, huella=(32.0, 32.0) studs, z_top=0.0, altura=33.68 BU
+
+Verificación de escala (ladrillo 1x1 3005): X=0.800 BU (esperado 0.8 BU)
+Info: Saved as "Modulares_OMR.blend"
+
+Biblioteca guardada exitosamente en: /home/kheiron/blender/buildings/Modulares_OMR.blend
+Total colecciones creadas: 14
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
+
+Blender quit

@@ -1,0 +1,142 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-08T04:28:38",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 239.0,
+      "tokens_entrada": 7536,
+      "tokens_salida": 15050,
+      "tokens_razonamiento": 16602
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-08T04:31:45",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 187.0,
+      "tokens_entrada": 20821,
+      "tokens_salida": 18488,
+      "tokens_razonamiento": 7231
+    },
+    "problemas": [
+      "escena 16: 'bloque_p2' al hacer subir 0.1 atraviesa 'bloque_v': cambia el destino o el camino (origen y destino uno al lado del otro, sin piezas en medio)",
+      "escena 16: 'bloque_p3' al hacer subir 0.1 atraviesa 'bloque_v': cambia el destino o el camino (origen y destino uno al lado del otro, sin piezas en medio)",
+      "escena 17: 'bloque_v' al hacer desplazar_y 0.7 atraviesa 'ped_llm': cambia el destino o el camino (origen y destino uno al lado del otro, sin piezas en medio)"
+    ],
+    "quedan": []
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-08T04:34:49",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 123.3,
+      "tokens_entrada": 8101,
+      "tokens_salida": 6826,
+      "tokens_razonamiento": 7980
+    },
+    "avisos": [],
+    "adornos": 86
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-08T04:39:13",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 132.7,
+      "tokens_entrada": 44258,
+      "tokens_salida": 19200,
+      "tokens_razonamiento": 5741
+    },
+    "iteracion": 1,
+    "problemas": [
+      "Las fichas dentro de la cola SQS están mal posicionadas y algunas quedan fuera del tubo transparente.",
+      "Las mangueras no conectan exactamente los bordes de los componentes, dejando huecos o atravesando piezas.",
+      "La peana de la cola SQS no está centrada bajo el tubo.",
+      "En la animación de prompt caching, el bloque variable no se desplaza lo suficiente en Y para acercarse al LLM."
+    ],
+    "puntuacion": 8
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-08T04:43:14",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 231.7,
+      "tokens_entrada": 44264,
+      "tokens_salida": 17402,
+      "tokens_razonamiento": 12389
+    },
+    "iteracion": 2,
+    "problemas": [
+      "Los colores 'azul_base' y 'azul_neon' no están permitidos en la paleta estricta del tema neon (se han cambiado a 'azul').",
+      "Los bloques de la pila de prompt flotaban en el aire antes de moverse a la repisa; se ha añadido una 'base_pila' para que se apoyen correctamente.",
+      "Las mangueras entraban hasta el centro de las peanas en lugar de ir de borde a borde como pide el tema neon; se han ajustado las coordenadas de sus caminos.",
+      "En la escena 12 faltaba el flujo de vuelta desde el LLM antes de guardar la respuesta en la caché."
+    ],
+    "puntuacion": 8
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-08T04:48:35",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 246.1,
+      "tokens_entrada": 44291,
+      "tokens_salida": 19687,
+      "tokens_razonamiento": 10597
+    },
+    "iteracion": 1,
+    "problemas": [
+      "Las mangueras no conectaban exactamente en los bordes de las peanas, sino que entraban hacia el centro de los componentes.",
+      "Los bloques de la pila de prompt flotaban en el aire sin una base que los sostuviera a la altura correcta.",
+      "En la escena 17, el bloque variable se desplazaba hacia el LLM pero no subía, lo que haría que atravesara el pedestal y la esfera.",
+      "En la escena 12, faltaba el flujo de vuelta desde el LLM tras el fallo de caché.",
+      "En la escena 13, faltaba el flujo hacia la caché (DDB2) para comprobar si había acierto.",
+      "El tubo SQS necesitaba rayos_x en las escenas donde se acumulan las fichas para asegurar que se vean claramente en el interior."
+    ],
+    "puntuacion": 8
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-08T04:49:01",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 24.5,
+      "tokens_entrada": 9339,
+      "tokens_salida": 187,
+      "tokens_razonamiento": 1904
+    },
+    "avisos": [],
+    "adornos": 88
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-08T04:52:59",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 227.5,
+      "tokens_entrada": 44681,
+      "tokens_salida": 18988,
+      "tokens_razonamiento": 10935
+    },
+    "iteracion": 2,
+    "problemas": [
+      "En la escena 17, 'bloque_v' atraviesa 'ped_llm' y 'esf_llm' al desplazarse en Y 0.7 y subir 0.3 hacia el centro del LLM.",
+      "Faltan propiedades obligatorias en las piezas (modelo, ancho, fondo, alto, radio, camino) para cumplir con el esquema estricto.",
+      "El JSON original contenía propiedades no permitidas por el esquema (estilo, tema, personajes, escenarios, acciones, presentes, quien)."
+    ],
+    "puntuacion": 7
+  }
+]

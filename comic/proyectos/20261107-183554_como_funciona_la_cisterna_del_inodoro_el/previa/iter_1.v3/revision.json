@@ -1,0 +1,516 @@
+{
+  "problemas": [
+    "La palanca está flotando en la cara frontal y no conecta con la cadena.",
+    "El brazo del flotador atraviesa la válvula de llenado y el flotador choca con ella.",
+    "La cadena está inclinada y no conecta lógicamente la palanca con la válvula de descarga.",
+    "En la escena 4, el efecto de chorro en la taza sale de muy arriba; es mejor aplicarlo a la válvula de descarga para que caiga desde la cisterna."
+  ],
+  "puntuacion": 6,
+  "cumple": false,
+  "guion": {
+    "titulo": "Cómo funciona la cisterna del inodoro",
+    "sinopsis": "Un viaje al interior del tanque del inodoro para descubrir cómo sus sencillos mecanismos controlan el llenado y la descarga del agua.",
+    "objeto": {
+      "nombre": "Cisterna de inodoro",
+      "alto": 0.85
+    },
+    "suelo": "baldosa",
+    "piezas": [
+      {
+        "id": "taza",
+        "nombre": "Taza del inodoro",
+        "forma": "cono",
+        "x": 0.0,
+        "y": -0.1,
+        "z": 0.0,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "detalle": "liso",
+        "radio": 0.12,
+        "radio2": 0.18,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "asiento",
+        "nombre": "Asiento",
+        "forma": "anillo",
+        "x": 0.0,
+        "y": -0.1,
+        "z": 0.4,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "detalle": "liso",
+        "radio": 0.18,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "cisterna",
+        "nombre": "Tanque de la cisterna",
+        "forma": "caja",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.4,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "detalle": "liso",
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "tapa",
+        "nombre": "Tapa de la cisterna",
+        "forma": "caja",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.75,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "detalle": "liso",
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "agua",
+        "nombre": "Agua",
+        "forma": "caja",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.41,
+        "color": "agua",
+        "material": "liquido",
+        "detalle": "liso",
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "valvula_llenado",
+        "nombre": "Válvula de llenado",
+        "forma": "tubo",
+        "x": -0.12,
+        "y": 0.15,
+        "z": 0.4,
+        "color": "gris_claro",
+        "material": "solido",
+        "detalle": "liso",
+        "radio": 0.02,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "flotador",
+        "nombre": "Flotador",
+        "forma": "esfera",
+        "x": -0.02,
+        "y": 0.15,
+        "z": 0.5,
+        "color": "lima",
+        "material": "solido",
+        "detalle": "liso",
+        "radio": 0.05,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "brazo_flotador",
+        "nombre": "Brazo del flotador",
+        "forma": "varilla",
+        "x": -0.07,
+        "y": 0.15,
+        "z": 0.5,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "radio": 0.005,
+        "rot_x": 0,
+        "rot_y": 90.0,
+        "rot_z": 0.0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "valvula_descarga",
+        "nombre": "Válvula de descarga",
+        "forma": "disco",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.41,
+        "color": "negro",
+        "material": "solido",
+        "detalle": "liso",
+        "radio": 0.04,
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "palanca",
+        "nombre": "Palanca exterior",
+        "forma": "varilla",
+        "x": 0.25,
+        "y": 0.15,
+        "z": 0.65,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "radio": 0.01,
+        "rot_x": 0.0,
+        "rot_y": 90.0,
+        "rot_z": 0.0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "brazo_palanca",
+        "nombre": "Brazo de la palanca",
+        "forma": "varilla",
+        "x": 0.11,
+        "y": 0.15,
+        "z": 0.65,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "radio": 0.005,
+        "rot_x": 0.0,
+        "rot_y": 90.0,
+        "rot_z": 0.0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "cadena",
+        "nombre": "Cadena",
+        "forma": "varilla",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.42,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "radio": 0.003,
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "tubo_rebosadero",
+        "nombre": "Tubo de rebosadero",
+        "forma": "tubo",
+        "x": 0.08,
+        "y": 0.15,
+        "z": 0.4,
+        "color": "gris_claro",
+        "material": "solido",
+        "detalle": "liso",
+        "radio": 0.015,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      }
+    ],
+    "accesorios": [
+      {
+        "tipo": "alfombra",
+        "x": 0.0,
+        "y": -0.6,
+        "color": "azul_sombra"
+      },
+      {
+        "tipo": "maceta",
+        "x": 0.8,
+        "y": 0.5,
+        "color": "menta_oscuro"
+      },
+      {
+        "tipo": "desague",
+        "x": -0.6,
+        "y": -0.2,
+        "color": "metal"
+      }
+    ],
+    "escenas": [
+      {
+        "id": 1,
+        "descripcion": "Presentación del inodoro y la cisterna.",
+        "lineas": [
+          {
+            "texto": "Esta es la cisterna del inodoro. Parece una simple caja, pero oculta un mecanismo muy ingenioso.",
+            "emocion": "alegre"
+          }
+        ],
+        "aparecen": [
+          "taza",
+          "asiento",
+          "cisterna",
+          "tapa",
+          "palanca",
+          "brazo_palanca"
+        ],
+        "rayos_x": [],
+        "resaltar": [
+          "cisterna"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "cisterna",
+          "movimiento": "rodear"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 2,
+        "descripcion": "El agua entra y el flotador sube.",
+        "lineas": [
+          {
+            "texto": "El agua entra por la válvula de llenado. Al subir el nivel, el flotador también sube y corta el paso.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "agua",
+          "valvula_llenado",
+          "flotador",
+          "brazo_flotador"
+        ],
+        "rayos_x": [
+          "cisterna"
+        ],
+        "resaltar": [
+          "valvula_llenado",
+          "flotador"
+        ],
+        "animaciones": [
+          {
+            "pieza": "agua",
+            "movimiento": "llenar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 1.0
+          },
+          {
+            "pieza": "flotador",
+            "movimiento": "subir",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.15
+          },
+          {
+            "pieza": "brazo_flotador",
+            "movimiento": "subir",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.15
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "gotas",
+            "pieza": "valvula_llenado",
+            "momento": 0.0,
+            "duracion": 3.0
+          }
+        ],
+        "camara": {
+          "plano": "detalle",
+          "objetivo": "flotador",
+          "movimiento": "fijo"
+        },
+        "desaparecen": [
+          "tapa"
+        ],
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 3,
+        "descripcion": "Activación de la palanca y la cadena.",
+        "lineas": [
+          {
+            "texto": "Cuando tiras de la palanca, una cadena levanta la válvula de descarga del fondo.",
+            "emocion": "emocionado"
+          }
+        ],
+        "aparecen": [
+          "valvula_descarga",
+          "cadena"
+        ],
+        "rayos_x": [
+          "cisterna"
+        ],
+        "resaltar": [
+          "palanca",
+          "cadena",
+          "valvula_descarga"
+        ],
+        "animaciones": [
+          {
+            "pieza": "palanca",
+            "movimiento": "girar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.1
+          },
+          {
+            "pieza": "brazo_palanca",
+            "movimiento": "oscilar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 15.0
+          },
+          {
+            "pieza": "cadena",
+            "movimiento": "subir",
+            "inicio": 0.5,
+            "fin": 1.0,
+            "cantidad": 0.05
+          },
+          {
+            "pieza": "valvula_descarga",
+            "movimiento": "abrir",
+            "inicio": 0.5,
+            "fin": 1.0,
+            "cantidad": 45.0
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "flecha_giro",
+            "pieza": "palanca",
+            "momento": 0.0,
+            "duracion": 1.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "cisterna",
+          "movimiento": "acercar"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 4,
+        "descripcion": "El agua cae a la taza.",
+        "lineas": [
+          {
+            "texto": "El agua cae de golpe hacia la taza por gravedad, limpiándola por completo.",
+            "emocion": "alegre"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [
+          "cisterna",
+          "taza"
+        ],
+        "resaltar": [
+          "taza",
+          "agua"
+        ],
+        "animaciones": [
+          {
+            "pieza": "agua",
+            "movimiento": "vaciar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 1.0
+          },
+          {
+            "pieza": "flotador",
+            "movimiento": "bajar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.15
+          },
+          {
+            "pieza": "brazo_flotador",
+            "movimiento": "bajar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.15
+          },
+          {
+            "pieza": "valvula_descarga",
+            "movimiento": "cerrar",
+            "inicio": 0.8,
+            "fin": 1.0,
+            "cantidad": 45.0
+          },
+          {
+            "pieza": "cadena",
+            "movimiento": "bajar",
+            "inicio": 0.8,
+            "fin": 1.0,
+            "cantidad": 0.05
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "chorro",
+            "pieza": "valvula_descarga",
+            "momento": 0.2,
+            "duracion": 2.5
+          }
+        ],
+        "camara": {
+          "plano": "general",
+          "objetivo": "taza",
+          "movimiento": "alejar"
+        },
+        "desaparecen": [],
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 5,
+        "descripcion": "El tubo de rebosadero por seguridad.",
+        "lineas": [
+          {
+            "texto": "Si algo falla y no se corta el agua, el tubo de rebosadero evita que se inunde tu baño.",
+            "emocion": "sorprendido"
+          }
+        ],
+        "aparecen": [
+          "tubo_rebosadero"
+        ],
+        "rayos_x": [
+          "cisterna"
+        ],
+        "resaltar": [
+          "tubo_rebosadero"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flecha_abajo",
+            "pieza": "tubo_rebosadero",
+            "momento": 0.0,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "detalle",
+          "objetivo": "tubo_rebosadero",
+          "movimiento": "fijo"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      }
+    ]
+  }
+}

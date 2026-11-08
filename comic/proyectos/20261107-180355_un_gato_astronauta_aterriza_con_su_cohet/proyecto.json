@@ -1,0 +1,637 @@
+{
+  "descripcion": "Un gato astronauta aterriza con su cohete en una ciudad de caramelo de noche, conoce a una niña con gafas y juntos encienden las farolas para que la ciudad brille",
+  "creado": "20261107-180355",
+  "parametros": {
+    "formato": "3d",
+    "orientacion": "horizontal",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 25.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-flash-tts",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": true,
+    "cartelas": true,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "objetos": "01_objetos.v3.blend",
+    "rig": "02_rig.v3.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v5.blend",
+    "efectos": "04b_efectos.v5.blend",
+    "previa": "previa/iter_2.v2",
+    "render": "render/animacion.mp4",
+    "montaje": "final/final.v2.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:05:01",
+      "archivo": "guion.json",
+      "escenas": 5,
+      "avisos": [
+        "escena 1: accion aparecer no vale para astro"
+      ]
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:06:29",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "objetos_gp": 16,
+        "trazos": 845,
+        "escenarios": 1,
+        "elementos": 12,
+        "personajes": 2,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:06:30",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "personajes": {
+          "astro": {
+            "rig": "RIG_astro",
+            "huesos": 22,
+            "capas": 43
+          },
+          "lila": {
+            "rig": "RIG_lila",
+            "huesos": 22,
+            "capas": 45
+          }
+        },
+        "elementos": {
+          "arbol_algodon1": {
+            "rig": "RIG_arbol_algodon1",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "arbol_algodon2": {
+            "rig": "RIG_arbol_algodon2",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "casa_lima": {
+            "rig": "RIG_casa_lima",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "casa_magenta": {
+            "rig": "RIG_casa_magenta",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "cohete1": {
+            "rig": "RIG_cohete1",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edificio_cian": {
+            "rig": "RIG_edificio_cian",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edificio_rosa": {
+            "rig": "RIG_edificio_rosa",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola_der": {
+            "rig": "RIG_farola_der",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola_izq": {
+            "rig": "RIG_farola_izq",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "flores_amarillas": {
+            "rig": "RIG_flores_amarillas",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "flores_naranjas": {
+            "rig": "RIG_flores_naranjas",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "luna1": {
+            "rig": "RIG_luna1",
+            "huesos": [
+              "raiz",
+              "nucleo"
+            ]
+          }
+        },
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:06:56",
+      "archivo": "tiempos.json",
+      "duracion": 35.651,
+      "fotogramas": 856,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:06:57",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 5835,
+        "fotogramas": 856,
+        "personajes": 2,
+        "elementos": 12,
+        "sonidos": 6,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:06:58",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 8,
+        "objetos_fx": 8,
+        "cartelas": 1,
+        "bocadillos": 5,
+        "avisos": [],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:07:09",
+      "archivo": "previa/iter_1",
+      "imagenes": 5
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:08:05",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:08:05",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "objetos_gp": 16,
+        "trazos": 845,
+        "escenarios": 1,
+        "elementos": 12,
+        "personajes": 2,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:08:06",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "personajes": {
+          "astro": {
+            "rig": "RIG_astro",
+            "huesos": 22,
+            "capas": 43
+          },
+          "lila": {
+            "rig": "RIG_lila",
+            "huesos": 22,
+            "capas": 45
+          }
+        },
+        "elementos": {
+          "arbol_algodon1": {
+            "rig": "RIG_arbol_algodon1",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "arbol_algodon2": {
+            "rig": "RIG_arbol_algodon2",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "casa_lima": {
+            "rig": "RIG_casa_lima",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "casa_magenta": {
+            "rig": "RIG_casa_magenta",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "cohete1": {
+            "rig": "RIG_cohete1",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edificio_cian": {
+            "rig": "RIG_edificio_cian",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edificio_rosa": {
+            "rig": "RIG_edificio_rosa",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola_der": {
+            "rig": "RIG_farola_der",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola_izq": {
+            "rig": "RIG_farola_izq",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "flores_amarillas": {
+            "rig": "RIG_flores_amarillas",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "flores_naranjas": {
+            "rig": "RIG_flores_naranjas",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "luna1": {
+            "rig": "RIG_luna1",
+            "huesos": [
+              "raiz",
+              "nucleo"
+            ]
+          }
+        },
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:08:06",
+      "archivo": "tiempos.json",
+      "duracion": 37.873,
+      "fotogramas": 909,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:08:06",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 6456,
+        "fotogramas": 909,
+        "personajes": 2,
+        "elementos": 12,
+        "sonidos": 6,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:08:08",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 8,
+        "objetos_fx": 8,
+        "cartelas": 1,
+        "bocadillos": 5,
+        "avisos": [],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:08:10",
+      "archivo": "previa/iter_2",
+      "imagenes": 5
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:10:52",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 6456,
+        "fotogramas": 909,
+        "personajes": 2,
+        "elementos": 12,
+        "sonidos": 6,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:10:53",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 8,
+        "objetos_fx": 8,
+        "cartelas": 1,
+        "bocadillos": 5,
+        "avisos": [],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:10:55",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 5
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:12:03",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:12:04",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "objetos_gp": 16,
+        "trazos": 837,
+        "escenarios": 1,
+        "elementos": 12,
+        "personajes": 2,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:12:04",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "personajes": {
+          "astro": {
+            "rig": "RIG_astro",
+            "huesos": 22,
+            "capas": 41
+          },
+          "lila": {
+            "rig": "RIG_lila",
+            "huesos": 22,
+            "capas": 43
+          }
+        },
+        "elementos": {
+          "arbol_algodon1": {
+            "rig": "RIG_arbol_algodon1",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "arbol_algodon2": {
+            "rig": "RIG_arbol_algodon2",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "casa_lima": {
+            "rig": "RIG_casa_lima",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "casa_violeta": {
+            "rig": "RIG_casa_violeta",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "cohete1": {
+            "rig": "RIG_cohete1",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edificio_cian": {
+            "rig": "RIG_edificio_cian",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edificio_rosa": {
+            "rig": "RIG_edificio_rosa",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola_der": {
+            "rig": "RIG_farola_der",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola_izq": {
+            "rig": "RIG_farola_izq",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "flores_amarillas": {
+            "rig": "RIG_flores_amarillas",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "flores_naranjas": {
+            "rig": "RIG_flores_naranjas",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "luna1": {
+            "rig": "RIG_luna1",
+            "huesos": [
+              "raiz",
+              "nucleo"
+            ]
+          }
+        },
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:12:04",
+      "archivo": "tiempos.json",
+      "duracion": 35.12,
+      "fotogramas": 843,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:12:05",
+      "archivo": "04_animacion.v4.blend",
+      "informe": {
+        "claves": 5710,
+        "fotogramas": 843,
+        "personajes": 2,
+        "elementos": 12,
+        "sonidos": 6,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:12:06",
+      "archivo": "04b_efectos.v4.blend",
+      "informe": {
+        "efectos": 8,
+        "objetos_fx": 8,
+        "cartelas": 1,
+        "bocadillos": 5,
+        "avisos": [],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:12:08",
+      "archivo": "previa/iter_2.v2",
+      "imagenes": 5
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:13:22",
+      "archivo": "04_animacion.v5.blend",
+      "informe": {
+        "claves": 5710,
+        "fotogramas": 843,
+        "personajes": 2,
+        "elementos": 12,
+        "sonidos": 6,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:13:24",
+      "archivo": "04b_efectos.v5.blend",
+      "informe": {
+        "efectos": 8,
+        "objetos_fx": 8,
+        "cartelas": 1,
+        "bocadillos": 5,
+        "avisos": [],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T18:15:35",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-180355_un_gato_astronauta_aterriza_con_su_cohet/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-180355_un_gato_astronauta_aterriza_con_su_cohet/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-180355_un_gato_astronauta_aterriza_con_su_cohet/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-180355_un_gato_astronauta_aterriza_con_su_cohet/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-180355_un_gato_astronauta_aterriza_con_su_cohet/render/vinetas/escena_5.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-180355_un_gato_astronauta_aterriza_con_su_cohet/render/animacion.mp4",
+        "fotogramas": 843,
+        "segundos": 131.0,
+        "_segundos": 131.5
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T18:16:16",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T18:20:59",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    }
+  ],
+  "vinetas": "render/vinetas"
+}

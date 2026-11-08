@@ -1,0 +1,468 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Así funciona la cafetera italiana",
+  "sinopsis": "El vapor empuja el agua a través del café y sube por la chimenea.",
+  "objeto": {
+    "nombre": "cafetera italiana",
+    "alto": 1.6
+  },
+  "suelo": "baldosa",
+  "piezas": [
+    {
+      "id": "hornillo_base",
+      "nombre": "hornillo",
+      "forma": "cilindro",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "gris_oscuro",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.55,
+      "alto": 0.12
+    },
+    {
+      "id": "deposito",
+      "nombre": "depósito de agua",
+      "forma": "tubo",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.12,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "rayado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.42,
+      "alto": 0.62,
+      "grosor": 0.03
+    },
+    {
+      "id": "agua",
+      "nombre": "agua",
+      "forma": "cilindro",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.15,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "agua",
+      "material": "liquido",
+      "detalle": "liso",
+      "padre": "deposito",
+      "bisagra": "ninguna",
+      "radio": 0.39,
+      "alto": 0.4
+    },
+    {
+      "id": "valvula",
+      "nombre": "válvula de seguridad",
+      "forma": "cilindro",
+      "x": 0.42,
+      "y": 0.0,
+      "z": 0.5,
+      "rot_x": 0,
+      "rot_y": 90.0,
+      "rot_z": 0,
+      "color": "cobre",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "deposito",
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.08
+    },
+    {
+      "id": "filtro",
+      "nombre": "embudo filtro",
+      "forma": "cono",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.32,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "perforado",
+      "padre": "deposito",
+      "bisagra": "ninguna",
+      "radio": 0.06,
+      "radio2": 0.38,
+      "alto": 0.42
+    },
+    {
+      "id": "cafe_molido",
+      "nombre": "café molido",
+      "forma": "disco",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.68,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "cafe",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "filtro",
+      "bisagra": "ninguna",
+      "radio": 0.36,
+      "alto": 0.06
+    },
+    {
+      "id": "superior",
+      "nombre": "jarra superior",
+      "forma": "tubo",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.76,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "rayado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.44,
+      "alto": 0.62,
+      "grosor": 0.03
+    },
+    {
+      "id": "chimenea",
+      "nombre": "chimenea",
+      "forma": "cilindro",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.78,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "gris",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "superior",
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.42
+    },
+    {
+      "id": "cafe_arriba",
+      "nombre": "café",
+      "forma": "cilindro",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.8,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "cafe",
+      "material": "liquido",
+      "detalle": "liso",
+      "padre": "superior",
+      "bisagra": "ninguna",
+      "radio": 0.41,
+      "alto": 0.24
+    },
+    {
+      "id": "asa",
+      "nombre": "asa",
+      "forma": "caja",
+      "x": -0.55,
+      "y": 0.0,
+      "z": 0.86,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "negro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "superior",
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.1,
+      "alto": 0.45
+    },
+    {
+      "id": "tapa",
+      "nombre": "tapa",
+      "forma": "disco",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 1.38,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "superior",
+      "bisagra": "atras",
+      "radio": 0.45,
+      "alto": 0.05
+    }
+  ],
+  "accesorios": [
+    {
+      "tipo": "alfombra",
+      "x": 1.4,
+      "y": -0.9,
+      "color": "mostaza"
+    },
+    {
+      "tipo": "jabon",
+      "x": -1.3,
+      "y": -0.6,
+      "color": "rosa"
+    }
+  ],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "El depósito de abajo con el agua.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Todo empieza abajo: un depósito con agua fría, justo hasta la válvula.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "hornillo_base",
+        "deposito",
+        "agua",
+        "valvula"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "deposito"
+      ],
+      "resaltar": [
+        "agua"
+      ],
+      "animaciones": [
+        {
+          "pieza": "agua",
+          "movimiento": "llenar",
+          "inicio": 0.2,
+          "fin": 0.7,
+          "cantidad": null
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "chorro",
+          "pieza": "deposito",
+          "momento": 0.15,
+          "duracion": 2.5
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "deposito",
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 3.0
+    },
+    {
+      "id": 2,
+      "descripcion": "Entra el filtro con el café.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Encima va el filtro, un embudo lleno de café molido.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "filtro",
+        "cafe_molido"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "deposito"
+      ],
+      "resaltar": [
+        "filtro"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "filtro",
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 3.0
+    },
+    {
+      "id": 3,
+      "descripcion": "Se enrosca la parte de arriba.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Y arriba, la jarra con su chimenea, que todavía está vacía.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "superior",
+        "chimenea",
+        "cafe_arriba",
+        "asa",
+        "tapa"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "deposito",
+        "superior"
+      ],
+      "resaltar": [
+        "chimenea"
+      ],
+      "animaciones": [
+        {
+          "pieza": "cafe_arriba",
+          "movimiento": "vaciar",
+          "inicio": 0,
+          "fin": 0.05,
+          "cantidad": null
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "objeto",
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 3.0
+    },
+    {
+      "id": 4,
+      "descripcion": "El calor hace vapor que empuja el agua.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Con el fuego, el vapor empuja el agua hacia arriba a través del café.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [
+        "deposito",
+        "superior"
+      ],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "agua",
+          "movimiento": "vaciar",
+          "inicio": 0.2,
+          "fin": 0.95,
+          "cantidad": null
+        },
+        {
+          "pieza": "cafe_arriba",
+          "movimiento": "llenar",
+          "inicio": 0.3,
+          "fin": 1,
+          "cantidad": null
+        },
+        {
+          "pieza": "deposito",
+          "movimiento": "vibrar",
+          "inicio": 0.1,
+          "fin": 0.9,
+          "cantidad": null
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "llama",
+          "pieza": "hornillo_base",
+          "momento": 0,
+          "duracion": 8.0
+        },
+        {
+          "tipo": "burbujas",
+          "pieza": "agua",
+          "momento": 0.1,
+          "duracion": 6.0
+        },
+        {
+          "tipo": "flecha_arriba",
+          "pieza": "chimenea",
+          "momento": 0.3,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "objeto",
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 3.0
+    },
+    {
+      "id": 5,
+      "descripcion": "Sale el vapor por arriba.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Cuando borbotea, el café ya está listo. ¡A servir!",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [
+        "superior"
+      ],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "tapa",
+          "movimiento": "abrir",
+          "inicio": 0.1,
+          "fin": 0.5,
+          "cantidad": 100
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "vapor",
+          "pieza": "superior",
+          "momento": 0.3,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "superior",
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 3.0
+    }
+  ],
+  "personajes": [],
+  "escenarios": []
+}

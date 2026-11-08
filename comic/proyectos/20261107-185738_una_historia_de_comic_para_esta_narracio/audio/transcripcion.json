@@ -1,0 +1,76 @@
+{
+  "segmentos": [
+    {
+      "inicio": 0.0,
+      "fin": 7.5,
+      "texto": "En la dulce ciudad de caramelo, un visitante estelar acaba de aterrizar."
+    },
+    {
+      "inicio": 7.5,
+      "fin": 11.5,
+      "texto": "¡Guau! ¿Todo aquí está hecho de azúcar?"
+    },
+    {
+      "inicio": 11.5,
+      "fin": 17.5,
+      "texto": "Sí, soy Lila, pero de noche está demasiado oscuro."
+    },
+    {
+      "inicio": 17.5,
+      "fin": 22.5,
+      "texto": "¡Esas farolas! Tengo una idea estelar para ayudar."
+    },
+    {
+      "inicio": 22.5,
+      "fin": 26.0,
+      "texto": "¡Energía cósmica activada!"
+    },
+    {
+      "inicio": 26.0,
+      "fin": 31.0,
+      "texto": "¡Increíble! Nuestra ciudad brilla como las estrellas."
+    }
+  ],
+  "meta": {
+    "modelo": "gemini-3.5-flash",
+    "fin": "STOP",
+    "segundos": 4.6,
+    "tokens_entrada": 1106,
+    "tokens_salida": 291,
+    "tokens_razonamiento": 577
+  },
+  "tramos_voz": [
+    [
+      0.4,
+      3.52
+    ],
+    [
+      3.92,
+      8.459999999999999
+    ],
+    [
+      9.56,
+      10.58
+    ],
+    [
+      10.96,
+      13.24
+    ],
+    [
+      13.64,
+      19.36
+    ],
+    [
+      21.38,
+      25.48
+    ],
+    [
+      26.58,
+      28.82
+    ],
+    [
+      30.08,
+      34.42
+    ]
+  ]
+}

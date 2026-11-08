@@ -1,0 +1,617 @@
+[
+  {
+    "clave": "dimension_x",
+    "socket": "Dimensión X",
+    "tipo": "INT",
+    "defecto": 1000,
+    "panel": "Terreno",
+    "descripcion": "Ancho total del terreno en unidades de Blender (eje X).",
+    "min": 10,
+    "max": 10000
+  },
+  {
+    "clave": "dimension_y",
+    "socket": "Dimensión Y",
+    "tipo": "INT",
+    "defecto": 1000,
+    "panel": "Terreno",
+    "descripcion": "Largo total del terreno en unidades de Blender (eje Y).",
+    "min": 10,
+    "max": 10000
+  },
+  {
+    "clave": "resolucion_x",
+    "socket": "Resolución X",
+    "tipo": "INT",
+    "defecto": 250,
+    "panel": "Terreno",
+    "descripcion": "Celdas (studs) a lo largo de X. Fija la cantidad de bloques; el tamaño de pieza es Dimensión X / Resolución X.",
+    "min": 8,
+    "max": 2048
+  },
+  {
+    "clave": "resolucion_y",
+    "socket": "Resolución Y",
+    "tipo": "INT",
+    "defecto": 250,
+    "panel": "Terreno",
+    "descripcion": "Celdas (studs) a lo largo de Y. Fija la cantidad de bloques; el tamaño de pieza es Dimensión Y / Resolución Y.",
+    "min": 8,
+    "max": 2048
+  },
+  {
+    "clave": "semilla",
+    "socket": "Semilla",
+    "tipo": "INT",
+    "defecto": 7,
+    "panel": "Terreno",
+    "descripcion": "Semilla global: cambia dunas, rocas, arcos y colores sin tocar el resto de parámetros.",
+    "min": 0,
+    "max": 99999
+  },
+  {
+    "clave": "escalon_placas",
+    "socket": "Altura de escalón (placas)",
+    "tipo": "INT",
+    "defecto": 3,
+    "panel": "Terreno",
+    "descripcion": "Altura de cada nivel del relieve en placas LEGO (3 = un ladrillo, 1 = una placa: escalones más finos).",
+    "min": 1,
+    "max": 6
+  },
+  {
+    "clave": "grosor_base",
+    "socket": "Grosor de la base (escalones)",
+    "tipo": "INT",
+    "defecto": 2,
+    "panel": "Terreno",
+    "descripcion": "Escalones de zócalo por debajo de la cota 0 en el borde del terreno.",
+    "min": 1,
+    "max": 12
+  },
+  {
+    "clave": "holgura",
+    "socket": "Holgura entre piezas",
+    "tipo": "FACTOR",
+    "defecto": 0.02,
+    "panel": "Terreno",
+    "descripcion": "Ancho de la junta entre piezas (bisel de las aristas superiores) como fracción del stud. Las piezas siguen ocupando su celda entera: no se abren ranuras.",
+    "min": 0.0,
+    "max": 0.15
+  },
+  {
+    "clave": "mostrar_studs",
+    "socket": "Mostrar studs",
+    "tipo": "BOOL",
+    "defecto": true,
+    "panel": "Terreno",
+    "descripcion": "Studs en la cara superior de las piezas visibles."
+  },
+  {
+    "clave": "submuestreo_visor",
+    "socket": "Submuestreo en el visor",
+    "tipo": "INT",
+    "defecto": 1,
+    "panel": "Terreno",
+    "descripcion": "Solo en la vista 3D: divide la resolución por este factor para editar con fluidez. El render usa la resolución completa.",
+    "min": 1,
+    "max": 8
+  },
+  {
+    "clave": "tipo_duna",
+    "socket": "Tipo de duna",
+    "tipo": "MENU",
+    "defecto": "Transversales",
+    "panel": "Dunas",
+    "descripcion": "Transversales: crestas paralelas perpendiculares al viento. Barjanes: medias lunas sueltas con los cuernos a sotavento. Estrella: picos con brazos en tres direcciones.",
+    "opciones": [
+      "Transversales",
+      "Barjanes",
+      "Estrella"
+    ]
+  },
+  {
+    "clave": "altura_dunas",
+    "socket": "Altura de dunas",
+    "tipo": "FLOAT",
+    "defecto": 75.0,
+    "panel": "Dunas",
+    "descripcion": "Altura máxima de las dunas en unidades de Blender.",
+    "min": 0.0,
+    "max": 400.0
+  },
+  {
+    "clave": "escala_dunas",
+    "socket": "Escala de dunas",
+    "tipo": "FLOAT",
+    "defecto": 240.0,
+    "panel": "Dunas",
+    "descripcion": "Distancia entre crestas (longitud de onda) en unidades de Blender.",
+    "min": 20.0,
+    "max": 2000.0
+  },
+  {
+    "clave": "direccion_viento",
+    "socket": "Dirección del viento (°)",
+    "tipo": "FLOAT",
+    "defecto": 30.0,
+    "panel": "Dunas",
+    "descripcion": "Hacia dónde sopla el viento, en grados desde +X. Las caras de avalancha miran a sotavento.",
+    "min": 0.0,
+    "max": 360.0
+  },
+  {
+    "clave": "asimetria",
+    "socket": "Asimetría",
+    "tipo": "FACTOR",
+    "defecto": 0.6,
+    "panel": "Dunas",
+    "descripcion": "0: dunas simétricas. 1: ladera de barlovento larga y cara de avalancha corta y abrupta.",
+    "min": 0.0,
+    "max": 1.0
+  },
+  {
+    "clave": "agudeza_cresta",
+    "socket": "Agudeza de cresta",
+    "tipo": "FACTOR",
+    "defecto": 0.5,
+    "panel": "Dunas",
+    "descripcion": "0: crestas redondeadas. 1: crestas afiladas con valles anchos y llanos.",
+    "min": 0.0,
+    "max": 1.0
+  },
+  {
+    "clave": "sinuosidad",
+    "socket": "Sinuosidad",
+    "tipo": "FLOAT",
+    "defecto": 0.6,
+    "panel": "Dunas",
+    "descripcion": "Cuánto serpentean las crestas (deformación del dominio con ruido).",
+    "min": 0.0,
+    "max": 2.0
+  },
+  {
+    "clave": "altura_colinas",
+    "socket": "Altura de colinas",
+    "tipo": "FLOAT",
+    "defecto": 35.0,
+    "panel": "Dunas",
+    "descripcion": "Relieve de fondo de baja frecuencia sobre el que se apoyan las dunas.",
+    "min": 0.0,
+    "max": 400.0
+  },
+  {
+    "clave": "escala_colinas",
+    "socket": "Escala de colinas",
+    "tipo": "FLOAT",
+    "defecto": 450.0,
+    "panel": "Dunas",
+    "descripcion": "Tamaño de las colinas en unidades de Blender.",
+    "min": 50.0,
+    "max": 5000.0
+  },
+  {
+    "clave": "pendientes",
+    "socket": "Pendientes en bordes",
+    "tipo": "BOOL",
+    "defecto": true,
+    "panel": "Dunas",
+    "descripcion": "Pone piezas en cuña (slope) en los escalones de un nivel para suavizar las dunas."
+  },
+  {
+    "clave": "prob_pendientes",
+    "socket": "Probabilidad de pendientes",
+    "tipo": "FACTOR",
+    "defecto": 0.85,
+    "panel": "Dunas",
+    "descripcion": "Proporción de escalones de un nivel que reciben cuña (en roca se usa la mitad).",
+    "min": 0.0,
+    "max": 1.0
+  },
+  {
+    "clave": "iteraciones_erosion",
+    "socket": "Iteraciones de erosión",
+    "tipo": "INT",
+    "defecto": 6,
+    "panel": "Erosión",
+    "descripcion": "Pasadas de erosión térmica: la arena se desliza donde el desnivel supera el talud.",
+    "min": 0,
+    "max": 40
+  },
+  {
+    "clave": "talud",
+    "socket": "Talud máximo (escalones)",
+    "tipo": "FLOAT",
+    "defecto": 1.0,
+    "panel": "Erosión",
+    "descripcion": "Desnivel estable entre celdas vecinas, en escalones. Menos = relieve más suave.",
+    "min": 0.2,
+    "max": 5.0
+  },
+  {
+    "clave": "carcavas",
+    "socket": "Cárcavas",
+    "tipo": "FACTOR",
+    "defecto": 0.35,
+    "panel": "Erosión",
+    "descripcion": "Profundidad de los surcos de erosión en rocas y colinas.",
+    "min": 0.0,
+    "max": 1.0
+  },
+  {
+    "clave": "escala_carcavas",
+    "socket": "Escala de cárcavas",
+    "tipo": "FLOAT",
+    "defecto": 90.0,
+    "panel": "Erosión",
+    "descripcion": "Separación entre surcos en unidades de Blender.",
+    "min": 10.0,
+    "max": 1000.0
+  },
+  {
+    "clave": "limpiar_picos",
+    "socket": "Limpiar picos sueltos",
+    "tipo": "BOOL",
+    "defecto": true,
+    "panel": "Erosión",
+    "descripcion": "Elimina columnas de una celda más altas o más bajas que todas sus vecinas."
+  },
+  {
+    "clave": "densidad_rocas",
+    "socket": "Densidad de rocas",
+    "tipo": "FACTOR",
+    "defecto": 0.3,
+    "panel": "Rocas",
+    "descripcion": "Proporción de celdas de roca que levantan una meseta.",
+    "min": 0.0,
+    "max": 1.0
+  },
+  {
+    "clave": "tamano_rocas",
+    "socket": "Tamaño de rocas",
+    "tipo": "FLOAT",
+    "defecto": 170.0,
+    "panel": "Rocas",
+    "descripcion": "Separación media entre mesetas en unidades de Blender (su diámetro es aproximadamente la mitad).",
+    "min": 10.0,
+    "max": 1000.0
+  },
+  {
+    "clave": "altura_rocas",
+    "socket": "Altura de rocas",
+    "tipo": "FLOAT",
+    "defecto": 55.0,
+    "panel": "Rocas",
+    "descripcion": "Altura de las mesetas sobre las colinas.",
+    "min": 0.0,
+    "max": 300.0
+  },
+  {
+    "clave": "gradas_mesetas",
+    "socket": "Gradas de las mesetas",
+    "tipo": "INT",
+    "defecto": 3,
+    "panel": "Rocas",
+    "descripcion": "Número de terrazas en los costados de cada meseta.",
+    "min": 1,
+    "max": 8
+  },
+  {
+    "clave": "grosor_estrato",
+    "socket": "Grosor de estrato (escalones)",
+    "tipo": "INT",
+    "defecto": 1,
+    "panel": "Rocas",
+    "descripcion": "Grosor de las bandas de color de la roca, en escalones.",
+    "min": 1,
+    "max": 10
+  },
+  {
+    "clave": "densidad_sueltas",
+    "socket": "Densidad de rocas sueltas",
+    "tipo": "FLOAT",
+    "defecto": 0.01,
+    "panel": "Rocas",
+    "descripcion": "Probabilidad de que una pieza de cima lleve encima una roca suelta.",
+    "min": 0.0,
+    "max": 0.3
+  },
+  {
+    "clave": "tamano_sueltas",
+    "socket": "Tamaño de rocas sueltas",
+    "tipo": "FACTOR",
+    "defecto": 0.5,
+    "panel": "Rocas",
+    "descripcion": "Proporción de rocas sueltas grandes frente a pequeñas.",
+    "min": 0.0,
+    "max": 1.0
+  },
+  {
+    "clave": "densidad_arcos",
+    "socket": "Densidad de arcos",
+    "tipo": "FLOAT",
+    "defecto": 2.0,
+    "panel": "Arcos",
+    "descripcion": "Arcos por cada 1000 × 1000 unidades de terreno (limitado por Máximo de arcos y por el espacio).",
+    "min": 0.0,
+    "max": 20.0
+  },
+  {
+    "clave": "max_arcos",
+    "socket": "Máximo de arcos",
+    "tipo": "INT",
+    "defecto": 6,
+    "panel": "Arcos",
+    "descripcion": "Tope de arcos. 0 desactiva los arcos.",
+    "min": 0,
+    "max": 12
+  },
+  {
+    "clave": "luz_arco",
+    "socket": "Luz del arco",
+    "tipo": "FLOAT",
+    "defecto": 120.0,
+    "panel": "Arcos",
+    "descripcion": "Distancia entre los ejes de las dos patas, en unidades de Blender.",
+    "min": 10.0,
+    "max": 600.0
+  },
+  {
+    "clave": "altura_arco",
+    "socket": "Altura del arco",
+    "tipo": "FLOAT",
+    "defecto": 85.0,
+    "panel": "Arcos",
+    "descripcion": "Altura de la parte superior del arco sobre su base.",
+    "min": 10.0,
+    "max": 500.0
+  },
+  {
+    "clave": "grosor_arco",
+    "socket": "Grosor del arco",
+    "tipo": "FLOAT",
+    "defecto": 18.0,
+    "panel": "Arcos",
+    "descripcion": "Grosor de la banda del arco (se limita a 0.3 × la menor de luz y altura para que la abertura no se cierre).",
+    "min": 2.0,
+    "max": 150.0
+  },
+  {
+    "clave": "profundidad_arco",
+    "socket": "Profundidad del arco",
+    "tipo": "FLOAT",
+    "defecto": 20.0,
+    "panel": "Arcos",
+    "descripcion": "Fondo de la banda, perpendicular a la luz.",
+    "min": 2.0,
+    "max": 200.0
+  },
+  {
+    "clave": "redondez_arco",
+    "socket": "Redondez del arco",
+    "tipo": "FLOAT",
+    "defecto": 2.2,
+    "panel": "Arcos",
+    "descripcion": "Exponente de la superelipse: 2 = semielipse, menos = apuntado, más = cuadrado.",
+    "min": 1.2,
+    "max": 5.0
+  },
+  {
+    "clave": "abocinado",
+    "socket": "Abocinado de patas",
+    "tipo": "FLOAT",
+    "defecto": 0.6,
+    "panel": "Arcos",
+    "descripcion": "Cuánto se ensanchan las patas al llegar al suelo.",
+    "min": 0.0,
+    "max": 1.5
+  },
+  {
+    "clave": "erosion_arco",
+    "socket": "Erosión del arco",
+    "tipo": "FACTOR",
+    "defecto": 0.35,
+    "panel": "Arcos",
+    "descripcion": "Mordiscos de erosión en la cara exterior (la abertura y la continuidad de la banda se conservan).",
+    "min": 0.0,
+    "max": 1.0
+  },
+  {
+    "clave": "variacion_arcos",
+    "socket": "Variación de tamaño",
+    "tipo": "FLOAT",
+    "defecto": 0.2,
+    "panel": "Arcos",
+    "descripcion": "Variación aleatoria de tamaño entre arcos (± fracción).",
+    "min": 0.0,
+    "max": 0.6
+  },
+  {
+    "clave": "radio_pedestal",
+    "socket": "Radio del pedestal",
+    "tipo": "FLOAT",
+    "defecto": 28.0,
+    "panel": "Arcos",
+    "descripcion": "Radio del montículo de roca que envuelve cada pata. 0 lo desactiva.",
+    "min": 0.0,
+    "max": 300.0
+  },
+  {
+    "clave": "color_arena_1",
+    "socket": "Color arena principal",
+    "tipo": "COLOR",
+    "defecto": 5,
+    "panel": "Materiales",
+    "descripcion": "Color dominante de la arena.",
+    "opciones": {
+      "5": "Tan",
+      "138": "Dark Tan",
+      "312": "Medium Nougat",
+      "18": "Nougat",
+      "283": "Light Nougat",
+      "192": "Reddish Brown",
+      "38": "Dark Orange",
+      "106": "Orange",
+      "217": "Brown",
+      "25": "Earth Orange",
+      "194": "Light Bluish Gray",
+      "199": "Dark Bluish Gray",
+      "330": "Olive Green",
+      "24": "Yellow"
+    }
+  },
+  {
+    "clave": "color_arena_2",
+    "socket": "Color arena oscura",
+    "tipo": "COLOR",
+    "defecto": 138,
+    "panel": "Materiales",
+    "descripcion": "Manchas, zócalo y variaciones de la arena.",
+    "opciones": {
+      "5": "Tan",
+      "138": "Dark Tan",
+      "312": "Medium Nougat",
+      "18": "Nougat",
+      "283": "Light Nougat",
+      "192": "Reddish Brown",
+      "38": "Dark Orange",
+      "106": "Orange",
+      "217": "Brown",
+      "25": "Earth Orange",
+      "194": "Light Bluish Gray",
+      "199": "Dark Bluish Gray",
+      "330": "Olive Green",
+      "24": "Yellow"
+    }
+  },
+  {
+    "clave": "color_arena_3",
+    "socket": "Color arena cálida",
+    "tipo": "COLOR",
+    "defecto": 312,
+    "panel": "Materiales",
+    "descripcion": "Acentos ocasionales en la arena.",
+    "opciones": {
+      "5": "Tan",
+      "138": "Dark Tan",
+      "312": "Medium Nougat",
+      "18": "Nougat",
+      "283": "Light Nougat",
+      "192": "Reddish Brown",
+      "38": "Dark Orange",
+      "106": "Orange",
+      "217": "Brown",
+      "25": "Earth Orange",
+      "194": "Light Bluish Gray",
+      "199": "Dark Bluish Gray",
+      "330": "Olive Green",
+      "24": "Yellow"
+    }
+  },
+  {
+    "clave": "color_roca_1",
+    "socket": "Color roca principal",
+    "tipo": "COLOR",
+    "defecto": 312,
+    "panel": "Materiales",
+    "descripcion": "Estrato dominante de la roca.",
+    "opciones": {
+      "5": "Tan",
+      "138": "Dark Tan",
+      "312": "Medium Nougat",
+      "18": "Nougat",
+      "283": "Light Nougat",
+      "192": "Reddish Brown",
+      "38": "Dark Orange",
+      "106": "Orange",
+      "217": "Brown",
+      "25": "Earth Orange",
+      "194": "Light Bluish Gray",
+      "199": "Dark Bluish Gray",
+      "330": "Olive Green",
+      "24": "Yellow"
+    }
+  },
+  {
+    "clave": "color_roca_2",
+    "socket": "Color roca clara",
+    "tipo": "COLOR",
+    "defecto": 18,
+    "panel": "Materiales",
+    "descripcion": "Estratos claros de la roca.",
+    "opciones": {
+      "5": "Tan",
+      "138": "Dark Tan",
+      "312": "Medium Nougat",
+      "18": "Nougat",
+      "283": "Light Nougat",
+      "192": "Reddish Brown",
+      "38": "Dark Orange",
+      "106": "Orange",
+      "217": "Brown",
+      "25": "Earth Orange",
+      "194": "Light Bluish Gray",
+      "199": "Dark Bluish Gray",
+      "330": "Olive Green",
+      "24": "Yellow"
+    }
+  },
+  {
+    "clave": "color_roca_3",
+    "socket": "Color roca oscura",
+    "tipo": "COLOR",
+    "defecto": 192,
+    "panel": "Materiales",
+    "descripcion": "Estratos oscuros de la roca.",
+    "opciones": {
+      "5": "Tan",
+      "138": "Dark Tan",
+      "312": "Medium Nougat",
+      "18": "Nougat",
+      "283": "Light Nougat",
+      "192": "Reddish Brown",
+      "38": "Dark Orange",
+      "106": "Orange",
+      "217": "Brown",
+      "25": "Earth Orange",
+      "194": "Light Bluish Gray",
+      "199": "Dark Bluish Gray",
+      "330": "Olive Green",
+      "24": "Yellow"
+    }
+  },
+  {
+    "clave": "color_roca_4",
+    "socket": "Color roca acento",
+    "tipo": "COLOR",
+    "defecto": 38,
+    "panel": "Materiales",
+    "descripcion": "Piezas sueltas de acento en la roca.",
+    "opciones": {
+      "5": "Tan",
+      "138": "Dark Tan",
+      "312": "Medium Nougat",
+      "18": "Nougat",
+      "283": "Light Nougat",
+      "192": "Reddish Brown",
+      "38": "Dark Orange",
+      "106": "Orange",
+      "217": "Brown",
+      "25": "Earth Orange",
+      "194": "Light Bluish Gray",
+      "199": "Dark Bluish Gray",
+      "330": "Olive Green",
+      "24": "Yellow"
+    }
+  },
+  {
+    "clave": "variacion_color",
+    "socket": "Variación de color",
+    "tipo": "FACTOR",
+    "defecto": 0.35,
+    "panel": "Materiales",
+    "descripcion": "Cantidad de piezas que cambian de color al azar.",
+    "min": 0.0,
+    "max": 1.0
+  }
+]

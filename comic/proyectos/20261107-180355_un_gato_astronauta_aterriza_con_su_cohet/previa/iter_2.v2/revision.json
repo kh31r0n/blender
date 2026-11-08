@@ -1,0 +1,482 @@
+{
+  "problemas": [
+    "Lila no lleva gafas, lo cual incumple la descripción original del usuario.",
+    "Las casas y las farolas están demasiado juntas y se solapan (casa en x=-6, farola en x=-7).",
+    "En la escena 4, Astro y su bocadillo quedan cortados por el borde izquierdo porque está muy alejado del centro (x=-5) en un plano conjunto.",
+    "La farola izquierda no se aprecia bien en la escena 4 debido al encuadre."
+  ],
+  "puntuacion": 6,
+  "cumple": false,
+  "guion": {
+    "titulo": "Luces de Caramelo",
+    "sinopsis": "Un gato astronauta aterriza en una ciudad hecha de dulces y ayuda a una niña a iluminar las calles encendiendo las farolas.",
+    "escenarios": [
+      {
+        "id": "ciudad_caramelo",
+        "cielo": "noche",
+        "suelo": "calle",
+        "elementos": [
+          {
+            "id": "luna1",
+            "tipo": "luna",
+            "x": 14.0,
+            "profundidad": "lejos",
+            "color": "amarillo",
+            "escala": 1.5,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "edificio_rosa",
+            "tipo": "edificio",
+            "x": -14.0,
+            "profundidad": "fondo",
+            "color": "rosa",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 5,
+            "texto": ""
+          },
+          {
+            "id": "edificio_cian",
+            "tipo": "edificio",
+            "x": 14.0,
+            "profundidad": "fondo",
+            "color": "cian",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 4,
+            "texto": ""
+          },
+          {
+            "id": "casa_violeta",
+            "tipo": "casa",
+            "x": -8.0,
+            "profundidad": "medio",
+            "color": "violeta",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "casa_lima",
+            "tipo": "casa",
+            "x": 8.0,
+            "profundidad": "medio",
+            "color": "lima",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "arbol_algodon1",
+            "tipo": "arbol",
+            "x": -15.0,
+            "profundidad": "medio",
+            "color": "rosa_claro",
+            "escala": 1.2,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "arbol_algodon2",
+            "tipo": "arbol",
+            "x": 15.0,
+            "profundidad": "medio",
+            "color": "turquesa",
+            "escala": 1.2,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "cohete1",
+            "tipo": "cohete",
+            "x": 0.0,
+            "profundidad": "medio",
+            "color": "blanco",
+            "color2": "rojo",
+            "escala": 1.5,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "farola_izq",
+            "tipo": "farola",
+            "x": -5.0,
+            "profundidad": "personajes",
+            "color": "gris_oscuro",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "farola_der",
+            "tipo": "farola",
+            "x": 5.0,
+            "profundidad": "personajes",
+            "color": "gris_oscuro",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "flores_amarillas",
+            "tipo": "flores",
+            "x": -3.0,
+            "profundidad": "delante",
+            "color": "amarillo",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          },
+          {
+            "id": "flores_naranjas",
+            "tipo": "flores",
+            "x": 3.0,
+            "profundidad": "delante",
+            "color": "naranja",
+            "escala": 1.0,
+            "espejo": false,
+            "pisos": 0,
+            "texto": ""
+          }
+        ],
+        "color_pared": "crema"
+      }
+    ],
+    "personajes": [
+      {
+        "id": "astro",
+        "nombre": "Astro",
+        "tipo": "gato",
+        "piel": "naranja",
+        "ropa": "blanco",
+        "voz": "Fenrir",
+        "accesorio": "ninguno",
+        "altura": 1.0,
+        "color_accesorio": "amarillo",
+        "color_pelo": "chocolate",
+        "descripcion": "",
+        "pantalon": "gris_claro",
+        "pelo": "corto"
+      },
+      {
+        "id": "lila",
+        "nombre": "Lila",
+        "tipo": "humano",
+        "piel": "piel_clara",
+        "ropa": "rojo",
+        "voz": "Leda",
+        "accesorio": "gafas",
+        "altura": 1.0,
+        "color_accesorio": "amarillo",
+        "color_pelo": "chocolate",
+        "descripcion": "",
+        "pantalon": "azul_marino",
+        "pelo": "coleta"
+      }
+    ],
+    "escenas": [
+      {
+        "id": 1,
+        "escenario": "ciudad_caramelo",
+        "descripcion": "El cohete acaba de aterrizar y Astro sale a explorar.",
+        "presentes": [
+          {
+            "actor": "astro",
+            "x": -2.0,
+            "mirando": "camara"
+          }
+        ],
+        "camara": {
+          "plano": "general",
+          "objetivo": "escena",
+          "movimiento": "fijo",
+          "angulo": "frontal",
+          "hacia": "derecha"
+        },
+        "lineas": [
+          {
+            "quien": "narrador",
+            "texto": "En la dulce Ciudad de Caramelo, un visitante estelar acaba de aterrizar.",
+            "emocion": "misterioso"
+          }
+        ],
+        "acciones": [
+          {
+            "actor": "cohete1",
+            "accion": "temblar",
+            "inicio": 0.0,
+            "fin": 0.5
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "humo",
+            "momento": 0.0,
+            "actor": "cohete1",
+            "duracion": 2.0
+          }
+        ],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 2,
+        "escenario": "ciudad_caramelo",
+        "descripcion": "Lila se acerca para saludar a Astro.",
+        "presentes": [
+          {
+            "actor": "astro",
+            "x": -2.0,
+            "mirando": "derecha"
+          },
+          {
+            "actor": "lila",
+            "x": 10.0,
+            "mirando": "izquierda"
+          }
+        ],
+        "camara": {
+          "plano": "conjunto",
+          "objetivo": "escena",
+          "movimiento": "fijo",
+          "angulo": "frontal",
+          "hacia": "derecha"
+        },
+        "lineas": [
+          {
+            "quien": "astro",
+            "texto": "¡Guau! ¿Todo aquí está hecho de azúcar?",
+            "emocion": "sorprendido"
+          },
+          {
+            "quien": "lila",
+            "texto": "¡Sí! Soy Lila. Pero de noche está demasiado oscuro.",
+            "emocion": "triste"
+          }
+        ],
+        "acciones": [
+          {
+            "actor": "lila",
+            "accion": "caminar",
+            "inicio": 0.0,
+            "fin": 0.4,
+            "destino_x": 2.0
+          },
+          {
+            "actor": "astro",
+            "accion": "sorpresa",
+            "inicio": 0.2,
+            "fin": 0.5
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "exclamacion",
+            "momento": 0.2,
+            "actor": "astro",
+            "duracion": 1.0
+          }
+        ],
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 3,
+        "escenario": "ciudad_caramelo",
+        "descripcion": "Astro tiene una idea al ver las farolas apagadas.",
+        "presentes": [
+          {
+            "actor": "astro",
+            "x": -2.0,
+            "mirando": "derecha"
+          },
+          {
+            "actor": "lila",
+            "x": 2.0,
+            "mirando": "izquierda"
+          }
+        ],
+        "camara": {
+          "plano": "conjunto",
+          "objetivo": "escena",
+          "movimiento": "fijo",
+          "angulo": "frontal",
+          "hacia": "derecha"
+        },
+        "lineas": [
+          {
+            "quien": "astro",
+            "texto": "¡Esas farolas! ¡Tengo una idea estelar para ayudar!",
+            "emocion": "alegre"
+          }
+        ],
+        "acciones": [
+          {
+            "actor": "astro",
+            "accion": "pensar",
+            "inicio": 0.0,
+            "fin": 0.4
+          },
+          {
+            "actor": "astro",
+            "accion": "caminar",
+            "inicio": 0.4,
+            "fin": 1.0,
+            "destino_x": -4.0
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "idea",
+            "momento": 0.2,
+            "actor": "astro",
+            "duracion": 1.5
+          }
+        ],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 4,
+        "escenario": "ciudad_caramelo",
+        "descripcion": "Astro enciende la primera farola con un salto.",
+        "presentes": [
+          {
+            "actor": "astro",
+            "x": -4.0,
+            "mirando": "derecha"
+          },
+          {
+            "actor": "lila",
+            "x": 2.0,
+            "mirando": "izquierda"
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "astro",
+          "movimiento": "fijo",
+          "angulo": "frontal",
+          "hacia": "derecha"
+        },
+        "lineas": [
+          {
+            "quien": "astro",
+            "texto": "¡Energía cósmica activada!",
+            "emocion": "emocionado"
+          }
+        ],
+        "acciones": [
+          {
+            "actor": "astro",
+            "accion": "saltar",
+            "inicio": 0.2,
+            "fin": 0.6
+          },
+          {
+            "actor": "farola_izq",
+            "accion": "encender",
+            "inicio": 0.6,
+            "fin": 1.0
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "onomatopeya",
+            "momento": 0.6,
+            "actor": "farola_izq",
+            "duracion": 1.5,
+            "texto": "¡CLIC!"
+          },
+          {
+            "tipo": "destello",
+            "momento": 0.6,
+            "actor": "farola_izq",
+            "duracion": 1.0
+          }
+        ],
+        "duracion_minima": 3.5
+      },
+      {
+        "id": 5,
+        "escenario": "ciudad_caramelo",
+        "descripcion": "La ciudad se ilumina y ambos celebran.",
+        "presentes": [
+          {
+            "actor": "astro",
+            "x": -4.0,
+            "mirando": "derecha"
+          },
+          {
+            "actor": "lila",
+            "x": 2.0,
+            "mirando": "izquierda"
+          }
+        ],
+        "camara": {
+          "plano": "general",
+          "objetivo": "escena",
+          "movimiento": "fijo",
+          "angulo": "frontal",
+          "hacia": "derecha"
+        },
+        "lineas": [
+          {
+            "quien": "lila",
+            "texto": "¡Increíble! ¡Nuestra ciudad brilla como las estrellas!",
+            "emocion": "alegre"
+          }
+        ],
+        "acciones": [
+          {
+            "actor": "farola_der",
+            "accion": "encender",
+            "inicio": 0.1,
+            "fin": 0.5
+          },
+          {
+            "actor": "lila",
+            "accion": "celebrar",
+            "inicio": 0.5,
+            "fin": 1.0
+          },
+          {
+            "actor": "astro",
+            "accion": "celebrar",
+            "inicio": 0.5,
+            "fin": 1.0
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "destello",
+            "momento": 0.1,
+            "actor": "farola_der",
+            "duracion": 1.0
+          },
+          {
+            "tipo": "confeti",
+            "momento": 0.5,
+            "actor": "lila",
+            "duracion": 3.0
+          },
+          {
+            "tipo": "corazones",
+            "momento": 0.6,
+            "actor": "lila",
+            "duracion": 2.0
+          }
+        ],
+        "duracion_minima": 5.0
+      }
+    ]
+  }
+}

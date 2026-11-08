@@ -1,0 +1,18 @@
+{
+  "tipo_duna": "Estrella",
+  "altura_dunas": 110.0,
+  "densidad_rocas": 0.45,
+  "altura_rocas": 80.0,
+  "densidad_arcos": 4.0,
+  "max_arcos": 3,
+  "luz_arco": 160.0,
+  "altura_arco": 120.0,
+  "grosor_arco": 26.0,
+  "color_arena_1": 312,
+  "color_arena_2": 38,
+  "color_arena_3": 18,
+  "color_roca_1": 38,
+  "color_roca_2": 18,
+  "color_roca_3": 192,
+  "color_roca_4": 106
+}

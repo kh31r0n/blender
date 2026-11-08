@@ -1,0 +1,228 @@
+{
+  "descripcion": "Cómo funciona un taladro de columna: el motor mueve una correa entre poleas, el husillo gira la broca y la palanca la baja contra la pieza sujeta en la mesa",
+  "creado": "20261107-194036",
+  "parametros": {
+    "estilo": "tecnico",
+    "formato": "3d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 30.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-flash-tts",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "modelo": "modelo/partes.json",
+    "guion": "guion.json",
+    "objetos": "01_objetos.v2.blend",
+    "rig": "02_rig.v2.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v2.blend",
+    "efectos": "04b_efectos.v2.blend",
+    "previa": "previa/iter_1.v2",
+    "render": "render/animacion.mp4",
+    "montaje": "final/final.v2.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "modelo",
+      "fecha": "2026-11-07T19:40:56",
+      "archivo": "modelo/partes.json",
+      "informe": {
+        "partes": 11,
+        "caras": 10695,
+        "caras_originales": 58345,
+        "alto": 0.901,
+        "colores": [
+          "gris_oscuro",
+          "gris_oscuro",
+          "gris_oscuro",
+          "gris_oscuro",
+          "gris_oscuro",
+          "gris_oscuro",
+          "negro",
+          "gris_oscuro",
+          "gris_oscuro",
+          "negro",
+          "gris_oscuro"
+        ],
+        "_segundos": 2.9
+      },
+      "hoja": "modelo/hoja_partes.png"
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T19:42:14",
+      "archivo": "guion.json",
+      "escenas": 6,
+      "avisos": [],
+      "modelo": true
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T19:42:28",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 9,
+        "rayos_x": 9,
+        "_segundos": 2.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T19:42:29",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 10,
+        "piezas": 9,
+        "desvio_max": 0.0,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T19:42:58",
+      "archivo": "tiempos.json",
+      "duracion": 46.156,
+      "fotogramas": 1108,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T19:42:59",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 3267,
+        "fotogramas": 1108,
+        "cambios_de_sombra": 15,
+        "piezas": 9,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T19:43:00",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 2,
+        "avisos": [],
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T19:43:02",
+      "archivo": "previa/iter_1",
+      "imagenes": 6
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T19:44:26",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 9,
+        "rayos_x": 9,
+        "_segundos": 2.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T19:44:28",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 10,
+        "piezas": 9,
+        "desvio_max": 0.0,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T19:44:28",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 3267,
+        "fotogramas": 1108,
+        "cambios_de_sombra": 15,
+        "piezas": 9,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T19:44:29",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 2,
+        "avisos": [],
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T19:44:31",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 6
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T19:47:22",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-194036_como_funciona_un_taladro_de_columna_el_m/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-194036_como_funciona_un_taladro_de_columna_el_m/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-194036_como_funciona_un_taladro_de_columna_el_m/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-194036_como_funciona_un_taladro_de_columna_el_m/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-194036_como_funciona_un_taladro_de_columna_el_m/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-194036_como_funciona_un_taladro_de_columna_el_m/render/vinetas/escena_6.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-194036_como_funciona_un_taladro_de_columna_el_m/render/animacion.mp4",
+        "fotogramas": 1108,
+        "segundos": 155.8,
+        "_segundos": 156.3
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T19:48:06",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T19:49:19",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    }
+  ],
+  "modelo_3d": "auto",
+  "modelo_3d_info": {
+    "fuente": "polyhaven",
+    "id": "drill_press_01",
+    "nombre": "Drill Press 01",
+    "licencia": "CC0",
+    "autor": "Viktor",
+    "caras": 58526,
+    "puntos": 8,
+    "url": "https://polyhaven.com/a/drill_press_01",
+    "miniatura": "https://cdn.polyhaven.com/asset_img/thumbs/drill_press_01.png?width=256&height=256",
+    "credito": "Modelo «Drill Press 01» de Viktor (CC0, polyhaven)",
+    "archivo": "/home/kheiron/blender/comic/descargas/modelos/polyhaven_drill_press_01/drill_press_01.gltf"
+  },
+  "vinetas": "render/vinetas"
+}

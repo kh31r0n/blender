@@ -1,0 +1,536 @@
+{
+  "descripcion": "Cómo un agente de IA que tría alertas de seguridad (SOC) ahorra tiempo y dinero con tres técnicas: alertas correlacionadas en DynamoDB, reutilización de respuestas en DynamoDB y prompt caching en el LLM. Vídeo para desarrolladores, de unos 2 minutos y medio: una maqueta isométrica de la arquitectura en el TEMA NEON: componentes de infraestructura modelados con primitivas (servidores y armarios de metal con rejillas, cajas de colores vivos, cilindros de base de datos, cubos de Lambda, una nube), cada uno sobre su peana luminosa y unidos por mangueras de neón, que se monta componente a componente siguiendo el recorrido de las alertas de izquierda a derecha. Cada técnica tiene su propio bloque de escenas.\n\nESCALA: componentes de 0.3-0.7 m de alto, separados 0.3-0.5 m; fichas y bloques de unos 0.12-0.2 m; mangueras de radio 0.02-0.025 que van de borde a borde de los componentes que unen. La maqueta entera, menos de 5 m de ancho.\n\nCOMPONENTES (de izquierda a derecha) Y CÓMO DIBUJARLOS\n1. Fuentes de alertas: tres componentes a la izquierda, uno detrás de otro en Y: un portátil (EDR del endpoint: base y pantalla), un armario de red de metal (WAF) y una nube azul (logs de la nube: tres esferas azules sobre una caja baja). Disparan cientos de alertas, muchas repetidas del mismo incidente (la misma IP atacando, el mismo usuario).\n2. Cola de entrada (Amazon SQS): un tubo transparente tumbado con fichas blancas dentro (cajitas), unido a las tres fuentes por mangueras. Absorbe los picos.\n3. Correlador (una Lambda): un cubo naranja. Para cada alerta calcula la clave de correlación: la entidad (IP de origen, usuario o host) más el tipo de regla. Escribe en DynamoDB con una actualización condicional y un contador atómico (UpdateItem con ADD), así dos Lambdas a la vez no crean dos grupos.\n4. Tabla de correlación (DynamoDB): una base de datos morada (tres cilindros apilados) detrás del correlador, unida por manguera; el TTL de la ventana de correlación (por ejemplo 15 minutos) se muestra con el efecto reloj. Partición = clave de correlación; cada grupo guarda las alertas, el contador y la hora de la primera. Si el grupo es nuevo, se manda al agente; si ya existe dentro de la ventana, la alerta solo se suma al grupo y no se vuelve a analizar ni a notificar (salvo que suba la gravedad o el contador pase un umbral). El atributo TTL borra los grupos caducados, pero DynamoDB no borra al instante: el código comprueba la caducidad al leer.\n5. Agente SOC: un servidor verde grande en el centro (el worker del agente). Recibe un GRUPO, no una alerta, y redacta un veredicto (gravedad, resumen, acciones).\n6. Caché de respuestas (DynamoDB): otra base de datos morada detrás del agente (TTL de la caché, por ejemplo 24 horas, con el efecto reloj). Antes de llamar al LLM, el agente normaliza el prompt (quita marcas de tiempo e ids que cambian siempre) y calcula un hash de ese prompt + el id del modelo + la versión del prompt; con esa clave hace un GetItem. Acierto (efectos rayo y aprobado): reutiliza el veredicto al instante y no llama al LLM. Fallo: llama al LLM y guarda la respuesta con PutItem y su TTL. Meter el modelo y la versión en la clave evita reutilizar respuestas de otro modelo o de un prompt antiguo.\n7. LLM (por ejemplo Claude en Amazon Bedrock): una esfera grande azul cielo sobre un pedestal de metal, a la derecha del agente, unida por manguera. A su lado, la PILA DEL PROMPT: tres bloques lima apilados (instrucciones del sistema, definiciones de tools y playbooks del SOC: el PREFIJO, grande y siempre igual) y encima un bloque blanco (el grupo de alertas: lo que cambia). Al lado, una repisa (caja baja de metal sobre su peana) que es la caché de prompts del proveedor, con sitio libre entre la pila y la repisa para que los bloques pasen sin atravesar nada. Prompt caching: se marca el final del prefijo con un punto de caché (cachePoint en Bedrock, cache_control en la API de Anthropic). La primera llamada escribe el prefijo en la caché (cuesta un 25 % más); las siguientes con el mismo prefijo lo leen de caché, a una fracción del precio (en torno al 10 %) y con menos latencia (efecto reloj más corto). La caché dura 5 minutos y cada acierto la renueva (hay opción de 1 hora). El prefijo tiene que ser idéntico byte a byte, en orden tools, sistema y mensajes: cualquier cambio (una fecha en el sistema) la invalida, por eso lo variable va al final. Admite hasta 4 puntos de caché y hay un tamaño mínimo para cachear.\n8. Alerta correlacionada: una caja roja con una baliza (cilindro rojo pequeño encima) a la derecha y un monitor (la consola del analista: panel con pantalla sobre un pie) al final. En lugar de cincuenta avisos, el analista recibe una sola alerta con el grupo entero y el veredicto.\n\nRECORRIDO\nPrimero se monta la maqueta explicando para qué sirve cada componente. Después, tres bloques:\nA) Correlación: llueven alertas repetidas de la misma IP (flujo por las mangueras hacia la cola y el embudo); la primera crea el grupo en la tabla y va al agente; las siguientes solo suben el contador (fichas que se apilan) y el efecto reloj marca la ventana.\nB) Reutilización de respuestas: el agente busca la clave en la caché de respuestas; la primera vez falla y llama al LLM; después, un grupo equivalente acierta (rayo, aprobado) y se responde sin llamar al LLM.\nC) Prompt caching: el prefijo lima viaja al LLM y se guarda en la repisa; en la siguiente llamada solo viaja el bloque blanco, el prefijo se lee de la repisa y el reloj marca menos tiempo.\nCierre: una sola alerta correlacionada se enciende en la baliza roja y llega al monitor; la última escena muestra todo el sistema funcionando a la vez.\n\nNARRACIÓN\nTono divulgativo para desarrolladores, con los nombres técnicos reales (SQS, Lambda, DynamoDB, UpdateItem, contador atómico, escritura condicional, TTL, hash, GetItem, PutItem, prompt caching, prefijo, cachePoint, tokens). Que se entienda la diferencia: la correlación evita analizar duplicados; la reutilización de respuestas evita llamar al LLM; el prompt caching abarata y acelera las llamadas que sí se hacen. Explica también los riesgos: el TTL de DynamoDB no borra al instante, una clave de caché sin modelo ni versión devuelve respuestas obsoletas, y cualquier cambio en el prefijo invalida el prompt caching.",
+  "creado": "20261108-042439",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "neon",
+    "formato": "3d",
+    "orientacion": "horizontal",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 150.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.v6.blend",
+    "rig": "02_rig.v6.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v7.blend",
+    "efectos": "04b_efectos.v7.blend",
+    "previa": "previa/iter_1.v4",
+    "render": "render/animacion.mp4",
+    "montaje": "final/final.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T04:31:45",
+      "archivo": "guion.json",
+      "escenas": 21,
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T04:34:49",
+      "archivo": "adornos.json",
+      "adornos": 86,
+      "por_tipo": {
+        "pantalla": 3,
+        "cartel": 10,
+        "teclado": 1,
+        "leds": 14,
+        "rejilla": 6,
+        "ranuras": 2,
+        "placa": 5,
+        "tornillos": 5,
+        "icono": 17,
+        "franja": 12,
+        "tirador": 1,
+        "conector": 10
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:34:51",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 57,
+        "rayos_x": 56,
+        "adornos": 86,
+        "avisos_adornos": [],
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:34:52",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 58,
+        "piezas": 57,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T04:36:53",
+      "archivo": "tiempos.json",
+      "duracion": 152.627,
+      "fotogramas": 3663,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:36:55",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 2893,
+        "fotogramas": 3663,
+        "cambios_de_sombra": 78,
+        "piezas": 57,
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:36:56",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 24,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:37:00",
+      "archivo": "previa/iter_1",
+      "imagenes": 21
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T04:39:13",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:39:14",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 57,
+        "rayos_x": 56,
+        "adornos": 86,
+        "avisos_adornos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:39:15",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 58,
+        "piezas": 57,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T04:39:15",
+      "archivo": "tiempos.json",
+      "duracion": 152.627,
+      "fotogramas": 3663,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:39:17",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 2893,
+        "fotogramas": 3663,
+        "cambios_de_sombra": 78,
+        "piezas": 57,
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:39:18",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 24,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:39:22",
+      "archivo": "previa/iter_2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:44:21",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 57,
+        "rayos_x": 56,
+        "adornos": 86,
+        "avisos_adornos": [],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:44:21",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "huesos": 58,
+        "piezas": 57,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:44:23",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 3123,
+        "fotogramas": 3663,
+        "cambios_de_sombra": 78,
+        "piezas": 57,
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:44:24",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 24,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:44:29",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T04:48:35",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T04:49:01",
+      "archivo": "adornos.json",
+      "adornos": 88,
+      "por_tipo": {
+        "pantalla": 3,
+        "cartel": 10,
+        "teclado": 1,
+        "leds": 15,
+        "rejilla": 6,
+        "ranuras": 2,
+        "placa": 5,
+        "tornillos": 5,
+        "icono": 17,
+        "franja": 13,
+        "tirador": 1,
+        "conector": 10
+      },
+      "carpeta": "detalles.v2"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:49:03",
+      "archivo": "01_objetos.v4.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:49:04",
+      "archivo": "02_rig.v4.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T04:49:04",
+      "archivo": "tiempos.json",
+      "duracion": 152.627,
+      "fotogramas": 3663,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:49:06",
+      "archivo": "04_animacion.v4.blend",
+      "informe": {
+        "claves": 3169,
+        "fotogramas": 3663,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:49:06",
+      "archivo": "04b_efectos.v4.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:49:11",
+      "archivo": "previa/iter_2.v2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T04:52:59",
+      "archivo": "guion.json",
+      "origen": "restaurado (mejor puntuacion 8)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:53:00",
+      "archivo": "01_objetos.v5.blend",
+      "informe": {
+        "piezas": 57,
+        "rayos_x": 56,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:53:00",
+      "archivo": "02_rig.v5.blend",
+      "informe": {
+        "huesos": 58,
+        "piezas": 57,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T04:53:01",
+      "archivo": "tiempos.json",
+      "duracion": 152.627,
+      "fotogramas": 3663,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:53:02",
+      "archivo": "04_animacion.v5.blend",
+      "informe": {
+        "claves": 3123,
+        "fotogramas": 3663,
+        "cambios_de_sombra": 78,
+        "piezas": 57,
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:53:03",
+      "archivo": "04b_efectos.v5.blend",
+      "informe": {
+        "efectos": 24,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T04:54:04",
+      "archivo": "guion.json",
+      "origen": "corregido por la revision de la previa 3 (la 4 lo puntuo 7 por campos internos del guion, no por la imagen)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:54:13",
+      "archivo": "01_objetos.v6.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:54:14",
+      "archivo": "02_rig.v6.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T04:54:14",
+      "archivo": "tiempos.json",
+      "duracion": 152.627,
+      "fotogramas": 3663,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:54:16",
+      "archivo": "04_animacion.v6.blend",
+      "informe": {
+        "claves": 3169,
+        "fotogramas": 3663,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:54:17",
+      "archivo": "04b_efectos.v6.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:54:21",
+      "archivo": "previa/iter_1.v3",
+      "imagenes": 21
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T05:03:14",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas.v3",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v3/escena_21.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/animacion.mp4",
+        "fotogramas": 3663,
+        "segundos": 532.5,
+        "_segundos": 533.1
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T05:04:34",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T05:16:16",
+      "archivo": "tiempos.json",
+      "duracion": 135.253,
+      "fotogramas": 3246,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T05:16:18",
+      "archivo": "04_animacion.v7.blend",
+      "informe": {
+        "claves": 3173,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T05:16:18",
+      "archivo": "04b_efectos.v7.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T05:16:23",
+      "archivo": "previa/iter_1.v4",
+      "imagenes": 21
+    }
+  ],
+  "referencia_detalles": "/home/kheiron/blender/comic/referencias/maqueta_neon/maqueta_bases_neon.png",
+  "vinetas": "render/vinetas.v3"
+}

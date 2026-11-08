@@ -1,0 +1,569 @@
+{
+  "descripcion": "Cómo funciona un agente de IA en producción con LangGraph, Amazon SQS, OpenTelemetry, un backend que controla el acceso a las tools y tools en AWS Lambda. Vídeo para desarrolladores, de unos 2 minutos y medio: una maqueta isométrica de la arquitectura que se monta componente a componente siguiendo el recorrido de una petición de izquierda a derecha. Metáfora mixta: bloques de nube reconocibles con mecanismos tangibles.\n\nESCALA: componentes principales de 0.4 a 0.8 m de alto, separados entre sí 0.3-0.5 m; sobres de unos 0.14 × 0.04 × 0.1 m; sensores de unos 0.06 m; mangueras de radio 0.02-0.03 que van de borde a borde de los componentes que unen. Cada Lambda con su manguera desde la garita.\n\nCOMPONENTES (de izquierda a derecha) Y CÓMO DIBUJARLOS\n1. Cliente: un portátil a la izquierda. Envía la petición del usuario con su token JWT.\n2. API Gateway: un arco de entrada (dos pilares y un dintel). Valida el token, crea un id de tarea, encola el mensaje en SQS y responde al momento con 202 y ese id: no espera al agente.\n3. Amazon SQS: un tubo transparente tumbado con varios sobres en fila dentro (cajitas blanco_hueso), sobre un soporte. Desacopla la entrada del procesamiento y absorbe picos de tráfico. Entrega \"al menos una vez\": si un worker cae, el mensaje vuelve a ser visible al vencer el visibility timeout (reloj) y se reintenta; tras varios intentos fallidos pasa a la DLQ, la cola de mensajes fallidos (un contenedor rojo pequeño al lado del tubo, unido por una manguera). Con una cola FIFO y MessageGroupId = id de conversación se mantiene el orden dentro de cada conversación.\n4. Workers con LangGraph: un servidor (caja con rejilla, color menta). Con rayos X se ve dentro el grafo de LangGraph: nodos (esferas de colores) unidos por aristas (mangueras finas): nodo agente (llama al LLM) → nodo tools → vuelve al agente → respuesta final; la arista que vuelve al agente es condicional. El estado avanza nodo a nodo (resaltar cada nodo). Los workers escalan según la profundidad de la cola y solo borran el mensaje de SQS cuando terminan.\n5. Checkpointer: una base de datos (cilindro violeta) junto al worker, unida por manguera (DynamoDB o Postgres). LangGraph guarda el estado en cada paso por thread_id: si un worker muere, otro retoma la conversación donde se quedó, y también permite pausar el grafo para una aprobación humana.\n6. LLM (por ejemplo, Amazon Bedrock): una esfera grande sobre un pedestal, detrás del worker y unida a él. Razona y decide el siguiente paso; cuando necesita una tool, la pide, pero no la ejecuta.\n7. Backend de autorización de tools: una garita con barrera, entre el worker y las Lambdas. El worker no tiene permiso IAM para invocar las Lambdas: solo este backend puede. Recibe cada llamada a tool con la identidad del usuario y la decide con políticas propias de la aplicación (no IAM) por usuario, por tool y por parámetros, con límites de uso y registro de auditoría; IAM solo garantiza que únicamente este backend pueda invocar las Lambdas. Si la permite, abre la barrera (aprobado) e invoca la Lambda; si no, la bloquea (rechazo) y el agente recibe un error que debe manejar.\n8. Tools en AWS Lambda: tres cajas pequeñas de colores distintos con tapa en bisagra (una por tool: consultar pedidos, crear ticket, enviar correo). Cada una tiene su propio rol IAM de mínimo privilegio y un timeout corto, y debe ser idempotente porque SQS puede repetir mensajes. La tapa se abre cuando se ejecuta.\n9. OpenTelemetry: sensores pequeños color lima sobre el worker, la garita y las Lambdas, que emiten ondas; un OTel Collector (caja con antena: varilla con esfera) y una pantalla de monitorización al fondo (panel apoyado en el suelo) con 4 o 5 barras horizontales escalonadas pegadas a su frente (cajas finas de colores), como la cascada de spans de una traza; las barras aparecen cuando se explica la traza. El contexto de la traza (traceparent) viaja dentro del mensaje de SQS, así que toda la petición es una sola traza: spans por nodo del grafo, por llamada al LLM (modelo, tokens, latencia) y por tool; y métricas de profundidad de cola, latencia, coste y tools denegadas.\n\nRECORRIDO\nPrimero se monta la maqueta componente a componente, explicando para qué sirve cada uno. Después se sigue una petición: sobre del cliente al gateway y a la cola (flujo); el worker la toma; el agente consulta al LLM; el LLM pide una tool; la garita la permite y la Lambda se ejecuta; el resultado vuelve al grafo (flujo_vuelta) y se guarda el checkpoint; el cliente recoge la respuesta con su id de tarea. Hay también una petición a una tool no permitida, que se rechaza, y un worker que falla: el mensaje se reintenta y, al final, acaba en la DLQ. La última escena muestra todo el sistema funcionando a la vez, con la traza completa en la pantalla.\n\nNARRACIÓN\nMenciona el visibility timeout y que el contexto de la traza viaja en los atributos del mensaje de SQS. Tono divulgativo para desarrolladores, con los nombres técnicos reales (LangGraph, SQS, visibility timeout, DLQ, checkpointer, IAM, OpenTelemetry, span, traza, Lambda). Que se entienda por qué cada pieza hace falta en producción: desacoplar y reintentar (SQS), estado durable (checkpointer), mínimo privilegio y auditoría (backend de autorización + Lambdas con su propio rol) y observabilidad de extremo a extremo (OpenTelemetry).",
+  "creado": "20261107-202239",
+  "parametros": {
+    "estilo": "tecnico",
+    "formato": "3d",
+    "orientacion": "horizontal",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 150.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-flash-tts",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.v7.blend",
+    "rig": "02_rig.v5.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v5.blend",
+    "efectos": "04b_efectos.v5.blend",
+    "previa": "previa/iter_1.v3",
+    "render": "render/animacion.v3.mp4",
+    "montaje": "final/final.v3.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T20:35:31",
+      "archivo": "guion.json",
+      "escenas": 21,
+      "avisos": [
+        "manguera manguera_c_gw sin camino: omitida",
+        "manguera manguera_gw_sqs sin camino: omitida",
+        "manguera manguera_dlq sin camino: omitida",
+        "manguera manguera_sqs_w sin camino: omitida",
+        "manguera lg_arista sin camino: omitida",
+        "manguera manguera_db sin camino: omitida",
+        "manguera manguera_llm sin camino: omitida",
+        "manguera manguera_w_g sin camino: omitida",
+        "manguera manguera_g_l1 sin camino: omitida",
+        "manguera manguera_g_l2 sin camino: omitida",
+        "manguera manguera_g_l3 sin camino: omitida"
+      ]
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T20:45:11",
+      "archivo": "guion.json",
+      "escenas": 21,
+      "avisos": []
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T20:46:33",
+      "archivo": "guion.json",
+      "origen": "mangueras corregidas a mano (atravesaba chk_cil; extremos sueltos)"
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-07T20:48:15",
+      "archivo": "adornos.json",
+      "adornos": 74,
+      "por_tipo": {
+        "pantalla": 4,
+        "teclado": 1,
+        "leds": 12,
+        "cartel": 8,
+        "ranuras": 2,
+        "icono": 9,
+        "rejilla": 6,
+        "placa": 8,
+        "tornillos": 6,
+        "franja": 5,
+        "tirador": 1,
+        "boton": 1,
+        "conector": 11
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T20:48:17",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 40,
+        "rayos_x": 39,
+        "adornos": 74,
+        "avisos_adornos": [],
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-07T20:49:06",
+      "archivo": "adornos.json",
+      "adornos": 73,
+      "origen": "retoque a mano"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T20:49:17",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 40,
+        "rayos_x": 39,
+        "adornos": 73,
+        "avisos_adornos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T20:49:17",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 41,
+        "piezas": 40,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T20:51:13",
+      "archivo": "tiempos.json",
+      "duracion": 161.338,
+      "fotogramas": 3872,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T20:51:14",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 3112,
+        "fotogramas": 3872,
+        "cambios_de_sombra": 61,
+        "piezas": 40,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T20:51:15",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 19,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T20:51:20",
+      "archivo": "previa/iter_1",
+      "imagenes": 21
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T20:54:16",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T20:54:16",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 50,
+        "rayos_x": 49,
+        "adornos": 73,
+        "avisos_adornos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T20:54:17",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 51,
+        "piezas": 50,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T20:54:17",
+      "archivo": "tiempos.json",
+      "duracion": 161.338,
+      "fotogramas": 3872,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T20:54:19",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 3641,
+        "fotogramas": 3872,
+        "cambios_de_sombra": 71,
+        "piezas": 50,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T20:54:20",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 19,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T20:54:24",
+      "archivo": "previa/iter_2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T21:05:44",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas/escena_21.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/animacion.mp4",
+        "fotogramas": 3872,
+        "segundos": 558.7,
+        "_segundos": 559.3
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T21:07:00",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T21:08:47",
+      "archivo": "01_objetos.v4.blend",
+      "informe": {
+        "piezas": 50,
+        "rayos_x": 49,
+        "adornos": 73,
+        "avisos_adornos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T21:08:48",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "huesos": 51,
+        "piezas": 50,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T21:08:49",
+      "archivo": "tiempos.json",
+      "duracion": 161.338,
+      "fotogramas": 3872,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T21:08:50",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 3439,
+        "fotogramas": 3872,
+        "cambios_de_sombra": 71,
+        "piezas": 50,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T21:08:51",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 19,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T21:08:56",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T21:09:16",
+      "archivo": "guion.json",
+      "origen": "mangueras del gateway unidas bajo el arco"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T21:09:22",
+      "archivo": "01_objetos.v5.blend",
+      "informe": {
+        "piezas": 50,
+        "rayos_x": 49,
+        "adornos": 73,
+        "avisos_adornos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T21:09:23",
+      "archivo": "02_rig.v4.blend",
+      "informe": {
+        "huesos": 51,
+        "piezas": 50,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T21:09:24",
+      "archivo": "04_animacion.v4.blend",
+      "informe": {
+        "claves": 3439,
+        "fotogramas": 3872,
+        "cambios_de_sombra": 71,
+        "piezas": 50,
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T21:09:25",
+      "archivo": "04b_efectos.v4.blend",
+      "informe": {
+        "efectos": 19,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T21:09:30",
+      "archivo": "previa/iter_1.v3",
+      "imagenes": 21
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T21:19:13",
+      "archivo": "render/animacion.v2.mp4",
+      "vinetas": "render/vinetas.v2",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v2/escena_21.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/animacion.v2.mp4",
+        "fotogramas": 3872,
+        "segundos": 560.1,
+        "_segundos": 560.7
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T21:20:29",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-07T21:22:43",
+      "archivo": "adornos.json",
+      "adornos": 97,
+      "por_tipo": {
+        "pantalla": 9,
+        "teclado": 1,
+        "leds": 16,
+        "tornillos": 8,
+        "franja": 6,
+        "icono": 12,
+        "cartel": 10,
+        "rejilla": 9,
+        "placa": 11,
+        "ranuras": 1,
+        "tirador": 1,
+        "boton": 1,
+        "conector": 12
+      },
+      "carpeta": "detalles.v2"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T21:22:44",
+      "archivo": "01_objetos.v6.blend",
+      "informe": {
+        "piezas": 50,
+        "rayos_x": 49,
+        "adornos": 97,
+        "avisos_adornos": [],
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-07T21:23:04",
+      "archivo": "adornos.json",
+      "adornos": 93,
+      "origen": "retoque a mano"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T21:23:05",
+      "archivo": "01_objetos.v7.blend",
+      "informe": {
+        "piezas": 50,
+        "rayos_x": 49,
+        "adornos": 93,
+        "avisos_adornos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T21:23:06",
+      "archivo": "02_rig.v5.blend",
+      "informe": {
+        "huesos": 51,
+        "piezas": 50,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T21:23:07",
+      "archivo": "04_animacion.v5.blend",
+      "informe": {
+        "claves": 3439,
+        "fotogramas": 3872,
+        "cambios_de_sombra": 71,
+        "piezas": 50,
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T21:23:08",
+      "archivo": "04b_efectos.v5.blend",
+      "informe": {
+        "efectos": 19,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T21:32:36",
+      "archivo": "render/animacion.v3.mp4",
+      "vinetas": "render/vinetas.v3",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/vinetas.v3/escena_21.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-202239_como_funciona_un_agente_de_ia_en_producc/render/animacion.v3.mp4",
+        "fotogramas": 3872,
+        "segundos": 562.1,
+        "_segundos": 562.7
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T21:33:53",
+      "archivo": "final/final.v3.mp4",
+      "pagina": "final/pagina_comic.v3.png",
+      "gif": "final/animacion.v3.gif"
+    }
+  ],
+  "referencia_detalles": "/home/kheiron/blender/comic/referencias/detalles/maqueta_isometrica_detallada.jpg",
+  "vinetas": "render/vinetas.v3"
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-08T03:55:56",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 213.6,
+      "tokens_entrada": 7752,
+      "tokens_salida": 13853,
+      "tokens_razonamiento": 12598
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-08T03:58:21",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 145.1,
+      "tokens_entrada": 17213,
+      "tokens_salida": 13397,
+      "tokens_razonamiento": 7046
+    },
+    "problemas": [
+      "'msg3' flota: no toca ninguna otra pieza (base a z=0.15)",
+      "el ultimo punto de la manguera 'manguera_edr' queda suelto, a 0.21 m de la pieza mas cercana",
+      "la manguera 'manguera_agente_db' atraviesa 'diana': rodeala con mas puntos en 'camino'"
+    ],
+    "quedan": []
+  },
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-08T04:03:43",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 252.2,
+      "tokens_entrada": 7907,
+      "tokens_salida": 15846,
+      "tokens_razonamiento": 15417
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-08T04:06:24",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 160.9,
+      "tokens_entrada": 18161,
+      "tokens_salida": 14213,
+      "tokens_razonamiento": 6295
+    },
+    "problemas": [
+      "la manguera 'm_robot_campana' atraviesa 'orbe_llm': rodeala con mas puntos en 'camino'",
+      "el objeto mide 7.2 m de ancho: piezas demasiado separadas"
+    ],
+    "quedan": []
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-08T04:09:07",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 101.4,
+      "tokens_entrada": 6297,
+      "tokens_salida": 4072,
+      "tokens_razonamiento": 8199
+    },
+    "avisos": [
+      "portatil_fuente: la forma icono no admite adornos",
+      "portatil_fuente: la forma icono no admite adornos",
+      "portatil_fuente: la forma icono no admite adornos",
+      "escudo_fuente: la forma icono no admite adornos",
+      "servidor_fuente: la forma icono no admite adornos",
+      "servidor_fuente: la forma icono no admite adornos",
+      "servidor_fuente: la forma icono no admite adornos",
+      "servidor_fuente: la forma icono no admite adornos",
+      "embudo_corr: la forma icono no admite adornos",
+      "embudo_corr: la forma icono no admite adornos",
+      "db_corr: la forma icono no admite adornos",
+      "db_corr: la forma icono no admite adornos",
+      "db_corr: la forma icono no admite adornos",
+      "db_corr: la forma icono no admite adornos",
+      "db_corr: la forma icono no admite adornos",
+      "reloj_corr: la forma icono no admite adornos",
+      "robot_agente: la forma icono no admite adornos",
+      "robot_agente: la forma icono no admite adornos",
+      "robot_agente: la forma icono no admite adornos",
+      "robot_agente: la forma icono no admite adornos",
+      "robot_agente: la forma icono no admite adornos",
+      "db_cache: la forma icono no admite adornos",
+      "db_cache: la forma icono no admite adornos",
+      "db_cache: la forma icono no admite adornos",
+      "llave_cache: la forma icono no admite adornos",
+      "diana_cache: la forma icono no admite adornos",
+      "orbe_llm: la forma icono no admite adornos",
+      "orbe_llm: la forma icono no admite adornos",
+      "cronometro_llm: la forma icono no admite adornos",
+      "campana_out: la forma icono no admite adornos",
+      "campana_out: la forma icono no admite adornos",
+      "monitor_out: la forma icono no admite adornos",
+      "monitor_out: la forma icono no admite adornos",
+      "monitor_out: la forma icono no admite adornos"
+    ],
+    "adornos": 21
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-08T04:13:46",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 154.7,
+      "tokens_entrada": 41747,
+      "tokens_salida": 13105,
+      "tokens_razonamiento": 3607
+    },
+    "iteracion": 1,
+    "problemas": [
+      "En la escena 18, los bloques 'bloque_p1', 'bloque_p2' y 'bloque_p3' atraviesan el 'orbe_llm' al desplazarse en Y, ya que comparten la misma coordenada X (0.9) y pasan por Y=0.0.",
+      "En la escena 19, el 'bloque_blanco' también atraviesa el 'orbe_llm' por el mismo motivo."
+    ],
+    "puntuacion": 8
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-08T04:17:05",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 187.1,
+      "tokens_entrada": 41308,
+      "tokens_salida": 13948,
+      "tokens_razonamiento": 8159
+    },
+    "iteracion": 2,
+    "problemas": [
+      "Los bloques de prompt (bloque_p1, etc.) estaban en z=0.0 y al desplazarse a la repisa_cache (que tiene alto=0.02 y z=0.0) la atravesarían. Se ha añadido una base_pila de alto=0.02 en su posición inicial y se ha elevado su z inicial para que deslicen correctamente sobre la repisa.",
+      "llave_cache y diana_cache se solapaban ligeramente en el eje X con db_cache. Se han separado un poco (x=-0.2 y x=0.6).",
+      "La manguera m_sqs_embudo salía del centro del tubo_sqs (x=-1.0), atravesando su pared lateral. Se ha movido su punto de inicio a la tapa del tubo (x=-0.7)."
+    ],
+    "puntuacion": 8
+  }
+]

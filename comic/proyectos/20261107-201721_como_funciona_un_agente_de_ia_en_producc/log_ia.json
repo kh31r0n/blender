@@ -1,0 +1,31 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-07T20:19:22",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 120.2,
+      "tokens_entrada": 5731,
+      "tokens_salida": 10585,
+      "tokens_razonamiento": 3921
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-07T20:21:23",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 121.0,
+      "tokens_entrada": 16647,
+      "tokens_salida": 14005,
+      "tokens_razonamiento": 1227
+    },
+    "problemas": [
+      "'monitor' flota: no toca ninguna otra pieza (base a z=0.50)"
+    ],
+    "quedan": []
+  }
+]

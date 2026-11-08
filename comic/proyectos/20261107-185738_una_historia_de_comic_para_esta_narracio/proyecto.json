@@ -1,0 +1,192 @@
+{
+  "descripcion": "Una historia de cómic para esta narración: un gato astronauta y una niña encienden las farolas de una ciudad de caramelo",
+  "creado": "20261107-185738",
+  "parametros": {
+    "estilo": "comic",
+    "formato": "2d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "previa",
+    "duracion": 30.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-flash-tts",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": true,
+    "cartelas": true,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "audio": "tiempos.json",
+    "objetos": "01_objetos.blend",
+    "rig": "02_rig.blend",
+    "animacion": "04_animacion.blend",
+    "efectos": "04b_efectos.blend",
+    "previa": "previa/iter_1"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:58:56",
+      "archivo": "guion.json",
+      "escenas": 6,
+      "avisos": [
+        "escena 1: accion aparecer no vale para gato_astro"
+      ]
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:59:14",
+      "archivo": "tiempos.json",
+      "duracion": 37.77,
+      "fotogramas": 906,
+      "fuente": "audio_propio"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:59:15",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "objetos_gp": 14,
+        "trazos": 423,
+        "escenarios": 1,
+        "elementos": 10,
+        "personajes": 2,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:59:15",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "personajes": {
+          "gato_astro": {
+            "rig": "RIG_gato_astro",
+            "huesos": 22,
+            "capas": 43
+          },
+          "lila": {
+            "rig": "RIG_lila",
+            "huesos": 22,
+            "capas": 43
+          }
+        },
+        "elementos": {
+          "arbol1": {
+            "rig": "RIG_arbol1",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "arbol2": {
+            "rig": "RIG_arbol2",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "arbusto1": {
+            "rig": "RIG_arbusto1",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "arbusto2": {
+            "rig": "RIG_arbusto2",
+            "huesos": [
+              "raiz",
+              "copa"
+            ]
+          },
+          "cohete1": {
+            "rig": "RIG_cohete1",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edif1": {
+            "rig": "RIG_edif1",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "edif2": {
+            "rig": "RIG_edif2",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola1": {
+            "rig": "RIG_farola1",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "farola2": {
+            "rig": "RIG_farola2",
+            "huesos": [
+              "raiz",
+              "cuerpo"
+            ]
+          },
+          "luna1": {
+            "rig": "RIG_luna1",
+            "huesos": [
+              "raiz",
+              "nucleo"
+            ]
+          }
+        },
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:59:16",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 6047,
+        "fotogramas": 906,
+        "personajes": 2,
+        "elementos": 10,
+        "sonidos": 1,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:59:18",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 8,
+        "objetos_fx": 8,
+        "cartelas": 1,
+        "bocadillos": 5,
+        "avisos": [],
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:59:20",
+      "archivo": "previa/iter_1",
+      "imagenes": 6
+    }
+  ],
+  "audio_propio": "/tmp/claude-1000/-home-kheiron-Android-projects-workspace-yorchio-yorchio-agent/6c97e865-2d92-44e5-b80a-767bbcab62f2/scratchpad/mi_narracion.mp3"
+}

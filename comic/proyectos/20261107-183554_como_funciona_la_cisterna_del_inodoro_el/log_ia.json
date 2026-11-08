@@ -1,0 +1,133 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-07T18:37:12",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 78.5,
+      "tokens_entrada": 3860,
+      "tokens_salida": 3016,
+      "tokens_razonamiento": 6076
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:38:56",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 76.7,
+      "tokens_entrada": 12249,
+      "tokens_salida": 3481,
+      "tokens_razonamiento": 6014
+    },
+    "iteracion": 1,
+    "problemas": [
+      "La taza es demasiado alta (0.8m) y parece una tubería industrial.",
+      "La tapa de la cisterna es tan alta como el tanque (0.6m) y está mal posicionada.",
+      "La palanca es una varilla vertical que sobresale por arriba, en lugar de estar en el frente.",
+      "El flotador baja por debajo de la cisterna en la escena 4.",
+      "El plano general de la escena 4 aleja demasiado la cámara."
+    ],
+    "puntuacion": 4
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:45:28",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 74.0,
+      "tokens_entrada": 12249,
+      "tokens_salida": 3426,
+      "tokens_razonamiento": 5374
+    },
+    "iteracion": 1,
+    "problemas": [
+      "La tapa de la cisterna es tan alta como la cisterna misma (0.6m) y flota por encima.",
+      "La taza del inodoro es demasiado alta (0.8m) y tapa la visión de la cisterna.",
+      "La palanca es un cilindro vertical enorme (0.6m) en lugar de una pequeña palanca horizontal.",
+      "El flotador está mal posicionado y el tubo de llenado es demasiado largo."
+    ],
+    "puntuacion": 3
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:47:24",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 111.6,
+      "tokens_entrada": 12288,
+      "tokens_salida": 4764,
+      "tokens_razonamiento": 7802
+    },
+    "iteracion": 2,
+    "problemas": [
+      "La cisterna flota en el aire, separada de la taza.",
+      "El flotador no está conectado a la válvula de llenado.",
+      "La palanca no está conectada a la válvula de descarga.",
+      "La palanca está mal posicionada y flota fuera de la cisterna.",
+      "Faltan piezas clave como los brazos y la cadena para que el mecanismo tenga sentido.",
+      "La taza es solo un tubo, no parece un inodoro completo."
+    ],
+    "puntuacion": 4
+  },
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-07T18:49:47",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 78.2,
+      "tokens_entrada": 3984,
+      "tokens_salida": 3689,
+      "tokens_razonamiento": 5178
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:51:28",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 71.0,
+      "tokens_entrada": 13034,
+      "tokens_salida": 4407,
+      "tokens_razonamiento": 3911
+    },
+    "iteracion": 1,
+    "problemas": [
+      "La palanca está flotando en la cara frontal y no conecta con la cadena.",
+      "El brazo del flotador atraviesa la válvula de llenado y el flotador choca con ella.",
+      "La cadena está inclinada y no conecta lógicamente la palanca con la válvula de descarga.",
+      "En la escena 4, el efecto de chorro en la taza sale de muy arriba; es mejor aplicarlo a la válvula de descarga para que caiga desde la cisterna."
+    ],
+    "puntuacion": 6
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:52:59",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 86.6,
+      "tokens_entrada": 13264,
+      "tokens_salida": 4627,
+      "tokens_razonamiento": 5783
+    },
+    "iteracion": 2,
+    "problemas": [
+      "La cisterna es desproporcionadamente grande y flota detrás de la taza en lugar de apoyarse en ella.",
+      "La tapa de la cisterna flota muy por encima del tanque.",
+      "El brazo del flotador atraviesa la válvula de llenado y es demasiado largo.",
+      "La cadena atraviesa el techo de la cisterna.",
+      "La palanca y su brazo flotan fuera de la cisterna en la primera escena.",
+      "El agua caería fuera de la taza porque la cisterna está demasiado atrás."
+    ],
+    "puntuacion": 4
+  }
+]

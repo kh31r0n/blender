@@ -1,0 +1,412 @@
+{
+  "problemas": [
+    "El accesorio 'cubo' está situado justo delante de la máquina y la tapa casi por completo en los planos generales (escenas 1 y 6).",
+    "En la escena 3, el plano detalle a la polea del motor recorta la correa y la polea del husillo, impidiendo ver el sistema de transmisión completo."
+  ],
+  "puntuacion": 7,
+  "cumple": false,
+  "guion": {
+    "titulo": "Cómo funciona un taladro de columna",
+    "sinopsis": "Descubre los mecanismos internos que permiten a un taladro de columna perforar con precisión y fuerza.",
+    "objeto": {
+      "nombre": "Taladro de columna",
+      "alto": 0.9
+    },
+    "suelo": "cemento",
+    "piezas": [
+      {
+        "id": "estructura",
+        "nombre": "Estructura principal",
+        "partes": [
+          "p11",
+          "p10"
+        ],
+        "material": "solido",
+        "color": "verde_agua",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "mesa",
+        "nombre": "Mesa de trabajo",
+        "partes": [
+          "p06",
+          "p01"
+        ],
+        "material": "solido",
+        "color": "gris_claro",
+        "bisagra": "ninguna",
+        "padre": "estructura"
+      },
+      {
+        "id": "tapa",
+        "nombre": "Tapa de poleas",
+        "partes": [
+          "p09"
+        ],
+        "material": "solido",
+        "color": "verde_agua",
+        "bisagra": "izquierda",
+        "padre": "estructura"
+      },
+      {
+        "id": "polea_motor",
+        "nombre": "Polea del motor",
+        "partes": [
+          "p04"
+        ],
+        "material": "metal",
+        "color": "metal",
+        "bisagra": "ninguna",
+        "padre": "estructura"
+      },
+      {
+        "id": "polea_husillo",
+        "nombre": "Polea del husillo",
+        "partes": [
+          "p03"
+        ],
+        "material": "metal",
+        "color": "metal",
+        "bisagra": "ninguna",
+        "padre": "estructura"
+      },
+      {
+        "id": "correa",
+        "nombre": "Correa de transmisión",
+        "partes": [
+          "p07"
+        ],
+        "material": "solido",
+        "color": "negro",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "palanca",
+        "nombre": "Palanca de avance",
+        "partes": [
+          "p08"
+        ],
+        "material": "metal",
+        "color": "metal",
+        "bisagra": "ninguna",
+        "padre": "estructura"
+      },
+      {
+        "id": "broca",
+        "nombre": "Broca y portabrocas",
+        "partes": [
+          "p02"
+        ],
+        "material": "metal",
+        "color": "lima",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "tope",
+        "nombre": "Tope de profundidad",
+        "partes": [
+          "p05"
+        ],
+        "material": "metal",
+        "color": "metal",
+        "bisagra": "ninguna",
+        "padre": "estructura"
+      }
+    ],
+    "accesorios": [
+      {
+        "tipo": "enchufe",
+        "x": 0.5,
+        "y": 0.5,
+        "color": "blanco_hueso"
+      }
+    ],
+    "escenas": [
+      {
+        "id": 1,
+        "descripcion": "Presentación del taladro",
+        "lineas": [
+          {
+            "texto": "Este es un taladro de columna, la máquina ideal para hacer agujeros rectos y muy precisos.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "estructura",
+          "mesa",
+          "tapa",
+          "polea_motor",
+          "polea_husillo",
+          "correa",
+          "palanca",
+          "broca",
+          "tope"
+        ],
+        "rayos_x": [],
+        "resaltar": [
+          "estructura",
+          "mesa"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "general",
+          "objetivo": "estructura",
+          "movimiento": "acercar"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 2,
+        "descripcion": "Apertura de la tapa",
+        "lineas": [
+          {
+            "texto": "En su parte superior, protegido por esta tapa, se encuentra el sistema de transmisión.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "tapa"
+        ],
+        "animaciones": [
+          {
+            "pieza": "tapa",
+            "movimiento": "abrir",
+            "inicio": 0.5,
+            "fin": 1.0,
+            "cantidad": 120
+          }
+        ],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "tapa",
+          "movimiento": "rodear"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 3,
+        "descripcion": "Motor y poleas",
+        "lineas": [
+          {
+            "texto": "El motor hace girar la polea trasera, que mueve una correa para transmitir la fuerza a la polea delantera.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "polea_motor",
+          "correa",
+          "polea_husillo"
+        ],
+        "animaciones": [
+          {
+            "pieza": "polea_motor",
+            "movimiento": "girar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 5
+          },
+          {
+            "pieza": "polea_husillo",
+            "movimiento": "girar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 5
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "flecha_giro",
+            "pieza": "polea_motor",
+            "momento": 1.0,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "correa",
+          "movimiento": "fijo"
+        },
+        "desaparecen": [],
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 4,
+        "descripcion": "Husillo y broca",
+        "lineas": [
+          {
+            "texto": "Esta polea está conectada al husillo, el eje central que hace girar la broca a gran velocidad.",
+            "emocion": "emocionado"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [
+          "estructura"
+        ],
+        "resaltar": [
+          "broca"
+        ],
+        "animaciones": [
+          {
+            "pieza": "broca",
+            "movimiento": "girar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 8
+          }
+        ],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "broca",
+          "movimiento": "acercar"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 5,
+        "descripcion": "Palanca y tope",
+        "lineas": [
+          {
+            "texto": "Al accionar la palanca, bajamos la broca. El tope lateral nos permite limitar la profundidad del agujero.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "palanca",
+          "tope"
+        ],
+        "animaciones": [
+          {
+            "pieza": "palanca",
+            "movimiento": "oscilar",
+            "inicio": 0.5,
+            "fin": 1.0,
+            "cantidad": 30
+          },
+          {
+            "pieza": "broca",
+            "movimiento": "bajar",
+            "inicio": 0.5,
+            "fin": 1.0,
+            "cantidad": 0.1
+          },
+          {
+            "pieza": "tope",
+            "movimiento": "bajar",
+            "inicio": 0.5,
+            "fin": 1.0,
+            "cantidad": 0.1
+          },
+          {
+            "pieza": "broca",
+            "movimiento": "subir",
+            "inicio": 1.0,
+            "fin": 1.0,
+            "cantidad": 0.1
+          },
+          {
+            "pieza": "tope",
+            "movimiento": "subir",
+            "inicio": 1.0,
+            "fin": 1.0,
+            "cantidad": 0.1
+          }
+        ],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "palanca",
+          "movimiento": "rodear"
+        },
+        "desaparecen": [],
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 6,
+        "descripcion": "Funcionamiento completo",
+        "lineas": [
+          {
+            "texto": "Con la pieza firme en la mesa, el taladro perfora materiales duros con total estabilidad y sin esfuerzo.",
+            "emocion": "alegre"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "broca",
+          "mesa"
+        ],
+        "animaciones": [
+          {
+            "pieza": "polea_motor",
+            "movimiento": "girar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 5
+          },
+          {
+            "pieza": "polea_husillo",
+            "movimiento": "girar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 5
+          },
+          {
+            "pieza": "broca",
+            "movimiento": "girar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 5
+          },
+          {
+            "pieza": "broca",
+            "movimiento": "bajar",
+            "inicio": 1.0,
+            "fin": 1.0,
+            "cantidad": 0.1
+          },
+          {
+            "pieza": "palanca",
+            "movimiento": "oscilar",
+            "inicio": 1.0,
+            "fin": 1.0,
+            "cantidad": 30
+          },
+          {
+            "pieza": "tope",
+            "movimiento": "bajar",
+            "inicio": 1.0,
+            "fin": 1.0,
+            "cantidad": 0.1
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "chispas",
+            "pieza": "broca",
+            "momento": 1.0,
+            "duracion": 1.0
+          }
+        ],
+        "camara": {
+          "plano": "general",
+          "objetivo": "estructura",
+          "movimiento": "alejar"
+        },
+        "desaparecen": [],
+        "duracion_minima": 5.0
+      }
+    ]
+  }
+}

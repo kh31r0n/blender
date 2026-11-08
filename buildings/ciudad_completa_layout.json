@@ -1,0 +1,950 @@
+[
+  {
+    "object": "B2_NITRO",
+    "block": "B2",
+    "lot": "CENTRO",
+    "source": "NITRO",
+    "model": "Nitrody City! IV",
+    "location_bu": [
+      18.0,
+      -6.0,
+      0.0
+    ],
+    "rotation_deg": 90,
+    "landmark": true
+  },
+  {
+    "object": "C2_S1_MOD_10182-1_Cafe_Corner",
+    "block": "C2",
+    "lot": "S1",
+    "source": "MODULAR",
+    "model": "Caf\u00e9 Corner",
+    "type": "corner",
+    "location_bu": [
+      -25.6,
+      64.0,
+      0.0
+    ],
+    "rotation_deg": 270
+  },
+  {
+    "object": "C2_S2_MOD_10224-1_Town_Hall",
+    "block": "C2",
+    "lot": "S2",
+    "source": "MODULAR",
+    "model": "Town Hall",
+    "type": "middle",
+    "location_bu": [
+      0.0,
+      64.0,
+      0.0
+    ],
+    "rotation_deg": 0
+  },
+  {
+    "object": "C2_S3_MOD_10232-1_Palace_Cinema",
+    "block": "C2",
+    "lot": "S3",
+    "source": "MODULAR",
+    "model": "Palace Cinema",
+    "type": "corner",
+    "location_bu": [
+      25.6,
+      64.0,
+      0.0
+    ],
+    "rotation_deg": 0
+  },
+  {
+    "object": "A2_N1_MOD_10251-1_Brick_Bank",
+    "block": "A2",
+    "lot": "N1",
+    "source": "MODULAR",
+    "model": "Brick Bank",
+    "type": "corner",
+    "location_bu": [
+      -25.6,
+      -64.0,
+      0.0
+    ],
+    "rotation_deg": 180
+  },
+  {
+    "object": "A2_N2_MOD_10197-1_Fire_Brigade",
+    "block": "A2",
+    "lot": "N2",
+    "source": "MODULAR",
+    "model": "Fire Brigade",
+    "type": "middle",
+    "location_bu": [
+      0.0,
+      -64.0,
+      0.0
+    ],
+    "rotation_deg": 180
+  },
+  {
+    "object": "A2_N3_MOD_10264-1_Corner_Garage",
+    "block": "A2",
+    "lot": "N3",
+    "source": "MODULAR",
+    "model": "Corner Garage",
+    "type": "corner",
+    "location_bu": [
+      25.6,
+      -64.0,
+      0.0
+    ],
+    "rotation_deg": 90
+  },
+  {
+    "object": "B1_S3_MOD_10297-1_Boutique_Hotel",
+    "block": "B1",
+    "lot": "S3",
+    "source": "MODULAR",
+    "model": "Boutique Hotel",
+    "type": "corner",
+    "location_bu": [
+      -76.8,
+      -12.8,
+      0.0
+    ],
+    "rotation_deg": 0
+  },
+  {
+    "object": "B1_S2_MOD_10270-1_Bookshop",
+    "block": "B1",
+    "lot": "S2",
+    "source": "MODULAR",
+    "model": "Bookshop",
+    "type": "middle",
+    "location_bu": [
+      -102.4,
+      -12.8,
+      0.0
+    ],
+    "rotation_deg": 0
+  },
+  {
+    "object": "B1_N2_MOD_10278-1_Police_Station",
+    "block": "B1",
+    "lot": "N2",
+    "source": "MODULAR",
+    "model": "Police Station",
+    "type": "middle",
+    "location_bu": [
+      -102.4,
+      12.8,
+      0.0
+    ],
+    "rotation_deg": 180
+  },
+  {
+    "object": "B3_S2_MOD_10218-1_Pet_Shop",
+    "block": "B3",
+    "lot": "S2",
+    "source": "MODULAR",
+    "model": "Pet Shop",
+    "type": "middle",
+    "location_bu": [
+      102.4,
+      -12.8,
+      0.0
+    ],
+    "rotation_deg": 0
+  },
+  {
+    "object": "B3_N2_MOD_10190-1_Market_Street",
+    "block": "B3",
+    "lot": "N2",
+    "source": "MODULAR",
+    "model": "Market Street",
+    "type": "middle",
+    "location_bu": [
+      102.4,
+      12.8,
+      0.0
+    ],
+    "rotation_deg": 180
+  },
+  {
+    "object": "A2_S2_MOD_10185-1_Green_Grocer",
+    "block": "A2",
+    "lot": "S2",
+    "source": "MODULAR",
+    "model": "Green Grocer",
+    "type": "middle",
+    "location_bu": [
+      0.0,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0
+  },
+  {
+    "object": "A2_S3_MOD_10243-1_Parisian_Restaurant",
+    "block": "A2",
+    "lot": "S3",
+    "source": "MODULAR",
+    "model": "Parisian Restaurant",
+    "type": "middle",
+    "location_bu": [
+      25.6,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0
+  },
+  {
+    "object": "C2_N2_MOD_10246-1_Detective_s_Office",
+    "block": "C2",
+    "lot": "N2",
+    "source": "MODULAR",
+    "model": "Detective's Office",
+    "type": "middle",
+    "location_bu": [
+      0.0,
+      89.6,
+      0.0
+    ],
+    "rotation_deg": 180
+  },
+  {
+    "object": "A1_S1_GEN_Apartment",
+    "block": "A1",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 6,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      -128.0,
+      -88.8,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Red brick",
+    "seed": 202601
+  },
+  {
+    "object": "A1_S2_GEN_Shop",
+    "block": "A1",
+    "lot": "S2",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 4,
+    "ancho_studs": 20,
+    "fondo_studs": 16,
+    "location_bu": [
+      -102.4,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sandstone",
+    "seed": 202602
+  },
+  {
+    "object": "A1_S3_GEN_Townhouse_A",
+    "block": "A1",
+    "lot": "S3",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      -81.6,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Nougat",
+    "seed": 202603
+  },
+  {
+    "object": "A1_S3_GEN_Townhouse_B",
+    "block": "A1",
+    "lot": "S3",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      -72.0,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sand blue",
+    "seed": 202604
+  },
+  {
+    "object": "A1_N1_GEN_Office",
+    "block": "A1",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Office",
+    "pisos": 7,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      -128.0,
+      -64.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Grey office",
+    "seed": 202605
+  },
+  {
+    "object": "A1_N2_GEN_Apartment",
+    "block": "A1",
+    "lot": "N2",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 5,
+    "ancho_studs": 22,
+    "fondo_studs": 18,
+    "location_bu": [
+      -102.4,
+      -64.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Olive",
+    "seed": 202606
+  },
+  {
+    "object": "A1_N3_GEN_Shop",
+    "block": "A1",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 4,
+    "ancho_studs": 18,
+    "fondo_studs": 16,
+    "location_bu": [
+      -76.8,
+      -64.0,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Brown brick",
+    "seed": 202607
+  },
+  {
+    "object": "A2_S1_GEN_Townhouse_A",
+    "block": "A2",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 4,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      -30.4,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sand green",
+    "seed": 202608
+  },
+  {
+    "object": "A2_S1_GEN_Townhouse_B",
+    "block": "A2",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      -20.8,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sandstone",
+    "seed": 202609
+  },
+  {
+    "object": "A3_S1_GEN_Shop",
+    "block": "A3",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 4,
+    "ancho_studs": 22,
+    "fondo_studs": 16,
+    "location_bu": [
+      76.8,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Red brick",
+    "seed": 202610
+  },
+  {
+    "object": "A3_S2_GEN_Townhouse_A",
+    "block": "A3",
+    "lot": "S2",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      97.6,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Nougat",
+    "seed": 202611
+  },
+  {
+    "object": "A3_S2_GEN_Townhouse_B",
+    "block": "A3",
+    "lot": "S2",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 2,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      107.2,
+      -89.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Brown brick",
+    "seed": 202612
+  },
+  {
+    "object": "A3_S3_GEN_Apartment",
+    "block": "A3",
+    "lot": "S3",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 7,
+    "ancho_studs": 26,
+    "fondo_studs": 20,
+    "location_bu": [
+      128.0,
+      -88.0,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sand blue",
+    "seed": 202613
+  },
+  {
+    "object": "A3_N1_GEN_Apartment",
+    "block": "A3",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 6,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      76.8,
+      -64.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sandstone",
+    "seed": 202614
+  },
+  {
+    "object": "A3_N2_GEN_Office",
+    "block": "A3",
+    "lot": "N2",
+    "source": "GENERATED",
+    "archetype": "Office",
+    "pisos": 8,
+    "ancho_studs": 26,
+    "fondo_studs": 20,
+    "location_bu": [
+      102.4,
+      -65.6,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Grey office",
+    "seed": 202615
+  },
+  {
+    "object": "A3_N3_GEN_Hotel",
+    "block": "A3",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Hotel",
+    "pisos": 7,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      128.0,
+      -64.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Nitro hotel",
+    "seed": 202616
+  },
+  {
+    "object": "B1_S1_GEN_Apartment",
+    "block": "B1",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 6,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      -128.0,
+      -12.0,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Olive",
+    "seed": 202617
+  },
+  {
+    "object": "B1_N1_GEN_Shop",
+    "block": "B1",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 5,
+    "ancho_studs": 22,
+    "fondo_studs": 16,
+    "location_bu": [
+      -128.0,
+      12.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sand green",
+    "seed": 202618
+  },
+  {
+    "object": "B1_N3_GEN_Office",
+    "block": "B1",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Office",
+    "pisos": 7,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      -76.8,
+      12.0,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Grey office",
+    "seed": 202619
+  },
+  {
+    "object": "B3_S1_GEN_Shop",
+    "block": "B3",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 5,
+    "ancho_studs": 22,
+    "fondo_studs": 16,
+    "location_bu": [
+      76.8,
+      -12.8,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Red brick",
+    "seed": 202620
+  },
+  {
+    "object": "B3_S3_GEN_Apartment",
+    "block": "B3",
+    "lot": "S3",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 7,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      128.0,
+      -12.0,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sandstone",
+    "seed": 202621
+  },
+  {
+    "object": "B3_N1_GEN_Townhouse_A",
+    "block": "B3",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 4,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      81.6,
+      12.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Brown brick",
+    "seed": 202622
+  },
+  {
+    "object": "B3_N1_GEN_Townhouse_B",
+    "block": "B3",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      72.0,
+      12.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Nougat",
+    "seed": 202623
+  },
+  {
+    "object": "B3_N3_GEN_Apartment",
+    "block": "B3",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 6,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      128.0,
+      12.0,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sand blue",
+    "seed": 202624
+  },
+  {
+    "object": "C1_S1_GEN_Office",
+    "block": "C1",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Office",
+    "pisos": 7,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      -128.0,
+      64.8,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Grey office",
+    "seed": 202625
+  },
+  {
+    "object": "C1_S2_GEN_Shop",
+    "block": "C1",
+    "lot": "S2",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 4,
+    "ancho_studs": 20,
+    "fondo_studs": 16,
+    "location_bu": [
+      -102.4,
+      64.0,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Red brick",
+    "seed": 202626
+  },
+  {
+    "object": "C1_S3_GEN_Apartment",
+    "block": "C1",
+    "lot": "S3",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 6,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      -76.8,
+      64.8,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sandstone",
+    "seed": 202627
+  },
+  {
+    "object": "C1_N1_GEN_Apartment",
+    "block": "C1",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 6,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      -128.0,
+      88.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sand green",
+    "seed": 202628
+  },
+  {
+    "object": "C1_N2_GEN_Townhouse_A",
+    "block": "C1",
+    "lot": "N2",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      -97.6,
+      89.6,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Olive",
+    "seed": 202629
+  },
+  {
+    "object": "C1_N2_GEN_Townhouse_B",
+    "block": "C1",
+    "lot": "N2",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      -107.2,
+      89.6,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Brown brick",
+    "seed": 202630
+  },
+  {
+    "object": "C1_N3_GEN_Hotel",
+    "block": "C1",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Hotel",
+    "pisos": 7,
+    "ancho_studs": 22,
+    "fondo_studs": 18,
+    "location_bu": [
+      -76.8,
+      88.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Nougat",
+    "seed": 202631
+  },
+  {
+    "object": "C2_N1_GEN_Shop",
+    "block": "C2",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 5,
+    "ancho_studs": 22,
+    "fondo_studs": 16,
+    "location_bu": [
+      -25.6,
+      89.6,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sand blue",
+    "seed": 202632
+  },
+  {
+    "object": "C2_N3_GEN_Apartment",
+    "block": "C2",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 6,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      25.6,
+      88.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sandstone",
+    "seed": 202633
+  },
+  {
+    "object": "C3_S1_GEN_Hotel",
+    "block": "C3",
+    "lot": "S1",
+    "source": "GENERATED",
+    "archetype": "Hotel",
+    "pisos": 7,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      76.8,
+      64.8,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Red brick",
+    "seed": 202634
+  },
+  {
+    "object": "C3_S2_GEN_Townhouse_A",
+    "block": "C3",
+    "lot": "S2",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 4,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      97.6,
+      64.0,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Sand green",
+    "seed": 202635
+  },
+  {
+    "object": "C3_S2_GEN_Townhouse_B",
+    "block": "C3",
+    "lot": "S2",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      107.2,
+      64.0,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Brown brick",
+    "seed": 202636
+  },
+  {
+    "object": "C3_S3_GEN_Office",
+    "block": "C3",
+    "lot": "S3",
+    "source": "GENERATED",
+    "archetype": "Office",
+    "pisos": 8,
+    "ancho_studs": 26,
+    "fondo_studs": 20,
+    "location_bu": [
+      128.0,
+      65.6,
+      0.0
+    ],
+    "rotation_deg": 0,
+    "scheme": "Grey office",
+    "seed": 202637
+  },
+  {
+    "object": "C3_N1_GEN_Apartment",
+    "block": "C3",
+    "lot": "N1",
+    "source": "GENERATED",
+    "archetype": "Apartment",
+    "pisos": 7,
+    "ancho_studs": 24,
+    "fondo_studs": 18,
+    "location_bu": [
+      76.8,
+      88.8,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sandstone",
+    "seed": 202638
+  },
+  {
+    "object": "C3_N2_GEN_Shop",
+    "block": "C3",
+    "lot": "N2",
+    "source": "GENERATED",
+    "archetype": "Shop",
+    "pisos": 4,
+    "ancho_studs": 20,
+    "fondo_studs": 16,
+    "location_bu": [
+      102.4,
+      89.6,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Olive",
+    "seed": 202639
+  },
+  {
+    "object": "C3_N3_GEN_Townhouse_A",
+    "block": "C3",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 3,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      132.8,
+      89.6,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Nougat",
+    "seed": 202640
+  },
+  {
+    "object": "C3_N3_GEN_Townhouse_B",
+    "block": "C3",
+    "lot": "N3",
+    "source": "GENERATED",
+    "archetype": "Townhouse",
+    "pisos": 2,
+    "ancho_studs": 12,
+    "fondo_studs": 16,
+    "location_bu": [
+      123.2,
+      89.6,
+      0.0
+    ],
+    "rotation_deg": 180,
+    "scheme": "Sand blue",
+    "seed": 202641
+  }
+]

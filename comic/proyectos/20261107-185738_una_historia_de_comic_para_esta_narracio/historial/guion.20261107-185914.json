@@ -1,0 +1,524 @@
+{
+  "titulo": "Luces de Azúcar y Estrellas",
+  "sinopsis": "Un gato astronauta aterriza en una ciudad de caramelo y, al descubrir que está muy oscura de noche, usa su energía cósmica para encender las farolas.",
+  "escenarios": [
+    {
+      "id": "ciudad_caramelo",
+      "cielo": "noche",
+      "suelo": "arena",
+      "elementos": [
+        {
+          "id": "luna1",
+          "tipo": "luna",
+          "x": -5.0,
+          "profundidad": "lejos",
+          "escala": 1.5,
+          "color": "amarillo",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        },
+        {
+          "id": "edif1",
+          "tipo": "edificio",
+          "x": -6.0,
+          "profundidad": "fondo",
+          "escala": 1.0,
+          "color": "rosa",
+          "color2": "blanco",
+          "texto": "",
+          "pisos": 4,
+          "espejo": false
+        },
+        {
+          "id": "edif2",
+          "tipo": "edificio",
+          "x": 6.0,
+          "profundidad": "fondo",
+          "escala": 1.0,
+          "color": "turquesa",
+          "color2": "blanco",
+          "texto": "",
+          "pisos": 5,
+          "espejo": false
+        },
+        {
+          "id": "arbol1",
+          "tipo": "arbol",
+          "x": -3.0,
+          "profundidad": "medio",
+          "escala": 1.2,
+          "color": "magenta",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        },
+        {
+          "id": "arbol2",
+          "tipo": "arbol",
+          "x": 3.0,
+          "profundidad": "medio",
+          "escala": 1.1,
+          "color": "rosa_claro",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        },
+        {
+          "id": "farola1",
+          "tipo": "farola",
+          "x": -1.5,
+          "profundidad": "personajes",
+          "escala": 1.0,
+          "color": "oro",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        },
+        {
+          "id": "farola2",
+          "tipo": "farola",
+          "x": 1.5,
+          "profundidad": "personajes",
+          "escala": 1.0,
+          "color": "oro",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        },
+        {
+          "id": "arbusto1",
+          "tipo": "arbusto",
+          "x": -4.0,
+          "profundidad": "delante",
+          "escala": 1.0,
+          "color": "violeta",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        },
+        {
+          "id": "arbusto2",
+          "tipo": "arbusto",
+          "x": 4.0,
+          "profundidad": "delante",
+          "escala": 1.0,
+          "color": "rosa",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        },
+        {
+          "id": "cohete1",
+          "tipo": "cohete",
+          "x": 0.0,
+          "profundidad": "medio",
+          "escala": 1.0,
+          "color": "gris_claro",
+          "color2": null,
+          "texto": "",
+          "pisos": 0,
+          "espejo": false
+        }
+      ],
+      "color_pared": "crema"
+    }
+  ],
+  "personajes": [
+    {
+      "id": "narrador_p",
+      "nombre": "Narrador",
+      "tipo": "humano",
+      "piel": "piel_clara",
+      "ropa": "negro",
+      "pantalon": "azul",
+      "pelo": "corto",
+      "color_pelo": "chocolate",
+      "accesorio": "ninguno",
+      "color_accesorio": "amarillo",
+      "altura": 1.0,
+      "voz": "Charon",
+      "descripcion": ""
+    },
+    {
+      "id": "gato_astro",
+      "nombre": "Astro",
+      "tipo": "gato",
+      "piel": "blanco",
+      "ropa": "gris_claro",
+      "pantalon": "blanco",
+      "pelo": "calvo",
+      "color_pelo": "chocolate",
+      "accesorio": "mochila",
+      "color_accesorio": "azul",
+      "altura": 1.4,
+      "voz": "Puck",
+      "descripcion": ""
+    },
+    {
+      "id": "lila",
+      "nombre": "Lila",
+      "tipo": "humano",
+      "piel": "piel_clara",
+      "ropa": "magenta",
+      "pantalon": "azul",
+      "pelo": "coleta",
+      "color_pelo": "morado",
+      "accesorio": "ninguno",
+      "color_accesorio": "amarillo",
+      "altura": 1.4,
+      "voz": "Leda",
+      "descripcion": ""
+    }
+  ],
+  "escenas": [
+    {
+      "id": 1,
+      "escenario": "ciudad_caramelo",
+      "descripcion": "El gato astronauta acaba de aterrizar en la ciudad.",
+      "presentes": [
+        {
+          "actor": "gato_astro",
+          "x": 0.0,
+          "mirando": "camara"
+        },
+        {
+          "actor": "narrador_p",
+          "x": 0.0,
+          "mirando": "camara"
+        }
+      ],
+      "camara": {
+        "plano": "general",
+        "objetivo": "gato_astro",
+        "movimiento": "zoom_in",
+        "angulo": "frontal",
+        "hacia": "derecha"
+      },
+      "lineas": [
+        {
+          "quien": "narrador_p",
+          "texto": "En la dulce ciudad de caramelo, un visitante estelar acaba de aterrizar.",
+          "emocion": "misterioso"
+        }
+      ],
+      "acciones": [
+        {
+          "actor": "gato_astro",
+          "accion": "mirar",
+          "inicio": 0.4,
+          "fin": 0.8,
+          "hacia": "derecha"
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "humo",
+          "texto": "",
+          "actor": "gato_astro",
+          "momento": 0.1,
+          "duracion": 1.0,
+          "color": null
+        }
+      ],
+      "duracion_minima": 7.5
+    },
+    {
+      "id": 2,
+      "escenario": "ciudad_caramelo",
+      "descripcion": "Astro se sorprende al ver que todo es de azúcar.",
+      "presentes": [
+        {
+          "actor": "gato_astro",
+          "x": 0.0,
+          "mirando": "camara"
+        }
+      ],
+      "camara": {
+        "plano": "primer_plano",
+        "objetivo": "gato_astro",
+        "movimiento": "fijo",
+        "angulo": "frontal",
+        "hacia": "derecha"
+      },
+      "lineas": [
+        {
+          "quien": "gato_astro",
+          "texto": "¡Guau! ¿Todo aquí está hecho de azúcar?",
+          "emocion": "sorprendido"
+        }
+      ],
+      "acciones": [
+        {
+          "actor": "gato_astro",
+          "accion": "sorpresa",
+          "inicio": 0.1,
+          "fin": 0.5,
+          "hacia": ""
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "exclamacion",
+          "texto": "",
+          "actor": "gato_astro",
+          "momento": 0.1,
+          "duracion": 1.0,
+          "color": "amarillo"
+        }
+      ],
+      "duracion_minima": 4.0
+    },
+    {
+      "id": 3,
+      "escenario": "ciudad_caramelo",
+      "descripcion": "Lila entra a escena y le explica el problema de la oscuridad.",
+      "presentes": [
+        {
+          "actor": "lila",
+          "x": 0.0,
+          "mirando": "izquierda"
+        },
+        {
+          "actor": "gato_astro",
+          "x": -2.0,
+          "mirando": "derecha"
+        }
+      ],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "lila",
+        "movimiento": "paneo",
+        "angulo": "frontal",
+        "hacia": "derecha"
+      },
+      "lineas": [
+        {
+          "quien": "lila",
+          "texto": "Sí, soy Lila, pero de noche está demasiado oscuro.",
+          "emocion": "triste"
+        }
+      ],
+      "acciones": [
+        {
+          "actor": "lila",
+          "accion": "entrar",
+          "inicio": 0,
+          "fin": 0.3,
+          "hacia": "",
+          "destino_x": 0.0
+        },
+        {
+          "actor": "lila",
+          "accion": "triste",
+          "inicio": 0.4,
+          "fin": 0.8,
+          "hacia": ""
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "sudor",
+          "texto": "",
+          "actor": "lila",
+          "momento": 0.4,
+          "duracion": 1.0,
+          "color": null
+        }
+      ],
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 4,
+      "escenario": "ciudad_caramelo",
+      "descripcion": "Astro tiene una gran idea.",
+      "presentes": [
+        {
+          "actor": "gato_astro",
+          "x": -1.0,
+          "mirando": "derecha"
+        },
+        {
+          "actor": "lila",
+          "x": 1.0,
+          "mirando": "izquierda"
+        }
+      ],
+      "camara": {
+        "plano": "conjunto",
+        "objetivo": "gato_astro",
+        "movimiento": "fijo",
+        "angulo": "frontal",
+        "hacia": "derecha"
+      },
+      "lineas": [
+        {
+          "quien": "gato_astro",
+          "texto": "¡Esas farolas! Tengo una idea estelar para ayudar.",
+          "emocion": "emocionado"
+        }
+      ],
+      "acciones": [
+        {
+          "actor": "gato_astro",
+          "accion": "pensar",
+          "inicio": 0.1,
+          "fin": 0.4,
+          "hacia": ""
+        },
+        {
+          "actor": "gato_astro",
+          "accion": "senalar",
+          "inicio": 0.5,
+          "fin": 0.9,
+          "hacia": "derecha"
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "idea",
+          "texto": "",
+          "actor": "gato_astro",
+          "momento": 0.5,
+          "duracion": 1.0,
+          "color": "amarillo"
+        }
+      ],
+      "duracion_minima": 5.0
+    },
+    {
+      "id": 5,
+      "escenario": "ciudad_caramelo",
+      "descripcion": "Astro activa su energía cósmica y enciende las farolas.",
+      "presentes": [
+        {
+          "actor": "gato_astro",
+          "x": 0.0,
+          "mirando": "camara"
+        }
+      ],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "gato_astro",
+        "movimiento": "temblor",
+        "angulo": "frontal",
+        "hacia": "derecha"
+      },
+      "lineas": [
+        {
+          "quien": "gato_astro",
+          "texto": "¡Energía cósmica activada!",
+          "emocion": "alegre"
+        }
+      ],
+      "acciones": [
+        {
+          "actor": "gato_astro",
+          "accion": "saltar",
+          "inicio": 0.1,
+          "fin": 0.5,
+          "hacia": ""
+        },
+        {
+          "actor": "farola1",
+          "accion": "encender",
+          "inicio": 0.5,
+          "fin": 0.9,
+          "hacia": ""
+        },
+        {
+          "actor": "farola2",
+          "accion": "encender",
+          "inicio": 0.6,
+          "fin": 1,
+          "hacia": ""
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "destello",
+          "texto": "",
+          "actor": "gato_astro",
+          "momento": 0.3,
+          "duracion": 1.0,
+          "color": "cian"
+        },
+        {
+          "tipo": "onomatopeya",
+          "texto": "¡ZAP!",
+          "actor": null,
+          "momento": 0.5,
+          "duracion": 1.0,
+          "color": null
+        }
+      ],
+      "duracion_minima": 3.5
+    },
+    {
+      "id": 6,
+      "escenario": "ciudad_caramelo",
+      "descripcion": "Lila celebra maravillada por la ciudad iluminada.",
+      "presentes": [
+        {
+          "actor": "lila",
+          "x": 0.0,
+          "mirando": "izquierda"
+        },
+        {
+          "actor": "gato_astro",
+          "x": -1.5,
+          "mirando": "derecha"
+        }
+      ],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "lila",
+        "movimiento": "zoom_out",
+        "angulo": "frontal",
+        "hacia": "derecha"
+      },
+      "lineas": [
+        {
+          "quien": "lila",
+          "texto": "¡Increíble! Nuestra ciudad brilla como las estrellas.",
+          "emocion": "alegre"
+        }
+      ],
+      "acciones": [
+        {
+          "actor": "lila",
+          "accion": "celebrar",
+          "inicio": 0.1,
+          "fin": 0.6,
+          "hacia": ""
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "corazones",
+          "texto": "",
+          "actor": "lila",
+          "momento": 0.2,
+          "duracion": 1.0,
+          "color": "rosa"
+        },
+        {
+          "tipo": "confeti",
+          "texto": "",
+          "actor": null,
+          "momento": 0.5,
+          "duracion": 1.0,
+          "color": "amarillo"
+        }
+      ],
+      "duracion_minima": 5.0
+    }
+  ]
+}

@@ -1,0 +1,1560 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Triaje SOC Eficiente: Correlación, Caché y Prompt Caching",
+  "sinopsis": "Cómo un agente de IA para triaje de alertas de seguridad ahorra tiempo y dinero combinando DynamoDB y las cachés de los LLM.",
+  "objeto": {
+    "nombre": "Arquitectura SOC AI",
+    "alto": 1.0
+  },
+  "suelo": "cemento",
+  "piezas": [
+    {
+      "id": "edr",
+      "nombre": "EDR",
+      "forma": "icono",
+      "x": -2.0,
+      "y": 0.6,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.4,
+      "modelo": "portatil",
+      "acento": "lima"
+    },
+    {
+      "id": "waf",
+      "nombre": "WAF",
+      "forma": "icono",
+      "x": -2.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.4,
+      "modelo": "escudo",
+      "acento": "lima"
+    },
+    {
+      "id": "logs",
+      "nombre": "Logs",
+      "forma": "icono",
+      "x": -2.0,
+      "y": -0.6,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.4,
+      "modelo": "servidor",
+      "acento": "lima"
+    },
+    {
+      "id": "manguera_edr",
+      "nombre": "Manguera EDR",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -2.0,
+          0.6,
+          0.0
+        ],
+        [
+          -1.2,
+          0.4,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "manguera_waf",
+      "nombre": "Manguera WAF",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -2.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.2,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "manguera_logs",
+      "nombre": "Manguera Logs",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -2.0,
+          -0.6,
+          0.0
+        ],
+        [
+          -1.2,
+          -0.4,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "sqs",
+      "nombre": "Cola SQS",
+      "forma": "tubo",
+      "x": -1.2,
+      "y": 0.4,
+      "z": 0.15,
+      "rot_x": 90.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "transparente",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.8,
+      "grosor": 0.02
+    },
+    {
+      "id": "msg1",
+      "nombre": "Mensaje 1",
+      "forma": "caja",
+      "x": -1.2,
+      "y": -0.2,
+      "z": 0.02,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.1,
+      "fondo": 0.1,
+      "alto": 0.1
+    },
+    {
+      "id": "msg2",
+      "nombre": "Mensaje 2",
+      "forma": "caja",
+      "x": -1.2,
+      "y": 0.0,
+      "z": 0.02,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.1,
+      "fondo": 0.1,
+      "alto": 0.1
+    },
+    {
+      "id": "msg3",
+      "nombre": "Mensaje 3",
+      "forma": "caja",
+      "x": -1.2,
+      "y": 0.2,
+      "z": 0.02,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.1,
+      "fondo": 0.1,
+      "alto": 0.1
+    },
+    {
+      "id": "lambda_corr",
+      "nombre": "Lambda Correlador",
+      "forma": "icono",
+      "x": -0.4,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.4,
+      "modelo": "embudo",
+      "acento": "lima"
+    },
+    {
+      "id": "manguera_sqs_lambda",
+      "nombre": "Manguera SQS a Lambda",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -1.2,
+          0.0,
+          0.0
+        ],
+        [
+          -0.4,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "db_corr",
+      "nombre": "DynamoDB Correlacion",
+      "forma": "icono",
+      "x": -0.4,
+      "y": 0.8,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.4,
+      "modelo": "base_datos",
+      "acento": "lima"
+    },
+    {
+      "id": "ttl_corr",
+      "nombre": "TTL Correlacion",
+      "forma": "icono",
+      "x": -0.8,
+      "y": 0.8,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.3,
+      "modelo": "reloj_arena",
+      "acento": "lima"
+    },
+    {
+      "id": "manguera_lambda_db",
+      "nombre": "Manguera Lambda a DB",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.4,
+          0.0,
+          0.0
+        ],
+        [
+          -0.4,
+          0.8,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "agente",
+      "nombre": "Agente SOC",
+      "forma": "icono",
+      "x": 0.4,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.5,
+      "modelo": "robot",
+      "acento": "lima"
+    },
+    {
+      "id": "manguera_lambda_agente",
+      "nombre": "Manguera Lambda a Agente",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.4,
+          0.0,
+          0.0
+        ],
+        [
+          0.4,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "db_cache",
+      "nombre": "DynamoDB Cache",
+      "forma": "icono",
+      "x": 0.4,
+      "y": 0.8,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.4,
+      "modelo": "base_datos",
+      "acento": "lima"
+    },
+    {
+      "id": "key_cache",
+      "nombre": "Clave Cache",
+      "forma": "icono",
+      "x": 0.1,
+      "y": 0.8,
+      "z": 0.0,
+      "rot_x": 90.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.3,
+      "modelo": "llave",
+      "acento": "lima"
+    },
+    {
+      "id": "ttl_cache",
+      "nombre": "TTL Cache",
+      "forma": "icono",
+      "x": 0.7,
+      "y": 0.8,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.3,
+      "modelo": "reloj_arena",
+      "acento": "lima"
+    },
+    {
+      "id": "manguera_agente_db",
+      "nombre": "Manguera Agente a DB",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.4,
+          0.0,
+          0.0
+        ],
+        [
+          0.6,
+          0.2,
+          0.0
+        ],
+        [
+          0.6,
+          0.6,
+          0.0
+        ],
+        [
+          0.4,
+          0.8,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "llm",
+      "nombre": "LLM",
+      "forma": "icono",
+      "x": 1.2,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.5,
+      "modelo": "orbe",
+      "acento": "lima"
+    },
+    {
+      "id": "manguera_agente_llm",
+      "nombre": "Manguera Agente a LLM",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.4,
+          0.0,
+          0.0
+        ],
+        [
+          1.2,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "prompt_sys",
+      "nombre": "Prompt System",
+      "forma": "caja",
+      "x": 1.2,
+      "y": -0.6,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.1
+    },
+    {
+      "id": "prompt_tools",
+      "nombre": "Prompt Tools",
+      "forma": "caja",
+      "x": 1.2,
+      "y": -0.6,
+      "z": 0.1,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.1
+    },
+    {
+      "id": "prompt_playbook",
+      "nombre": "Prompt Playbook",
+      "forma": "caja",
+      "x": 1.2,
+      "y": -0.6,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.1
+    },
+    {
+      "id": "prompt_alert",
+      "nombre": "Prompt Alert",
+      "forma": "caja",
+      "x": 1.2,
+      "y": -0.6,
+      "z": 0.3,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.1
+    },
+    {
+      "id": "repisa_cache",
+      "nombre": "Repisa Cache",
+      "forma": "caja",
+      "x": 1.2,
+      "y": 0.6,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.1
+    },
+    {
+      "id": "crono",
+      "nombre": "Cronometro",
+      "forma": "icono",
+      "x": 1.6,
+      "y": 0.6,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.3,
+      "modelo": "cronometro",
+      "acento": "lima"
+    },
+    {
+      "id": "diana",
+      "nombre": "Diana Acierto",
+      "forma": "icono",
+      "x": 0.4,
+      "y": 0.4,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.3,
+      "modelo": "diana",
+      "acento": "lima"
+    },
+    {
+      "id": "campana",
+      "nombre": "Campana Alerta",
+      "forma": "icono",
+      "x": 2.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.4,
+      "modelo": "campana",
+      "acento": "lima"
+    },
+    {
+      "id": "monitor",
+      "nombre": "Monitor Analista",
+      "forma": "icono",
+      "x": 2.6,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "alto": 0.5,
+      "modelo": "monitor",
+      "acento": "lima"
+    },
+    {
+      "id": "manguera_llm_campana",
+      "nombre": "Manguera LLM a Campana",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          1.2,
+          0.0,
+          0.0
+        ],
+        [
+          2.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "id": "manguera_campana_monitor",
+      "nombre": "Manguera Campana a Monitor",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          2.0,
+          0.0,
+          0.0
+        ],
+        [
+          2.6,
+          0.0,
+          0.0
+        ]
+      ]
+    }
+  ],
+  "accesorios": [],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "Presentación de las fuentes de alertas",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Un SOC recibe cientos de alertas de seguridad por minuto desde EDRs, firewalls y servidores.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "edr",
+        "waf",
+        "logs",
+        "manguera_edr",
+        "manguera_waf",
+        "manguera_logs"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "edr",
+        "objetivos": [
+          "edr",
+          "waf",
+          "logs"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 2,
+      "descripcion": "Cola SQS y Lambda",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Para absorber los picos, una cola SQS recibe los eventos y una función Lambda los procesa.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "sqs",
+        "msg1",
+        "msg2",
+        "msg3",
+        "lambda_corr",
+        "manguera_sqs_lambda"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_edr",
+          "momento": 0.1,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_waf",
+          "momento": 0.3,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "sqs",
+        "objetivos": [
+          "sqs",
+          "lambda_corr"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 3,
+      "descripcion": "Tabla de correlación",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La Lambda correlaciona alertas de la misma IP en una tabla DynamoDB durante una ventana de tiempo.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "db_corr",
+        "ttl_corr",
+        "manguera_lambda_db"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "ttl_corr",
+          "movimiento": "girar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 1.0
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "db_corr",
+        "objetivos": [
+          "db_corr",
+          "ttl_corr"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 4,
+      "descripcion": "Agente SOC",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Así, nuestro agente de IA recibe un grupo de alertas, no cientos de avisos duplicados.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "agente",
+        "manguera_lambda_agente"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agente",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 5,
+      "descripcion": "Caché de respuestas",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Antes de analizarlo, el agente consulta otra tabla DynamoDB para ver si ya resolvió este incidente.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "db_cache",
+        "key_cache",
+        "ttl_cache",
+        "manguera_agente_db"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "db_cache",
+        "objetivos": [
+          "db_cache",
+          "key_cache"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 6,
+      "descripcion": "LLM y pila de prompts",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Si no, llama al LLM. El prompt tiene un prefijo fijo y las alertas variables al final.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "llm",
+        "prompt_sys",
+        "prompt_tools",
+        "prompt_playbook",
+        "prompt_alert",
+        "manguera_agente_llm"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "prompt_alert",
+          "movimiento": "subir",
+          "inicio": 0.2,
+          "fin": 0.5,
+          "cantidad": 0.1
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "llm",
+        "objetivos": [
+          "llm",
+          "prompt_sys"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 7,
+      "descripcion": "Caché de prompts",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La caché de prompts del proveedor guarda ese prefijo para acelerar las siguientes llamadas.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "repisa_cache",
+        "crono"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "repisa_cache",
+        "objetivos": [
+          "repisa_cache",
+          "crono"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 8,
+      "descripcion": "Salida consolidada",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El analista recibe una única alerta consolidada en su monitor. Veamos cada técnica en detalle.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "campana",
+        "monitor",
+        "manguera_llm_campana",
+        "manguera_campana_monitor"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "alerta",
+          "pieza": "campana",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "monitor",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 9,
+      "descripcion": "Bloque A: Inundación de alertas",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Primera técnica: correlación. Un atacante dispara cincuenta alertas idénticas de golpe.",
+          "emocion": "misterioso"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_edr",
+          "momento": 0.1,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_edr",
+          "momento": 0.4,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_edr",
+          "momento": 0.7,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "edr",
+        "objetivos": [
+          "edr",
+          "lambda_corr"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 10,
+      "descripcion": "Bloque A: Creación del grupo",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La primera crea el grupo en DynamoDB usando escritura condicional y un contador atómico.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "db_corr",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "db_corr",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 11,
+      "descripcion": "Bloque A: Incremento",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Las siguientes solo suman al contador con UpdateItem. No despiertan al agente.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "db_corr",
+          "movimiento": "oscilar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 10.0
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "db_corr",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 12,
+      "descripcion": "Bloque A: Riesgo del TTL",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Un TTL limpia grupos viejos, pero DynamoDB no borra al instante: el código debe verificar la caducidad.",
+          "emocion": "enfadado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "ttl_corr",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "ttl_corr",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 13,
+      "descripcion": "Bloque B: Hash",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Segunda técnica: reutilizar respuestas. El agente normaliza el prompt y calcula su hash.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "agente",
+          "movimiento": "vibrar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agente",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 14,
+      "descripcion": "Bloque B: Fallo y guardado",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Hace un GetItem con esa clave. Si falla, llama al LLM y guarda la respuesta con PutItem.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rechazo",
+          "pieza": "db_cache",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "db_cache",
+        "objetivos": [
+          "db_cache",
+          "key_cache"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 15,
+      "descripcion": "Bloque B: Acierto",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Si acierta, la clave debe incluir modelo y versión, o devolverá respuestas obsoletas.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "diana"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "diana",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "key_cache",
+        "objetivos": [
+          "key_cache",
+          "diana"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 16,
+      "descripcion": "Bloque B: Reutilización",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Reutilizar el veredicto al instante evita llamar al LLM, ahorrando todo el coste y tiempo.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_agente_db",
+          "momento": 0.2,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agente",
+        "objetivos": [
+          "agente",
+          "diana"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 17,
+      "descripcion": "Bloque C: Primera llamada",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Tercera técnica: prompt caching. En la primera llamada, enviamos todo el prompt al LLM.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_agente_llm",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "llm",
+        "objetivos": [
+          "llm",
+          "prompt_sys"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 18,
+      "descripcion": "Bloque C: CachePoint",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Marcamos el prefijo con un cachePoint. Se guarda en caché y cuesta un poco más esta vez.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "repisa_cache",
+          "movimiento": "subir",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 0.05
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "repisa_cache",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 19,
+      "descripcion": "Bloque C: Llamadas posteriores",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En las siguientes, solo viajan los tokens de las alertas. El prefijo se lee de la caché.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "prompt_alert",
+          "movimiento": "oscilar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 10.0
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "llm",
+        "objetivos": [
+          "llm",
+          "prompt_alert"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 20,
+      "descripcion": "Bloque C: Ahorro y advertencia",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Esto abarata y acelera las llamadas. Pero cuidado: cualquier cambio en el prefijo invalida la caché.",
+          "emocion": "enfadado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "crono",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "crono",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 21,
+      "descripcion": "Cierre",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Correlación, caché de respuestas y prompt caching. Tres técnicas para escalar tu agente SOC sin arruinarte.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_edr",
+          "momento": 0.2,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "db_corr",
+          "momento": 0.4,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "rayo",
+          "pieza": "diana",
+          "momento": 0.6,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "alerta",
+          "pieza": "campana",
+          "momento": 0.75,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "agente",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 8.0
+    }
+  ],
+  "personajes": [],
+  "escenarios": []
+}

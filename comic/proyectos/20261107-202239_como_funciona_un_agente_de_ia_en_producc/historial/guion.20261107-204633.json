@@ -1,0 +1,1647 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Agente de IA en Producción con LangGraph y AWS",
+  "sinopsis": "Una maqueta isométrica que muestra la arquitectura de un agente de IA en producción, repasando SQS, LangGraph, Lambdas y OpenTelemetry a través del recorrido de una petición.",
+  "objeto": {
+    "nombre": "Arquitectura de Agente IA",
+    "alto": 1.5
+  },
+  "suelo": "cemento",
+  "piezas": [
+    {
+      "id": "cliente_base",
+      "nombre": "Cliente",
+      "forma": "panel",
+      "x": -2.2,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": -30.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "alto": 0.2,
+      "grosor": 0.03
+    },
+    {
+      "id": "gw_caja",
+      "nombre": "API Gateway",
+      "forma": "caja",
+      "x": -1.5,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco_hueso",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.3,
+      "alto": 0.5
+    },
+    {
+      "id": "m_cli_gw",
+      "nombre": "Conexion Cliente Gateway",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -2.05,
+          0.0,
+          0.01
+        ],
+        [
+          -1.65,
+          0.0,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "sqs_soporte",
+      "nombre": "Soporte SQS",
+      "forma": "caja",
+      "x": -0.5,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.6,
+      "fondo": 0.2,
+      "alto": 0.05
+    },
+    {
+      "id": "sqs_tubo",
+      "nombre": "Tubo SQS",
+      "forma": "tubo",
+      "x": -0.9,
+      "y": 0.0,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 90.0,
+      "rot_z": 0.0,
+      "color": "agua",
+      "material": "transparente",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.8,
+      "grosor": 0.03
+    },
+    {
+      "id": "sqs_sobre1",
+      "nombre": "Sobre 1",
+      "forma": "caja",
+      "x": -0.8,
+      "y": 0.0,
+      "z": 0.15,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco_hueso",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.14,
+      "fondo": 0.04,
+      "alto": 0.1
+    },
+    {
+      "id": "sqs_sobre2",
+      "nombre": "Sobre 2",
+      "forma": "caja",
+      "x": -0.6,
+      "y": 0.0,
+      "z": 0.15,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco_hueso",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.14,
+      "fondo": 0.04,
+      "alto": 0.1
+    },
+    {
+      "id": "m_gw_sqs",
+      "nombre": "Conexion Gateway SQS",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -1.35,
+          0.0,
+          0.01
+        ],
+        [
+          -0.95,
+          0.0,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "dlq_caja",
+      "nombre": "DLQ",
+      "forma": "caja",
+      "x": -0.5,
+      "y": 0.6,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.3
+    },
+    {
+      "id": "m_sqs_dlq",
+      "nombre": "Conexion SQS DLQ",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.5,
+          0.2,
+          0.01
+        ],
+        [
+          -0.5,
+          0.45,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "worker_caja",
+      "nombre": "Worker LangGraph",
+      "forma": "caja",
+      "x": 0.5,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "menta",
+      "material": "solido",
+      "detalle": "rejilla",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.7
+    },
+    {
+      "id": "m_sqs_w",
+      "nombre": "Conexion SQS Worker",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.1,
+          0.0,
+          0.01
+        ],
+        [
+          0.25,
+          0.0,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "w_n1",
+      "nombre": "Nodo 1",
+      "forma": "esfera",
+      "x": 0.35,
+      "y": 0.0,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "worker_caja",
+      "bisagra": "ninguna",
+      "radio": 0.08
+    },
+    {
+      "id": "w_n2",
+      "nombre": "Nodo 2",
+      "forma": "esfera",
+      "x": 0.5,
+      "y": 0.0,
+      "z": 0.4,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "worker_caja",
+      "bisagra": "ninguna",
+      "radio": 0.08
+    },
+    {
+      "id": "w_n3",
+      "nombre": "Nodo 3",
+      "forma": "esfera",
+      "x": 0.65,
+      "y": 0.0,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rosa",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "worker_caja",
+      "bisagra": "ninguna",
+      "radio": 0.08
+    },
+    {
+      "id": "w_a1",
+      "nombre": "Arista 1",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "worker_caja",
+      "bisagra": "ninguna",
+      "radio": 0.01,
+      "camino": [
+        [
+          0.35,
+          0.0,
+          0.28
+        ],
+        [
+          0.5,
+          0.0,
+          0.32
+        ]
+      ]
+    },
+    {
+      "id": "w_a2",
+      "nombre": "Arista 2",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "worker_caja",
+      "bisagra": "ninguna",
+      "radio": 0.01,
+      "camino": [
+        [
+          0.5,
+          0.0,
+          0.48
+        ],
+        [
+          0.65,
+          0.0,
+          0.28
+        ]
+      ]
+    },
+    {
+      "id": "chk_cil",
+      "nombre": "Checkpointer",
+      "forma": "cilindro",
+      "x": 0.5,
+      "y": 0.8,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "violeta",
+      "material": "solido",
+      "detalle": "nervado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.2,
+      "alto": 0.5
+    },
+    {
+      "id": "m_w_chk",
+      "nombre": "Conexion Worker Checkpointer",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.5,
+          0.25,
+          0.01
+        ],
+        [
+          0.5,
+          0.6,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "llm_pedestal",
+      "nombre": "Pedestal LLM",
+      "forma": "caja",
+      "x": 0.5,
+      "y": 1.5,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.4
+    },
+    {
+      "id": "llm_esfera",
+      "nombre": "Modelo LLM",
+      "forma": "esfera",
+      "x": 0.5,
+      "y": 1.5,
+      "z": 0.4,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.3
+    },
+    {
+      "id": "m_w_llm",
+      "nombre": "Conexion Worker LLM",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.6,
+          0.25,
+          0.01
+        ],
+        [
+          0.6,
+          1.2,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "garita_base",
+      "nombre": "Base Garita",
+      "forma": "caja",
+      "x": 1.4,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.4
+    },
+    {
+      "id": "garita_techo",
+      "nombre": "Techo Garita",
+      "forma": "cono",
+      "x": 1.4,
+      "y": 0.0,
+      "z": 0.4,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "menta_oscuro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.25,
+      "radio2": 0.1,
+      "alto": 0.2
+    },
+    {
+      "id": "garita_barrera",
+      "nombre": "Barrera",
+      "forma": "varilla",
+      "x": 1.4,
+      "y": 0.0,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 90.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "izquierda",
+      "radio": 0.02,
+      "alto": 0.4
+    },
+    {
+      "id": "m_w_g",
+      "nombre": "Conexion Worker Garita",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.75,
+          0.0,
+          0.01
+        ],
+        [
+          1.25,
+          0.0,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "lam1_caja",
+      "nombre": "Lambda 1",
+      "forma": "caja",
+      "x": 2.3,
+      "y": -0.5,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.2
+    },
+    {
+      "id": "lam1_tapa",
+      "nombre": "Tapa Lambda 1",
+      "forma": "caja",
+      "x": 2.3,
+      "y": -0.5,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "atras",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.02
+    },
+    {
+      "id": "m_g_l1",
+      "nombre": "Conexion Garita Lambda 1",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          1.55,
+          0.0,
+          0.01
+        ],
+        [
+          2.1,
+          -0.5,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "lam2_caja",
+      "nombre": "Lambda 2",
+      "forma": "caja",
+      "x": 2.3,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "mostaza",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.2
+    },
+    {
+      "id": "lam2_tapa",
+      "nombre": "Tapa Lambda 2",
+      "forma": "caja",
+      "x": 2.3,
+      "y": 0.0,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "mostaza",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "atras",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.02
+    },
+    {
+      "id": "m_g_l2",
+      "nombre": "Conexion Garita Lambda 2",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          1.55,
+          0.0,
+          0.01
+        ],
+        [
+          2.1,
+          0.0,
+          0.01
+        ]
+      ]
+    },
+    {
+      "id": "sens_w",
+      "nombre": "Sensor Worker",
+      "forma": "caja",
+      "x": 0.5,
+      "y": 0.0,
+      "z": 0.7,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.06,
+      "fondo": 0.06,
+      "alto": 0.06
+    },
+    {
+      "id": "sens_g",
+      "nombre": "Sensor Garita",
+      "forma": "caja",
+      "x": 1.4,
+      "y": 0.0,
+      "z": 0.6,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.06,
+      "fondo": 0.06,
+      "alto": 0.06
+    },
+    {
+      "id": "sens_l1",
+      "nombre": "Sensor Lambda 1",
+      "forma": "caja",
+      "x": 2.3,
+      "y": -0.5,
+      "z": 0.22,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.06,
+      "fondo": 0.06,
+      "alto": 0.06
+    },
+    {
+      "id": "sens_l2",
+      "nombre": "Sensor Lambda 2",
+      "forma": "caja",
+      "x": 2.3,
+      "y": 0.0,
+      "z": 0.22,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.06,
+      "fondo": 0.06,
+      "alto": 0.06
+    },
+    {
+      "id": "pan_panel",
+      "nombre": "Pantalla Telemetria",
+      "forma": "panel",
+      "x": -1.5,
+      "y": 1.5,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "pared_oscura",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.8,
+      "alto": 0.6,
+      "grosor": 0.03
+    },
+    {
+      "id": "tr1",
+      "nombre": "Traza 1",
+      "forma": "caja",
+      "x": -1.7,
+      "y": 1.48,
+      "z": 0.4,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.02,
+      "alto": 0.05
+    },
+    {
+      "id": "tr2",
+      "nombre": "Traza 2",
+      "forma": "caja",
+      "x": -1.6,
+      "y": 1.48,
+      "z": 0.3,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.15,
+      "fondo": 0.02,
+      "alto": 0.05
+    },
+    {
+      "id": "tr3",
+      "nombre": "Traza 3",
+      "forma": "caja",
+      "x": -1.5,
+      "y": 1.48,
+      "z": 0.2,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "mostaza",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.1,
+      "fondo": 0.02,
+      "alto": 0.05
+    }
+  ],
+  "accesorios": [],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "Presentación del cliente y Gateway",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Para poner un agente de IA en producción, empezamos con el cliente enviando su petición.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "cliente_base",
+        "m_cli_gw",
+        "gw_caja"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "cliente_base",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 2,
+      "descripcion": "El Gateway valida rápido",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El API Gateway valida el acceso y responde con un ID de tarea al instante, sin esperar.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_cli_gw",
+          "momento": 0.2,
+          "duracion": 0.3
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "m_cli_gw",
+          "momento": 0.6,
+          "duracion": 0.3
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "gw_caja",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 3,
+      "descripcion": "Cola SQS absorbe picos",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Los mensajes se encolan en Amazon SQS, que absorbe picos de tráfico y desacopla la entrada.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "m_gw_sqs",
+        "sqs_soporte",
+        "sqs_tubo",
+        "sqs_sobre1",
+        "sqs_sobre2"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "sqs_tubo",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 4,
+      "descripcion": "Cola FIFO para orden",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Usamos una cola FIFO para garantizar el orden estricto de los mensajes en cada conversación.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "sqs_sobre1",
+          "movimiento": "desplazar_x",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 0.1
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_gw_sqs",
+          "momento": 0.1,
+          "duracion": 0.3
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "sqs_tubo",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 5,
+      "descripcion": "Worker toma el mensaje",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Un worker recoge el mensaje. En su interior ejecuta LangGraph, el cerebro del agente.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "m_sqs_w",
+        "worker_caja"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "worker_caja",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 6,
+      "descripcion": "Grafo LangGraph en rayos X",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "LangGraph organiza la lógica en un grafo de estado, avanzando paso a paso por sus nodos.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "w_n1",
+        "w_n2",
+        "w_n3",
+        "w_a1",
+        "w_a2"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "worker_caja"
+      ],
+      "resaltar": [
+        "w_n1",
+        "w_n2"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "worker_caja",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 7,
+      "descripcion": "Checkpointer para el estado",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En cada paso, el estado se guarda en un checkpointer, como una base de datos.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "chk_cil",
+        "m_w_chk"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "chk_cil",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 8,
+      "descripcion": "Recuperación de estado",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Si un worker muere, otro retoma la conversación exactamente donde se quedó gracias a este estado.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_w_chk",
+          "momento": 0.3,
+          "duracion": 0.4
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "chk_cil",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 9,
+      "descripcion": "Consulta al LLM",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El nodo principal consulta a un LLM, como Amazon Bedrock, para decidir su próxima acción.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "llm_pedestal",
+        "llm_esfera",
+        "m_w_llm"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "llm_esfera",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 10,
+      "descripcion": "Llamada a garita",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Si el LLM pide usar una herramienta, la llamada pasa por un backend de autorización.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "garita_base",
+        "garita_techo",
+        "garita_barrera",
+        "m_w_g"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "garita_base",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 11,
+      "descripcion": "Tools en Lambda",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Las herramientas son funciones Lambda, cada una con su propio rol de mínimo privilegio.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "lam1_caja",
+        "lam1_tapa",
+        "lam2_caja",
+        "lam2_tapa",
+        "m_g_l1",
+        "m_g_l2"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "lam1_caja",
+        "objetivos": [
+          "garita_base",
+          "lam1_caja"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 12,
+      "descripcion": "Aprobado por la garita",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La garita verifica los permisos. Si la política lo permite, abre el paso.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "garita_barrera",
+          "movimiento": "abrir",
+          "inicio": 0.1,
+          "fin": 0.4,
+          "cantidad": 90
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "garita_techo",
+          "momento": 0.5,
+          "duracion": 0.4
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "garita_base",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 13,
+      "descripcion": "Ejecución de Lambda",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La Lambda se ejecuta y devuelve el resultado, que vuelve al grafo para continuar el proceso.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "lam1_tapa",
+          "movimiento": "abrir",
+          "inicio": 0.1,
+          "fin": 0.4,
+          "cantidad": 100
+        },
+        {
+          "pieza": "lam1_tapa",
+          "movimiento": "cerrar",
+          "inicio": 0.6,
+          "fin": 0.9,
+          "cantidad": 0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_g_l1",
+          "momento": 0.1,
+          "duracion": 0.3
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "m_g_l1",
+          "momento": 0.5,
+          "duracion": 0.3
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "lam1_caja",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 14,
+      "descripcion": "Llamada rechazada",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Pero si el usuario intenta algo sin permisos, la garita bloquea la llamada al instante.",
+          "emocion": "enfadado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [
+        {
+          "pieza": "garita_barrera",
+          "movimiento": "cerrar",
+          "inicio": 0.1,
+          "fin": 0.3,
+          "cantidad": 0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_w_g",
+          "momento": 0.1,
+          "duracion": 0.3
+        },
+        {
+          "tipo": "rechazo",
+          "pieza": "garita_techo",
+          "momento": 0.4,
+          "duracion": 0.4
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "garita_base",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 15,
+      "descripcion": "Fallo en worker",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "¿Y si un worker falla a medias? El mensaje original no se borra de SQS.",
+          "emocion": "sorprendido"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "chispas",
+          "pieza": "worker_caja",
+          "momento": 0.5,
+          "duracion": 0.4
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "worker_caja",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 16,
+      "descripcion": "Visibility timeout SQS",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Al vencer el visibility timeout, el mensaje vuelve a ser visible para reintentarse.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "sqs_tubo",
+          "momento": 0.2,
+          "duracion": 0.5
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "sqs_tubo",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 17,
+      "descripcion": "Envío a DLQ",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Tras varios intentos fallidos, el mensaje acaba en la DLQ para investigarlo sin bloquear la cola.",
+          "emocion": "triste"
+        }
+      ],
+      "aparecen": [
+        "dlq_caja",
+        "m_sqs_dlq"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_sqs_dlq",
+          "momento": 0.2,
+          "duracion": 0.5
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "dlq_caja",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 18,
+      "descripcion": "Sensores OpenTelemetry",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Para observar todo, usamos OpenTelemetry. Sensores emiten telemetría desde cada componente.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "sens_w",
+        "sens_g",
+        "sens_l1",
+        "sens_l2"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "sens_w",
+          "momento": 0.2,
+          "duracion": 0.5
+        },
+        {
+          "tipo": "ondas",
+          "pieza": "sens_g",
+          "momento": 0.4,
+          "duracion": 0.5
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "worker_caja",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 19,
+      "descripcion": "Traza viaja en SQS",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El contexto de la traza viaja en los atributos del mensaje SQS, conectando todo el flujo.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_gw_sqs",
+          "momento": 0.3,
+          "duracion": 0.4
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "sqs_tubo",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 20,
+      "descripcion": "Pantalla de monitorización",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En el panel vemos la petición como una sola traza, con un span por cada nodo y herramienta.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "pan_panel",
+        "tr1",
+        "tr2",
+        "tr3"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "pan_panel",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 21,
+      "descripcion": "Cierre con sistema funcionando",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Desacople, estado durable, seguridad y observabilidad. Así funciona un agente en producción.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "m_cli_gw",
+          "momento": 0.1,
+          "duracion": 0.3
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "m_sqs_w",
+          "momento": 0.3,
+          "duracion": 0.3
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "m_w_g",
+          "momento": 0.5,
+          "duracion": 0.3
+        },
+        {
+          "tipo": "ondas",
+          "pieza": "sens_w",
+          "momento": 0.7,
+          "duracion": 0.3
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "worker_caja",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 8.0
+    }
+  ],
+  "personajes": [],
+  "escenarios": []
+}

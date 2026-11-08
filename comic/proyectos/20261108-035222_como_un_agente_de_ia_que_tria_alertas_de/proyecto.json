@@ -1,0 +1,241 @@
+{
+  "descripcion": "Cómo un agente de IA que tría alertas de seguridad (SOC) ahorra tiempo y dinero con tres técnicas: alertas correlacionadas en DynamoDB, reutilización de respuestas en DynamoDB y prompt caching en el LLM. Vídeo para desarrolladores, de unos 2 minutos y medio: una maqueta isométrica de la arquitectura hecha con OBJETOS-ICONO (forma 'icono'), cuerpos blancos con detalles lima, que se monta componente a componente siguiendo el recorrido de las alertas de izquierda a derecha. Cada técnica tiene su propio bloque de escenas.\n\nESCALA: iconos de tamaño ('alto') 0.35-0.6 m, separados 0.3-0.5 m; fichas y bloques de unos 0.12-0.2 m; mangueras de radio 0.02-0.025 que van de borde a borde de los componentes que unen. La maqueta entera, menos de 5 m de ancho.\n\nCOMPONENTES (de izquierda a derecha) Y CÓMO DIBUJARLOS\n1. Fuentes de alertas: tres iconos a la izquierda, uno detrás de otro en Y: un portátil (EDR del endpoint), un escudo (WAF) y un servidor (logs de la nube). Disparan cientos de alertas, muchas repetidas del mismo incidente (la misma IP atacando, el mismo usuario).\n2. Cola de entrada (Amazon SQS): un tubo transparente tumbado con fichas blancas dentro (cajitas), unido a las tres fuentes por mangueras. Absorbe los picos.\n3. Correlador (una Lambda): un icono embudo. Para cada alerta calcula la clave de correlación: la entidad (IP de origen, usuario o host) más el tipo de regla. Escribe en DynamoDB con una actualización condicional y un contador atómico (UpdateItem con ADD), así dos Lambdas a la vez no crean dos grupos.\n4. Tabla de correlación (DynamoDB): un icono base_datos detrás del embudo, unido por manguera, con un reloj de arena al lado (el TTL de la ventana de correlación, por ejemplo 15 minutos). Partición = clave de correlación; cada grupo guarda las alertas, el contador y la hora de la primera. Si el grupo es nuevo, se manda al agente; si ya existe dentro de la ventana, la alerta solo se suma al grupo y no se vuelve a analizar ni a notificar (salvo que suba la gravedad o el contador pase un umbral). El atributo TTL borra los grupos caducados, pero DynamoDB no borra al instante: el código comprueba la caducidad al leer.\n5. Agente SOC: un icono robot en el centro. Recibe un GRUPO, no una alerta, y redacta un veredicto (gravedad, resumen, acciones).\n6. Caché de respuestas (DynamoDB): otro icono base_datos detrás del robot, con una llave delante (la clave) y otro reloj de arena (TTL de la caché, por ejemplo 24 horas). Antes de llamar al LLM, el agente normaliza el prompt (quita marcas de tiempo e ids que cambian siempre) y calcula un hash de ese prompt + el id del modelo + la versión del prompt; con esa clave hace un GetItem. Acierto (una diana con flecha, efecto rayo): reutiliza el veredicto al instante y no llama al LLM. Fallo: llama al LLM y guarda la respuesta con PutItem y su TTL. Meter el modelo y la versión en la clave evita reutilizar respuestas de otro modelo o de un prompt antiguo.\n7. LLM (por ejemplo Claude en Amazon Bedrock): un icono orbe a la derecha del robot, unido por manguera. A su lado, la PILA DEL PROMPT: tres bloques lima apilados (instrucciones del sistema, definiciones de tools y playbooks del SOC: el PREFIJO, grande y siempre igual) y encima un bloque blanco (el grupo de alertas: lo que cambia). Detrás, una repisa (caja baja, azul claro) que es la caché de prompts del proveedor. Prompt caching: se marca el final del prefijo con un punto de caché (cachePoint en Bedrock, cache_control en la API de Anthropic). La primera llamada escribe el prefijo en la caché (cuesta un 25 % más); las siguientes con el mismo prefijo lo leen de caché, a una fracción del precio (en torno al 10 %) y con menos latencia (un cronómetro). La caché dura 5 minutos y cada acierto la renueva (hay opción de 1 hora). El prefijo tiene que ser idéntico byte a byte, en orden tools, sistema y mensajes: cualquier cambio (una fecha en el sistema) la invalida, por eso lo variable va al final. Admite hasta 4 puntos de caché y hay un tamaño mínimo para cachear.\n8. Alerta correlacionada: una campana a la derecha y un monitor (la consola del analista) al final. En lugar de cincuenta avisos, el analista recibe una sola alerta con el grupo entero y el veredicto.\n\nRECORRIDO\nPrimero se monta la maqueta explicando para qué sirve cada componente. Después, tres bloques:\nA) Correlación: llueven alertas repetidas de la misma IP (flujo por las mangueras hacia la cola y el embudo); la primera crea el grupo en la tabla y va al agente; las siguientes solo suben el contador (fichas que se apilan) y el reloj de arena marca la ventana.\nB) Reutilización de respuestas: el agente busca la clave en la caché de respuestas; la primera vez falla y llama al LLM; después, un grupo equivalente acierta (diana, rayo) y se responde sin llamar al LLM.\nC) Prompt caching: el prefijo lima viaja al LLM y se guarda en la repisa; en la siguiente llamada solo viaja el bloque blanco, el prefijo se lee de la repisa y el cronómetro marca menos tiempo.\nCierre: una sola alerta correlacionada suena en la campana y llega al monitor; la última escena muestra todo el sistema funcionando a la vez.\n\nNARRACIÓN\nTono divulgativo para desarrolladores, con los nombres técnicos reales (SQS, Lambda, DynamoDB, UpdateItem, contador atómico, escritura condicional, TTL, hash, GetItem, PutItem, prompt caching, prefijo, cachePoint, tokens). Que se entienda la diferencia: la correlación evita analizar duplicados; la reutilización de respuestas evita llamar al LLM; el prompt caching abarata y acelera las llamadas que sí se hacen. Explica también los riesgos: el TTL de DynamoDB no borra al instante, una clave de caché sin modelo ni versión devuelve respuestas obsoletas, y cualquier cambio en el prefijo invalida el prompt caching.",
+  "creado": "20261108-035222",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "iconos",
+    "formato": "3d",
+    "orientacion": "horizontal",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 150.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-flash-tts",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.v3.blend",
+    "rig": "02_rig.v3.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v3.blend",
+    "efectos": "04b_efectos.v3.blend",
+    "previa": "previa/iter_1.v2"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T03:58:21",
+      "archivo": "guion.json",
+      "escenas": 21,
+      "avisos": []
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T04:06:24",
+      "archivo": "guion.json",
+      "escenas": 21,
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T04:09:07",
+      "archivo": "adornos.json",
+      "adornos": 21,
+      "por_tipo": {
+        "franja": 3,
+        "icono": 7,
+        "rejilla": 1,
+        "conector": 10
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:09:12",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 35,
+        "rayos_x": 34,
+        "adornos": 21,
+        "avisos_adornos": [],
+        "_segundos": 4.2
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:09:13",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 36,
+        "piezas": 35,
+        "desvio_max": 0.0,
+        "_segundos": 1.3
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T04:11:05",
+      "archivo": "tiempos.json",
+      "duracion": 165.109,
+      "fotogramas": 3963,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:11:06",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 2562,
+        "fotogramas": 3963,
+        "cambios_de_sombra": 56,
+        "piezas": 35,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:11:08",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 28,
+        "avisos": [],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:11:12",
+      "archivo": "previa/iter_1",
+      "imagenes": 21
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T04:13:46",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:13:50",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 35,
+        "rayos_x": 34,
+        "adornos": 21,
+        "avisos_adornos": [],
+        "_segundos": 3.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:13:51",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 36,
+        "piezas": 35,
+        "desvio_max": 0.0,
+        "_segundos": 1.3
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T04:13:51",
+      "archivo": "tiempos.json",
+      "duracion": 165.109,
+      "fotogramas": 3963,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:13:53",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 2491,
+        "fotogramas": 3963,
+        "cambios_de_sombra": 56,
+        "piezas": 35,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:13:54",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 28,
+        "avisos": [],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:13:58",
+      "archivo": "previa/iter_2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T04:17:50",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 35,
+        "rayos_x": 34,
+        "adornos": 21,
+        "avisos_adornos": [],
+        "_segundos": 3.3
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T04:17:51",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "huesos": 36,
+        "piezas": 35,
+        "desvio_max": 0.0,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T04:17:53",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 2491,
+        "fotogramas": 3963,
+        "cambios_de_sombra": 56,
+        "piezas": 35,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T04:17:54",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 28,
+        "avisos": [],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T04:17:58",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 21
+    }
+  ],
+  "referencia_detalles": "/home/kheiron/blender/comic/referencias/iconos/set_iconos_isometricos.png"
+}

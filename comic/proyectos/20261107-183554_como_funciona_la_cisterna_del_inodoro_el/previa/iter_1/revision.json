@@ -1,0 +1,415 @@
+{
+  "problemas": [
+    "La taza es demasiado alta (0.8m) y parece una tubería industrial.",
+    "La tapa de la cisterna es tan alta como el tanque (0.6m) y está mal posicionada.",
+    "La palanca es una varilla vertical que sobresale por arriba, en lugar de estar en el frente.",
+    "El flotador baja por debajo de la cisterna en la escena 4.",
+    "El plano general de la escena 4 aleja demasiado la cámara."
+  ],
+  "puntuacion": 4,
+  "cumple": false,
+  "guion": {
+    "titulo": "Cómo funciona la cisterna del inodoro",
+    "sinopsis": "Descubre la mecánica oculta dentro del tanque del inodoro: desde la válvula de llenado y el flotador hasta el sistema de descarga que limpia la taza.",
+    "objeto": {
+      "nombre": "Cisterna de Inodoro",
+      "alto": 0.78
+    },
+    "suelo": "baldosa",
+    "piezas": [
+      {
+        "id": "taza",
+        "nombre": "Taza del inodoro",
+        "forma": "tubo",
+        "x": 0.0,
+        "y": -0.15,
+        "z": 0.0,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "radio": 0.18,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "asiento",
+        "nombre": "Asiento",
+        "forma": "anillo",
+        "x": 0.0,
+        "y": -0.15,
+        "z": 0.4,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "radio": 0.18,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "cisterna",
+        "nombre": "Tanque de la cisterna",
+        "forma": "caja",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.4,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "tapa",
+        "nombre": "Tapa del tanque",
+        "forma": "caja",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.75,
+        "color": "blanco_hueso",
+        "material": "solido",
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "agua_cisterna",
+        "nombre": "Agua almacenada",
+        "forma": "caja",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.41,
+        "color": "agua",
+        "material": "liquido",
+        "padre": "cisterna",
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "tubo_llenado",
+        "nombre": "Válvula de llenado",
+        "forma": "cilindro",
+        "x": -0.12,
+        "y": 0.15,
+        "z": 0.41,
+        "color": "gris_claro",
+        "material": "solido",
+        "radio": 0.02,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "flotador",
+        "nombre": "Flotador",
+        "forma": "esfera",
+        "x": -0.05,
+        "y": 0.15,
+        "z": 0.45,
+        "color": "naranja",
+        "material": "solido",
+        "radio": 0.04,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "valvula_descarga",
+        "nombre": "Válvula de descarga",
+        "forma": "disco",
+        "x": 0.0,
+        "y": 0.15,
+        "z": 0.41,
+        "color": "negro",
+        "material": "solido",
+        "bisagra": "atras",
+        "radio": 0.035,
+        "rot_x": 0,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      },
+      {
+        "id": "palanca",
+        "nombre": "Palanca de tiro",
+        "forma": "cilindro",
+        "x": -0.15,
+        "y": 0.05,
+        "z": 0.65,
+        "color": "metal",
+        "material": "metal",
+        "radio": 0.01,
+        "rot_x": 90,
+        "rot_y": 0,
+        "rot_z": 0,
+        "vueltas": 0.0
+      }
+    ],
+    "accesorios": [
+      {
+        "tipo": "alfombra",
+        "x": 0.0,
+        "y": -0.5,
+        "color": "azul_sombra"
+      },
+      {
+        "tipo": "cubo",
+        "x": 0.4,
+        "y": -0.2,
+        "color": "gris_claro"
+      }
+    ],
+    "escenas": [
+      {
+        "id": 1,
+        "descripcion": "Presentación del inodoro y vista interior de la cisterna vacía.",
+        "lineas": [
+          {
+            "texto": "Tirar de la cadena parece magia, pero dentro de la cisterna hay pura mecánica.",
+            "emocion": "misterioso"
+          }
+        ],
+        "aparecen": [
+          "taza",
+          "asiento",
+          "cisterna",
+          "tapa"
+        ],
+        "rayos_x": [
+          "cisterna",
+          "tapa"
+        ],
+        "resaltar": [
+          "cisterna"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "cisterna",
+          "movimiento": "acercar"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 2,
+        "descripcion": "El agua entra por la válvula y el flotador sube hasta cortar el paso.",
+        "lineas": [
+          {
+            "texto": "El agua entra por la válvula de llenado. Al subir, el flotador corta el paso.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "agua_cisterna",
+          "tubo_llenado",
+          "flotador"
+        ],
+        "rayos_x": [
+          "cisterna",
+          "tapa"
+        ],
+        "resaltar": [
+          "tubo_llenado",
+          "flotador"
+        ],
+        "animaciones": [
+          {
+            "pieza": "agua_cisterna",
+            "movimiento": "llenar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 1.0
+          },
+          {
+            "pieza": "flotador",
+            "movimiento": "subir",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.2
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "chorro",
+            "pieza": "tubo_llenado",
+            "momento": 0.0,
+            "duracion": 3.0
+          }
+        ],
+        "camara": {
+          "plano": "detalle",
+          "objetivo": "tubo_llenado",
+          "movimiento": "fijo"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 3,
+        "descripcion": "Al pulsar la palanca, se abre la válvula de descarga en el fondo.",
+        "lineas": [
+          {
+            "texto": "Al pulsar la palanca, abrimos la válvula de descarga situada en el fondo.",
+            "emocion": "alegre"
+          }
+        ],
+        "aparecen": [
+          "palanca",
+          "valvula_descarga"
+        ],
+        "rayos_x": [
+          "cisterna",
+          "tapa"
+        ],
+        "resaltar": [
+          "palanca",
+          "valvula_descarga"
+        ],
+        "animaciones": [
+          {
+            "pieza": "palanca",
+            "movimiento": "oscilar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 30.0
+          },
+          {
+            "pieza": "valvula_descarga",
+            "movimiento": "abrir",
+            "inicio": 0.5,
+            "fin": 1.0,
+            "cantidad": 60.0
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "flecha_giro",
+            "pieza": "palanca",
+            "momento": 0.0,
+            "duracion": 1.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "cisterna",
+          "movimiento": "rodear"
+        },
+        "desaparecen": [],
+        "duracion_minima": 3.5
+      },
+      {
+        "id": 4,
+        "descripcion": "El agua cae hacia la taza por gravedad y el flotador baja.",
+        "lineas": [
+          {
+            "texto": "El agua cae de golpe por gravedad, limpiando la taza por completo.",
+            "emocion": "emocionado"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [
+          "cisterna",
+          "tapa",
+          "taza"
+        ],
+        "resaltar": [
+          "taza"
+        ],
+        "animaciones": [
+          {
+            "pieza": "agua_cisterna",
+            "movimiento": "vaciar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 1.0
+          },
+          {
+            "pieza": "flotador",
+            "movimiento": "bajar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.2
+          },
+          {
+            "pieza": "valvula_descarga",
+            "movimiento": "cerrar",
+            "inicio": 1.0,
+            "fin": 1.0,
+            "cantidad": 1.0
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "flecha_abajo",
+            "pieza": "taza",
+            "momento": 0.5,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "taza",
+          "movimiento": "alejar"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      },
+      {
+        "id": 5,
+        "descripcion": "El tanque vuelve a llenarse para el próximo uso.",
+        "lineas": [
+          {
+            "texto": "La válvula se cierra y el tanque vuelve a llenarse. ¡Listo para usar!",
+            "emocion": "alegre"
+          }
+        ],
+        "aparecen": [],
+        "rayos_x": [
+          "cisterna",
+          "tapa"
+        ],
+        "resaltar": [],
+        "animaciones": [
+          {
+            "pieza": "agua_cisterna",
+            "movimiento": "llenar",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 1.0
+          },
+          {
+            "pieza": "flotador",
+            "movimiento": "subir",
+            "inicio": 0.0,
+            "fin": 1.0,
+            "cantidad": 0.2
+          }
+        ],
+        "efectos": [
+          {
+            "tipo": "burbujas",
+            "pieza": "agua_cisterna",
+            "momento": 0.5,
+            "duracion": 2.5
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "cisterna",
+          "movimiento": "fijo"
+        },
+        "desaparecen": [],
+        "duracion_minima": 4.0
+      }
+    ]
+  }
+}

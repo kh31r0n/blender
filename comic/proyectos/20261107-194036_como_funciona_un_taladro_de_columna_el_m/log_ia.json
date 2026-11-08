@@ -1,0 +1,57 @@
+[
+  {
+    "etapa": "modelo_busqueda",
+    "fecha": "2026-11-07T19:40:53",
+    "meta": {},
+    "terminos": [
+      "pillar drill",
+      "drill press",
+      "bench drill",
+      "power tool",
+      "workshop machinery"
+    ],
+    "elegido": 2,
+    "motivo": "El modelo 2 es un taladro de columna que tiene la tapa superior abierta, mostrando claramente las poleas y la correa. Esto es ideal para ilustrar visualmente el mecanismo interno descrito en la explicacion del video.",
+    "candidatos": [
+      "polyhaven:old_drill_press Old Drill Press (CC0)",
+      "polyhaven:drill_press_01 Drill Press 01 (CC0)",
+      "polyhaven:bench_vice_01 Bench Vice 01 (CC0)",
+      "polyhaven:lubricant_spray Lubricant Spray (CC0)",
+      "polyhaven:vintage_hand_drill Vintage Hand Drill (CC0)",
+      "polyhaven:Drill_01 Drill 01 (CC0)",
+      "polyhaven:bolt_cutters_01 Bolt Cutters 01 (CC0)",
+      "polyhaven:brass_blowtorch Brass Blowtorch (CC0)"
+    ]
+  },
+  {
+    "etapa": "guion_modelo",
+    "fecha": "2026-11-07T19:42:14",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 78.1,
+      "tokens_entrada": 5206,
+      "tokens_salida": 3022,
+      "tokens_razonamiento": 5989
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T19:43:46",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 43.9,
+      "tokens_entrada": 14445,
+      "tokens_salida": 3136,
+      "tokens_razonamiento": 1909
+    },
+    "iteracion": 1,
+    "problemas": [
+      "El accesorio 'cubo' está situado justo delante de la máquina y la tapa casi por completo en los planos generales (escenas 1 y 6).",
+      "En la escena 3, el plano detalle a la polea del motor recorta la correa y la polea del husillo, impidiendo ver el sistema de transmisión completo."
+    ],
+    "puntuacion": 7
+  }
+]

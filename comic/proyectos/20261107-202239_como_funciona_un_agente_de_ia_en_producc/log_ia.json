@@ -1,0 +1,185 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-07T20:32:32",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 593.1,
+      "tokens_entrada": 6086,
+      "tokens_salida": 13589,
+      "tokens_razonamiento": 12677
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-07T20:35:31",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 179.6,
+      "tokens_entrada": 18113,
+      "tokens_salida": 12697,
+      "tokens_razonamiento": 10550
+    },
+    "problemas": [
+      "'portatil_base' (caja) sin alto: se usaria alto=0.6",
+      "'portatil_pantalla' (panel) sin alto: se usaria alto=1.0",
+      "'gw_pilar1' (caja) sin alto: se usaria alto=0.6",
+      "'gw_pilar2' (caja) sin alto: se usaria alto=0.6",
+      "'gw_dintel' (caja) sin alto: se usaria alto=0.6",
+      "'sqs_soporte' (caja) sin alto: se usaria alto=0.6",
+      "'sqs_tubo' (tubo) sin alto: se usaria alto=0.8",
+      "'dlq' (caja) sin alto: se usaria alto=0.6",
+      "'worker' (caja) sin alto: se usaria alto=0.6",
+      "'checkpointer' (cilindro) sin alto: se usaria alto=0.6",
+      "'llm_pedestal' (cilindro) sin alto: se usaria alto=0.6",
+      "'garita_base' (caja) sin alto: se usaria alto=0.6",
+      "'garita_techo' (cono) sin alto: se usaria alto=0.5",
+      "'garita_barrera' (varilla) sin alto: se usaria alto=0.6",
+      "'lambda1_base' (caja) sin alto: se usaria alto=0.6",
+      "'lambda1_tapa' (caja) sin alto: se usaria alto=0.6",
+      "'lambda2_base' (caja) sin alto: se usaria alto=0.6",
+      "'lambda2_tapa' (caja) sin alto: se usaria alto=0.6",
+      "'lambda3_base' (caja) sin alto: se usaria alto=0.6",
+      "'lambda3_tapa' (caja) sin alto: se usaria alto=0.6",
+      "'otel_caja' (caja) sin alto: se usaria alto=0.6",
+      "'otel_antena' (varilla) sin alto: se usaria alto=0.6",
+      "'pantalla' (panel) sin alto: se usaria alto=1.0",
+      "'span1' (caja) sin alto: se usaria alto=0.6",
+      "'span2' (caja) sin alto: se usaria alto=0.6",
+      "'span3' (caja) sin alto: se usaria alto=0.6",
+      "'gw_dintel' flota: no toca ninguna otra pieza (base a z=0.80)",
+      "'sensor_w' flota: no toca ninguna otra pieza (base a z=0.80)",
+      "'span1' flota: no toca ninguna otra pieza (base a z=1.20)",
+      "el objeto mide 8.6 m de ancho: piezas demasiado separadas"
+    ],
+    "quedan": [
+      "'portatil_base' (caja) sin alto: se usaria alto=0.6",
+      "'portatil_pantalla' (panel) sin alto: se usaria alto=1.0",
+      "'gw_pilar1' (caja) sin alto: se usaria alto=0.6",
+      "'gw_pilar2' (caja) sin alto: se usaria alto=0.6",
+      "'gw_dintel' (caja) sin alto: se usaria alto=0.6",
+      "'sqs_soporte' (caja) sin alto: se usaria alto=0.6",
+      "'sqs_tubo' (tubo) sin alto: se usaria alto=0.8",
+      "'dlq' (caja) sin alto: se usaria alto=0.6",
+      "'worker' (caja) sin alto: se usaria alto=0.6",
+      "'checkpointer' (cilindro) sin alto: se usaria alto=0.6",
+      "'llm_pedestal' (cilindro) sin alto: se usaria alto=0.6",
+      "'garita_base' (caja) sin alto: se usaria alto=0.6",
+      "'garita_techo' (cono) sin alto: se usaria alto=0.5",
+      "'garita_barrera' (varilla) sin alto: se usaria alto=0.6",
+      "'lambda1_base' (caja) sin alto: se usaria alto=0.6",
+      "'lambda1_tapa' (caja) sin alto: se usaria alto=0.6",
+      "'lambda2_base' (caja) sin alto: se usaria alto=0.6",
+      "'lambda2_tapa' (caja) sin alto: se usaria alto=0.6",
+      "'lambda3_base' (caja) sin alto: se usaria alto=0.6",
+      "'lambda3_tapa' (caja) sin alto: se usaria alto=0.6",
+      "'otel_caja' (caja) sin alto: se usaria alto=0.6",
+      "'otel_antena' (varilla) sin alto: se usaria alto=0.6",
+      "'pantalla' (panel) sin alto: se usaria alto=1.0",
+      "'span1' (caja) sin alto: se usaria alto=0.6",
+      "'span2' (caja) sin alto: se usaria alto=0.6",
+      "'span3' (caja) sin alto: se usaria alto=0.6"
+    ]
+  },
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-07T20:40:38",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 252.3,
+      "tokens_entrada": 6143,
+      "tokens_salida": 14683,
+      "tokens_razonamiento": 16853
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-07T20:45:11",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 273.2,
+      "tokens_entrada": 16495,
+      "tokens_salida": 14008,
+      "tokens_razonamiento": 20814
+    },
+    "problemas": [
+      "'garita_techo' (cono) sin radio2: se usaria radio2=0.1"
+    ],
+    "quedan": [
+      "'cliente_base' (panel) sin grosor: se usaria grosor=0.03",
+      "'pan_panel' (panel) sin grosor: se usaria grosor=0.03"
+    ]
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-07T20:48:15",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 90.6,
+      "tokens_entrada": 6853,
+      "tokens_salida": 5715,
+      "tokens_razonamiento": 5994
+    },
+    "avisos": [],
+    "adornos": 74
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T20:54:16",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 175.5,
+      "tokens_entrada": 39926,
+      "tokens_salida": 18157,
+      "tokens_razonamiento": 4561
+    },
+    "iteracion": 1,
+    "problemas": [
+      "El API Gateway se dibujó como una caja simple en lugar de un arco (dos pilares y un dintel) como pedía la descripción.",
+      "Solo se incluyeron dos Lambdas en lugar de las tres solicitadas.",
+      "Faltaba el OTel Collector (caja con antena y esfera) mencionado en la descripción."
+    ],
+    "puntuacion": 7
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T20:56:25",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 120.2,
+      "tokens_entrada": 41510,
+      "tokens_salida": 18469,
+      "tokens_razonamiento": 3356
+    },
+    "iteracion": 2,
+    "problemas": [
+      "La manguera 'm_cli_gw' no llegaba a conectar el cliente con el gateway.",
+      "La manguera 'm_gw_sqs' no llegaba a conectar el gateway con el tubo SQS.",
+      "La manguera 'm_sqs_dlq' estaba desconectada del tubo SQS."
+    ],
+    "puntuacion": 9
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-07T21:22:43",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 60.8,
+      "tokens_entrada": 8593,
+      "tokens_salida": 2646,
+      "tokens_razonamiento": 4250
+    },
+    "avisos": [],
+    "adornos": 97
+  }
+]

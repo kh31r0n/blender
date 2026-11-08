@@ -1,0 +1,465 @@
+{
+  "descripcion": "Cómo funciona la cisterna del inodoro: el agua entra por la válvula de llenado, el flotador sube y corta el agua, y al tirar de la palanca se abre la válvula de descarga y el agua cae a la taza",
+  "creado": "20261107-183554",
+  "parametros": {
+    "estilo": "tecnico",
+    "formato": "3d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 30.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-flash-tts",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "objetos": "01_objetos.v5.blend",
+    "rig": "02_rig.v6.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v6.blend",
+    "efectos": "04b_efectos.v6.blend",
+    "previa": "previa/iter_2.v2",
+    "render": "render/animacion.v3.mp4",
+    "montaje": "final/final.v3.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:37:12",
+      "archivo": "guion.json",
+      "escenas": 5,
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:37:13",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 8,
+        "rayos_x": 7,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:37:13",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 9,
+        "piezas": 8,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:37:36",
+      "archivo": "tiempos.json",
+      "duracion": 35.635,
+      "fotogramas": 855,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:37:36",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 1206,
+        "fotogramas": 855,
+        "cambios_de_sombra": 13,
+        "piezas": 8,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:37:37",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 4,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:37:39",
+      "archivo": "previa/iter_1",
+      "imagenes": 5
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T18:40:54",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas/escena_5.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/animacion.mp4",
+        "fotogramas": 855,
+        "segundos": 117.4,
+        "_segundos": 117.9
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T18:41:33",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:44:11",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 9,
+        "piezas": 8,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:44:11",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 1206,
+        "fotogramas": 855,
+        "cambios_de_sombra": 13,
+        "piezas": 8,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:44:12",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 4,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:44:14",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 5
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:45:28",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:45:29",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 8,
+        "rayos_x": 7,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:45:29",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "huesos": 9,
+        "piezas": 8,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:45:30",
+      "archivo": "tiempos.json",
+      "duracion": 35.635,
+      "fotogramas": 855,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:45:30",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 1238,
+        "fotogramas": 855,
+        "cambios_de_sombra": 13,
+        "piezas": 8,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:45:31",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 4,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:45:33",
+      "archivo": "previa/iter_2",
+      "imagenes": 5
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:49:47",
+      "archivo": "guion.json",
+      "escenas": 5,
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:49:47",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 12,
+        "rayos_x": 11,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:49:48",
+      "archivo": "02_rig.v4.blend",
+      "informe": {
+        "huesos": 13,
+        "piezas": 12,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:50:14",
+      "archivo": "tiempos.json",
+      "duracion": 37.905,
+      "fotogramas": 910,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:50:14",
+      "archivo": "04_animacion.v4.blend",
+      "informe": {
+        "claves": 1447,
+        "fotogramas": 910,
+        "cambios_de_sombra": 17,
+        "piezas": 12,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:50:15",
+      "archivo": "04b_efectos.v4.blend",
+      "informe": {
+        "efectos": 4,
+        "avisos": [],
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:50:17",
+      "archivo": "previa/iter_1.v3",
+      "imagenes": 5
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T18:51:28",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:51:28",
+      "archivo": "01_objetos.v4.blend",
+      "informe": {
+        "piezas": 13,
+        "rayos_x": 12,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:51:29",
+      "archivo": "02_rig.v5.blend",
+      "informe": {
+        "huesos": 14,
+        "piezas": 13,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:51:29",
+      "archivo": "tiempos.json",
+      "duracion": 37.905,
+      "fotogramas": 910,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:51:30",
+      "archivo": "04_animacion.v5.blend",
+      "informe": {
+        "claves": 1845,
+        "fotogramas": 910,
+        "cambios_de_sombra": 18,
+        "piezas": 13,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:51:30",
+      "archivo": "04b_efectos.v5.blend",
+      "informe": {
+        "efectos": 4,
+        "avisos": [],
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-07T18:51:32",
+      "archivo": "previa/iter_2.v2",
+      "imagenes": 5
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T18:55:05",
+      "archivo": "render/animacion.v2.mp4",
+      "vinetas": "render/vinetas.v2",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v2/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v2/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v2/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v2/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v2/escena_5.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/animacion.v2.mp4",
+        "fotogramas": 910,
+        "segundos": 125.2,
+        "_segundos": 125.7
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T18:55:46",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-07T18:56:32",
+      "archivo": "01_objetos.v5.blend",
+      "informe": {
+        "piezas": 12,
+        "rayos_x": 11,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-07T18:56:32",
+      "archivo": "02_rig.v6.blend",
+      "informe": {
+        "huesos": 13,
+        "piezas": 12,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-07T18:56:33",
+      "archivo": "tiempos.json",
+      "duracion": 37.905,
+      "fotogramas": 910,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-07T18:56:33",
+      "archivo": "04_animacion.v6.blend",
+      "informe": {
+        "claves": 1447,
+        "fotogramas": 910,
+        "cambios_de_sombra": 17,
+        "piezas": 12,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-07T18:56:34",
+      "archivo": "04b_efectos.v6.blend",
+      "informe": {
+        "efectos": 4,
+        "avisos": [],
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-07T18:58:39",
+      "archivo": "render/animacion.v3.mp4",
+      "vinetas": "render/vinetas.v3",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v3/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v3/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v3/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v3/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/vinetas.v3/escena_5.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261107-183554_como_funciona_la_cisterna_del_inodoro_el/render/animacion.v3.mp4",
+        "fotogramas": 910,
+        "segundos": 124.3,
+        "_segundos": 124.9
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-07T18:59:20",
+      "archivo": "final/final.v3.mp4",
+      "pagina": "final/pagina_comic.v3.png",
+      "gif": "final/animacion.v3.gif"
+    }
+  ],
+  "vinetas": "render/vinetas.v3"
+}

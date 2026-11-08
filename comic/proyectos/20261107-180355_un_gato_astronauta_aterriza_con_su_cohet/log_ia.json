@@ -1,0 +1,96 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-07T18:05:01",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 65.6,
+      "tokens_entrada": 5925,
+      "tokens_salida": 3304,
+      "tokens_razonamiento": 3805
+    },
+    "avisos": [
+      "escena 1: accion aparecer no vale para astro"
+    ]
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:08:05",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 56.1,
+      "tokens_entrada": 14601,
+      "tokens_salida": 3879,
+      "tokens_razonamiento": 2072
+    },
+    "iteracion": 1,
+    "problemas": [
+      "En la escena 1, el ángulo picado oculta el cielo nocturno y hace que el suelo parezca un fondo gris vacío. Además, Astro está en la misma posición que el cohete, tapándolo.",
+      "En la escena 3, el plano medio con zoom in y contrapicado recorta a los personajes en los bordes de la pantalla.",
+      "En la escena 4, el plano detalle a la farola deja a Astro casi completamente fuera de cuadro, a pesar de que es él quien está hablando y realizando la acción.",
+      "En la escena 5, el ángulo picado combinado con la órbita rompe la perspectiva, haciendo que los edificios parezcan flotar y provocando que el bocadillo de Lila apunte incorrectamente al cohete."
+    ],
+    "puntuacion": 4
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:09:39",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 89.3,
+      "tokens_entrada": 14592,
+      "tokens_salida": 3794,
+      "tokens_razonamiento": 5565
+    },
+    "iteracion": 2,
+    "problemas": [
+      "En la escena 2, Astro queda cortado en el borde izquierdo de la pantalla debido a la separación con Lila.",
+      "En la escena 3, al usar un plano conjunto que sigue a Astro, Lila queda completamente fuera de cuadro.",
+      "En la escena 4, el bocadillo de Astro está mal posicionado y apunta al cohete porque el plano conjunto intenta incluir a Lila (que está muy lejos), descentrando a Astro."
+    ],
+    "puntuacion": 7
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:12:03",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 68.0,
+      "tokens_entrada": 14592,
+      "tokens_salida": 3758,
+      "tokens_razonamiento": 4040
+    },
+    "iteracion": 1,
+    "problemas": [
+      "El bocadillo de Astro en la escena 4 se corta por el borde izquierdo porque está muy cerca del límite y mirando hacia afuera.",
+      "Lila lleva ropa magenta y pantalón cian, camuflándose con la casa magenta y el edificio cian del fondo.",
+      "En la escena 3, la cámara sigue a Astro y deja a Lila fuera de cuadro, perdiendo la interacción entre ambos.",
+      "El bocadillo de Lila en la escena 2 tapa la luna."
+    ],
+    "puntuacion": 6
+  },
+  {
+    "etapa": "revision",
+    "fecha": "2026-11-07T18:13:01",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 52.7,
+      "tokens_entrada": 14582,
+      "tokens_salida": 3859,
+      "tokens_razonamiento": 2104
+    },
+    "iteracion": 2,
+    "problemas": [
+      "Lila no lleva gafas, lo cual incumple la descripción original del usuario.",
+      "Las casas y las farolas están demasiado juntas y se solapan (casa en x=-6, farola en x=-7).",
+      "En la escena 4, Astro y su bocadillo quedan cortados por el borde izquierdo porque está muy alejado del centro (x=-5) en un plano conjunto.",
+      "La farola izquierda no se aprecia bien en la escena 4 debido al encuadre."
+    ],
+    "puntuacion": 6
+  }
+]

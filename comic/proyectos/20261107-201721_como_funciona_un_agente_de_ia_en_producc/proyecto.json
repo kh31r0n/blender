@@ -1,0 +1,36 @@
+{
+  "descripcion": "Cómo funciona un agente de IA en producción con LangGraph, Amazon SQS, OpenTelemetry, un backend que controla el acceso a las tools y tools en AWS Lambda. Vídeo para desarrolladores, de unos 2 minutos y medio: una maqueta isométrica de la arquitectura que se monta componente a componente siguiendo el recorrido de una petición de izquierda a derecha. Metáfora mixta: bloques de nube reconocibles con mecanismos tangibles.\n\nCOMPONENTES (de izquierda a derecha) Y CÓMO DIBUJARLOS\n1. Cliente: un portátil a la izquierda. Envía la petición del usuario con su token JWT.\n2. API Gateway: un arco de entrada (dos pilares y un dintel). Valida el token, crea un id de tarea, encola el mensaje en SQS y responde al momento con 202 y ese id: no espera al agente.\n3. Amazon SQS: un tubo transparente tumbado con varios sobres en fila dentro (cajitas blanco_hueso), sobre un soporte. Desacopla la entrada del procesamiento y absorbe picos de tráfico. Entrega \"al menos una vez\": si un worker cae, el mensaje vuelve a ser visible al vencer el visibility timeout (reloj) y se reintenta; tras varios intentos fallidos pasa a la DLQ, la cola de mensajes fallidos (un contenedor rojo pequeño al lado del tubo, unido por una manguera). Con una cola FIFO y MessageGroupId = id de conversación se mantiene el orden dentro de cada conversación.\n4. Workers con LangGraph: un servidor (caja con rejilla, color menta). Con rayos X se ve dentro el grafo de LangGraph: nodos (esferas de colores) unidos por aristas (mangueras finas): nodo agente (llama al LLM) → nodo tools → vuelve al agente → respuesta final; la arista que vuelve al agente es condicional. El estado avanza nodo a nodo (resaltar cada nodo). Los workers escalan según la profundidad de la cola y solo borran el mensaje de SQS cuando terminan.\n5. Checkpointer: una base de datos (cilindro violeta) junto al worker, unida por manguera (DynamoDB o Postgres). LangGraph guarda el estado en cada paso por thread_id: si un worker muere, otro retoma la conversación donde se quedó, y también permite pausar el grafo para una aprobación humana.\n6. LLM (por ejemplo, Amazon Bedrock): una esfera grande sobre un pedestal, detrás del worker y unida a él. Razona y decide el siguiente paso; cuando necesita una tool, la pide, pero no la ejecuta.\n7. Backend de autorización de tools: una garita con barrera, entre el worker y las Lambdas. El worker no tiene permiso IAM para invocar las Lambdas: solo este backend puede. Recibe cada llamada a tool con la identidad del usuario y la decide con políticas por usuario, por tool y por parámetros, con límites de uso y registro de auditoría. Si la permite, abre la barrera (aprobado) e invoca la Lambda; si no, la bloquea (rechazo) y el agente recibe un error que debe manejar.\n8. Tools en AWS Lambda: tres cajas pequeñas de colores distintos con tapa en bisagra (una por tool: consultar pedidos, crear ticket, enviar correo). Cada una tiene su propio rol IAM de mínimo privilegio y un timeout corto, y debe ser idempotente porque SQS puede repetir mensajes. La tapa se abre cuando se ejecuta.\n9. OpenTelemetry: sensores pequeños color lima sobre el worker, la garita y las Lambdas, que emiten ondas; un OTel Collector (caja con antena: varilla con esfera) y una pantalla de monitorización al fondo (panel) con barras horizontales escalonadas, como la cascada de spans de una traza. El contexto de la traza (traceparent) viaja dentro del mensaje de SQS, así que toda la petición es una sola traza: spans por nodo del grafo, por llamada al LLM (modelo, tokens, latencia) y por tool; y métricas de profundidad de cola, latencia, coste y tools denegadas.\n\nRECORRIDO\nPrimero se monta la maqueta componente a componente, explicando para qué sirve cada uno. Después se sigue una petición: sobre del cliente al gateway y a la cola (flujo); el worker la toma; el agente consulta al LLM; el LLM pide una tool; la garita la permite y la Lambda se ejecuta; el resultado vuelve al grafo (flujo_vuelta) y se guarda el checkpoint; el cliente recoge la respuesta con su id de tarea. Hay también una petición a una tool no permitida, que se rechaza, y un worker que falla: el mensaje se reintenta y, al final, acaba en la DLQ. La última escena muestra todo el sistema funcionando a la vez, con la traza completa en la pantalla.\n\nNARRACIÓN\nTono divulgativo para desarrolladores, con los nombres técnicos reales (LangGraph, SQS, visibility timeout, DLQ, checkpointer, IAM, OpenTelemetry, span, traza, Lambda). Que se entienda por qué cada pieza hace falta en producción: desacoplar y reintentar (SQS), estado durable (checkpointer), mínimo privilegio y auditoría (backend de autorización + Lambdas con su propio rol) y observabilidad de extremo a extremo (OpenTelemetry).",
+  "creado": "20261107-201721",
+  "parametros": {
+    "estilo": "tecnico",
+    "formato": "3d",
+    "orientacion": "horizontal",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 150.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-flash-tts",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-07T20:21:23",
+      "archivo": "guion.json",
+      "escenas": 20,
+      "avisos": []
+    }
+  ]
+}

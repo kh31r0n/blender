@@ -1,0 +1,16 @@
+VERSION 1
+
+651cfa12-8714-5f47-a545-0d3760c7174e:Paleta:Paleta
+9cf48e52-0770-5c08-ade5-9fcc8fd07595:Paleta/Relleno:Paleta-Relleno
+2044f46b-289b-5cda-9987-e65c50c166b6:Paleta/Plano:Paleta-Plano
+daa3a09d-4ed9-5d4b-8e01-5158cb028a87:Paleta/Trazo:Paleta-Trazo
+56c4c7db-58f3-5728-bb28-f23fb8f82af4:Paleta/Semitono:Paleta-Semitono
+a035344d-06e3-53dc-b994-a72ad4df098d:Especiales:Especiales
+9f6d1739-664b-5ba5-a524-ddd73539c7db:Descargados/Blender Essentials:Descargados-Blender Essentials
+f66906e5-7d2f-5149-a776-6e1531f1fa0b:Descargados/Manual:Descargados-Manual
+77bd6991-34e9-5b44-a131-1cfd73a4af1a:Descargados/Bike Ride (CC-BY-SA):Descargados-Bike Ride (CC-BY-SA)
+50d3e2e4-9f28-5fbf-b5cf-efe381a1b6f3:Escenografia/2D:Escenografia-2D
+3752cb4d-9b93-5a3c-abb8-9cfabe89b051:Escenografia/3D:Escenografia-3D
+343cc34c-19ba-5829-b1a1-de21d6c9586b:Cielos y suelos/2D:Cielos y suelos-2D
+9f2c31fc-b8d0-52d4-b406-080bb5ff6cf9:Cielos y suelos/3D:Cielos y suelos-3D
+3dd4c995-18b3-561d-999c-0e4c44a6fe97:Personajes:Personajes

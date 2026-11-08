@@ -1,0 +1,9 @@
+{
+  "tipo_duna": "Barjanes",
+  "altura_dunas": 60.0,
+  "escala_dunas": 260.0,
+  "direccion_viento": 75.0,
+  "altura_colinas": 20.0,
+  "densidad_rocas": 0.15,
+  "max_arcos": 1
+}

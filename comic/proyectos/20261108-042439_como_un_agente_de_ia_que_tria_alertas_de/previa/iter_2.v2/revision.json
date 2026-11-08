@@ -1,0 +1,2184 @@
+{
+  "problemas": [
+    "En la escena 17, 'bloque_v' atraviesa 'ped_llm' y 'esf_llm' al desplazarse en Y 0.7 y subir 0.3 hacia el centro del LLM.",
+    "Faltan propiedades obligatorias en las piezas (modelo, ancho, fondo, alto, radio, camino) para cumplir con el esquema estricto.",
+    "El JSON original contenía propiedades no permitidas por el esquema (estilo, tema, personajes, escenarios, acciones, presentes, quien)."
+  ],
+  "puntuacion": 7,
+  "cumple": false,
+  "guion": {
+    "titulo": "Arquitectura SOC: Correlación, Caché y Prompt Caching",
+    "sinopsis": "Cómo un agente de IA que tría alertas de seguridad ahorra tiempo y dinero utilizando DynamoDB para correlacionar y reutilizar respuestas, y prompt caching en el LLM.",
+    "objeto": {
+      "nombre": "Arquitectura SOC",
+      "alto": 1.0
+    },
+    "suelo": "baldosa",
+    "piezas": [
+      {
+        "id": "peana_edr",
+        "nombre": "Peana EDR",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": 0.8,
+        "z": 0.0,
+        "ancho": 0.5,
+        "fondo": 0.5,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "base_edr",
+        "nombre": "Base Portátil",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": 0.8,
+        "z": 0.04,
+        "ancho": 0.3,
+        "fondo": 0.2,
+        "alto": 0.02,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "gris_oscuro",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "pantalla_edr",
+        "nombre": "Pantalla Portátil",
+        "forma": "panel",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": 0.9,
+        "z": 0.06,
+        "ancho": 0.3,
+        "fondo": 0.0,
+        "alto": 0.2,
+        "radio": 0.0,
+        "grosor": 0.02,
+        "camino": [],
+        "rot_x": 10.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "gris_oscuro",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_waf",
+        "nombre": "Peana WAF",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.5,
+        "fondo": 0.5,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "rack_waf",
+        "nombre": "Rack WAF",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": 0.0,
+        "z": 0.04,
+        "ancho": 0.3,
+        "fondo": 0.3,
+        "alto": 0.6,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "rejilla",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_cloud",
+        "nombre": "Peana Cloud",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": -0.8,
+        "z": 0.0,
+        "ancho": 0.5,
+        "fondo": 0.5,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "base_cloud",
+        "nombre": "Base Cloud",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": -0.8,
+        "z": 0.04,
+        "ancho": 0.4,
+        "fondo": 0.3,
+        "alto": 0.1,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "cielo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "esf_cloud1",
+        "nombre": "Nube 1",
+        "forma": "esfera",
+        "modelo": "ninguno",
+        "x": -2.1,
+        "y": -0.8,
+        "z": 0.14,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.1,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "cielo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "esf_cloud2",
+        "nombre": "Nube 2",
+        "forma": "esfera",
+        "modelo": "ninguno",
+        "x": -1.9,
+        "y": -0.8,
+        "z": 0.14,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.12,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "cielo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "esf_cloud3",
+        "nombre": "Nube 3",
+        "forma": "esfera",
+        "modelo": "ninguno",
+        "x": -2.0,
+        "y": -0.7,
+        "z": 0.14,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.09,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "cielo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_sqs",
+        "nombre": "Peana SQS",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": -1.4,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.6,
+        "fondo": 0.4,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "tubo_sqs",
+        "nombre": "Cola SQS",
+        "forma": "tubo",
+        "modelo": "ninguno",
+        "x": -1.4,
+        "y": 0.0,
+        "z": 0.14,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.4,
+        "radio": 0.1,
+        "grosor": 0.01,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 90.0,
+        "rot_z": 0.0,
+        "color": "blanco",
+        "material": "transparente",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_lambda",
+        "nombre": "Peana Lambda",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.4,
+        "fondo": 0.4,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "cubo_lambda",
+        "nombre": "Correlador Lambda",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.0,
+        "z": 0.04,
+        "ancho": 0.25,
+        "fondo": 0.25,
+        "alto": 0.25,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "naranja",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_ddb1",
+        "nombre": "Peana DDB Correlacion",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.8,
+        "z": 0.0,
+        "ancho": 0.4,
+        "fondo": 0.4,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "ddb1_1",
+        "nombre": "DDB Correlacion 1",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.8,
+        "z": 0.04,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.1,
+        "radio": 0.15,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "morado",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "ddb1_2",
+        "nombre": "DDB Correlacion 2",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.8,
+        "z": 0.14,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.1,
+        "radio": 0.15,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "morado",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "ddb1_3",
+        "nombre": "DDB Correlacion 3",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.8,
+        "z": 0.24,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.1,
+        "radio": 0.15,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "morado",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_agent",
+        "nombre": "Peana Agente",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": 0.4,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.5,
+        "fondo": 0.5,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "server_agent",
+        "nombre": "Servidor Agente",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 0.4,
+        "y": 0.0,
+        "z": 0.04,
+        "ancho": 0.3,
+        "fondo": 0.4,
+        "alto": 0.5,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "verde",
+        "material": "solido",
+        "detalle": "rejilla",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_ddb2",
+        "nombre": "Peana DDB Cache",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": 0.4,
+        "y": 0.8,
+        "z": 0.0,
+        "ancho": 0.4,
+        "fondo": 0.4,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "ddb2_1",
+        "nombre": "DDB Cache 1",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": 0.4,
+        "y": 0.8,
+        "z": 0.04,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.1,
+        "radio": 0.15,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "morado",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "ddb2_2",
+        "nombre": "DDB Cache 2",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": 0.4,
+        "y": 0.8,
+        "z": 0.14,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.1,
+        "radio": 0.15,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "morado",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "ddb2_3",
+        "nombre": "DDB Cache 3",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": 0.4,
+        "y": 0.8,
+        "z": 0.24,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.1,
+        "radio": 0.15,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "morado",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_llm",
+        "nombre": "Peana LLM",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": 1.3,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.6,
+        "fondo": 0.6,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "ped_llm",
+        "nombre": "Pedestal LLM",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": 1.3,
+        "y": 0.0,
+        "z": 0.04,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.2,
+        "radio": 0.1,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "esf_llm",
+        "nombre": "Esfera LLM",
+        "forma": "esfera",
+        "modelo": "ninguno",
+        "x": 1.3,
+        "y": 0.0,
+        "z": 0.24,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.25,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "cielo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_shelf",
+        "nombre": "Peana Caché Prompt",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": 1.3,
+        "y": -0.7,
+        "z": 0.0,
+        "ancho": 0.8,
+        "fondo": 0.4,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "base_pila",
+        "nombre": "Base Pila Prompt",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 1.1,
+        "y": -0.7,
+        "z": 0.04,
+        "ancho": 0.2,
+        "fondo": 0.2,
+        "alto": 0.02,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "repisa_cache",
+        "nombre": "Repisa Caché",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 1.6,
+        "y": -0.7,
+        "z": 0.04,
+        "ancho": 0.3,
+        "fondo": 0.2,
+        "alto": 0.02,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "bloque_p1",
+        "nombre": "Prefijo 1",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 1.1,
+        "y": -0.7,
+        "z": 0.06,
+        "ancho": 0.15,
+        "fondo": 0.15,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "lima",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "bloque_p2",
+        "nombre": "Prefijo 2",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 1.1,
+        "y": -0.7,
+        "z": 0.11,
+        "ancho": 0.15,
+        "fondo": 0.15,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "lima",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "bloque_p3",
+        "nombre": "Prefijo 3",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 1.1,
+        "y": -0.7,
+        "z": 0.16,
+        "ancho": 0.15,
+        "fondo": 0.15,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "lima",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "bloque_v",
+        "nombre": "Bloque Variable",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 1.1,
+        "y": -0.7,
+        "z": 0.21,
+        "ancho": 0.15,
+        "fondo": 0.15,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "blanco",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_alert",
+        "nombre": "Peana Alerta",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": 2.1,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.4,
+        "fondo": 0.4,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "caja_alerta",
+        "nombre": "Caja Alerta",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 2.1,
+        "y": 0.0,
+        "z": 0.04,
+        "ancho": 0.2,
+        "fondo": 0.2,
+        "alto": 0.2,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "rojo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "baliza_alerta",
+        "nombre": "Baliza Alerta",
+        "forma": "cilindro",
+        "modelo": "ninguno",
+        "x": 2.1,
+        "y": 0.0,
+        "z": 0.24,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.05,
+        "radio": 0.05,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "rojo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "peana_monitor",
+        "nombre": "Peana Monitor",
+        "forma": "peana",
+        "modelo": "ninguno",
+        "x": 2.6,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.4,
+        "fondo": 0.4,
+        "alto": 0.04,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_base",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "pie_mon",
+        "nombre": "Pie Monitor",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 2.6,
+        "y": 0.0,
+        "z": 0.04,
+        "ancho": 0.2,
+        "fondo": 0.15,
+        "alto": 0.02,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "gris_oscuro",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "mastil_mon",
+        "nombre": "Mástil Monitor",
+        "forma": "varilla",
+        "modelo": "ninguno",
+        "x": 2.6,
+        "y": 0.0,
+        "z": 0.06,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.2,
+        "radio": 0.02,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "metal",
+        "material": "metal",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "pan_mon",
+        "nombre": "Pantalla Monitor",
+        "forma": "panel",
+        "modelo": "ninguno",
+        "x": 2.6,
+        "y": 0.0,
+        "z": 0.26,
+        "ancho": 0.3,
+        "fondo": 0.0,
+        "alto": 0.2,
+        "radio": 0.0,
+        "grosor": 0.02,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "gris_oscuro",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_edr_sqs",
+        "nombre": "Manguera EDR a SQS",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            -1.75,
+            0.8,
+            0.06
+          ],
+          [
+            -1.4,
+            0.8,
+            0.06
+          ],
+          [
+            -1.4,
+            0.2,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_waf_sqs",
+        "nombre": "Manguera WAF a SQS",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            -1.75,
+            0.0,
+            0.06
+          ],
+          [
+            -1.7,
+            0.0,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_cloud_sqs",
+        "nombre": "Manguera Cloud a SQS",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            -1.75,
+            -0.8,
+            0.06
+          ],
+          [
+            -1.4,
+            -0.8,
+            0.06
+          ],
+          [
+            -1.4,
+            -0.2,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_sqs_lambda",
+        "nombre": "Manguera SQS a Lambda",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            -1.1,
+            0.0,
+            0.06
+          ],
+          [
+            -0.6,
+            0.0,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_lambda_ddb1",
+        "nombre": "Manguera Lambda a DDB1",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            -0.4,
+            0.2,
+            0.06
+          ],
+          [
+            -0.4,
+            0.6,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_lambda_agent",
+        "nombre": "Manguera Lambda a Agente",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            -0.2,
+            0.0,
+            0.06
+          ],
+          [
+            0.15,
+            0.0,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_agent_ddb2",
+        "nombre": "Manguera Agente a DDB2",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            0.4,
+            0.25,
+            0.06
+          ],
+          [
+            0.4,
+            0.6,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_agent_llm",
+        "nombre": "Manguera Agente a LLM",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            0.65,
+            0.0,
+            0.06
+          ],
+          [
+            1.0,
+            0.0,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_llm_alert",
+        "nombre": "Manguera LLM a Alerta",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            1.6,
+            0.0,
+            0.06
+          ],
+          [
+            1.9,
+            0.0,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "m_alert_mon",
+        "nombre": "Manguera Alerta a Monitor",
+        "forma": "manguera",
+        "modelo": "ninguno",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "ancho": 0.0,
+        "fondo": 0.0,
+        "alto": 0.0,
+        "radio": 0.02,
+        "camino": [
+          [
+            2.3,
+            0.0,
+            0.06
+          ],
+          [
+            2.4,
+            0.0,
+            0.06
+          ]
+        ],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "azul_neon",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "f_sqs1",
+        "nombre": "Ficha SQS 1",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -1.5,
+        "y": 0.0,
+        "z": 0.1,
+        "ancho": 0.08,
+        "fondo": 0.08,
+        "alto": 0.08,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "blanco",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "f_sqs2",
+        "nombre": "Ficha SQS 2",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -1.4,
+        "y": 0.0,
+        "z": 0.1,
+        "ancho": 0.08,
+        "fondo": 0.08,
+        "alto": 0.08,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "blanco",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "f_sqs3",
+        "nombre": "Ficha SQS 3",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -1.3,
+        "y": 0.0,
+        "z": 0.1,
+        "ancho": 0.08,
+        "fondo": 0.08,
+        "alto": 0.08,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "blanco",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "f_ddb1_1",
+        "nombre": "Ficha DDB1 1",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.8,
+        "z": 0.34,
+        "ancho": 0.1,
+        "fondo": 0.1,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "rojo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "f_ddb1_2",
+        "nombre": "Ficha DDB1 2",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.8,
+        "z": 0.39,
+        "ancho": 0.1,
+        "fondo": 0.1,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "rojo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "f_ddb1_3",
+        "nombre": "Ficha DDB1 3",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": -0.4,
+        "y": 0.8,
+        "z": 0.44,
+        "ancho": 0.1,
+        "fondo": 0.1,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "rojo",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      },
+      {
+        "id": "f_ddb2_1",
+        "nombre": "Ficha DDB2 1",
+        "forma": "caja",
+        "modelo": "ninguno",
+        "x": 0.4,
+        "y": 0.8,
+        "z": 0.34,
+        "ancho": 0.1,
+        "fondo": 0.1,
+        "alto": 0.05,
+        "radio": 0.0,
+        "camino": [],
+        "rot_x": 0.0,
+        "rot_y": 0.0,
+        "rot_z": 0.0,
+        "color": "verde",
+        "material": "solido",
+        "detalle": "liso",
+        "bisagra": "ninguna"
+      }
+    ],
+    "accesorios": [],
+    "escenas": [
+      {
+        "id": 1,
+        "descripcion": "Introducción de las fuentes de alertas.",
+        "lineas": [
+          {
+            "texto": "Un SOC recibe miles de alertas de seguridad desde endpoints, firewalls y la nube.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "peana_edr",
+          "base_edr",
+          "pantalla_edr",
+          "peana_waf",
+          "rack_waf",
+          "peana_cloud",
+          "base_cloud",
+          "esf_cloud1",
+          "esf_cloud2",
+          "esf_cloud3"
+        ],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "rack_waf",
+          "pantalla_edr"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "general",
+          "objetivo": "rack_waf",
+          "movimiento": "acercar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 2,
+        "descripcion": "Aparición de la cola SQS.",
+        "lineas": [
+          {
+            "texto": "Una cola SQS absorbe los picos para no saturar el sistema.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "peana_sqs",
+          "tubo_sqs",
+          "m_edr_sqs",
+          "m_waf_sqs",
+          "m_cloud_sqs"
+        ],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "tubo_sqs"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "tubo_sqs",
+          "movimiento": "fijo",
+          "objetivos": []
+        },
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 3,
+        "descripcion": "Aparición del correlador Lambda y DynamoDB.",
+        "lineas": [
+          {
+            "texto": "Nuestra Lambda correlaciona las alertas en DynamoDB antes de enviarlas al agente.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "peana_lambda",
+          "cubo_lambda",
+          "m_sqs_lambda",
+          "peana_ddb1",
+          "ddb1_1",
+          "ddb1_2",
+          "ddb1_3",
+          "m_lambda_ddb1"
+        ],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "cubo_lambda",
+          "ddb1_3"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "cubo_lambda",
+          "movimiento": "fijo",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 4,
+        "descripcion": "Aparición del agente y la caché de respuestas.",
+        "lineas": [
+          {
+            "texto": "El agente, un worker central, analiza el incidente y guarda su veredicto en una caché.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "peana_agent",
+          "server_agent",
+          "m_lambda_agent",
+          "peana_ddb2",
+          "ddb2_1",
+          "ddb2_2",
+          "ddb2_3",
+          "m_agent_ddb2"
+        ],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "server_agent",
+          "ddb2_3"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "server_agent",
+          "movimiento": "rodear",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 5,
+        "descripcion": "Aparición del LLM y el monitor final.",
+        "lineas": [
+          {
+            "texto": "Si necesita pensar, consulta al LLM. El resultado es una única alerta procesada.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "peana_llm",
+          "ped_llm",
+          "esf_llm",
+          "m_agent_llm",
+          "peana_alert",
+          "caja_alerta",
+          "baliza_alerta",
+          "m_llm_alert",
+          "peana_monitor",
+          "pie_mon",
+          "mastil_mon",
+          "pan_mon",
+          "m_alert_mon"
+        ],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "esf_llm",
+          "pan_mon"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "general",
+          "objetivo": "esf_llm",
+          "movimiento": "alejar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 6,
+        "descripcion": "Flujo masivo de alertas hacia SQS.",
+        "lineas": [
+          {
+            "texto": "Un ataque genera decenas de alertas idénticas de la misma IP.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "f_sqs1",
+          "f_sqs2",
+          "f_sqs3"
+        ],
+        "desaparecen": [],
+        "rayos_x": [
+          "tubo_sqs"
+        ],
+        "resaltar": [
+          "tubo_sqs"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flujo",
+            "pieza": "m_waf_sqs",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo",
+            "pieza": "m_edr_sqs",
+            "momento": 0.3,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "tubo_sqs",
+          "movimiento": "fijo",
+          "objetivos": []
+        },
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 7,
+        "descripcion": "La primera alerta crea un grupo en DynamoDB.",
+        "lineas": [
+          {
+            "texto": "La Lambda calcula una clave de correlación. La primera alerta crea el grupo en DynamoDB.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "f_ddb1_1"
+        ],
+        "desaparecen": [],
+        "rayos_x": [
+          "tubo_sqs"
+        ],
+        "resaltar": [
+          "cubo_lambda",
+          "ddb1_3"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flujo",
+            "pieza": "m_sqs_lambda",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo",
+            "pieza": "m_lambda_ddb1",
+            "momento": 0.5,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "ddb1_1",
+          "movimiento": "acercar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 8,
+        "descripcion": "Las siguientes alertas incrementan el contador atómico.",
+        "lineas": [
+          {
+            "texto": "Las siguientes usan UpdateItem con un contador atómico. Solo suman, no se vuelven a analizar.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "f_ddb1_2",
+          "f_ddb1_3"
+        ],
+        "desaparecen": [],
+        "rayos_x": [
+          "tubo_sqs"
+        ],
+        "resaltar": [
+          "ddb1_3"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flujo",
+            "pieza": "m_sqs_lambda",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo",
+            "pieza": "m_lambda_ddb1",
+            "momento": 0.4,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "detalle",
+          "objetivo": "ddb1_3",
+          "movimiento": "fijo",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 9,
+        "descripcion": "El TTL de la ventana de correlación.",
+        "lineas": [
+          {
+            "texto": "Un atributo TTL define la ventana, por ejemplo, quince minutos.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "ddb1_3"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "reloj",
+            "pieza": "ddb1_3",
+            "momento": 0.1,
+            "duracion": 3.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "ddb1_2",
+          "movimiento": "fijo",
+          "objetivos": []
+        },
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 10,
+        "descripcion": "Advertencia sobre el borrado diferido del TTL.",
+        "lineas": [
+          {
+            "texto": "Ojo: DynamoDB no borra al instante. El código debe comprobar la caducidad al leer.",
+            "emocion": "misterioso"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "ddb1_3"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "alerta",
+            "pieza": "ddb1_3",
+            "momento": 0.2,
+            "duracion": 3.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "ddb1_2",
+          "movimiento": "alejar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 11,
+        "descripcion": "El agente recibe el grupo y calcula el hash.",
+        "lineas": [
+          {
+            "texto": "El agente normaliza el prompt y calcula un hash con el modelo y la versión.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "server_agent"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flujo",
+            "pieza": "m_lambda_agent",
+            "momento": 0.1,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "server_agent",
+          "movimiento": "acercar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 12,
+        "descripcion": "Fallo de caché y llamada al LLM.",
+        "lineas": [
+          {
+            "texto": "Hace un GetItem. Si falla, llama al LLM y guarda la respuesta con PutItem y su TTL.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "f_ddb2_1"
+        ],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "ddb2_3",
+          "esf_llm"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "rechazo",
+            "pieza": "ddb2_3",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo",
+            "pieza": "m_agent_llm",
+            "momento": 0.3,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo_vuelta",
+            "pieza": "m_agent_llm",
+            "momento": 0.5,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo",
+            "pieza": "m_agent_ddb2",
+            "momento": 0.7,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "server_agent",
+          "movimiento": "fijo",
+          "objetivos": [
+            "server_agent",
+            "ddb2_1"
+          ]
+        },
+        "duracion_minima": 7.0
+      },
+      {
+        "id": 13,
+        "descripcion": "Acierto de caché con un grupo equivalente.",
+        "lineas": [
+          {
+            "texto": "Con un grupo equivalente, el hash coincide. ¡Acierto de caché!",
+            "emocion": "alegre"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "ddb2_3"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flujo",
+            "pieza": "m_lambda_agent",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo",
+            "pieza": "m_agent_ddb2",
+            "momento": 0.3,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "aprobado",
+            "pieza": "ddb2_3",
+            "momento": 0.6,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "ddb2_3",
+          "movimiento": "acercar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 14,
+        "descripcion": "Reutilización instantánea de la respuesta.",
+        "lineas": [
+          {
+            "texto": "Reutiliza el veredicto al instante, ahorrando la llamada al LLM.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "server_agent"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "rayo",
+            "pieza": "ddb2_3",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "flujo_vuelta",
+            "pieza": "m_agent_ddb2",
+            "momento": 0.4,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "server_agent",
+          "movimiento": "alejar",
+          "objetivos": []
+        },
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 15,
+        "descripcion": "Aparición de la pila de prompt y la repisa de caché.",
+        "lineas": [
+          {
+            "texto": "Para las llamadas inevitables, usamos prompt caching en el LLM.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [
+          "peana_shelf",
+          "base_pila",
+          "repisa_cache",
+          "bloque_p1",
+          "bloque_p2",
+          "bloque_p3",
+          "bloque_v"
+        ],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "repisa_cache",
+          "bloque_p1"
+        ],
+        "animaciones": [],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "repisa_cache",
+          "movimiento": "rodear",
+          "objetivos": [
+            "esf_llm",
+            "repisa_cache"
+          ]
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 16,
+        "descripcion": "El prefijo viaja al LLM y se guarda en la repisa.",
+        "lineas": [
+          {
+            "texto": "El prefijo con instrucciones y tools viaja al LLM y se guarda en su caché interna.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "repisa_cache"
+        ],
+        "animaciones": [
+          {
+            "pieza": "bloque_p1",
+            "movimiento": "desplazar_x",
+            "inicio": 0.1,
+            "fin": 0.6,
+            "cantidad": 0.5
+          },
+          {
+            "pieza": "bloque_p2",
+            "movimiento": "desplazar_x",
+            "inicio": 0.1,
+            "fin": 0.6,
+            "cantidad": 0.5
+          },
+          {
+            "pieza": "bloque_p3",
+            "movimiento": "desplazar_x",
+            "inicio": 0.1,
+            "fin": 0.6,
+            "cantidad": 0.5
+          }
+        ],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "repisa_cache",
+          "movimiento": "fijo",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 17,
+        "descripcion": "En la siguiente llamada, solo viaja el bloque variable.",
+        "lineas": [
+          {
+            "texto": "En la siguiente llamada, solo cambian las alertas nuevas. El prefijo se lee de la caché.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "bloque_v",
+          "esf_llm"
+        ],
+        "animaciones": [
+          {
+            "pieza": "bloque_v",
+            "movimiento": "desplazar_x",
+            "inicio": 0.1,
+            "fin": 0.6,
+            "cantidad": 0.2
+          },
+          {
+            "pieza": "bloque_v",
+            "movimiento": "desplazar_y",
+            "inicio": 0.1,
+            "fin": 0.6,
+            "cantidad": 0.4
+          }
+        ],
+        "efectos": [],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "esf_llm",
+          "movimiento": "fijo",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 18,
+        "descripcion": "Reducción de latencia gracias al prompt caching.",
+        "lineas": [
+          {
+            "texto": "Esos tokens cuestan en torno al diez por ciento del precio normal, y la latencia baja.",
+            "emocion": "alegre"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "esf_llm"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "reloj",
+            "pieza": "esf_llm",
+            "momento": 0.1,
+            "duracion": 1.5
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "esf_llm",
+          "movimiento": "acercar",
+          "objetivos": []
+        },
+        "duracion_minima": 5.0
+      },
+      {
+        "id": 19,
+        "descripcion": "Advertencia sobre la invalidación del prefijo.",
+        "lineas": [
+          {
+            "texto": "Pero cuidado: el prefijo debe ser idéntico byte a byte. Cualquier cambio lo invalida.",
+            "emocion": "misterioso"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "repisa_cache"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "alerta",
+            "pieza": "repisa_cache",
+            "momento": 0.2,
+            "duracion": 3.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "repisa_cache",
+          "movimiento": "alejar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 20,
+        "descripcion": "La alerta correlacionada llega al monitor del analista.",
+        "lineas": [
+          {
+            "texto": "En lugar de cincuenta avisos, el analista recibe una sola alerta enriquecida.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "pan_mon"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flujo",
+            "pieza": "m_llm_alert",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "ondas",
+            "pieza": "baliza_alerta",
+            "momento": 0.5,
+            "duracion": 3.0
+          },
+          {
+            "tipo": "flujo",
+            "pieza": "m_alert_mon",
+            "momento": 0.6,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "medio",
+          "objetivo": "pan_mon",
+          "movimiento": "acercar",
+          "objetivos": []
+        },
+        "duracion_minima": 6.0
+      },
+      {
+        "id": 21,
+        "descripcion": "El sistema completo funcionando.",
+        "lineas": [
+          {
+            "texto": "Correlación, reutilización y prompt caching: el trío para un SOC rápido y rentable.",
+            "emocion": "neutral"
+          }
+        ],
+        "aparecen": [],
+        "desaparecen": [],
+        "rayos_x": [],
+        "resaltar": [
+          "server_agent",
+          "esf_llm"
+        ],
+        "animaciones": [],
+        "efectos": [
+          {
+            "tipo": "flujo",
+            "pieza": "m_waf_sqs",
+            "momento": 0.1,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "rayo",
+            "pieza": "ddb2_3",
+            "momento": 0.3,
+            "duracion": 2.0
+          },
+          {
+            "tipo": "aprobado",
+            "pieza": "esf_llm",
+            "momento": 0.5,
+            "duracion": 2.0
+          }
+        ],
+        "camara": {
+          "plano": "general",
+          "objetivo": "server_agent",
+          "movimiento": "alejar",
+          "objetivos": []
+        },
+        "duracion_minima": 7.0
+      }
+    ]
+  }
+}

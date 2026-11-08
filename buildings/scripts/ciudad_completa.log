@@ -1,0 +1,99 @@
+00:00.286  blend            | Read blend: "/home/kheiron/blender/buildings/Edificios_GN_marquesina_v2.blend"
+01:06.148  render           | Saved: '/home/kheiron/blender/buildings/renders/ciudad_completa/Camara.png'
+01:22.898  render           | Saved: '/home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Planta.png'
+01:40.307  render           | Saved: '/home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Centro.png'
+01:59.381  render           | Saved: '/home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Calle_1.png'
+02:18.052  render           | Saved: '/home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Calle_2.png'
+02:35.665  render           | Saved: '/home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Calle_3.png'
+02:54.196  render           | Saved: '/home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Mezcla.png'
+====================================================================
+Iniciando montaje de Ciudad_completa.blend...
+====================================================================
+Colecciones modulares vinculadas: 14
+Colección Nitrody City vinculada exitosamente.
+
+--- INSTANCIANDO LOS 14 MODULARES OFICIALES ---
+  Modular Café Corner            en C2_S1 (rot=270°)
+  Modular Town Hall              en C2_S2 (rot=0°)
+  Modular Palace Cinema          en C2_S3 (rot=0°)
+  Modular Brick Bank             en A2_N1 (rot=180°)
+  Modular Fire Brigade           en A2_N2 (rot=180°)
+  Modular Corner Garage          en A2_N3 (rot=90°)
+  Modular Boutique Hotel         en B1_S3 (rot=0°)
+  Modular Bookshop               en B1_S2 (rot=0°)
+  Modular Police Station         en B1_N2 (rot=180°)
+  Modular Pet Shop               en B3_S2 (rot=0°)
+  Modular Market Street          en B3_N2 (rot=180°)
+  Modular Green Grocer           en A2_S2 (rot=0°)
+  Modular Parisian Restaurant    en A2_S3 (rot=0°)
+  Modular Detective's Office     en C2_N2 (rot=180°)
+
+--- INSTANCIANDO EDIFICIOS PROCEDURALES (GEOMETRY NODES) ---
+  Generado Apartment      en A1_S1 (24x18 studs, 6 pisos, Red brick)
+  Generado Shop           en A1_S2 (20x16 studs, 4 pisos, Sandstone)
+  Generado Office         en A1_N1 (24x18 studs, 7 pisos, Grey office)
+  Generado Apartment      en A1_N2 (22x18 studs, 5 pisos, Olive)
+  Generado Shop           en A1_N3 (18x16 studs, 4 pisos, Brown brick)
+  Generado Shop           en A3_S1 (22x16 studs, 4 pisos, Red brick)
+  Generado Apartment      en A3_S3 (26x20 studs, 7 pisos, Sand blue)
+  Generado Apartment      en A3_N1 (24x18 studs, 6 pisos, Sandstone)
+  Generado Office         en A3_N2 (26x20 studs, 8 pisos, Grey office)
+  Generado Hotel          en A3_N3 (24x18 studs, 7 pisos, Nitro hotel)
+  Generado Apartment      en B1_S1 (24x18 studs, 6 pisos, Olive)
+  Generado Shop           en B1_N1 (22x16 studs, 5 pisos, Sand green)
+  Generado Office         en B1_N3 (24x18 studs, 7 pisos, Grey office)
+  Generado Shop           en B3_S1 (22x16 studs, 5 pisos, Red brick)
+  Generado Apartment      en B3_S3 (24x18 studs, 7 pisos, Sandstone)
+  Generado Apartment      en B3_N3 (24x18 studs, 6 pisos, Sand blue)
+  Generado Office         en C1_S1 (24x18 studs, 7 pisos, Grey office)
+  Generado Shop           en C1_S2 (20x16 studs, 4 pisos, Red brick)
+  Generado Apartment      en C1_S3 (24x18 studs, 6 pisos, Sandstone)
+  Generado Apartment      en C1_N1 (24x18 studs, 6 pisos, Sand green)
+  Generado Hotel          en C1_N3 (22x18 studs, 7 pisos, Nougat)
+  Generado Shop           en C2_N1 (22x16 studs, 5 pisos, Sand blue)
+  Generado Apartment      en C2_N3 (24x18 studs, 6 pisos, Sandstone)
+  Generado Hotel          en C3_S1 (24x18 studs, 7 pisos, Red brick)
+  Generado Office         en C3_S3 (26x20 studs, 8 pisos, Grey office)
+  Generado Apartment      en C3_N1 (24x18 studs, 7 pisos, Sandstone)
+  Generado Shop           en C3_N2 (20x16 studs, 4 pisos, Olive)
+Texto 'Creditos' creado exitosamente.
+7 cámaras configuradas correctamente. Cámara activa: Camara
+
+Layout exportado a: /home/kheiron/blender/buildings/ciudad_completa_layout.json (56 registros)
+Info: Saved as "Ciudad_completa.blend"
+Archivo de ciudad guardado exitosamente: /home/kheiron/blender/buildings/Ciudad_completa.blend
+
+====================================================================
+INICIANDO VALIDACIÓN Y RENDERS DE LA CIUDAD COMPLETA
+====================================================================
+Tiempo de evaluación del depsgraph: 0.000 s
+Total de instancias evaluadas en la escena: 98611
+
+Verificación de Inventario:
+  - Modulares encontrados: 14 de 14
+  - Nitrody City en B2: PRESENTE
+  - Mini Modulars (10230): CORRECTAMENTE EXCLUIDO
+  - Edificios generados totales: 41
+
+Verificación de Alturas:
+  - Altura máxima generada: 54.2 BU < Torre Nitro (56.5 BU)
+  - Todos los modificadores Geometry Nodes verificados y sin realizar instancias.
+
+--- RENDERIZANDO LAS 7 CÁMARAS (1920x1080, EEVEE, AgX) ---
+  Cámara 'Camara      ' renderizada en 36.67 s -> /home/kheiron/blender/buildings/renders/ciudad_completa/Camara.png
+  Cámara 'Cam_Planta  ' renderizada en 16.68 s -> /home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Planta.png
+  Cámara 'Cam_Centro  ' renderizada en 17.41 s -> /home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Centro.png
+  Cámara 'Cam_Calle_1 ' renderizada en 19.09 s -> /home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Calle_1.png
+  Cámara 'Cam_Calle_2 ' renderizada en 18.67 s -> /home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Calle_2.png
+  Cámara 'Cam_Calle_3 ' renderizada en 17.61 s -> /home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Calle_3.png
+  Cámara 'Cam_Mezcla  ' renderizada en 18.54 s -> /home/kheiron/blender/buildings/renders/ciudad_completa/Cam_Mezcla.png
+
+====================================================================
+RESUMEN DE RENDIMIENTO Y VALIDACIÓN:
+  - Archivo guardado: /home/kheiron/blender/buildings/Ciudad_completa.blend
+  - Tiempo medio de render por fotograma: 20.67 s
+  - Total instancias en escena: 98611
+====================================================================
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
+
+Blender quit

@@ -1,0 +1,17 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-07T18:58:55",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 72.5,
+      "tokens_entrada": 6148,
+      "tokens_salida": 3301,
+      "tokens_razonamiento": 5652
+    },
+    "avisos": [
+      "escena 1: accion aparecer no vale para gato_astro"
+    ]
+  }
+]
