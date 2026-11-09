@@ -29,7 +29,7 @@ def edificio(ob, el, m3d, rnd):
     if m3d:
         x0, x1, y0, y1 = -w / 2, w / 2, -d / 2, d / 2
         bx = (x0, x1, y0, y1, 0, h)
-        caja(lp, *bx, f"Relleno {c}", f"Semitono {c}-", f"Relleno {c}+", radio=R)
+        caja(lp, *bx, f"Relleno {c}", f"Semitono {c}-", f"Relleno {c}+", radio=R, caras="FLDA")
         lv = Lapiz(ob, "ventanas")
         for k in range(pisos):
             z0 = 0.9 + k * hp
@@ -45,7 +45,7 @@ def edificio(ob, el, m3d, rnd):
         cara_rect(lv, "F", -0.4, 0, 0.4, 0.75, bx, "Relleno chocolate", radio=R2)
         caja(lp, x0 - 0.1, x1 + 0.1, y0 - 0.1, y1 + 0.1, h, h + 0.25, f"Relleno {c}-", f"Relleno {c}--", f"Relleno {c}-", radio=R)
         if rnd.random() < 0.6:
-            caja(lp, 0.2, 0.9, -0.3, 0.4, h + 0.25, h + 0.9, "Relleno rojo", "Relleno rojo-", "Relleno rojo+", radio=R2)
+            caja(lp, 0.2, 0.9, -0.3, 0.4, h + 0.252, h + 0.9, "Relleno rojo", "Relleno rojo-", "Relleno rojo+", radio=R2)
     else:
         lp.forma(rect(-w / 2, 0, w / 2, h), f"Relleno {c}", radio=R)
         if CFG["semitono"]: lp.forma(rect(w / 2 - 0.65, 0, w / 2, h), f"Semitono plano {c}-", linea=False)
@@ -299,10 +299,10 @@ def banco(ob, el, m3d, rnd):
     c = el["color"] or "naranja"; lp = Lapiz(ob, "cuerpo")
     if m3d:
         for x in (-0.75, 0.65):
-            caja(lp, x, x + 0.1, -0.25, -0.15, 0, 0.45, "Relleno gris_oscuro", radio=R2)
-            caja(lp, x, x + 0.1, 0.15, 0.25, 0, 0.9, "Relleno gris_oscuro", radio=R2)
+            caja(lp, x, x + 0.1, -0.25, -0.15, 0, 0.448, "Relleno gris_oscuro", radio=R2, caras="FLDA")
+            caja(lp, x, x + 0.1, 0.252, 0.33, 0, 0.898, "Relleno gris_oscuro", radio=R2)
         caja(lp, -0.9, 0.9, -0.3, 0.25, 0.45, 0.55, f"Relleno {c}", f"Relleno {c}-", f"Relleno {c}+", radio=R2)
-        caja(lp, -0.9, 0.9, 0.2, 0.3, 0.6, 0.9, f"Relleno {c}", f"Relleno {c}-", f"Relleno {c}+", radio=R2)
+        caja(lp, -0.9, 0.9, 0.18, 0.25, 0.6, 0.9, f"Relleno {c}", f"Relleno {c}-", f"Relleno {c}+", radio=R2)
     else:
         for x in (-0.75, 0.65): lp.forma(rect(x, 0, x + 0.1, 0.5), "Relleno gris_oscuro", radio=R2)
         for z in (0.62, 0.78): lp.forma(rect_redondeado(-0.9, z, 0.9, z + 0.12, 0.04), f"Relleno {c}", radio=R2)
@@ -332,8 +332,8 @@ def coche(ob, el, m3d, rnd):
     ruedas = [-0.85, 0.85]; rz = 0.32
     if m3d:
         caja(lp, -1.4, 1.4, -0.65, 0.65, 0.3, 0.85, f"Relleno {c}", f"Semitono {c}-", f"Relleno {c}+", radio=R)
-        caja(lp, -0.7, 0.6, -0.55, 0.55, 0.85, 1.35, "Relleno celeste+", "Relleno celeste", f"Relleno {c}", radio=R)
-        for x in (1.38, ):
+        caja(lp, -0.7, 0.6, -0.55, 0.55, 0.852, 1.35, "Relleno celeste+", "Relleno celeste", f"Relleno {c}", radio=R)
+        for x in (1.392, ):
             for yy in (-0.4, 0.4): lp.forma([(x + 0.02, yy - 0.12, 0.6), (x + 0.02, yy + 0.12, 0.6), (x + 0.02, yy + 0.12, 0.72), (x + 0.02, yy - 0.12, 0.72)], "Relleno amarillo", radio=R2)
         ys = (-0.67, 0.67)
     else:
@@ -405,7 +405,7 @@ def mesa(ob, el, m3d, rnd):
     c = el["color"] or "marron"; lp = Lapiz(ob, "cuerpo")
     if m3d:
         for x in (-0.8, 0.7):
-            for yy in (-0.4, 0.3): caja(lp, x, x + 0.1, yy, yy + 0.1, 0, 0.8, f"Relleno {c}-", radio=R2)
+            for yy in (-0.4, 0.3): caja(lp, x, x + 0.1, yy, yy + 0.1, 0, 0.798, f"Relleno {c}-", radio=R2, caras="FLDA")
         caja(lp, -0.9, 0.9, -0.5, 0.5, 0.8, 0.92, f"Relleno {c}", f"Relleno {c}-", f"Relleno {c}+", radio=R2)
     else:
         for x in (-0.8, 0.7): lp.forma(rect(x, 0, x + 0.1, 0.82), f"Relleno {c}-", radio=R2)

@@ -171,8 +171,9 @@ def generar_tts(op, guion, params, dir_proy, log=print):
         for ln in esc["lineas"]:
             voz = params["voz_narrador"] if ln["quien"] == "narrador" else voces.get(ln["quien"], "Puck")
             if params.get("voz_narrador") == CP.VOZ_SILENCIO: voz = CP.VOZ_SILENCIO
-            clave = hashlib.sha1(f"{params['modelo_tts']}|{voz}|{ln['emocion']}|{ln['texto']}|ritmo{params.get('ritmo_voz', 2.6)}"
-                                 .encode()).hexdigest()[:16]
+            toma = int(params.get("toma_voz", 0) or 0)            # 0: la clave de siempre (la cache de antes sigue valiendo)
+            clave = hashlib.sha1((f"{params['modelo_tts']}|{voz}|{ln['emocion']}|{ln['texto']}|ritmo{params.get('ritmo_voz', 2.6)}"
+                                  + (f"|toma{toma}" if toma else "")).encode()).hexdigest()[:16]
             rel = f"audio/linea_{clave}.wav"; ruta = os.path.join(dir_proy, rel)
             if not os.path.exists(ruta):
                 if voz == CP.VOZ_SILENCIO:

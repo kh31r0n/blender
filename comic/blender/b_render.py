@@ -48,6 +48,8 @@ def main():
         r.ffmpeg.audio_codec = 'AAC'; r.ffmpeg.audio_bitrate = 192; r.ffmpeg.audio_channels = 'STEREO'; r.ffmpeg.audio_mixrate = 48000
         r.use_sequencer = True        # solo hay tiras de sonido: la imagen sigue siendo la de la camara
         r.filepath = tmp
+        for viejo in glob.glob(tmp + "*"): os.remove(viejo)     # restos de un render interrumpido: no son el resultado
+        informe["dispositivo"] = GB.gpu_cycles(sc)                # Cycles en la GPU en ESTE proceso (no viaja en el .blend)
         bpy.ops.render.render(animation=True)
         hechos = sorted(glob.glob(tmp + "*"), key=os.path.getmtime)
         if not hechos: raise SystemExit("el render de video no produjo archivo")

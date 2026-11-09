@@ -6,7 +6,8 @@ El usuario escribe en español: responde en español. Antes de tareas grandes su
 
 - **Blender 5.2.2:** instalado solo para el usuario en `~/.local/opt/blender`. El ejecutable es `~/.local/bin/blender`. La carpeta `~/blender/blender-5.2.2-linux-x64` es el tarball original y ya no se usa.
 - **Modo sin interfaz:** trabaja siempre así: `blender -b archivo.blend -P script.py`, o `--python-expr`. No abras la interfaz gráfica, porque saldría en la pantalla del usuario.
-- **GPU:** RTX 4060. EEVEE (`BLENDER_EEVEE`) funciona con `-b`, y es el motor que pide el usuario.
+- **GPU:** RTX 4060 (hay también una Intel UHD 770 integrada). EEVEE (`BLENDER_EEVEE`) y Cycles funcionan con `-b`. Desde el 2026-11-08 el usuario pide **Cycles en la GPU** para el agente de cómic (`gp_base.configurar_escena`, parámetro `motor`, por defecto `cycles`).
+- **Node 24 y Motion Canvas:** Node está en `~/.local/bin/node`. El proyecto de los paneles es `comic/motion` (instalar con `npm ci`; versiones exactas, Motion Canvas 3.17.2). Se renderiza sin interfaz con `node render.mjs`, que abre `/usr/bin/google-chrome` con `playwright-core` (no descarga navegadores).
 - **LDraw:** la biblioteca está en `~/ldraw`. El add-on ImportLDraw v1.3.0 está activado (módulo `io_scene_importldraw`). Se usa así: `bpy.ops.import_scene.importldraw(filepath=..., ldrawPath="/home/kheiron/ldraw")`. Crea un objeto `LegoGroundPlane` que hay que borrar, y su escala es 1 LDU = 0.0004 m (un ladrillo 2×4 mide 0.032 m).
   - **Guarda las últimas opciones usadas** en `ImportLDrawPreferences.ini`. Pasa siempre `realScale`, `defaultColour`, `useLogoStuds` y `bevelEdges` de forma explícita.
   - **Cambia el motor de la escena a Cycles** (CPU, 4 096 muestras). Después de importar, vuelve a poner `scene.render.engine = 'BLENDER_EEVEE'`.
@@ -41,14 +42,25 @@ El usuario escribe en español: responde en español. Antes de tareas grandes su
     - `--tema clasico`: papel y paleta apagada.
     - `--tema iconos`: set de iconos isométricos de `referencias/iconos/` (blanco, lateral azul claro, lima, contorno negro grueso).
     - `--tema neon`: maqueta de infraestructura de `referencias/maqueta_neon/`, con peanas luminosas, mangueras de neón y colores vivos.
+    - `--tema cyberpunk`: como `escenes/Cyberpunk_fixed.blend`, con mallas 3D, material toon, Line Art y EEVEE (lo impone el tema). Lo dibuja `comic/blender/cyberpunk.py`.
+  - Gancho (`--gancho dolor|contraintuitiva|reto|auto|ninguno`): el vídeo técnico abre con una pregunta en voz y en pantalla (sin cartela de título delante) y sigue un caso concreto (`caso`) de principio a fin.
+  - Workflow visible (`datos_vivos`, `pasos_ciclo`, `comparativa`; modo `enriquecer` para un guion existente): datos con números que cambian junto a los componentes, pasos numerados del ciclo que se encienden y gráfica comparativa final en el montaje.
+  - Reglas comunes del estilo técnico: las piezas nuevas aparecen en dos tandas como mucho por escena, el resalte sale con fundido y a la vez en todas, los carteles se recolocan para no chocar ni tapar, y las fichas de un contenedor llegan por su manguera. Con `--icono-flujo biohazard`, las alertas que viajan por las mangueras son biohazards de colores.
+    - `--tema cristal`: piezas de cristal con bordes de luz, líneas finas con nodos, circuito y paleta azul con acentos por función; render con Cycles en la GPU.
+    - `--tema arcilla`: diorama de ingeniería futurista (referencias en `comic/referencias/arcilla/`), **todo malla, sin Grease Pencil ni Line Art** (tampoco efectos ni cartelas). Un solo plástico texturizado (Leather039 de ambientCG) para todo lo opaco, en el que solo cambia el color; acrílico solo en lo transparente (cintas, filos, tarjetas, fichas); suelo blanco con plataforma gris; luz principal detrás a la derecha a 68°; marcos moldeados y líneas continuas en los adornos; Khronos PBR Neutral, cámara a 35°, profundidad de campo y órbita lenta; Cycles en la GPU.
   - Tiene objetos-icono prefabricados (forma `icono` + `modelo`) en `comic/iconos_3d.py`.
-- Modos: materiales, biblioteca, 0 guion, detalles (estilo técnico: adornos decididos por Gemini, con `--referencia` de imagen), 1 objetos, 2 rig, 3 audio, 4 animacion, efectos, previa (con revisión de Gemini), 5 render, montaje, todo y estado. Los detalles están en `comic/README.md`.
+- Modos: materiales, biblioteca, 0 guion, detalles (estilo técnico: adornos decididos por Gemini, con `--referencia` de imagen), 1 objetos, 2 rig, 3 audio, paneles, subtitulos, 4 animacion, efectos, previa (con revisión de Gemini), 5 render, montaje, miniatura, publicacion, todo y estado. Los detalles están en `comic/README.md`.
 - La tabla única de parámetros, la paleta, el vocabulario, los esquemas y la validación están en `comic_parametros.py`. Gemini (texto, TTS y transcripción) va en `ia_vertex.py`, con la misma cuenta que el agente del desierto. El audio y los tiempos están en `audio_comic.py`.
 - Los scripts de Blender están en `comic/blender/`:
   - `gp_base.py`: utilidades GP.
   - `escenografia.py` y `personajes.py`: estilo cómic.
   - `tecnico.py` y `b_tecnico.py`: estilo técnico.
   - `b_*.py`: etapas.
+- **Paneles de datos con Motion Canvas** (estilo técnico, modo `paneles`, parámetro `paneles_mc`): los datos del caso, los pasos del ciclo, el gancho y la comparativa van en una franja arriba (vertical, `tam_panel` = 40 %) o una columna a la izquierda (horizontal), solo en las escenas con datos (`CP.escenas_con_panel`). Gemini diseña `paneles.json` (titular palabra a palabra con la voz + un visual de `CP.TIPOS_VISUAL`, sin cifras que no estén en el guion); `paneles_mc.py` lo pasa a `motion.json` y `comic/motion/render.mjs` lo renderiza en PNG con alfa (`paneles/fotogramas.vN/`), que el montaje pone encima de la película. Sin la etapa `paneles` hecha, Blender sigue dibujando los datos en 3D. Detalles en `comic/README.md`.
+- **Subtítulos con Motion Canvas** (modo `subtitulos`, parámetro `subtitulos`, activo salvo en el estilo cómic): `subtitulos_mc.py` parte la voz de `tiempos.json` en bloques de 3–6 palabras (tiempos por sílabas, como los titulares) y el mismo proyecto `comic/motion` los dibuja (`src/escenas/subtitulos.tsx`, elegido por `tipo` en `motion.json`): mayúsculas con contorno y la palabra que suena en lima, en el tercio inferior. El montaje los pone en el canal 4 y escribe `final/final.vN.srt`; la cámara técnica deja libre esa franja (`hueco_abajo`).
+- **Maqueta técnica** (`CP.ajustar_maqueta`, al validar el guion y en `objetos`): las mangueras con flujo miden al menos `largo_flujo` (1 m; separa las peanas con cortes por pasillos libres) y ninguna manguera aparece antes que los componentes que une. En los temas con mallas las mangueras no caen: se dibujan en 0,6 s con una chispa en la punta. En escenas con flujo, la cámara encuadra la manguera entera. `audio --toma-voz N` vuelve a sintetizar todas las voces.
+- **Marca** (parámetro `marca`, por defecto el kit `~/Pictures/logo/vervux`; `marca.py`): logo pequeño abajo a la derecha todo el vídeo (por encima de los subtítulos), cartela de cierre con el logo y `web_marca` en lugar de «¡FIN!», y logo en las miniaturas, según la guía del kit (versión por fondo, área de protección, sin efectos). Va en el montaje: no hace falta volver a renderizar.
+- **Difusión** (modos `miniatura` y `publicacion`, al final de `todo`): 3 miniaturas con titular y cifra del guion sobre un render de la maqueta (Blender + Motion Canvas; 1080×1920, 1920×1080 y 1280×720) ordenadas por Gemini según su probabilidad de clic, y el copy por plataforma (`copy_*.txt`), títulos alternativos y una revisión para redes sin aplicar (`publicacion.md`).
 - **Modelos prediseñados** (estilo técnico, modo `modelo` o `--modelo-3d auto|polyhaven:<id>|<url de Sketchfab>|<archivo>`): `modelos_3d.py` busca en Poly Haven (CC0) y en Sketchfab, que necesita token en `~/.config/agente_comic/sketchfab_token`. Gemini elige el modelo, `blender/b_modelo.py` lo convierte en partes y se dibuja con GP (`forma: malla`). Lo descargado va en `comic/descargas/modelos/`.
 - Cada proyecto vive en `comic/proyectos/<fecha>_<descripción>/`. Las etapas nunca sobrescriben: crean `.v2`, `.v3`, y `proyecto.json` apunta a la versión vigente. `biblioteca/` se regenera con los modos materiales y biblioteca.
 
@@ -88,6 +100,16 @@ El usuario escribe en español: responde en español. Antes de tareas grandes su
 - **Grid:** el nodo `Grid` ordena los vértices con X por fuera: `índice = i · VérticesY + j`.
 - **Acciones:** `action.fcurves` ya no existe. Usa `bpy_extras.anim_utils.action_ensure_channelbag_for_slot(action, slot)` y `.fcurves`. El `id_type` de los datos GP es `GREASEPENCIL_V3`.
 - **Render de otra escena:** `bpy.ops.render.render(write_still=True, scene=sc.name)`. Sin `scene=` renderiza la del contexto. `ortho_scale` se aplica a la dimensión mayor del cuadro.
+- **Cycles en la GPU:** el dispositivo de cómputo (OptiX/CUDA) vive en las preferencias de Blender, no en el `.blend`. Hay que activarlo en cada proceso que renderiza, porque si no Cycles cae en silencio a la CPU: en el vídeo SOC fueron 5,2 s por fotograma frente a 0,5 con OptiX. Lo hace `gp_base.gpu_cycles(sc)`, que da error si no hay GPU. Para verificarlo, el proceso que renderiza tiene que tener cargadas `libcuda`/`libnvoptix` (`grep libnvoptix /proc/PID/maps`).
+
+## Particularidades de Motion Canvas 3.17
+
+- **Sin CLI de render:** el plugin de Vite admite `editor: <ruta a main.js>`, un «editor» propio que recibe el proyecto. El de `comic/motion/renderizador` renderiza al abrir la página con `new Renderer(project).render({..., size: new Vector2(w, h), background: null, exporter: {name: '@motion-canvas/core/image-sequence', ...}})`; el plugin escribe los PNG en su `output`. Con `name: '.'` van directos a esa carpeta (`000000.png`…).
+- **El plugin es CommonJS:** en un paquete `"type": "module"`, `import motionCanvas from '@motion-canvas/vite-plugin'` da el módulo envuelto; usa `.default`.
+- **Fuentes:** decláralas con `@font-face` en la página del editor y espera a `document.fonts.load(...)` antes de renderizar; si no, el canvas usa la de reserva.
+- **Tramo:** `range` va en segundos e incluye el último fotograma: `[0, (N-1)/fps]` da N PNG.
+- **Tiempos absolutos:** para sincronizar con `tiempos.json`, espera con `while (usePlayback().frame < f) yield;` en vez de acumular `waitFor`.
+- **Tipos:** `src/` necesita `/// <reference types="@motion-canvas/core/project" />` (define `Callback` y los módulos `*?scene`).
 
 ## Particularidades de Grease Pencil v3 en Blender 5.2
 
@@ -99,6 +121,7 @@ El usuario escribe en español: responde en español. Antes de tareas grandes su
   - Una imagen generada por código y empaquetada con `pack()` pierde los píxeles. Guárdala como PNG y cárgala.
   - Las UV dependen del tamaño del trazo: en formas grandes la trama sale enorme.
 - **Profundidad entre objetos:**
+  - Comprobado el 2026-11-08 con EEVEE: un trazo GP situado detrás de un cubo de malla sale por encima, tanto en orden 3D como en 2D. Lo que deba quedar tapado por mallas tiene que ser malla. Line Art sí funciona, porque calcula qué líneas se ven.
   - Dos objetos GP en orden `2D` con el origen a la misma profundidad se mezclan mal (se pierden rellenos). Sepáralos.
   - Un objeto GP se dibuja encima de las mallas aunque esté detrás, también en orden `3D`. Un fondo bajo mallas tiene que ser una malla.
 - **Emparentar capas:** `layer.parent = rig` y `layer.parent_bone = "hueso"`. El `matrix_parent_inverse` se fija al asignar. Una vez emparentadas, las capas ignoran la transformación del objeto GP.

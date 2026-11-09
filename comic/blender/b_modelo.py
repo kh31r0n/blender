@@ -161,6 +161,23 @@ def main():
             if len(gr) <= 1: nuevas.append(p); continue
             for k, g in enumerate(gr): nuevas.append(Parte(f"{p.nombre}.{k:03d}", sub_bmesh(p.bm, g), list(p.mats)))
         partes = nuevas
+    # filtrar paredes internas redundantes (doble pared con normales hacia dentro contenida en otra isla)
+    if len(partes) > 1:
+        filtradas = []
+        for i, p in enumerate(partes):
+            p.bm.normal_update()
+            c0, c1 = p.caja(); cen = Vector((c0 + c1) / 2)
+            flujo_normal = sum((f.calc_center_median() - cen).dot(f.normal) * f.calc_area() for f in p.bm.faces)
+            es_pared_interna = False
+            if flujo_normal < 0:   # normales apuntando hacia dentro: cascara hueca interior de un solidify/cristal
+                for j, q in enumerate(partes):
+                    if i == j: continue
+                    q0, q1 = q.caja()
+                    if np.all(c0 >= q0 - 0.005) and np.all(c1 <= q1 + 0.005) and np.linalg.norm(c1 - c0) >= 0.65 * np.linalg.norm(q1 - q0):
+                        es_pared_interna = True; break
+            if es_pared_interna: p.bm.free()
+            else: filtradas.append(p)
+        if filtradas: partes = filtradas
     # unir las pequenas a la mas cercana hasta <= max_partes
     max_p = int(a.get("max_partes", 14))
     mn = np.min([p.caja()[0] for p in partes], 0); mx = np.max([p.caja()[1] for p in partes], 0); D = float(np.linalg.norm(mx - mn))
@@ -201,11 +218,34 @@ def main():
         rgb = tuple(acum / max(area, 1e-9))
         vert = [[round(c, 4) for c in v.co] for v in bm.verts]
         caras = [[v.index for v in f.verts] for f in bm.faces]
-        aristas = []
-        for e in bm.edges:
+        # detectar aristas vivas y filtrar aristas paralelas de micro-biseles (< 2.5 mm) para evitar trazos dobles
+        cand_vivas = []
+        for idx_e, e in enumerate(bm.edges):
             lf = [f.index for f in e.link_faces]
-            viva = len(lf) != 2 or (e.calc_face_angle(0) or 0) > math.radians(35)
-            aristas.append([e.verts[0].index, e.verts[1].index, lf[0] if lf else -1, lf[1] if len(lf) > 1 else -1, 1 if viva else 0])
+            ang = (e.calc_face_angle(0) or 0) if len(lf) == 2 else math.pi
+            if len(lf) != 2 or ang > math.radians(35):
+                v0, v1 = e.verts[0].co, e.verts[1].co
+                dv = v1 - v0; L = dv.length
+                if L > 1e-6:
+                    cand_vivas.append((idx_e, len(lf) != 2, ang, L, (v0 + v1) * 0.5, dv / L))
+        cand_vivas.sort(key=lambda x: (x[1], x[2], x[3]), reverse=True)
+        vivas_ok, aceptadas = set(), []
+        for idx_e, es_borde, ang, L, mid, dir_u in cand_vivas:
+            if not es_borde:
+                dup = False
+                for m2, d2, L2 in aceptadas:
+                    if abs(dir_u.dot(d2)) > 0.96:
+                        diff = mid - m2
+                        proj = abs(diff.dot(d2))
+                        if proj < 0.5 * (L + L2) and (diff - d2 * diff.dot(d2)).length < 0.0025:
+                            dup = True; break
+                if dup: continue
+                aceptadas.append((mid, dir_u, L))
+            vivas_ok.add(idx_e)
+        aristas = []
+        for idx_e, e in enumerate(bm.edges):
+            lf = [f.index for f in e.link_faces]
+            aristas.append([e.verts[0].index, e.verts[1].index, lf[0] if lf else -1, lf[1] if len(lf) > 1 else -1, 1 if idx_e in vivas_ok else 0])
         c0, c1 = np.array(vert).min(0), np.array(vert).max(0)
         nombre_mat = ", ".join(sorted({m.name for m in p.mats if m}))[:60]
         salida["partes"].append(dict(id=f"p{i + 1:02d}", nombre_original=p.nombre[:60], materiales=nombre_mat,

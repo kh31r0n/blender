@@ -234,7 +234,13 @@ class Lapiz:
         ('Semitono plano X' es solo la trama, para superponer a una forma ya dibujada.)"""
         for pre in ("Semitono ", "Cielo puntos "):
             if mat.startswith(pre) and not mat.startswith("Semitono plano ") and CFG.get("semitono", True):
-                self.trazo(pts, "Plano " + mat[len(pre):], radio=0.0005, cerrado=True, relleno=True, **kw)
+                pts_base = pts
+                if self.ob.data.stroke_depth_order == '3D' and len(pts) >= 3:
+                    v0, v1, v2 = Vector(pts[0]), Vector(pts[1]), Vector(pts[2])
+                    n = (v1 - v0).cross(v2 - v1)
+                    desp = -n.normalized() * 0.001 if n.length > 1e-8 else Vector((0, 0.001, 0))
+                    pts_base = [Vector(p) + desp for p in pts]
+                self.trazo(pts_base, "Plano " + mat[len(pre):], radio=0.0005, cerrado=True, relleno=True, **kw)
         return self.trazo(pts, mat, radio=radio if linea else 0.0005, cerrado=True, relleno=True, fid=fid, **kw)
 
     def linea(self, pts, mat="Tinta", radio=None, **kw):
@@ -423,6 +429,30 @@ def contornos_texto(texto, ruta_fuente=None, tam=1.0, alinear="CENTER", interlin
     return list(zip(conts, grupo)), (max(xs) - min(xs), max(ys) - min(ys))
 
 # ---------------------------------------------------------------- modificadores y efectos
+def configurar_lineart(ob, fuente="SCENE", coleccion=None, objeto=None, capa="Tinta", mat="Tinta",
+                       radio=None, pliegue=140.0, offset=0.025):
+    """Configura un modificador Line Art sobre mallas 3D libre de Z-fighting, micro-biseles duplicados y cortes."""
+    ob.data.stroke_depth_order = '3D'
+    if capa not in ob.data.layers:
+        ob.data.layers.new(capa)
+    if all(not m or m.name != mat for m in ob.data.materials):
+        ob.data.materials.append(material(mat))
+    m = ob.modifiers.get("Lineart") or ob.modifiers.new("Lineart", 'LINEART')
+    m.source_type = fuente
+    if fuente == "COLLECTION" and coleccion is not None: m.source_collection = coleccion
+    elif fuente == "OBJECT" and objeto is not None: m.source_object = objeto
+    m.target_layer = capa; m.target_material = material(mat)
+    m.radius = (R_TINTA if radio is None else radio) * CFG["grosor_tinta"]
+    m.crease_threshold = math.radians(pliegue)
+    m.use_contour = True; m.use_crease = True; m.use_intersection = True
+    m.use_crease_on_sharp = False        # evita trazos dobles/triples en micro-biseles con bordes sharp
+    m.use_material = False               # evita trazos solapados en fronteras de material de grosor milimetrico
+    m.use_loose = False                  # descarta aristas sueltas residuales
+    m.use_fuzzy_intersections = True     # unifica contorno e interseccion en bases de contacto coplanares
+    m.use_geometry_space_chain = True    # encadena en espacio 3D real sin cruzar saltos de profundidad en 2D
+    m.stroke_depth_offset = offset       # separa el trazo de superficies curvas sin despegarlo en escorzo
+    return m
+
 def temblor_linea(ob, factor=None, paso=3, semilla=0):
     f = CFG["temblor_linea"] if factor is None else factor
     if f <= 0: return None
@@ -480,9 +510,45 @@ def simplificar(claves, tol=1e-4):
     return out
 
 # ---------------------------------------------------------------- escena
+def gpu_cycles(sc=None, obligatorio=True):
+    """Pone Cycles en la GPU NVIDIA (OptiX; si no, CUDA) y devuelve el dispositivo usado.
+
+    El dispositivo de computo vive en las PREFERENCIAS de Blender, no en el .blend: configurarlo en la etapa de
+    animacion no sirve para el proceso que renderiza, que arranca con compute_device_type = 'NONE' y Cycles cae en
+    silencio a la CPU (16 hilos al 100 %, GPU al 1 %, horas por video). Por eso se llama en cada proceso, justo antes
+    de renderizar. Sin GPU disponible, error claro en vez de un render de horas en CPU."""
+    sc = sc or bpy.context.scene
+    if sc.render.engine != 'CYCLES': return None
+    prefs = bpy.context.preferences.addons['cycles'].preferences
+    for tipo in ('OPTIX', 'CUDA'):
+        try:
+            prefs.compute_device_type = tipo
+        except TypeError:
+            continue
+        prefs.refresh_devices()
+        gpus = [d for d in prefs.devices if d.type == tipo]
+        if not gpus: continue
+        for d in prefs.devices: d.use = (d.type == tipo)           # solo la GPU: la CPU frena la GPU en Cycles
+        sc.cycles.device = 'GPU'
+        if tipo == 'OPTIX': sc.cycles.denoiser = 'OPTIX'            # el denoise tambien en la GPU
+        return f"{tipo}: {', '.join(d.name for d in gpus)}"
+    if obligatorio:
+        raise RuntimeError("Cycles: no hay GPU OptiX ni CUDA disponible; no se renderiza en CPU")
+    return None
+
 def configurar_escena(params, sc=None):
     sc = sc or bpy.context.scene
-    sc.render.engine = 'BLENDER_EEVEE'
+    # el tema puede imponer el motor (cyberpunk: EEVEE, porque su toon usa Shader to RGB); si no, manda el parametro
+    tema = CP.TEMAS_TECNICOS.get(params.get("tema") or "", {}) if params.get("estilo") == "tecnico" else {}
+    motor = (tema.get("motor") or params.get("motor") or "cycles").lower()
+    if motor == "cycles":
+        sc.render.engine = 'CYCLES'
+        gpu_cycles(sc)
+        sc.cycles.samples = 16
+        sc.cycles.use_denoising = True
+    else:
+        sc.render.engine = 'BLENDER_EEVEE'
+        sc.eevee.taa_render_samples = 16
     sc.view_settings.view_transform = 'Standard'; sc.view_settings.look = 'None'
     sc.view_settings.exposure = 0.0; sc.view_settings.gamma = 1.0
     w, h, pct = CP.resolucion(params)
@@ -490,7 +556,6 @@ def configurar_escena(params, sc=None):
     sc.render.fps = int(params.get("fps", 24)); sc.render.fps_base = 1.0
     sc.grease_pencil_settings.antialias_threshold_render = 0.5
     sc.grease_pencil_settings.aa_samples = 8
-    sc.eevee.taa_render_samples = 16
     sc.render.film_transparent = False
     if not sc.world:
         sc.world = bpy.data.worlds.new("Comic")
@@ -520,4 +585,5 @@ def render_fotograma(ruta, frame=None, sc=None):
     if frame is not None: sc.frame_set(int(frame))
     sc.render.image_settings.media_type = 'IMAGE'; sc.render.image_settings.file_format = 'PNG'
     sc.render.filepath = ruta
+    gpu_cycles(sc)                       # cada proceso de Blender: el dispositivo no viaja en el .blend
     bpy.ops.render.render(write_still=True, scene=sc.name)

@@ -14,12 +14,14 @@
 #   1 objetos      dibuja con Grease Pencil los objetos que pide el guion        -> 01_objetos.blend
 #   2 rig          esqueleto para cada personaje y elemento                      -> 02_rig.blend
 #   3 audio        voces Gemini TTS (o --audio propio transcrito)               -> tiempos.json + audio/
+#     paneles      (estilo tecnico) paneles de datos con Motion Canvas (Gemini los disena) -> paneles.json +
+#                  paneles/fotogramas/ (PNG con alfa). --sin-ia: reglas fijas; --solo-render: reutiliza paneles.json
 #   4 animacion    anima rigs, escenografia y camara sincronizados con el audio -> 04_animacion.blend
 #     efectos      bocadillos, cartelas, onomatopeyas, lineas de accion...      -> 04b_efectos.blend
 #     previa       un fotograma por escena + revision de Gemini; si propone cambios rehace 1-4 (--iteraciones)
 #   5 render       video MP4 con voces + una vineta por escena                   -> render/
 #     montaje      cartelas de titulo y FIN, video final, pagina de comic y GIF  -> final/
-#     todo         guion -> objetos -> rig -> audio -> animacion -> efectos -> previa -> render -> montaje
+#     todo         guion -> objetos -> rig -> audio -> paneles -> animacion -> efectos -> previa -> render -> montaje
 #     estado       resumen del proyecto
 #
 # Ejemplos:
@@ -29,7 +31,7 @@
 #   python3 agente_comic.py animacion --proyecto proyectos/20261107-1800_un_gato_astronauta
 #   python3 agente_comic.py todo --ejemplo --voz-narrador silencio --calidad borrador   (prueba sin red)
 #   python3 agente_comic.py todo --estilo tecnico --modelo-3d auto --descripcion "como funciona un taladro de columna"
-import argparse, datetime, glob, json, os, re, shutil, subprocess, sys, time, types, urllib.request, zipfile
+import argparse, copy, datetime, glob, json, os, re, shutil, subprocess, sys, time, types, urllib.request, zipfile
 
 COMIC = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, COMIC)
@@ -37,13 +39,16 @@ import comic_parametros as CP
 import ia_vertex as IA
 import audio_comic as AU
 import modelos_3d as M3
+import paneles_mc as PM
+import subtitulos_mc as SM
+import marca as MA
 
 BLENDER = os.path.expanduser("~/.local/bin/blender")
 SCRIPTS = os.path.join(COMIC, "blender")
 PROYECTOS = os.path.join(COMIC, "proyectos")
 UA = {"User-Agent": "agente-comic-blender/1.0"}
 
-ETAPAS = ["modelo", "guion", "detalles", "objetos", "rig", "audio", "animacion", "efectos", "previa", "render", "montaje"]
+ETAPAS = ["modelo", "guion", "detalles", "objetos", "rig", "audio", "paneles", "subtitulos", "animacion", "efectos", "previa", "render", "montaje", "miniatura", "publicacion"]
 NUMEROS = {"0": "guion", "1": "objetos", "2": "rig", "3": "audio", "4": "animacion", "5": "render"}
 
 # ================================================================ utilidades
@@ -155,6 +160,7 @@ def abrir_o_crear(op, crear=False):
     if tec and op.orientacion is None: p["orientacion"] = "vertical"      # como la referencia (short vertical)
     if tec and op.cartelas is None: p["cartelas"] = False                 # sin rotulos: lo cuenta la voz
     if tec and op.bocadillos is None: p["bocadillos"] = False
+    if not tec and op.subtitulos is None: p["subtitulos"] = False         # el comic ya lleva bocadillos y cartelas
     pr = Proyecto.crear(desc, p)
     log(f"Proyecto nuevo: {pr.dir}")
     return pr
@@ -313,12 +319,25 @@ SISTEMA_TECNICO = """Eres guionista de videos de divulgacion del tipo 'asi funci
 piezas primitivas (formas del vocabulario) y escribes la explicacion narrada. Un generador en Blender lo dibuja con
 Grease Pencil en vista isometrica, con papel de fondo, paleta apagada, sombra azul plana y rayos X.
 
+DIRECCION ARTISTICA: el resultado debe ser una ilustracion tecnica isometrica profesional, moderna y colorida: formas
+low-poly limpias con esquinas suavemente biseladas, contorno uniforme azul marino, caras laterales visibles, paneles
+empotrados y detalles mecanicos precisos. La luz viene de arriba a la izquierda; usa volumen, reflejos controlados,
+sombra de contacto y colores tecnicos vivos (azul/cian, verde/turquesa, morado, naranja, rojo y metal). Un componente
+debe parecer parte del mismo sistema visual que los demas: misma escala de detalle, perspectiva paralela y lenguaje de
+iconos sobrio. Evita texturas ruidosas, trazos temblorosos, decoracion aleatoria y cualquier apariencia fotorrealista.
+
 COORDENADAS (metros): el objeto se apoya en el suelo z=0, centrado en x=0, y=0; su frente mira a -Y (hacia la camara).
 - x, y, z de una pieza son su BASE (centro de la cara inferior) en el mundo; la forma crece hacia +Z desde la base.
   rot_x/rot_y/rot_z en grados (rot_y=90 tumba un cilindro hacia X). Para manguera, 'camino' son puntos del mundo.
 - Proporciones reales y piezas apoyadas (nada flota ni se atraviesa sin motivo): la base de una pieza que va encima
   de otra es la z del techo de la de abajo. Tamano total entre 0.4 y 2.5 m (la maqueta de un sistema, hasta 5 m de
   ancho). Usa 6-18 piezas (hasta 40 en la maqueta de un sistema).
+- SEPARACION VISUAL OBLIGATORIA: dos piezas independientes nunca se atraviesan, ni comparten exactamente una cara.
+  Deja al menos 0.03 m de aire entre ellas; si una va encima de otra, deja un hueco vertical de 0.02 m y desplaza las
+  fichas apiladas tambien un poco en X/Y para que cada una se lea. Las fichas dentro de un tubo transparente van en
+  fila, separadas, y el tubo solo contiene fichas: ninguna manguera ni conector lo cruza. Las mangueras empiezan y
+  terminan justo fuera de los bordes de los componentes (separadas al menos su 'radio' + 0.01 m de cualquier pared lateral),
+  nunca atravesando ni rozando sus cascaras.
 - Da SIEMPRE todas las medidas de la forma (caja: ancho, fondo y alto; panel: ancho, alto y grosor; cilindro, tubo,
   disco y varilla: radio y alto; cono: radio, radio2 y alto; esfera: radio). Si falta una se pone 0.6 m y una pieza
   pequena sale enorme. ancho, fondo, alto y radio van siempre: 0 en las que la forma no usa. camino es [] salvo en
@@ -368,6 +387,35 @@ TIEMPOS: inicio y fin (animaciones) y momento (efectos) son fracciones de la esc
 Reparte la accion a lo largo de la escena siguiendo lo que dice la narracion. Con momento o inicio 1 empieza cuando la
 escena ya acaba y no se ve: lo mas tarde, 0.7. La 'duracion' de un efecto va en SEGUNDOS (2-6; un flujo, 2-4).
 Narracion: 1-2 frases por escena, cortas (maximo 20 palabras), tono divulgativo cercano, en el idioma pedido.
+GANCHO (salvo que GANCHO diga 'ninguno'): el video abre con UNA pregunta que deja pensando al espectador y le hace querer
+ver el resto. Es la PRIMERA linea del narrador en la escena 1 y se repite identica en 'gancho.pregunta': 8-14 palabras,
+en segunda persona, sin tecnicismos ni siglas, concreta (con el caso y, si cabe, un numero) y que el video responde al
+final. 'gancho.texto_pantalla' es su version para leer sin sonido (3-7 palabras, con '?'), porque en redes el video
+arranca en silencio. Sin saludos ni presentaciones antes. La escena 1 ya ensena el problema del caso; la ultima escena
+responde a la pregunta (cierra el circulo con el resultado del caso).
+CASO CONCRETO (sistemas, procesos y conceptos abstractos): elige UN ejemplo real y cotidiano para el publico (una empresa
+tipo, una decision, un numero: 'una aerolinea que pone precio a los 180 asientos de un vuelo Madrid-Paris') y siguelo de
+principio a fin. Escribelo en 'caso'. Cada componente de la maqueta, cada flujo y cada efecto representan algo de ESE
+caso (en el ejemplo: estado = asientos libres y dias para el vuelo; accion = subir o bajar el precio; limite = precio
+minimo y maximo; recompensa = ingreso del vuelo), y la narracion lo nombra con sus cosas y sus numeros. Nada de
+abstracciones sin aterrizar ('reglas de negocio', 'operaciones', 'datos'): si un componente no se puede contar con el
+caso, sobra. Los carteles de los componentes (detalles) usan iconos o siglas del caso.
+WORKFLOW VISIBLE (procesos y sistemas; como los mejores shorts de divulgacion): que se VEA como trabaja, no solo que se diga.
+- DATOS VIVOS ('datos' de cada escena, 0-2): etiquetas con un numero DEL CASO junto a un componente, que cambian de escena
+  en escena para que se vea que entra, que decide y que sale: estado ('Asientos libres' 120), accion ('Precio' '140 €'),
+  resultado ('Ingreso' '+16.800 €'). 'etiqueta' de 1-3 palabras; 'valor' corto con su unidad, el que se ve al empezar la
+  escena; si dentro de la escena el numero cambia (un contador), 'hasta' es el valor final y se anima (si no, vacio).
+  color: lima = bueno, rojo = problema o bloqueado, azul = espera o referencia, blanco = neutro. Mismos numeros que la
+  narracion. Un dato que sigue en la escena siguiente con la misma etiqueta y pieza se actualiza en su sitio.
+- CICLO ('ciclo' y el 'paso' de cada escena): si el proceso es un bucle o una cadena de pasos, enumera 3-6 pasos en orden,
+  cada uno sobre su componente ('pieza') con 1-2 palabras (Observa, Decide, Filtra, Premia, Aprende). El 'paso' de una
+  escena es el numero del paso que explica (0 si ninguno): su insignia se enciende. En la escena en que el proceso se
+  repite muchas veces (entrenamiento, miles de iteraciones) pon 'ciclo_rapido': true: los pasos se encienden en bucle
+  cada vez mas rapido; anade en esa escena un dato contador ('Vuelos simulados', valor '1', hasta '10.000').
+- COMPARATIVA ('comparativa'): en la escena del resultado (la ultima o la penultima), dos barras: antes (a) y despues (b),
+  con valores comparables (indice 100 frente a 115, o la cifra real), 'resultado' ('+15 %') y 'titulo' con la unidad
+  ('Ingreso por vuelo'); 'curva_titulo' para la curva que sube con las iteraciones ('Ingreso por vuelo simulado').
+  escena = id de esa escena (0 si no hay un resultado medible). Las cifras de ejemplo se dicen como ejemplo.
 Camara: general para situar, medio para el objeto, detalle para piezas pequenas (objetivo = id de pieza u 'objeto';
 'objetivos' opcional = lista de ids para encuadrar una zona o un grupo de piezas).
 Usa solo valores del vocabulario; ids en minusculas sin espacios ni tildes."""
@@ -427,8 +475,13 @@ def instrucciones_formato(p):
          "3d: decorado con volumen y camara en perspectiva; puedes usar 'orbita' y los angulos picado/contrapicado.")
     o = ("vertical 9:16: cuadro alto y estrecho, como maximo 2 personajes por plano, abunda en planos medios y primeros planos."
          if p["orientacion"] == "vertical" else "horizontal 16:9.")
+    gancho = {"dolor": "pregunta sobre un DOLOR del publico: algo que hoy le cuesta dinero, tiempo o riesgo",
+              "contraintuitiva": "pregunta CONTRAINTUITIVA: rompe una creencia del publico sobre el tema",
+              "reto": "RETO directo al espectador: le interpela sobre su empresa o su trabajo",
+              "auto": "el tipo de pregunta que mejor enganche a este publico (dolor, contraintuitiva o reto)",
+              "ninguno": "ninguno (sin pregunta de apertura; deja 'gancho' vacio)"}.get(p.get("gancho", "dolor"))
     return (f"Formato {f}\nOrientacion {o}\nDuracion objetivo: unos {p['duracion']:.0f} s, alrededor de {n} escenas de {'5-9' if tec else '3-7'} s.\n"
-            f"Idioma de lineas: {p['idioma']}.")
+            f"Idioma de lineas: {p['idioma']}." + (f"\nGANCHO: {gancho}." if tec else ""))
 
 def modo_guion(op, pr=None):
     pr = pr or abrir_o_crear(op, crear=True)
@@ -482,6 +535,36 @@ def modo_guion(op, pr=None):
     resumen_guion(g)
     return pr
 
+def modo_enriquecer(op, pr=None):
+    """Anade al guion actual el workflow visible (datos vivos, pasos del ciclo y comparativa) sin tocar lo demas: Gemini
+    propone el guion completo y de el solo se toman esos campos."""
+    pr = pr or abrir_o_crear(op); pr.necesita("guion"); p = pr.params
+    if p.get("estilo") != "tecnico": raise SystemExit("enriquecer es para el estilo tecnico")
+    g = leer(pr.p("guion.json"))
+    partes = [{"text": f"VOCABULARIO PERMITIDO\n{CP.vocabulario_tecnico(p)}\n\n{instrucciones_formato(p)}\n\n"
+                       f"DESCRIPCION DEL USUARIO:\n{pr.d['descripcion']}\n\nGUION ACTUAL:\n{json.dumps(guion_para_revision(g), ensure_ascii=False)}\n\n"
+                       "TAREA: anade el WORKFLOW VISIBLE a este guion: 'ciclo', 'comparativa' y, en cada escena, 'datos', 'paso' y "
+                       "'ciclo_rapido', siguiendo las reglas. Usa SOLO piezas que existen y los numeros que ya dice la narracion. "
+                       "Copia todo lo demas EXACTAMENTE igual (piezas, lineas, camaras, efectos)."}]
+    log(f"[enriquecer] {op.modelo} anade datos vivos, pasos del ciclo y comparativa…")
+    bruto, meta = IA.llamar(op, partes, SISTEMA_TECNICO, CP.esquema_guion_tecnico(), 0.4)
+    nuevo, _ = validador(pr)(bruto, p)
+    g2 = copy.deepcopy(g); g2["ciclo"] = nuevo.get("ciclo") or []; g2["comparativa"] = nuevo.get("comparativa")
+    por_id = {e["id"]: e for e in nuevo["escenas"]}
+    for e in g2["escenas"]:
+        n = por_id.get(e["id"], {}); e["datos"] = n.get("datos", []); e["paso"] = n.get("paso", 0); e["ciclo_rapido"] = n.get("ciclo_rapido", False)
+    g2, av = validador(pr)(g2, p)
+    registrar_ia(pr, "enriquecer", meta, avisos=av)
+    archivar(pr.dir, "guion.json"); escribir(pr.p("guion.json"), g2)
+    pr.registrar("guion", pr.p("guion.json"), origen="enriquecer: datos vivos, pasos del ciclo y comparativa", avisos=av)
+    log(f"    ciclo: {' > '.join(c['texto'] for c in g2['ciclo'])}")
+    for e in g2["escenas"]:
+        marcas = ([f"paso {e['paso']}"] if e.get("paso") else []) + (["ciclo rapido"] if e.get("ciclo_rapido") else []) + \
+                 [f"{d['etiqueta']}: {d['valor']}" + (f" -> {d['hasta']}" if d.get("hasta") else "") for d in e.get("datos", [])]
+        if marcas: log(f"    E{e['id']}: " + " | ".join(marcas))
+    if g2.get("comparativa"): c = g2["comparativa"]; log(f"    comparativa (E{c['escena']}): {c['a_etiqueta']} {c['a_valor']:g} / {c['b_etiqueta']} {c['b_valor']:g} -> {c['resultado']}")
+    return pr
+
 def datos_modelo(pr):
     return leer(pr.archivo("modelo"))
 
@@ -529,8 +612,20 @@ def etapa_blender(pr, etapa, script, entrada, nombre, extra=()):
     log(f"    {json.dumps(inf, ensure_ascii=False)[:400]}\n    -> {salida}")
     return inf
 
+def ajustar_maqueta(pr):
+    """Estilo tecnico: aplica CP.ajustar_maqueta al guion vigente (mangueras con flujo de al menos largo_flujo, separando las
+    peanas, y mangueras que no aparecen antes que lo que unen). Si cambia algo, archiva el guion y escribe el nuevo."""
+    if not es_tecnico(pr) or tiene_modelo(pr): return []
+    g = leer(pr.p("guion.json")); nuevo, av = CP.ajustar_maqueta(g, pr.params)
+    if nuevo != g:
+        archivar(pr.dir, "guion.json"); escribir(pr.p("guion.json"), nuevo)
+        pr.registrar("guion", pr.p("guion.json"), origen="ajuste de maqueta", avisos=av)
+        for a in av: log(f"    maqueta: {a}")
+    return av
+
 def modo_objetos(op, pr=None, previa=None):
     pr = pr or abrir_o_crear(op); pr.necesita("guion")
+    ajustar_maqueta(pr)
     log("[1 objetos] " + ("dibujando las piezas, sus versiones de rayos X y el entorno" if es_tecnico(pr) else "dibujando escenarios, elementos y personajes con Grease Pencil"))
     inf = etapa_blender(pr, "objetos", "b_objetos.py", None, "01_objetos.blend", extra=["--previa", previa, "--frames", "1"] if previa else ())
     for a in inf.get("avisos_adornos") or []: log(f"    aviso: {a}")
@@ -672,6 +767,133 @@ def modo_audio(op, pr=None):
     for e in t["escenas"]: log(f"    E{e['id']}: {e['t0']:.1f}-{e['t1']:.1f} s, {len(e['lineas'])} lineas")
     return t
 
+# ================================================================ paneles con Motion Canvas (estilo tecnico)
+SISTEMA_PANELES = """Eres el grafista de un video tecnico vertical para redes. Encima de la maqueta isometrica hay una FRANJA
+de datos (fondo oscuro) que explica el workflow con el caso concreto, al estilo de los shorts de divulgacion de las imagenes
+de referencia: titulares en MAYUSCULAS muy gruesas que salen palabra a palabra con la voz, la palabra clave en color, y un
+visual sencillo con los numeros del caso (contadores monoespaciados, dos cifras enormes enfrentadas, barras que crecen,
+lineas punto a punto, rejillas de puntos 'N de cada 100', fichas numeradas de pasos, tarjetas de ventana con un registro de
+ejemplo, medidores). Disenas UN panel por cada escena de la lista.
+
+REGLAS
+- titular.texto: 2-6 palabras, y SIEMPRE palabras que dice la voz en esa escena (en el mismo orden): asi salen sincronizadas.
+  Mejor las del principio de la frase y la idea clave ('SE TRABA', 'SOBRA NECTAR', 'VENDES DEMASIADO BARATO').
+  titular.clave: 1-2 de esas palabras, las que llevan el color. titular.color: bueno (lima: mejora, acierto), problema (rojo:
+  perdida, fallo, bloqueo), espera (azul: estado, referencia, en curso), neutro. bloque=true solo para un golpe fuerte
+  (un bloqueo, un fallo), como mucho en 2 escenas.
+- visual: el que mejor ensena los DATOS de la escena (los del guion: datos, caso, comparativa, ciclo). NUNCA inventes cifras:
+  cada numero que pongas tiene que estar en el guion (si no, el panel se descarta). Las curvas de 'linea' son la forma de
+  una tendencia (sus puntos no se muestran como cifras).
+  * contador: un dato que cambia (valor -> hasta) o uno solo muy importante.
+  * cifras: dos datos que se comparan (minimo/maximo, antes/despues, quedan/faltan).
+  * tarjeta: el EJEMPLO concreto del caso como un registro (titulo tipo nombre de archivo 'vuelo-MAD-PAR.json'; 2-4 lineas
+    'clave: valor' con valores del guion). Usala cuando la escena presenta el caso o un estado que no es un numero.
+  * pasos: escenas que explican un paso del ciclo o el ciclo rapido (no rellenes nada: sale del guion).
+  * barras: la comparativa final (ya viene del guion), u otra comparacion de 2-4 cantidades del guion.
+  * unidades, medidor, cola, linea: cuando el dato es una proporcion, un porcentaje, una cola o una tendencia.
+  * ninguno: solo titular (el gancho, frases sin datos).
+- Varia los visuales: no repitas el mismo tipo en mas de 3 escenas seguidas.
+- pieza: el id de la pieza de la maqueta de la que habla el panel (se resalta abajo).
+- color de items y visual: misma semantica que el titular.
+- Textos cortos: etiquetas de 1-3 palabras, titulos de 2-5.
+Devuelve solo el JSON del esquema."""
+
+def texto_para_paneles(g, t, ids):
+    filas = []
+    tes = {te["id"]: te for te in t["escenas"]}
+    for e in g["escenas"]:
+        if e["id"] not in ids: continue
+        voz = " ".join(l["texto"] for l in (tes.get(e["id"]) or e).get("lineas", []))
+        datos = "; ".join(f"{d['etiqueta']}={d['valor']}" + (f" -> {d['hasta']}" if d.get("hasta") else "") + f" ({d['color']}, en {d['pieza']})"
+                          for d in e.get("datos") or [])
+        extra = (f" | paso del ciclo {e['paso']}" if e.get("paso") else "") + (" | CICLO RAPIDO" if e.get("ciclo_rapido") else "")
+        filas.append(f"- escena {e['id']}: VOZ: «{voz}» | DATOS: {datos or 'ninguno'}{extra} | resalta: {', '.join(e.get('resaltar') or [])}")
+    c = g.get("comparativa")
+    return (f"CASO: {g.get('caso', '')}\nGANCHO (escena 1, el titular es su texto de pantalla): {json.dumps(g.get('gancho'), ensure_ascii=False)}\n"
+            f"CICLO: {' > '.join(str(i) + '. ' + x['texto'] for i, x in enumerate(g.get('ciclo') or [], 1)) or 'no hay'}\n"
+            f"COMPARATIVA: {json.dumps(c, ensure_ascii=False) if c else 'no hay'}\n"
+            f"PIEZAS: {', '.join(p['id'] + ' (' + p['nombre'] + ')' for p in g['piezas'])}\n\n"
+            f"ESCENAS CON PANEL:\n" + "\n".join(filas) +
+            f"\n\nCATALOGO DE VISUALES: " + "; ".join(f"{k}: {v}" for k, v in CP.TIPOS_VISUAL.items()))
+
+REFERENCIAS_PANELES = [os.path.join(COMIC, "referencias", d, "hoja_1.png") for d in ("yt_pNu03D7n4jQ", "yt_HkNCz3d31To")]
+
+def modo_paneles(op, pr=None):
+    """Paneles de datos con Motion Canvas: diseno (Gemini o reglas) -> paneles.json -> motion.json -> PNG con alfa."""
+    pr = pr or abrir_o_crear(op)
+    if not es_tecnico(pr) or not CP.paneles_activos(pr.params):
+        log("[paneles] solo para el estilo tecnico con --paneles-mc 1"); return None
+    pr.necesita("guion"); pr.necesita("audio")
+    g = leer(pr.p("guion.json")); t = leer(pr.p("tiempos.json"))
+    ids = CP.escenas_con_panel(g, pr.params)
+    if not ids:
+        log("[paneles] ninguna escena con datos: sin paneles"); return None
+    solo_render = getattr(op, "solo_render", False) and os.path.exists(pr.p("paneles.json"))
+    if solo_render:
+        diseno = leer(pr.p("paneles.json")); paneles, av = CP.validar_paneles(diseno, g, pr.params); origen = diseno.get("origen", "?")
+        log(f"[paneles] reutilizo paneles.json ({len(paneles)} paneles)")
+    elif op.ejemplo or getattr(op, "sin_ia", False):
+        paneles, av, origen = CP.paneles_por_reglas(g, pr.params), [], "reglas"
+        log(f"[paneles] {len(paneles)} paneles por reglas (sin IA)")
+    else:
+        log(f"[paneles] {op.modelo} disena {len(ids)} paneles…")
+        partes = [{"text": texto_para_paneles(g, t, ids)}]
+        for r in REFERENCIAS_PANELES:
+            if os.path.exists(r): partes += [{"text": "REFERENCIA DE ESTILO (hoja de fotogramas de un short):"}, IA.imagen(r)]
+        try:
+            bruto, meta = IA.llamar(op, partes, SISTEMA_PANELES, CP.esquema_paneles(), 0.6)
+            paneles, av = CP.validar_paneles(bruto, g, pr.params); origen = "gemini"
+            registrar_ia(pr, "paneles", meta, avisos=av, paneles=len(paneles))
+        except IA.ErrorIA as e:
+            log(f"    (Gemini fallo: {e}; paneles por reglas)")
+            paneles, av, origen = CP.paneles_por_reglas(g, pr.params), [], "reglas"
+    for a in av[:10]: log(f"    aviso: {a}")
+    if not solo_render:
+        archivar(pr.dir, "paneles.json"); escribir(pr.p("paneles.json"), dict(origen=origen, paneles=paneles))
+    for p in paneles: log(f"    E{p['escena']}: {p['visual']['tipo']:9s} «{p['titular']['texto']}»")
+    carpeta = ruta_nueva(pr.p("paneles/fotogramas")); os.makedirs(carpeta)
+    motion = PM.construir_motion(g, t, paneles, pr.params)
+    ruta_m = os.path.join(carpeta, "motion.json"); escribir(ruta_m, motion)
+    log(f"    Motion Canvas: {motion['frames']} fotogramas {motion['ancho']}x{motion['alto']} (banda {motion['banda']['w']}x{motion['banda']['h']})")
+    inf = PM.renderizar(ruta_m, carpeta, log=log)
+    pr.registrar("paneles", carpeta, paneles=len(paneles), origen=origen, fotogramas=inf["fotogramas"], segundos=inf["segundos"])
+    log(f"    {inf['fotogramas']} PNG en {inf['segundos']} s -> {carpeta}")
+    return carpeta
+
+def modo_subtitulos(op, pr=None):
+    """Subtitulos con Motion Canvas: bloques de 3-6 palabras desde tiempos.json -> motion.json -> PNG con alfa, y .srt."""
+    pr = pr or abrir_o_crear(op)
+    if not CP.subtitulos_activos(pr.params):
+        log("[subtitulos] desactivados (--subtitulos 0)"); return None
+    pr.necesita("audio")
+    t = leer(pr.p("tiempos.json"))
+    bl = SM.bloques(t, pr.params)
+    if not bl:
+        log("[subtitulos] el audio no tiene lineas: sin subtitulos"); return None
+    carpeta = ruta_nueva(pr.p("subtitulos/fotogramas")); os.makedirs(carpeta)
+    escribir(os.path.join(carpeta, "bloques.json"), dict(fps=t["fps"], bloques=bl))
+    with open(os.path.join(carpeta, "subtitulos.srt"), "w", encoding="utf-8") as f: f.write(SM.srt(bl, t["fps"]))
+    motion = SM.construir_motion(t, pr.params, bl)
+    ruta_m = os.path.join(carpeta, "motion.json"); escribir(ruta_m, motion)
+    z = motion["subtitulos"]
+    log(f"[subtitulos] {len(bl)} bloques, letra {z['fs']} px, centro en y={z['y']} de {motion['alto']} (Motion Canvas)")
+    inf = PM.renderizar(ruta_m, carpeta, log=log)
+    pr.registrar("subtitulos", carpeta, bloques=len(bl), fotogramas=inf["fotogramas"], segundos=inf["segundos"])
+    log(f"    {inf['fotogramas']} PNG en {inf['segundos']} s -> {carpeta}")
+    return carpeta
+
+def subtitulos_vigentes(pr):
+    """Carpeta de PNG de los subtitulos si el proyecto los usa (parametro y etapa hecha), o None."""
+    if not CP.usa_subtitulos(pr.d, pr.params): return None
+    a = pr.archivo("subtitulos")
+    return a if a and os.path.isdir(a) else None
+
+def paneles_vigentes(pr):
+    """Carpeta de PNG de los paneles si el proyecto los usa (parametro y etapa hecha), o None."""
+    if not (es_tecnico(pr) and CP.usa_paneles(pr.d, pr.params)): return None
+    a = pr.archivo("paneles")
+    return a if a and os.path.isdir(a) else None
+
 def modo_animacion(op, pr=None):
     pr = pr or abrir_o_crear(op); ent = pr.necesita("rig"); pr.necesita("audio")
     log("[4 animacion] personajes, escenografia y camara al ritmo del audio")
@@ -705,6 +927,17 @@ def render_previa(pr, n):
     inf = blender("b_render.py", ["--proyecto", pr.dir, "--fotogramas", "auto", "--carpeta", carpeta, "--calidad", "previa"], blend=ent)
     hoja = os.path.join(carpeta, "hoja.png")
     imgs = [i["png"] for i in inf.get("imagenes", [])]
+    capas = [c for c in (paneles_vigentes(pr), subtitulos_vigentes(pr)) if c]
+    if capas:                     # paneles y subtitulos de Motion Canvas encima de cada fotograma (como saldran en el video)
+        con = []
+        for i in inf.get("imagenes", []):
+            img = i["png"]; destino = i["png"].replace(".png", "_mc.png")
+            for c in capas:                # ffmpeg no puede escribir encima de su entrada: pasa por un temporal
+                png = PM.fotograma_png(c, i["fotograma"])
+                if png:
+                    PM.superponer(img, png, destino + ".tmp.png"); os.replace(destino + ".tmp.png", destino); img = destino
+            con.append(img)
+        imgs = con
     try:
         cols = 3 if len(imgs) > 4 else 2
         filtro = "".join(f"[{i}:v]scale=640:-2[v{i}];" for i in range(len(imgs)))
@@ -724,6 +957,8 @@ def reconstruir(op, pr):
     else: modo_objetos(op, pr)
     modo_rig(op, pr)
     modo_audio(op, pr)            # las voces sin cambios salen de la cache (no se vuelven a pagar)
+    if es_tecnico(pr) and CP.paneles_activos(pr.params): modo_paneles(op, pr)     # los paneles siguen al guion y al audio
+    if CP.subtitulos_activos(pr.params): modo_subtitulos(op, pr)
     modo_animacion(op, pr); modo_efectos(op, pr)
 
 def modo_previa(op, pr=None):
@@ -742,6 +977,9 @@ def modo_previa(op, pr=None):
                            f"DESCRIPCION ORIGINAL: {pr.d['descripcion']}\n\nGUION APLICADO (ya validado: sin las medidas que cada forma no usa "
                            f"y sin campos internos; no lo cuentes como fallo):\n{json.dumps(guion_para_revision(g), ensure_ascii=False)}\n\n"
                            + (("COMPROBACIONES AUTOMATICAS DE GEOMETRIA:\n- " + "\n- ".join(CP.revisar_geometria(g)) + "\n\n") if es_tecnico(pr) and CP.revisar_geometria(g) else "") +
+                           + ("LA FRANJA DE DATOS (arriba en vertical, columna izquierda en horizontal) es el panel de Motion Canvas: "
+                              "revisa que se lea y no tape la maqueta, pero sus textos salen de paneles.json, no del guion.\n\n"
+                              if paneles_vigentes(pr) else "") +
                            f"Siguen {len(imgs)} imagenes: la imagen i es la escena i."}] + [IA.imagen(i) for i in imgs]
         if tiene_modelo(pr):
             dm = datos_modelo(pr)
@@ -779,9 +1017,12 @@ def modo_previa(op, pr=None):
 def modo_render(op, pr=None):
     pr = pr or abrir_o_crear(op); ent = pr.necesita("efectos")
     w, h, pct = CP.resolucion(pr.params)
-    log(f"[5 render] EEVEE {w * pct // 100}x{h * pct // 100}, {pr.params['fps']} fps")
+    motor = (CP.tema_tecnico(pr.params).get("motor") if es_tecnico(pr) else None) or pr.params.get("motor", "eevee")
+    log(f"[5 render] {'Cycles (GPU)' if motor == 'cycles' else 'EEVEE'} {w * pct // 100}x{h * pct // 100}, {pr.params['fps']} fps")
     video = ruta_nueva(pr.p("render/animacion.mp4")); vin = ruta_nueva(pr.p("render/vinetas"))
-    inf = blender("b_render.py", ["--proyecto", pr.dir, "--video", video, "--vinetas", vin], blend=ent)
+    # sin limite de tiempo: un video largo en Cycles pasa de 2 h (el limite de las demas llamadas a Blender) y, si se corta,
+    # el MP4 a medias no se puede leer (le falta el indice) y se pierde todo
+    inf = blender("b_render.py", ["--proyecto", pr.dir, "--video", video, "--vinetas", vin], blend=ent, timeout=None)
     pr.registrar("render", video, vinetas=os.path.relpath(vin, pr.dir), informe=inf)
     pr.d["vinetas"] = os.path.relpath(vin, pr.dir); pr.guardar()
     log(f"    {inf.get('fotogramas')} fotogramas en {inf['_segundos']} s\n    -> {video}")
@@ -792,9 +1033,28 @@ def modo_montaje(op, pr=None):
     vin = pr.p(pr.d.get("vinetas", "render/vinetas"))
     final = ruta_nueva(pr.p("final/final.mp4")); pagina = ruta_nueva(pr.p("final/pagina_comic.png"))
     log("[montaje] cartelas, video final y pagina de comic")
+    pan = paneles_vigentes(pr); sub = subtitulos_vigentes(pr)
+    marca_args = []
+    if MA.activa(pr.params):            # logo en la esquina y cierre de marca (reglas de la guia del kit)
+        t = leer(pr.p("tiempos.json")); p_ = pr.params
+        creditos = " · ".join(x for x in ["Blender 5.2" + (" · Cycles" if (CP.tema_tecnico(p_).get("motor") if es_tecnico(pr) else p_.get("motor")) == "cycles" else ""),
+                                            "Archivo Black (OFL)", "Motion Canvas (MIT)" if (pan or sub) else "",
+                                            "Voces Gemini TTS" if t.get("fuente") == "tts" else ""] if x)
+        capa = MA.capa_esquina(p_, ruta_nueva(pr.p("marca/logo_esquina.png")))
+        cierre = MA.cartela_cierre(p_, ruta_nueva(pr.p("marca/cierre.png")), web=p_.get("web_marca", ""), creditos=creditos)
+        marca_args = ["--logo", capa["ruta"], "--cierre", cierre]
+        log(f"    marca: logo {capa['ancho']}x{capa['alto']} px abajo a la derecha y cierre con {p_.get('web_marca', '')}")
+    if pan: log(f"    paneles de Motion Canvas: {os.path.relpath(pan, pr.dir)}")
+    if sub: log(f"    subtitulos de Motion Canvas: {os.path.relpath(sub, pr.dir)}")
     inf = blender("b_montaje.py", ["--proyecto", pr.dir, "--video", video, "--vinetas", vin, "--salida", ruta_nueva(pr.p("06_montaje.blend")),
-                                   "--final", final, "--pagina", pagina])
+                                   "--final", final, "--pagina", pagina] + (["--paneles", pan] if pan else []) + (["--subtitulos", sub] if sub else []) + marca_args)
+    srt = None
+    if sub and os.path.exists(os.path.join(sub, "bloques.json")):    # .srt con el mismo nombre que el video (desfase de la cartela)
+        b = leer(os.path.join(sub, "bloques.json")); srt = os.path.splitext(final)[0] + ".srt"
+        with open(srt, "w", encoding="utf-8") as f: f.write(SM.srt(b["bloques"], b["fps"], int(inf.get("inicio_video", 1)) - 1))
+        inf["srt"] = srt
     gif = ruta_nueva(pr.p("final/animacion.gif"))
+    if (pan or sub) and os.path.exists(final): video = final  # el GIF con paneles y subtitulos (animacion.mp4 no los lleva)
     ancho = 480 if pr.params["orientacion"] == "horizontal" else 270
     try:
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", video, "-vf",
@@ -803,9 +1063,255 @@ def modo_montaje(op, pr=None):
         inf["gif"] = gif
     except Exception as e:
         log(f"    (sin GIF: {e})")
-    pr.registrar("montaje", final, pagina=os.path.relpath(pagina, pr.dir), gif=os.path.relpath(gif, pr.dir) if inf.get("gif") else None)
-    log(f"    -> {final}\n    -> {pagina}" + (f"\n    -> {gif}" if inf.get("gif") else ""))
+    pr.registrar("montaje", final, pagina=os.path.relpath(pagina, pr.dir), gif=os.path.relpath(gif, pr.dir) if inf.get("gif") else None,
+                 srt=os.path.relpath(srt, pr.dir) if srt else None)
+    log(f"    -> {final}\n    -> {pagina}" + (f"\n    -> {gif}" if inf.get("gif") else "") + (f"\n    -> {srt}" if srt else ""))
     return inf
+
+# ================================================================ MODOS miniatura y publicacion (difusion en redes)
+SISTEMA_MINIATURA = """Eres el disenador de miniaturas (thumbnails) de videos cortos de divulgacion para managers y directivos
+(LinkedIn, YouTube Shorts, Reels, TikTok, YouTube). La miniatura se ve en un movil, pequena, entre muchas otras: tiene que
+parar el pulgar en un segundo. Va sobre un render de la maqueta del video: tu solo escribes el TEXTO.
+Disena 3 VARIANTES con enfoques distintos:
+- 'dolor': lo que pierde o arriesga el espectador (dinero, tiempo, clientes);
+- 'cifra': el resultado medible del caso;
+- 'curiosidad': una pregunta o un contraste que pide el clic.
+REGLAS
+- titular: 2-4 palabras (5 como mucho), en espanol, directas, que se lean de lejos. Sin hashtags ni emojis.
+- clave: 1-2 palabras del titular (tal cual aparecen) que van en color.
+- cifra: UNA cifra que este en el guion, con su signo y unidad tal como se dice ('+15 %', '180', '400 €'), o vacia. NUNCA
+  inventes cifras: si no esta en la lista de cifras permitidas, deja la cifra vacia.
+- etiqueta: 1-3 palabras que explican la cifra ('mas ingresos'); vacia si no hay cifra.
+- color: 'bueno' (mejora, ganancia), 'problema' (perdida, riesgo) o 'espera' (pregunta, estado).
+- Nada de clickbait enganoso: lo que promete la miniatura lo cuenta el video.
+Devuelve solo el JSON del esquema."""
+
+SISTEMA_RANKING_MINIATURAS = """Eres analista de rendimiento de contenido en redes (LinkedIn y video corto vertical) para una audiencia de
+managers y directivos. Recibes 3 miniaturas del mismo video (la imagen i es la variante i). Ordenalas por la probabilidad de
+que el publico objetivo haga clic (CTR) viendolas pequenas en el movil, y explica en una frase por que, con una mejora
+concreta para cada una. Devuelve solo el JSON del esquema."""
+
+def esquema_miniaturas():
+    var = {"type": "OBJECT", "properties": {
+        "enfoque": {"type": "STRING", "enum": ["dolor", "cifra", "curiosidad"]}, "titular": {"type": "STRING"},
+        "clave": {"type": "ARRAY", "items": {"type": "STRING"}}, "cifra": {"type": "STRING"}, "etiqueta": {"type": "STRING"},
+        "color": {"type": "STRING", "enum": ["bueno", "problema", "espera"]}},
+        "required": ["enfoque", "titular", "clave", "cifra", "etiqueta", "color"]}
+    return {"type": "OBJECT", "properties": {"variantes": {"type": "ARRAY", "items": var, "minItems": 3, "maxItems": 3}},
+            "required": ["variantes"]}
+
+def esquema_ranking():
+    nota = {"type": "OBJECT", "properties": {"variante": {"type": "INTEGER"}, "puntuacion": {"type": "INTEGER", "minimum": 0, "maximum": 10},
+                                             "motivo": {"type": "STRING"}, "mejora": {"type": "STRING"}},
+            "required": ["variante", "puntuacion", "motivo", "mejora"]}
+    return {"type": "OBJECT", "properties": {"orden": {"type": "ARRAY", "items": {"type": "INTEGER"}},
+                                             "notas": {"type": "ARRAY", "items": nota}}, "required": ["orden", "notas"]}
+
+def cifra_valida(cifra, g):
+    n = CP.numero_texto(cifra or "")
+    return bool(n) and abs(n[1]) in CP.numeros_guion(g)
+
+def miniaturas_por_reglas(g):
+    """Sin IA: el texto de pantalla del gancho (dolor), el resultado de la comparativa (cifra) y el titulo (curiosidad)."""
+    c = g.get("comparativa") or {}; gan = g.get("gancho") or {}
+    res = str(c.get("resultado") or "").strip()
+    def corto(t, n=4): return " ".join(str(t or "").replace("¿", "").replace("?", "").split()[:n])
+    return [dict(enfoque="dolor", titular=corto(gan.get("texto_pantalla") or g.get("titulo")), clave=[], cifra="", etiqueta="", color="problema"),
+            dict(enfoque="cifra", titular=corto(c.get("titulo") or g.get("titulo")), clave=[], cifra=res if cifra_valida(res, g) else "",
+                 etiqueta="resultado" if res else "", color="bueno"),
+            dict(enfoque="curiosidad", titular=corto(g.get("titulo")), clave=[], cifra="", etiqueta="", color="espera")]
+
+def validar_miniaturas(bruto, g):
+    av, out = [], []
+    for i, v in enumerate((bruto or {}).get("variantes") or []):
+        tit = " ".join(str(v.get("titular") or "").split()[:5])[:34]
+        if not tit: av.append(f"variante {i + 1}: sin titular"); continue
+        cifra = str(v.get("cifra") or "").strip()
+        if cifra and not cifra_valida(cifra, g): av.append(f"variante {i + 1}: cifra '{cifra}' que no esta en el guion: quitada"); cifra = ""
+        palabras = {w.lower().strip("¿?¡!.,") for w in tit.split()}
+        clave = [c for c in (v.get("clave") or []) if c.lower().strip("¿?¡!.,") in palabras][:2]
+        out.append(dict(enfoque=v.get("enfoque") if v.get("enfoque") in ("dolor", "cifra", "curiosidad") else "dolor", titular=tit,
+                        clave=clave, cifra=cifra, etiqueta=" ".join(str(v.get("etiqueta") or "").split()[:3]) if cifra else "",
+                        color=v.get("color") if v.get("color") in ("bueno", "problema", "espera") else "neutro"))
+    if len(out) < 3:
+        av.append("menos de 3 variantes validas: completo con las reglas"); out += miniaturas_por_reglas(g)[len(out):3]
+    return out[:3], av
+
+def texto_guion_difusion(pr, g):
+    lineas = " ".join(l["texto"] for e in g["escenas"] for l in e["lineas"])
+    cifras = ", ".join(sorted({f"{x:g}" for x in CP.numeros_guion(g)}, key=lambda t: float(t)))
+    web = pr.params.get("web_marca") or ""
+    marca_ = f"MARCA: {web.split('.')[0].capitalize()} ({web})\n" if web else ""
+    return (marca_ + f"DESCRIPCION DEL PROYECTO: {pr.d['descripcion'][:1500]}\nTITULO: {g.get('titulo')}\nCASO: {g.get('caso')}\n"
+            f"GANCHO: {json.dumps(g.get('gancho'), ensure_ascii=False)}\nCOMPARATIVA: {json.dumps(g.get('comparativa'), ensure_ascii=False)}\n"
+            f"NARRACION COMPLETA: {lineas}\nCIFRAS PERMITIDAS (las unicas que puedes usar): {cifras}")
+
+def modo_miniatura(op, pr=None):
+    """Miniaturas: Gemini escribe 3 variantes (dolor, cifra, curiosidad) -> Blender renderiza la maqueta montada (Cycles,
+    GPU) -> Motion Canvas compone titular y cifra en 1080x1920 (LinkedIn, Shorts, Reels, TikTok) y 1920x1080 (LinkedIn) y
+    1280x720 (YouTube) -> Gemini las ordena por probabilidad de clic."""
+    pr = pr or abrir_o_crear(op)
+    if not es_tecnico(pr): log("[miniatura] solo para el estilo tecnico"); return None
+    ent = pr.necesita("efectos"); g = leer(pr.p("guion.json"))
+    previa_ = pr.archivo("miniatura"); previo = None
+    if getattr(op, "solo_render", False) and previa_ and os.path.exists(os.path.join(previa_, "miniaturas.json")):
+        previo = leer(os.path.join(previa_, "miniaturas.json"))       # mismas variantes y mismo orden: solo se recompone
+    carpeta = ruta_nueva(pr.p("miniaturas/miniaturas")); os.makedirs(carpeta)
+    if previo:
+        variantes, av, origen = previo["variantes"], [], previo.get("origen", "?")
+        log(f"[miniatura] reutilizo las variantes de {os.path.relpath(previa_, pr.dir)} (--solo-render)")
+    elif op.ejemplo or getattr(op, "sin_ia", False):
+        variantes, av, origen = miniaturas_por_reglas(g), [], "reglas"
+    else:
+        log(f"[miniatura] {op.modelo} disena 3 variantes…")
+        try:
+            bruto, meta = IA.llamar(op, [{"text": texto_guion_difusion(pr, g)}], SISTEMA_MINIATURA, esquema_miniaturas(), 0.8)
+            variantes, av = validar_miniaturas(bruto, g); origen = "gemini"; registrar_ia(pr, "miniatura", meta, avisos=av)
+        except IA.ErrorIA as e:
+            log(f"    (Gemini fallo: {e}; variantes por reglas)"); variantes, av, origen = miniaturas_por_reglas(g), [], "reglas"
+    for a in av: log(f"    aviso: {a}")
+    for i, v in enumerate(variantes, 1): log(f"    {i}. {v['enfoque']:10s} «{v['titular']}»" + (f"  [{v['cifra']} {v['etiqueta']}]" if v["cifra"] else ""))
+    log("    fondos: la maqueta montada (Blender)…")
+    inf = blender("b_miniatura.py", ["--proyecto", pr.dir, "--carpeta", carpeta], blend=ent, timeout=3600)
+    tema = pr.params.get("tema") or "clasico"; archivos = {}
+    logo = None
+    if MA.activa(pr.params):            # el logo, junto a su motion.json (Vite solo sirve esa carpeta)
+        logo = os.path.join(carpeta, "logo.png"); shutil.copy2(MA.logo_para(pr.params, MA.escena_clara(pr.params)), logo)
+    for fmt, (w, h) in (("vertical", (1080, 1920)), ("horizontal", (1920, 1080))):
+        motion = dict(tipo="miniatura", ancho=w, alto=h, fps=24, frames=len(variantes), orientacion=fmt,
+                      paleta=CP.PALETA_PANELES.get(tema, CP.PALETA_PANELES["cyberpunk"]), icono_flujo=pr.params.get("icono_flujo", "sobre"),
+                      banda=dict(x=0, y=0, w=0, h=0), tramos=[], paneles=[],
+                      miniaturas=dict(fondo="/@fs" + inf["imagenes"][fmt], variantes=variantes, logo=("/@fs" + logo) if logo else ""))
+        ruta_m = os.path.join(carpeta, f"motion_{fmt}.json"); escribir(ruta_m, motion)
+        tmp = os.path.join(carpeta, f"_{fmt}")
+        PM.renderizar(ruta_m, tmp, desde=0, hasta=len(variantes) - 1, log=log)
+        for i in range(len(variantes)):
+            dst = os.path.join(carpeta, f"variante_{i + 1}_{'vertical' if fmt == 'vertical' else 'linkedin'}.png")
+            shutil.move(os.path.join(tmp, f"{i:06d}.png"), dst); archivos.setdefault(i + 1, []).append(dst)
+            if fmt == "horizontal":
+                yt = os.path.join(carpeta, f"variante_{i + 1}_youtube.png")
+                subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", dst, "-vf", "scale=1280:720:flags=lanczos", yt], check=True)
+                archivos[i + 1].append(yt)
+        shutil.rmtree(tmp, ignore_errors=True)
+    ranking = previo.get("ranking") if previo else None
+    if origen == "gemini" and not previo:
+        try:
+            partes = [{"text": f"Video: {g.get('titulo')}. Publico: managers y directivos. Siguen las 3 miniaturas verticales."}] + \
+                     [IA.imagen(os.path.join(carpeta, f"variante_{i}_vertical.png")) for i in (1, 2, 3)]
+            ranking, meta = IA.llamar(op, partes, SISTEMA_RANKING_MINIATURAS, esquema_ranking(), 0.2)
+            registrar_ia(pr, "miniatura_ranking", meta)
+        except IA.ErrorIA as e:
+            log(f"    (sin ranking: {e})")
+    orden = [i for i in (ranking or {}).get("orden") or [] if i in (1, 2, 3)]
+    orden = list(dict.fromkeys(orden + [1, 2, 3]))
+    for sufijo in ("vertical", "linkedin", "youtube"):        # la mejor, con nombre fijo para subirla sin buscar
+        shutil.copy2(os.path.join(carpeta, f"variante_{orden[0]}_{sufijo}.png"), os.path.join(carpeta, f"mejor_{sufijo}.png"))
+    escribir(os.path.join(carpeta, "miniaturas.json"), dict(origen=origen, variantes=variantes, ranking=ranking, orden=orden, avisos=av,
+                                                          fondos=inf["imagenes"], dispositivo=inf.get("dispositivo")))
+    for n in (ranking or {}).get("notas") or []:
+        log(f"    variante {n.get('variante')}: {n.get('puntuacion')}/10 — {n.get('motivo')}")
+    pr.registrar("miniatura", carpeta, origen=origen, orden=orden)
+    log(f"    -> {carpeta} (mejor: variante {orden[0]})")
+    return carpeta
+
+SISTEMA_PUBLICACION = """Eres el estratega de contenido en redes de un divulgador para managers y directivos. Con el guion del video,
+sus primeros 3 segundos (fotogramas, en orden) y su mejor miniatura, preparas la publicacion y revisas el video.
+REGLAS
+- Espanol. Tono ejecutivo, claro, sin exageraciones ni promesas que el video no cumple. Sin emojis salvo 1-2 en Shorts.
+- NUNCA uses cifras que no esten en CIFRAS PERMITIDAS; si el guion dice que son ilustrativas, di 'por ejemplo'.
+- LinkedIn, DOS versiones con la misma estructura: 'primera_linea' de 150 caracteres como mucho (es lo que se ve antes de
+  'ver mas'): el gancho, con el dolor o la cifra; 'texto' de 3-6 frases cortas en lineas separadas con el caso; 'cta' que
+  invite a comentar (una pregunta); 3-5 hashtags relevantes.
+  * 'linkedin_empresa': la PAGINA de la empresa (MARCA), con voz de marca en primera persona del plural ('en Vervux...'),
+    sin autobombo: el valor para el cliente primero; puede cerrar con la web de la marca.
+  * 'linkedin_perfil': el PERFIL PERSONAL de alguien del equipo, en primera persona del singular, cercano: por que cuenta
+    esto o que ha visto en clientes, sin inventar experiencias concretas ni nombres; menciona a la empresa una vez con
+    '@' + nombre de la marca (p. ej. '@Vervux'). No es la misma frase cambiada de persona: otro arranque.
+- Shorts/Reels/TikTok: 'titulo' de 60 caracteres como mucho; 'descripcion' de 1-2 frases; 4-8 hashtags.
+- YouTube: 'titulo' de 70 caracteres como mucho con la palabra clave al principio; 'descripcion' de 2-4 frases; 3-5 hashtags.
+- 'titulos_alternativos': 5 titulos o ganchos distintos para probar en otras publicaciones (pregunta, cifra, contraste,
+  error comun, beneficio).
+- 'revision': puntua de 0 a 10 el gancho (si los 3 primeros segundos paran el pulgar), la claridad (se entiende sin sonido,
+  con los subtitulos), la retencion (ritmo, si promete algo que se paga al final) y la miniatura; 'fortalezas' breves y
+  'cambios' CONCRETOS y aplicables (que cambiar, en que escena o segundo). No reescribas el guion.
+Devuelve solo el JSON del esquema."""
+
+def esquema_publicacion():
+    S, A = {"type": "STRING"}, {"type": "ARRAY", "items": {"type": "STRING"}}
+    I = {"type": "INTEGER", "minimum": 0, "maximum": 10}
+    return {"type": "OBJECT", "properties": {
+        "linkedin_empresa": {"type": "OBJECT", "properties": {"primera_linea": S, "texto": S, "cta": S, "hashtags": A},
+                             "required": ["primera_linea", "texto", "cta", "hashtags"]},
+        "linkedin_perfil": {"type": "OBJECT", "properties": {"primera_linea": S, "texto": S, "cta": S, "hashtags": A},
+                            "required": ["primera_linea", "texto", "cta", "hashtags"]},
+        "shorts": {"type": "OBJECT", "properties": {"titulo": S, "descripcion": S, "hashtags": A}, "required": ["titulo", "descripcion", "hashtags"]},
+        "youtube": {"type": "OBJECT", "properties": {"titulo": S, "descripcion": S, "hashtags": A}, "required": ["titulo", "descripcion", "hashtags"]},
+        "titulos_alternativos": A,
+        "revision": {"type": "OBJECT", "properties": {
+            "puntuaciones": {"type": "OBJECT", "properties": {"gancho": I, "claridad": I, "retencion": I, "miniatura": I},
+                             "required": ["gancho", "claridad", "retencion", "miniatura"]},
+            "fortalezas": A, "cambios": A}, "required": ["puntuaciones", "fortalezas", "cambios"]}},
+        "required": ["linkedin_empresa", "linkedin_perfil", "shorts", "youtube", "titulos_alternativos", "revision"]}
+
+def publicacion_md(p, g, mini):
+    Le, Lp = p["linkedin_empresa"], p["linkedin_perfil"]; Sh = p["shorts"]; Y = p["youtube"]; R = p["revision"]; pu = R["puntuaciones"]
+    def tags(t): return " ".join("#" + x.lstrip("#").replace(" ", "") for x in t)
+    out = [f"# Publicación: {g.get('titulo')}", ""]
+    if mini: out += [f"Miniatura recomendada: `{mini}`", ""]
+    out += ["## LinkedIn · página de la empresa", "", Le["primera_linea"], "", Le["texto"], "", Le["cta"], "", tags(Le["hashtags"]), "",
+            "## LinkedIn · perfil personal", "", Lp["primera_linea"], "", Lp["texto"], "", Lp["cta"], "", tags(Lp["hashtags"]), "",
+            "## Shorts, Reels y TikTok", "", f"**{Sh['titulo']}**", "", Sh["descripcion"], "", tags(Sh["hashtags"]), "",
+            "## YouTube", "", f"**{Y['titulo']}**", "", Y["descripcion"], "", tags(Y["hashtags"]), "",
+            "## Títulos alternativos", ""] + [f"{i}. {t}" for i, t in enumerate(p["titulos_alternativos"], 1)] + \
+          ["", "## Revisión para redes", "",
+           f"Gancho {pu['gancho']}/10 · Claridad {pu['claridad']}/10 · Retención {pu['retencion']}/10 · Miniatura {pu['miniatura']}/10", "",
+           "**Fortalezas**", ""] + [f"- {x}" for x in R["fortalezas"]] + ["", "**Cambios propuestos (no aplicados)**", ""] + \
+          [f"- {x}" for x in R["cambios"]] + [""]
+    return "\n".join(out)
+
+def modo_publicacion(op, pr=None):
+    """Texto de la publicacion por plataforma, titulos alternativos y revision para redes (los 3 primeros segundos del video
+    final y la mejor miniatura). Gemini; nada se aplica: queda en publicacion/publicacion.vN/publicacion.md."""
+    pr = pr or abrir_o_crear(op); final = pr.necesita("montaje"); g = leer(pr.p("guion.json"))
+    carpeta = ruta_nueva(pr.p("publicacion/publicacion")); os.makedirs(carpeta)
+    fotos = []
+    for k, t in enumerate((0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0)):
+        dst = os.path.join(carpeta, f"inicio_{k}.png")
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(t), "-i", final, "-frames:v", "1", "-vf", "scale=540:-2", dst], check=True)
+        fotos.append(dst)
+    mini_dir = pr.archivo("miniatura"); mini = os.path.join(mini_dir, "mejor_vertical.png") if mini_dir else None
+    if mini and not os.path.exists(mini): mini = None
+    log(f"[publicacion] {op.modelo} escribe la publicacion y revisa el video…")
+    partes = [{"text": texto_guion_difusion(pr, g) + "\n\nSiguen 7 fotogramas de los 3 primeros segundos (0 a 3 s, cada 0,5 s)" +
+                       (" y la miniatura recomendada." if mini else ".")}] + [IA.imagen(f) for f in fotos] + ([IA.imagen(mini)] if mini else [])
+    p, meta = IA.llamar(op, partes, SISTEMA_PUBLICACION, esquema_publicacion(), 0.7)
+    textos = [p[k][c] for k in ("linkedin_empresa", "linkedin_perfil") for c in ("primera_linea", "texto", "cta")] + [p["shorts"]["titulo"], p["shorts"]["descripcion"],
+              p["youtube"]["titulo"], p["youtube"]["descripcion"]] + p["titulos_alternativos"]
+    permitidas = CP.numeros_guion(g); av = []
+    for t in textos:
+        for m in re.finditer(r"\d[\d.]*(?:,\d+)?", t):
+            n = CP.numero_texto(m.group())
+            if n and abs(n[1]) not in permitidas: av.append(f"cifra '{m.group()}' que no esta en el guion, en: {t[:80]}")
+    for k in ("linkedin_empresa", "linkedin_perfil"):
+        if len(p[k]["primera_linea"]) > 150: av.append(f"la primera linea de {k} pasa de 150 caracteres")
+    registrar_ia(pr, "publicacion", meta, avisos=av)
+    escribir(os.path.join(carpeta, "publicacion.json"), dict(p, avisos=av, miniatura=mini))
+    md = os.path.join(carpeta, "publicacion.md")
+    with open(md, "w", encoding="utf-8") as f: f.write(publicacion_md(p, g, os.path.relpath(mini, pr.dir) if mini else None))
+    # el copy de cada plataforma en texto plano, listo para pegar (sin Markdown)
+    def tags(t): return " ".join("#" + x.lstrip("#").replace(" ", "") for x in t)
+    Sh, Y = p["shorts"], p["youtube"]
+    def li(L): return f"{L['primera_linea']}\n\n{L['texto']}\n\n{L['cta']}\n\n{tags(L['hashtags'])}\n"
+    for nombre, texto in (("copy_linkedin_empresa.txt", li(p["linkedin_empresa"])), ("copy_linkedin_perfil.txt", li(p["linkedin_perfil"])),
+                          ("copy_shorts.txt", f"{Sh['titulo']}\n\n{Sh['descripcion']}\n\n{tags(Sh['hashtags'])}\n"),
+                          ("copy_youtube.txt", f"{Y['titulo']}\n\n{Y['descripcion']}\n\n{tags(Y['hashtags'])}\n")):
+        with open(os.path.join(carpeta, nombre), "w", encoding="utf-8") as f: f.write(texto)
+    for a in av: log(f"    aviso: {a}")
+    pu = p["revision"]["puntuaciones"]
+    log(f"    revision: gancho {pu['gancho']}/10, claridad {pu['claridad']}/10, retencion {pu['retencion']}/10, miniatura {pu['miniatura']}/10")
+    pr.registrar("publicacion", md, avisos=av)
+    log(f"    -> {md}")
+    return md
 
 def modo_todo(op):
     pr = abrir_o_crear(op, crear=True)
@@ -813,9 +1319,14 @@ def modo_todo(op):
     pr = modo_guion(op, pr)
     if es_tecnico(pr) and not getattr(op, "sin_detalles", False): modo_detalles(op, pr)     # adornos + objetos
     else: modo_objetos(op, pr)
-    modo_rig(op, pr); modo_audio(op, pr); modo_animacion(op, pr); modo_efectos(op, pr)
+    modo_rig(op, pr); modo_audio(op, pr)
+    if es_tecnico(pr) and CP.paneles_activos(pr.params): modo_paneles(op, pr)
+    if CP.subtitulos_activos(pr.params): modo_subtitulos(op, pr)
+    modo_animacion(op, pr); modo_efectos(op, pr)
     modo_previa(op, pr)
     modo_render(op, pr); modo_montaje(op, pr)
+    if es_tecnico(pr): modo_miniatura(op, pr)
+    modo_publicacion(op, pr)
     log(f"\nListo: {pr.dir}")
 
 def modo_estado(op):
@@ -829,7 +1340,7 @@ def modo_estado(op):
 def main():
     ap = argparse.ArgumentParser(description="Agente de animacion de comic con Grease Pencil (Blender + Gemini)",
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("modo", help="materiales, biblioteca, modelo, guion(0), detalles, objetos(1), rig(2), audio(3), animacion(4), efectos, previa, render(5), montaje, todo, estado")
+    ap.add_argument("modo", help="materiales, biblioteca, modelo, guion(0), detalles, enriquecer, objetos(1), rig(2), audio(3), paneles, subtitulos, animacion(4), efectos, previa, render(5), montaje, miniatura, publicacion, todo, estado")
     ap.add_argument("--proyecto", help="carpeta del proyecto (por defecto, el ultimo)")
     ap.add_argument("--descripcion", help="la historia que quieres, en lenguaje natural")
     ap.add_argument("--ejemplo", action="store_true", help="usa el guion de ejemplo (sin IA)")
@@ -844,6 +1355,8 @@ def main():
     ap.add_argument("--densidad", choices=list(CP.DENSIDADES), help="detalles: cuantos adornos por componente (por defecto media)")
     ap.add_argument("--sin-detalles", dest="sin_detalles", action="store_true", help="todo (estilo tecnico): no anade adornos")
     ap.add_argument("--completar", action="store_true", help="detalles: conserva los adornos y solo anade los de piezas sin ellos")
+    ap.add_argument("--sin-ia", dest="sin_ia", action="store_true", help="paneles: diseno por reglas fijas, sin Gemini")
+    ap.add_argument("--solo-render", dest="solo_render", action="store_true", help="paneles: reutiliza paneles.json (p. ej. editado a mano); miniatura: reutiliza las variantes y el orden de la version vigente")
     ap.add_argument("--licencias", default="cc0,cc-by", help="licencias aceptadas de Sketchfab: cc0, cc-by, cc-by-sa (por defecto cc0,cc-by)")
     for k, tipo, dflt, opc, desc in CP.PARAMS:
         flag = "--" + k.replace("_", "-"); desc = f"{desc} (por defecto {dflt})".replace("%", "%%")
@@ -857,8 +1370,8 @@ def main():
     op = ap.parse_args()
     modo = NUMEROS.get(op.modo, op.modo)
     funciones = {"materiales": modo_materiales, "biblioteca": modo_biblioteca, "modelo": modo_modelo, "guion": modo_guion, "objetos": modo_objetos,
-                 "detalles": modo_detalles, "rig": modo_rig, "audio": modo_audio, "animacion": modo_animacion, "efectos": modo_efectos,
-                 "previa": modo_previa, "render": modo_render, "montaje": modo_montaje, "todo": modo_todo, "estado": modo_estado}
+                 "detalles": modo_detalles, "enriquecer": modo_enriquecer, "rig": modo_rig, "audio": modo_audio, "paneles": modo_paneles, "subtitulos": modo_subtitulos, "animacion": modo_animacion, "efectos": modo_efectos,
+                 "previa": modo_previa, "render": modo_render, "montaje": modo_montaje, "miniatura": modo_miniatura, "publicacion": modo_publicacion, "todo": modo_todo, "estado": modo_estado}
     if modo not in funciones: ap.error(f"modo desconocido: {op.modo}")
     if not os.path.exists(CP.FUENTE_TITULOS) and modo not in ("materiales", "estado"):
         log("Faltan las fuentes descargadas: ejecuto antes el modo materiales")

@@ -17,19 +17,19 @@ def _hacia(d):
 
 def _reloj_arena():
     return [P("caja", ancho=0.62, fondo=0.62, alto=0.08),
-            P("cono", "b", z=0.08, radio=0.24, radio2=0.035, alto=0.42),
-            P("cono", "b", z=0.50, radio=0.035, radio2=0.24, alto=0.42),
-            P("cono", "a", z=0.08, radio=0.25, radio2=0.14, alto=0.23),            # arena abajo (un poco mayor que el cristal)
-            P("cono", "a", z=0.50, radio=0.045, radio2=0.13, alto=0.17),           # arena arriba, junto al cuello
+            P("cono", "b", z=0.081, radio=0.24, radio2=0.035, alto=0.418),
+            P("cono", "b", z=0.501, radio=0.035, radio2=0.24, alto=0.418),
+            P("cono", "a", z=0.082, radio=0.25, radio2=0.14, alto=0.228),           # arena abajo (un poco mayor que el cristal)
+            P("cono", "a", z=0.502, radio=0.045, radio2=0.13, alto=0.168),          # arena arriba, junto al cuello
             P("caja", z=0.92, ancho=0.62, fondo=0.62, alto=0.08),
-            P("varilla", x=-0.25, y=0.25, z=0.08, radio=0.024, alto=0.84),
-            P("varilla", x=0.25, y=-0.25, z=0.08, radio=0.024, alto=0.84)]
+            P("varilla", x=-0.25, y=0.25, z=0.081, radio=0.024, alto=0.838),
+            P("varilla", x=0.25, y=-0.25, z=0.081, radio=0.024, alto=0.838)]
 
 def _base_datos():
     ps = []
     for k, z in enumerate((0.0, 0.36, 0.72)):
         ps.append(P("cilindro", z=z, radio=0.42, alto=0.28))
-        if k < 2: ps.append(P("cilindro", "a", z=z + 0.28, radio=0.395, alto=0.08))
+        if k < 2: ps.append(P("cilindro", "a", z=z + 0.281, radio=0.395, alto=0.078))
         for ang in (-112, -92):
             a = math.radians(ang); ps.append(P("esfera", "a", x=0.42 * math.cos(a), y=0.42 * math.sin(a), z=z + 0.14 - 0.032, radio=0.032))
     return ps
@@ -44,7 +44,7 @@ def _campana():
     return [P("esfera", "a", y=-0.05, radio=0.08),                                    # badajo asomando por debajo
             P("anillo", "a", z=0.1, radio=0.4, grosor=0.04),
             P("cono", z=0.12, radio=0.42, radio2=0.31, alto=0.12),                   # vuelo de la boca
-            P("cono", z=0.24, radio=0.31, radio2=0.21, alto=0.36),
+            P("cono", z=0.241, radio=0.31, radio2=0.21, alto=0.359),
             P("esfera", z=0.39, radio=0.21),
             P("esfera", "a", z=0.79, radio=0.06)]
 
@@ -85,22 +85,22 @@ def _candado():
 def _engranaje():
     ps = [P("cilindro", radio=0.36, alto=0.2)]
     for k in range(8):
-        a = math.radians(k * 45); ps.append(P("caja", x=0.41 * math.cos(a), y=0.41 * math.sin(a), rz=k * 45, ancho=0.12, fondo=0.15, alto=0.2))
-    ps += [P("cilindro", "l", z=0.2, radio=0.12, alto=0.012), P("anillo", "a", z=0.2, radio=0.2, grosor=0.018)]
+        a = math.radians(k * 45); ps.append(P("caja", x=0.41 * math.cos(a), y=0.41 * math.sin(a), z=0.002, rz=k * 45, ancho=0.12, fondo=0.15, alto=0.196))
+    ps += [P("cilindro", "l", z=0.201, radio=0.12, alto=0.012), P("anillo", "a", z=0.201, radio=0.2, grosor=0.018)]
     return ps
 
 def _monitor():
     return [P("caja", ancho=0.42, fondo=0.26, alto=0.05),
-            P("caja", y=0.03, z=0.05, ancho=0.1, fondo=0.06, alto=0.28),
+            P("caja", y=0.03, z=0.051, ancho=0.1, fondo=0.06, alto=0.278),
             P("caja", z=0.3, ancho=1.0, fondo=0.08, alto=0.64),
             P("caja", "l", y=-0.045, z=0.4, ancho=0.88, fondo=0.012, alto=0.48),
-            P("caja", "a", z=0.3, ancho=1.006, fondo=0.088, alto=0.075)]
+            P("caja", "a", z=0.299, ancho=1.006, fondo=0.088, alto=0.076)]
 
 def _portatil():
     return [P("caja", ancho=0.9, fondo=0.6, alto=0.05),
-            P("caja", "l", y=0.0, z=0.05, ancho=0.76, fondo=0.3, alto=0.008),
-            P("caja", "l", y=-0.22, z=0.05, ancho=0.24, fondo=0.11, alto=0.008),
-            P("panel", y=0.28, z=0.05, rx=-15, ancho=0.9, alto=0.6, grosor=0.04),
+            P("caja", "l", y=0.0, z=0.051, ancho=0.76, fondo=0.3, alto=0.008),
+            P("caja", "l", y=-0.22, z=0.051, ancho=0.24, fondo=0.11, alto=0.008),
+            P("panel", y=0.28, z=0.051, rx=-15, ancho=0.9, alto=0.6, grosor=0.04),
             P("panel", "l", y=0.2707, z=0.1043, rx=-15, ancho=0.8, alto=0.48, grosor=0.006)]
 
 def _servidor():
@@ -113,16 +113,16 @@ def _servidor():
 
 def _robot():
     return [P("cilindro", radio=0.3, alto=0.12),
-            P("cilindro", "l", z=0.12, radio=0.14, alto=0.12),
+            P("cilindro", "l", z=0.121, radio=0.14, alto=0.118),
             P("caja", z=0.24, ancho=0.72, fondo=0.56, alto=0.52),
             P("caja", "n", y=-0.285, z=0.34, ancho=0.56, fondo=0.012, alto=0.28),
             P("cilindro", "a", x=-0.13, y=-0.291, z=0.5, rx=90, radio=0.06, alto=0.016),
             P("cilindro", "a", x=0.13, y=-0.291, z=0.5, rx=90, radio=0.06, alto=0.016),
             P("caja", "a", y=-0.296, z=0.39, ancho=0.18, fondo=0.012, alto=0.025),
-            P("varilla", "n", z=0.76, radio=0.018, alto=0.14),
+            P("varilla", "n", z=0.761, radio=0.018, alto=0.139),
             P("esfera", "a", z=0.88, radio=0.06),
-            P("cilindro", "a", x=0.36, z=0.5, ry=90, radio=0.09, alto=0.06),
-            P("cilindro", "a", x=-0.36, z=0.5, ry=-90, radio=0.09, alto=0.06)]
+            P("cilindro", "a", x=0.361, z=0.5, ry=90, radio=0.09, alto=0.06),
+            P("cilindro", "a", x=-0.361, z=0.5, ry=-90, radio=0.09, alto=0.06)]
 
 def _orbe():
     return [P("cono", radio=0.3, radio2=0.2, alto=0.22),
@@ -132,13 +132,13 @@ def _orbe():
 def _llave():
     return [P("anillo", "a", x=-0.32, radio=0.15, grosor=0.05),
             P("caja", x=0.08, ancho=0.52, fondo=0.075, alto=0.08),
-            P("caja", x=0.22, y=-0.07, ancho=0.06, fondo=0.08, alto=0.08),
-            P("caja", x=0.31, y=-0.065, ancho=0.06, fondo=0.06, alto=0.08)]
+            P("caja", x=0.22, y=-0.07, z=0.001, ancho=0.06, fondo=0.08, alto=0.078),
+            P("caja", x=0.31, y=-0.065, z=0.001, ancho=0.06, fondo=0.06, alto=0.078)]
 
 def _caja_herramientas():
     return [P("caja", ancho=0.9, fondo=0.46, alto=0.42),
-            P("caja", "a", z=0.42, ancho=0.93, fondo=0.49, alto=0.14),
-            P("anillo", y=0.03, z=0.56, rx=90, radio=0.16, grosor=0.03),
+            P("caja", "a", z=0.421, ancho=0.93, fondo=0.49, alto=0.139),
+            P("anillo", y=0.03, z=0.561, rx=90, radio=0.16, grosor=0.03),
             P("caja", y=-0.245, z=0.33, ancho=0.1, fondo=0.02, alto=0.14)]
 
 def _diana():

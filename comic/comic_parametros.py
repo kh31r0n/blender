@@ -53,6 +53,7 @@ PARAMS = [
     ("fps", "INT", 24, (12, 60), "Fotogramas por segundo."),
     ("en_dos", "BOOL", True, None, "Poses de los personajes cada 2 fotogramas (animacion 'en dos', estilo dibujo a mano)."),
     ("calidad", "MENU", "final", ["borrador", "previa", "final"], "Resolucion: 25 %, 50 % o 100 % de 1920x1080."),
+    ("motor", "MENU", "cycles", ["eevee", "cycles"], "Motor de renderizado: eevee o cycles (con aceleracion GPU OptiX/CUDA)."),
     ("duracion", "FLOAT", 30.0, (5.0, 300.0), "Duracion objetivo en segundos (orienta al guionista; manda el audio)."),
     ("idioma", "MENU", "es", ["es", "en", "pt", "fr", "it"], "Idioma de narracion y dialogos."),
     ("voz_narrador", "MENU", "Charon", None, "Voz Gemini TTS del narrador."),
@@ -60,6 +61,37 @@ PARAMS = [
                                                      "gemini-3.1-flash-tts-preview"], "Modelo de voz en Vertex AI."),
     ("ritmo_voz", "FLOAT", 2.6, (1.8, 3.6), "Ritmo objetivo de la voz en palabras/s (2.6 = locutor divulgativo, unas 155 por minuto). "
                                             "Las lineas fuera de banda se regeneran y, si no, se ajustan con atempo (mismo tono)."),
+    ("icono_flujo", "MENU", "sobre", ["sobre", "biohazard"],
+     "Ficha que viaja por las mangueras en el efecto flujo (estilo tecnico): sobre (un mensaje) o biohazard de colores "
+     "(alertas de seguridad, un color por ficha). Las vueltas (flujo_vuelta: respuestas) siguen siendo sobres mostaza."),
+    ("gancho", "MENU", "dolor", ["dolor", "contraintuitiva", "reto", "auto", "ninguno"],
+     "Estilo tecnico: pregunta de apertura que engancha (la dice la voz y sale en grande en pantalla los primeros segundos, "
+     "porque en redes el video arranca sin sonido). dolor: algo que le cuesta dinero, tiempo o riesgo al publico; "
+     "contraintuitiva: rompe una creencia; reto: interpela al espectador; auto: lo elige el guionista; ninguno: sin gancho."),
+    ("datos_vivos", "BOOL", True, None, "Estilo tecnico: etiquetas con numeros del caso junto a los componentes (estado, accion, "
+     "resultado) que cambian paso a paso; si un numero cambia dentro de la escena se anima como contador."),
+    ("pasos_ciclo", "BOOL", True, None, "Estilo tecnico: insignias numeradas de los pasos del proceso sobre sus componentes, que se "
+     "encienden cuando se explican y se repiten cada vez mas rapido en la escena del entrenamiento (con contador)."),
+    ("comparativa", "BOOL", True, None, "Estilo tecnico: grafica final de dos barras (antes / despues, con el resultado en %) y una "
+     "curva que sube, en la franja baja del video durante la escena del resultado."),
+    ("paneles_mc", "BOOL", True, None, "Estilo tecnico: paneles explicativos dibujados con Motion Canvas (titular que sale palabra a "
+     "palabra con la voz y un visual: contador, cifras, barras, linea, rejilla de puntos, pasos, tarjeta, medidor o cola) en la "
+     "franja superior (vertical) o la columna izquierda (horizontal), solo en las escenas con datos. Sustituyen a los datos e "
+     "insignias 3D, al gancho y a la comparativa del secuenciador. Modo 'paneles'."),
+    ("tam_panel", "FLOAT", 0.40, (0.30, 0.50), "Fraccion del alto (vertical) que ocupa la franja de los paneles; en horizontal, "
+     "la columna izquierda ocupa 0.95 veces esta fraccion del ancho."),
+    ("subtitulos", "BOOL", True, None, "Subtitulos quemados con Motion Canvas (bloques de 3-6 palabras en mayusculas; la palabra "
+     "que suena, en lima) en el tercio inferior, por encima del margen de la interfaz de las redes, y archivo .srt junto al "
+     "video final. La camara deja libre esa franja. Modo 'subtitulos'."),
+    ("marca", "MENU", "/home/kheiron/Pictures/logo/vervux", None, "Carpeta del kit de marca (png/ y fuentes/static/): logo "
+     "pequeno abajo a la derecha todo el video, cartela de cierre con el logo y la web en lugar de '¡FIN!', y logo en las "
+     "miniaturas. Vacio: sin marca."),
+    ("web_marca", "MENU", "vervux.com", None, "Web que sale bajo el logo en la cartela de cierre."),
+    ("largo_flujo", "FLOAT", 1.0, (0.0, 3.0), "Estilo tecnico: largo minimo (m) de las mangueras por las que viajan sobres "
+     "(efectos flujo): si una es mas corta, se separan las peanas (se abre hueco entre filas o columnas de componentes y las "
+     "mangueras que cruzan el hueco se estiran) hasta que lo alcance. 0 = no se toca la maqueta."),
+    ("toma_voz", "INT", 0, (0, 99), "Toma de las voces TTS. La cache es por contenido: subirla vuelve a sintetizar todas las "
+     "lineas con el mismo control de ritmo (las tomas anteriores se conservan en audio/)."),
     ("grosor_tinta", "FLOAT", 1.0, (0.3, 3.0), "Multiplicador del grosor de las lineas de tinta."),
     ("temblor_linea", "FLOAT", 0.4, (0.0, 2.0), "Temblor de linea (modificador Noise que cambia cada 3 fotogramas)."),
     ("semitono", "BOOL", True, None, "Sombras con trama de puntos (Ben-Day) en caras laterales y suelos."),
@@ -456,7 +488,7 @@ TEMAS_TECNICOS = {
     "clasico": dict(desc="papel con baldosas y paredes, paleta apagada, sombreado en bandas, tinta fina con temblor y grano de lapiz",
                     paleta={}, colores=None, mapa={}, lateral=None, tinta=1.0, temblor=1.0, papel=True, paredes=True, juntas=True,
                     bisel=False, fx_reloj="naranja", fx_ondas="azul", pantalla="negro", marco="gris_oscuro", peanas=False, neon=False,
-                    iconos=True, manguera=None, carteles="clave", guia="", resalte=2.1),
+                    iconos=True, manguera=None, carteles="clave", guia="", resalte=1.3),
     "iconos": dict(desc="iconos isometricos vectoriales (referencias/iconos): cuerpos blancos con el lateral en sombra azul claro, "
                         "acentos lima, contorno negro grueso, esquinas redondeadas, fondo liso gris azulado, sin textura ni temblor",
                    paleta={"papel": "#DCE5EB", "baldosa": "#DCE5EB", "pared": "#DCE5EB", "pared_oscura": "#C9D6DF",
@@ -471,25 +503,27 @@ TEMAS_TECNICOS = {
                          "pared_oscura": "gris_claro", "rosa": "rojo", "marron": "naranja", "madera": "naranja", "cobre": "naranja"},
                    lateral="azul_claro", tinta=1.6, temblor=0.0, papel=False, paredes=False, juntas=False, bisel=True,
                    fx_reloj="lima", fx_ondas="lima", pantalla="azul_claro", marco="blanco", peanas=False, neon=False, iconos=True,
-                   manguera=None, carteles="clave", guia="", resalte=1.4),
+                   manguera=None, carteles="clave", guia="", resalte=1.0),
     "neon": dict(desc="maqueta de infraestructura (referencias/maqueta_neon): cada componente sobre una peana azul con el borde "
                       "luminoso, mangueras azules de neon con conectores, colores vivos por componente y metal plateado con rejillas, "
                       "suelo de baldosas blanco y gris claro, tinta negra limpia",
                  paso_baldosa=0.85, junta=0.0042,
-                 paleta={"papel": "#EFF2F6", "baldosa": "#DCE1E9", "pared": "#EFF2F6", "pared_oscura": "#DCE1E9",
-                         "azul_sombra": "#CFD7E3", "metal": "#C4CAD3", "gris_claro": "#DDE1E7", "naranja": "#F39A26",
-                         "amarillo": "#F6C430", "azul": "#2F6FE4", "cielo": "#8EC2FF", "rojo": "#E2483A", "lima": "#B8E83A",
-                         "blanco_hueso": "#FAFBFC", "gris_oscuro": "#3A3F47", "negro": "#1D2026"},
+                 paleta={"papel": "#F4F7FC", "baldosa": "#E6ECF6", "pared": "#F4F7FC", "pared_oscura": "#D7E1F0",
+                         "azul_sombra": "#B9CAE3", "metal": "#B8C5D5", "gris_claro": "#DEE7F2", "naranja": "#F59A23",
+                         "amarillo": "#F7CB32", "azul": "#1769E8", "azul_base": "#1558C0", "azul_neon": "#21B8FF",
+                         "cielo": "#66C7FF", "cian": "#2ED2E8", "verde": "#31BE7A", "morado": "#7658D8",
+                         "rojo": "#E74C3C", "lima": "#B9E94A", "blanco_hueso": "#FFFFFF", "gris_oscuro": "#2D3B50", "negro": "#102A56",
+                         "rosa_vivo": "#F47AB8"},
                  colores=["verde", "morado", "rojo", "naranja", "amarillo", "azul", "cielo", "metal", "gris_claro", "gris_oscuro",
-                          "negro", "blanco", "lima"],
+                          "negro", "blanco", "lima", "rosa_vivo"],
                  mapa={"menta": "verde", "verde_agua": "verde", "menta_oscuro": "verde", "violeta": "morado", "agua": "azul",
                        "azul_sombra": "azul", "azul_claro": "cielo", "mostaza": "amarillo", "blanco_hueso": "blanco", "papel": "blanco",
                        "baldosa": "gris_claro", "pared": "gris_claro", "pared_oscura": "metal", "gris": "metal", "rosa": "rojo",
                        "marron": "naranja", "madera": "naranja", "cobre": "naranja", "cafe": "gris_oscuro", "azul_base": "azul",
                        "azul_neon": "azul", "cian": "cielo"},
-                 lateral=None, tinta=1.3, temblor=0.0, papel=False, paredes=False, juntas=True, bisel=False,
+                 lateral=None, tinta=1.2, temblor=0.0, papel=False, paredes=False, juntas=True, bisel=True,
                  fx_reloj="naranja", fx_ondas="azul", pantalla="negro", marco="gris_oscuro", peanas=True, neon=True, iconos=False,
-                 manguera="azul_neon", carteles="todos", resalte=1.5,
+                 manguera="azul_neon", carteles="todos", resalte=1.0,
                  guia="TEMA NEON: cada componente principal se apoya en su PEANA (forma 'peana', alto 0.04, ancho y fondo 0.12-0.25 m "
                       "mayores que el componente, en z=0) y el componente va encima, con su z = 0.04; los componentes pequenos que "
                       "van juntos comparten una peana. Un color vivo distinto por componente (servidor del agente verde, base de "
@@ -498,9 +532,88 @@ TEMAS_TECNICOS = {
                       "no por el centro de las piezas. Las peanas y las mangueras toman solas su color (azul_base y azul_neon): no lo "
                       "cambies. No hay objetos-icono: los componentes se modelan con primitivas."),
 }
+# CYBERPUNK: la maqueta del tema neon, pero las piezas son MALLAS con el material toon de escenes/Cyberpunk_fixed.blend
+# (bandas de color + emision), contornos con Line Art, fondo casi negro con rejilla de neon y render EEVEE (el toon usa
+# Shader to RGB, que solo funciona en EEVEE). Lo dibuja blender/cyberpunk.py.
+TEMAS_TECNICOS["cyberpunk"] = dict(
+    TEMAS_TECNICOS["neon"],
+    desc="maqueta cyberpunk (escenes/Cyberpunk_fixed.blend): piezas 3D con material toon de bandas de color y brillo, "
+         "contornos negros, peanas con borde de neon cian, mangueras de neon, fondo casi negro con rejilla azul tenue",
+    mallas=True, motor="eevee", juntas=False, papel=False, piezas="toon", bloom="minimo",
+    guia=TEMAS_TECNICOS["neon"]["guia"] + " Fondo casi negro: los colores vivos y el neon destacan; evita el negro y el "
+         "gris_oscuro en piezas grandes.")
+
+
+# CRISTAL: la maqueta del tema neon con piezas de CRISTAL con bordes de luz (referencias/cristal/: cubos de un LLM sobre
+# un circuito, flujo azul de cristal, blueprint), lineas de luz finas con nodos, suelo de circuito tenue y render CYCLES
+# en la GPU. Paleta azul con acentos por funcion. Lo dibuja blender/cyberpunk.py (TEMA["piezas"] = "cristal").
+TEMAS_TECNICOS["cristal"] = dict(
+    TEMAS_TECNICOS["cyberpunk"],
+    desc="maqueta de cristal (referencias/cristal): bloques translucidos azulados con bordes de luz finos, lineas de luz con "
+         "nodos, suelo de circuito tenue sobre azul marino; azul electrico y cian, verde para aciertos y magenta para alertas",
+    mallas=True, motor="cycles", juntas=False, papel=False, piezas="cristal", bloom="nitido",
+    # paleta de las referencias (referencias/cyberpunk/): todo en azules electricos y cian sobre azul marino, con acentos
+    # con significado. 'negro' son las lineas de luz (tinta de adornos y efectos), 'blanco_hueso' los fondos de carteles.
+    paleta=dict(TEMAS_TECNICOS["neon"]["paleta"], azul="#2F7BFF", cielo="#46C8FF", morado="#5B4BFF", verde="#2EF29B",
+                rojo="#FF2E88", blanco="#CFE8FF", metal="#5A6B8C", gris_claro="#7C8DB0", negro="#7CC8FF",
+                gris_oscuro="#0D1B3D", blanco_hueso="#0A1633", lima="#5CE1FF", mostaza="#2EF29B", menta_oscuro="#2EF29B",
+                amarillo="#46C8FF", naranja="#46C8FF", azul_neon="#3D8BFF", cian="#8FE6FF", azul_base="#0B1A3A"),
+    colores=["azul", "cielo", "morado", "blanco", "metal", "verde", "rojo"],
+    mapa={"naranja": "cielo", "amarillo": "cielo", "lima": "verde", "menta": "verde", "menta_oscuro": "verde", "mostaza": "verde",
+          "verde_agua": "cielo", "azul_claro": "cielo", "cian": "cielo", "azul_neon": "azul", "azul_base": "azul",
+          "violeta": "morado", "rosa": "rojo", "rosa_vivo": "rojo", "gris": "metal", "gris_claro": "metal", "gris_oscuro": "metal", "negro": "metal",
+          "cafe": "metal", "marron": "cielo", "madera": "cielo", "cobre": "cielo", "blanco_hueso": "blanco", "papel": "blanco"},
+    pantalla="gris_oscuro", marco="azul", fx_reloj="cielo", fx_ondas="cielo",
+    guia=TEMAS_TECNICOS["neon"]["guia"].split(" Un color vivo")[0] + " Los componentes son de CRISTAL con bordes de luz sobre "
+         "un fondo azul marino: colorea por FUNCION, no por variedad. azul para casi todo; cielo (cian) para funciones y "
+         "colas; morado para bases de datos; blanco para mensajes y datos; metal para soportes; verde SOLO para aciertos, "
+         "cache y lo aprobado; rojo (se ve magenta) SOLO para alertas, fallos y la DLQ. Las mangueras son lineas de luz "
+         "finas con nodos; no hay objetos-icono.")
+
+# ARCILLA: maqueta de arcilla blanca (referencias/arcilla: la ciudad de Pinterest y las cuatro imagenes de maquetas
+# isometricas). Todo MALLA, sin Grease Pencil ni Line Art: piezas mate blancas con esquinas redondeadas y el color de la
+# pieza solo en su cara de arriba (las pequenas, enteras); las mangueras son CINTAS TRANSPORTADORAS con las fichas
+# brillando encima; luz de estudio suave, sombras blandas, fondo claro; Cycles en la GPU con profundidad de campo en los
+# planos cercanos, orbita lenta en los generales, rotulos numerados en las peanas y tarjetas flotantes. blender/cyberpunk.py.
+TEMAS_TECNICOS["arcilla"] = dict(
+    TEMAS_TECNICOS["neon"],
+    desc="diorama de ingenieria industrial futurista (referencias/arcilla): polimero blanco mate, plastico gris satinado y "
+         "ceramica blanca calida con esquinas redondeadas; acrilico turquesa translucido en cintas, filos y tarjetas; "
+         "acentos de polimero brillante por sistema (turquesa, cian, naranja, lima, violeta, magenta, amarillo); luz de "
+         "estudio high-key con sombras muy suaves; sin contornos; profundidad de campo, rotulos numerados y tarjetas flotantes",
+    mallas=True, sin_gp=True, motor="cycles", juntas=False, papel=False, piezas="arcilla", bloom="arcilla", elevacion=35.0,
+    paleta=dict(blanco="#F6F7F7", blanco_hueso="#F3EFE8", gris_claro="#D8DDE1", azul_claro="#D8DDE1", metal="#C9CFD4",
+                gris="#8C99A3", gris_oscuro="#38434C", negro="#2B343C", turquesa="#00A69F", cian="#2EC7DA",
+                naranja="#FF7A1F", amarillo="#FFC23A", rojo="#E9474F", verde="#8FD13A", lima="#8FD13A", mostaza="#FFC23A",
+                morado="#7A5CF0", violeta="#7A5CF0", rosa_vivo="#E5469B", rosa="#E5469B",
+                papel="#DEE3E8", baldosa="#DEE3E8", azul_base="#F3EFE8", suelo_estudio="#F7F7F7", plataforma="#D3D5D7", azul_neon="#2EC7DA", cielo="#2EC7DA",
+                azul="#00A69F", menta_oscuro="#00A69F"),
+    colores=["blanco", "gris_claro", "turquesa", "cian", "naranja", "lima", "morado", "rosa_vivo", "amarillo", "rojo", "gris_oscuro"],
+    mapa={"verde": "lima", "menta": "turquesa", "menta_oscuro": "turquesa", "verde_agua": "turquesa", "azul": "turquesa",
+          "cielo": "cian", "agua": "cian", "azul_neon": "cian", "azul_claro": "gris_claro", "azul_base": "blanco",
+          "azul_sombra": "gris_claro", "violeta": "morado", "mostaza": "amarillo", "marron": "naranja", "madera": "naranja",
+          "cobre": "naranja", "rosa": "rosa_vivo", "rosa_brillo": "rosa_vivo", "metal": "gris_claro", "gris": "gris_claro",
+          "negro": "gris_oscuro", "cafe": "gris_oscuro", "blanco_hueso": "blanco", "papel": "blanco", "baldosa": "blanco",
+          "pared": "blanco", "pared_oscura": "gris_claro"},
+    pantalla="gris_oscuro", marco="blanco", fx_reloj="naranja", fx_ondas="turquesa", manguera="turquesa",
+    # cinta transportadora: altura del eje (m), ancho y alto del perfil; las mangueras del guion se suben a esta altura
+    cinta=dict(z=0.085, ancho=0.105, alto=0.03), dof=True, orbita=5.0, rotulos=True, tarjetas=True,
+    # textura de plastico descargada (descargas/ambientcg/<id>, CC0) para los cuerpos: relieve por Bump y rugosidad
+    # (el color es el de la paleta). escala: repeticiones por metro (proyeccion de caja en coordenadas de objeto)
+    textura=dict(id="Leather039", escala=1.6, relieve=1.0, distancia=0.012, rug=0.1),
+    guia=TEMAS_TECNICOS["neon"]["guia"].split(" Un color vivo")[0] + " Es un DIORAMA DE INGENIERIA futurista: el cuerpo de "
+         "los componentes es polimero blanco o gris_claro y su color va como acento de polimero brillante (la cara de "
+         "arriba; las piezas pequenas, enteras). Un acento distinto por SISTEMA, con moderacion: turquesa o cian para los "
+         "componentes tecnologicos y el flujo; naranja para datos y mensajes; lima para lo que aprende o mejora; morado para "
+         "modelos y bases de datos; rosa_vivo o amarillo para control y avisos; rojo SOLO para fallos y bloqueos; "
+         "gris_oscuro para pantallas. Las mangueras son CINTAS TRANSPORTADORAS de acrilico turquesa sobre patas por las que "
+         "viajan las fichas: van de borde a borde de las peanas, rectas y con codos en angulo recto; no hay objetos-icono.")
+
 PARAMS.insert(1, ("tema", "MENU", "clasico", list(TEMAS_TECNICOS),
                   "estilo tecnico: clasico (papel, paleta apagada), iconos (set de iconos isometricos: blanco, azul claro, lima, "
-                  "contorno negro) o neon (maqueta de infraestructura sobre peanas luminosas, mangueras de neon, colores vivos)."))
+                  "contorno negro), neon (maqueta de infraestructura sobre peanas luminosas, mangueras de neon, colores vivos), "
+                  "cyberpunk (mallas toon con Line Art, EEVEE), cristal (piezas de cristal con bordes de luz, Cycles) o arcilla (maqueta "
+                  "de arcilla blanca con acentos turquesa y naranja, cintas transportadoras, todo malla sin Grease Pencil, Cycles)."))
 PARAMS_POR_CLAVE = {p[0]: p for p in PARAMS}
 
 def tema_tecnico(params=None):
@@ -518,13 +631,25 @@ PALETA_TECNICA = {
     "azul_sombra": "#2C449C", "agua": "#7EA6E6", "azul": "#4F78C9", "cielo": "#BFD3F0",
     "blanco_hueso": "#F3F0E8", "gris_claro": "#D2D4D6", "metal": "#B8BDC2", "gris": "#8C9196",
     "gris_oscuro": "#45494E", "negro": "#232325", "rojo": "#DD4B3E", "naranja": "#E8873A",
-    "mostaza": "#EDB42F", "amarillo": "#F2D45C", "rosa": "#E7A1B0", "marron": "#8A5A3C",
+    "mostaza": "#EDB42F", "amarillo": "#F2D45C", "rosa": "#E7A1B0", "rosa_vivo": "#F47AB8", "rosa_brillo": "#FFD3EA", "marron": "#8A5A3C",
     "cafe": "#5A3A24", "madera": "#C9A06A", "cobre": "#C27A4A", "violeta": "#8E7CC3",
     "blanco": "#FCFDFD", "azul_claro": "#BCD6E6",
     "verde": "#3BBF6A", "morado": "#7C5CD9", "azul_base": "#2361DD", "azul_neon": "#3A8DFF", "cian": "#9BE6FF",
+    "turquesa": "#16A9A5",
 }
 PALETA.update({k: v for k, v in PALETA_TECNICA.items() if k not in PALETA})   # colores por nombre en gp_base
 COLORES_TECNICOS = list(PALETA_TECNICA)
+
+# cerebro (forma 'cerebro'): modelo descargado ya preparado con blender/preparar_modelo_forma.py (si falta, uno procedural)
+MODELO_CEREBRO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "descargas", "modelos", "nih_3dpx_002739_cerebro",
+                              "cerebro_forma.json")
+_CAJA_CEREBRO = []
+def caja_cerebro():
+    """Caja normalizada (radio = 1, base en z=0) del cerebro: la del modelo descargado si esta, si no la del procedural."""
+    if not _CAJA_CEREBRO:
+        try: _CAJA_CEREBRO.extend(tuple(x) for x in json.load(open(MODELO_CEREBRO))["bbox"])
+        except (OSError, ValueError, KeyError): _CAJA_CEREBRO.extend([(-1.0, -0.8, 0.0), (1.0, 0.8, 1.1)])
+    return _CAJA_CEREBRO
 
 FORMAS = {
     "caja": "prisma: ancho (X), fondo (Y), alto (Z)",
@@ -532,6 +657,10 @@ FORMAS = {
     "tubo": "cilindro hueco abierto arriba: radio, alto, grosor de pared",
     "cono": "tronco de cono: radio (abajo), radio2 (arriba), alto",
     "esfera": "esfera: radio",
+    "biohazard": "simbolo de riesgo biologico que mira a camara: una ALERTA de seguridad que espera o se mueve (en una cola, "
+                 "un contador); alto = su diametro (0.06-0.12); 'color' distinto por alerta",
+    "cerebro": "cerebro con circunvoluciones, cerebelo y tronco (un LLM, un modelo de IA): radio = media longitud (X, el frente a -X); "
+               "mide unos 1.6*radio de ancho (Y) y 1.6*radio de alto, con el tronco abajo (su base es la punta del tronco)",
     "anillo": "toro horizontal: radio (al centro del tubo), grosor (radio del tubo)",
     "disco": "disco plano: radio, alto pequeno",
     "muelle": "resorte vertical: radio, alto, vueltas",
@@ -578,6 +707,39 @@ PLANOS_TECNICOS = {"general": "objeto entero y su entorno", "medio": "el objeto 
 MOVIMIENTOS_CAMARA_TECNICA = {"fijo": "quieta", "acercar": "acercamiento lento", "alejar": "alejamiento lento", "rodear": "gira un poco alrededor"}
 SUELOS_TECNICOS = {"baldosa": "baldosas claras con juntas", "madera": "tarima", "cemento": "cemento liso"}
 
+COLORES_DATO = ["lima", "rojo", "azul", "blanco"]       # lima = bueno, rojo = problema/bloqueo, azul = espera/referencia
+
+def validar_workflow(out, g, params, av):
+    """Datos vivos de cada escena, pasos del ciclo y comparativa final (el workflow visible), limpios y coherentes."""
+    p = params or {}; ids = {q["id"] for q in out["piezas"]}; brutas = g.get("escenas") or []
+    corto = lambda t, n: re.sub(r"\s+", " ", str(t or "")).strip()[:n]
+    for e, b in zip(out["escenas"], brutas):
+        datos = []
+        for d in (b.get("datos") or []) if p.get("datos_vivos", True) else []:
+            pid = slug(d.get("pieza"), 30)
+            if pid not in ids or not corto(d.get("valor"), 14): continue
+            datos.append(dict(pieza=pid, etiqueta=corto(d.get("etiqueta"), 22), valor=corto(d.get("valor"), 14),
+                              hasta=corto(d.get("hasta"), 14), color=d.get("color") if d.get("color") in COLORES_DATO else "blanco"))
+        e["datos"] = datos[:2]
+        e["paso"] = int(_num(b.get("paso"), 0, 0, 9)) if p.get("pasos_ciclo", True) else 0
+        e["ciclo_rapido"] = bool(b.get("ciclo_rapido")) and p.get("pasos_ciclo", True)
+    ciclo = [dict(pieza=slug(c.get("pieza"), 30), texto=corto(c.get("texto"), 12)) for c in (g.get("ciclo") or [])
+             if slug(c.get("pieza"), 30) in ids and corto(c.get("texto"), 12)] if p.get("pasos_ciclo", True) else []
+    out["ciclo"] = ciclo[:6] if len(ciclo) >= 2 else []
+    for e in out["escenas"]:
+        if e["paso"] > len(out["ciclo"]): e["paso"] = 0
+        if not out["ciclo"]: e["ciclo_rapido"] = False
+    c = g.get("comparativa") or {}; ids_esc = {e["id"] for e in out["escenas"]}
+    try: a_v, b_v = float(c.get("a_valor")), float(c.get("b_valor"))
+    except (TypeError, ValueError): a_v = b_v = 0.0
+    if p.get("comparativa", True) and int(_num(c.get("escena"), 0, 0, 999)) in ids_esc and a_v > 0 and b_v > 0:
+        out["comparativa"] = dict(escena=int(c["escena"]), titulo=corto(c.get("titulo"), 40), a_etiqueta=corto(c.get("a_etiqueta"), 18),
+                                  a_valor=a_v, b_etiqueta=corto(c.get("b_etiqueta"), 18), b_valor=b_v,
+                                  resultado=corto(c.get("resultado"), 10), curva_titulo=corto(c.get("curva_titulo"), 30))
+    else:
+        out["comparativa"] = None
+    return out
+
 def esquema_guion_tecnico():
     S, N, I, B = {"type": "STRING"}, {"type": "NUMBER"}, {"type": "INTEGER"}, {"type": "BOOLEAN"}
     pieza = {"type": "OBJECT", "properties": {
@@ -605,16 +767,26 @@ def esquema_guion_tecnico():
         "camara": {"type": "OBJECT", "properties": {"plano": _enum(PLANOS_TECNICOS), "objetivo": S,
                                                      "objetivos": {"type": "ARRAY", "items": S},
                                                      "movimiento": _enum(MOVIMIENTOS_CAMARA_TECNICA)}, "required": ["plano", "objetivo", "movimiento"]},
-        "duracion_minima": N},
-        "required": ["id", "descripcion", "lineas", "aparecen", "rayos_x", "resaltar", "animaciones", "efectos", "camara"],
+        "duracion_minima": N,
+        "datos": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
+            "pieza": S, "etiqueta": S, "valor": S, "hasta": S, "color": _enum(COLORES_DATO)},
+            "required": ["pieza", "etiqueta", "valor", "color"], "propertyOrdering": ["pieza", "etiqueta", "valor", "hasta", "color"]}},
+        "paso": I, "ciclo_rapido": B},
+        "required": ["id", "descripcion", "lineas", "aparecen", "rayos_x", "resaltar", "animaciones", "efectos", "camara", "datos", "paso"],
         "propertyOrdering": ["id", "descripcion", "lineas", "aparecen", "desaparecen", "rayos_x", "resaltar", "animaciones", "efectos",
-                             "camara", "duracion_minima"]}
+                             "camara", "duracion_minima", "datos", "paso", "ciclo_rapido"]}
     return {"type": "OBJECT", "properties": {
-        "titulo": S, "sinopsis": S, "objeto": {"type": "OBJECT", "properties": {"nombre": S, "alto": N}, "required": ["nombre", "alto"]},
+        "titulo": S, "sinopsis": S,
+        "gancho": {"type": "OBJECT", "properties": {"pregunta": S, "texto_pantalla": S}, "required": ["pregunta", "texto_pantalla"]},
+        "caso": S, "objeto": {"type": "OBJECT", "properties": {"nombre": S, "alto": N}, "required": ["nombre", "alto"]},
         "suelo": _enum(SUELOS_TECNICOS), "piezas": {"type": "ARRAY", "items": pieza},
-        "accesorios": {"type": "ARRAY", "items": accesorio}, "escenas": {"type": "ARRAY", "items": escena}},
-        "required": ["titulo", "sinopsis", "objeto", "suelo", "piezas", "accesorios", "escenas"],
-        "propertyOrdering": ["titulo", "sinopsis", "objeto", "suelo", "piezas", "accesorios", "escenas"]}
+        "accesorios": {"type": "ARRAY", "items": accesorio}, "escenas": {"type": "ARRAY", "items": escena},
+        "ciclo": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {"pieza": S, "texto": S}, "required": ["pieza", "texto"]}},
+        "comparativa": {"type": "OBJECT", "properties": {
+            "escena": I, "titulo": S, "a_etiqueta": S, "a_valor": N, "b_etiqueta": S, "b_valor": N, "resultado": S, "curva_titulo": S},
+            "required": ["escena", "titulo", "a_etiqueta", "a_valor", "b_etiqueta", "b_valor", "resultado"]}},
+        "required": ["titulo", "sinopsis", "gancho", "caso", "objeto", "suelo", "piezas", "accesorios", "escenas", "ciclo", "comparativa"],
+        "propertyOrdering": ["titulo", "sinopsis", "gancho", "caso", "objeto", "suelo", "piezas", "accesorios", "escenas", "ciclo", "comparativa"]}
 
 def vocabulario_tecnico(params=None):
     def tabla(d): return "; ".join(f"{k}: {v}" for k, v in d.items())
@@ -632,10 +804,31 @@ def vocabulario_tecnico(params=None):
                       f"EMOCIONES de la voz: {', '.join(EMOCIONES)}"])
 
 DIMS_DEFECTO = {"caja": dict(ancho=0.6, fondo=0.6, alto=0.6), "cilindro": dict(radio=0.3, alto=0.6), "tubo": dict(radio=0.4, alto=0.8, grosor=0.03),
-                "cono": dict(radio=0.3, radio2=0.1, alto=0.5), "esfera": dict(radio=0.25), "anillo": dict(radio=0.4, grosor=0.05),
+                "cono": dict(radio=0.3, radio2=0.1, alto=0.5), "esfera": dict(radio=0.25), "cerebro": dict(radio=0.3), "biohazard": dict(alto=0.09), "anillo": dict(radio=0.4, grosor=0.05),
                 "disco": dict(radio=0.35, alto=0.04), "muelle": dict(radio=0.08, alto=0.4, vueltas=8), "varilla": dict(radio=0.015, alto=0.6),
                 "manguera": dict(radio=0.03), "panel": dict(ancho=0.8, alto=1.0, grosor=0.03), "icono": dict(alto=0.6),
                 "peana": dict(ancho=0.8, fondo=0.8, alto=0.04)}
+
+def poner_gancho(out, gancho, params, av):
+    """Gancho de apertura: pregunta (voz) y su version corta para pantalla. Si el parametro 'gancho' no es 'ninguno',
+    la pregunta abre la escena 1 (si el guionista no la puso alli, se inserta como primera linea)."""
+    if (params or {}).get("gancho", "dolor") == "ninguno" or not out.get("escenas"): return out
+    gancho = gancho or {}
+    preg = re.sub(r"\s+", " ", str(gancho.get("pregunta") or "")).strip()
+    if not preg:
+        av.append("el guion no trae gancho: el video empieza sin pregunta de apertura"); return out
+    if not preg.endswith("?"): preg = preg.rstrip(".!") + "?"
+    if (params or {}).get("idioma", "es") == "es" and not preg.startswith("¿"): preg = "¿" + preg
+    corto = re.sub(r"\s+", " ", str(gancho.get("texto_pantalla") or "")).strip() or preg
+    if len(corto) > 70: corto = corto[:67].rsplit(" ", 1)[0] + "…?"
+    out["gancho"] = dict(pregunta=preg[:200], texto_pantalla=corto)
+    e1 = out["escenas"][0]; lin = e1.setdefault("lineas", [])
+    norm = lambda t: re.sub(r"[^a-z0-9ñáéíóú]", "", t.lower())
+    if not lin or norm(lin[0]["texto"]) != norm(preg):
+        lin[:] = [l for l in lin if norm(l["texto"]) != norm(preg)]
+        lin.insert(0, dict(quien="narrador", texto=preg, emocion="neutral"))
+        av.append("gancho: la pregunta se pone como primera linea de la escena 1")
+    return out
 
 def validar_guion_tecnico(g, params=None):
     av = []; g = copy.deepcopy(g or {})
@@ -690,6 +883,29 @@ def validar_guion_tecnico(g, params=None):
         while padres.get(a):
             if a in vistos: av.append(f"ciclo de padres en {q['id']}"); q["padre"] = None; padres[q["id"]] = None; break
             vistos.add(a); a = padres[a]
+    # separacion micrometrica (+0.8 mm) entre piezas apiladas con caras de contacto coplanares (evita Z-fighting en 3D)
+    apilables = [q for q in piezas if q["forma"] not in ("malla", "manguera") and q["material"] != "liquido"]
+    apilables.sort(key=lambda q: aabb_pieza(q)[0][2])
+    for idx_q, q in enumerate(apilables):
+        (x0, y0, z0), (x1, y1, _) = aabb_pieza(q)
+        for base in apilables[:idx_q]:
+            (bx0, by0, _), (bx1, by1, bz1) = aabb_pieza(base)
+            if x0 < bx1 and bx0 < x1 and y0 < by1 and by0 < y1 and abs(z0 - bz1) < 0.0005:
+                q["z"] = round(q["z"] + 0.0008, 4); z0 += 0.0008
+    # empujar puntos intermedios de mangueras que rocen o penetren ligeramente el borde de una pieza solida
+    solidas_val = [(q["id"], aabb_pieza(q)) for q in piezas if q["forma"] not in ("manguera", "peana") and q["material"] != "liquido"]
+    for q in piezas:
+        if q["forma"] != "manguera": continue
+        rm = q["radio"] + 0.006
+        for pt in q["camino"][1:-1]:
+            for _, (a0, a1) in solidas_val:
+                if a0[0] - rm < pt[0] < a1[0] + rm and a0[1] - rm < pt[1] < a1[1] + rm and a0[2] - 0.01 < pt[2] < a1[2] + rm:
+                     des_x = [(a0[0] - rm) - pt[0], (a1[0] + rm) - pt[0]]
+                     des_y = [(a0[1] - rm) - pt[1], (a1[1] + rm) - pt[1]]
+                     mejor = min(des_x + des_y, key=abs)
+                     if abs(mejor) < 0.12:
+                         if mejor in des_x: pt[0] = round(pt[0] + mejor, 4)
+                         else: pt[1] = round(pt[1] + mejor, 4)
     if not piezas: av.append("el guion no tiene piezas")
     out["piezas"] = piezas
     out["accesorios"] = [dict(tipo=a["tipo"], x=_num(a.get("x"), 1.5, -6, 6), y=_num(a.get("y"), -1, -6, 6),
@@ -724,7 +940,139 @@ def validar_guion_tecnico(g, params=None):
     if not escenas: av.append("el guion no tiene escenas")
     out["escenas"] = escenas
     out["personajes"] = []; out["escenarios"] = []
-    return out, av
+    # caso concreto y gancho: la pregunta de apertura es SIEMPRE la primera linea del narrador
+    out["caso"] = str(g.get("caso") or "").strip()[:300]
+    out = poner_gancho(out, g.get("gancho"), params, av)
+    out = validar_workflow(out, g, params, av)
+    out, av_m = ajustar_maqueta(out, params)
+    return out, av + av_m
+
+# ---------------------------------------------------------------- ajustes de la maqueta (estilo tecnico)
+def _largo(cam): return sum(math.dist(a, b) for a, b in zip(cam, cam[1:]))
+
+def mangueras_flujo(g):
+    """Ids de las mangueras por las que viaja algun efecto flujo / flujo_vuelta."""
+    mang = {p["id"] for p in g.get("piezas") or [] if p.get("forma") == "manguera" and len(p.get("camino") or []) >= 2}
+    return {ef["pieza"] for e in g.get("escenas") or [] for ef in e.get("efectos") or []
+            if ef.get("tipo") in ("flujo", "flujo_vuelta") and ef.get("pieza") in mang}
+
+def separar_por_mangueras(g, largo, max_cortes=8):
+    """Que cada manguera con flujo mida al menos `largo`: abre hueco entre los componentes con cortes rectos.
+    Un corte es una recta x=c o y=c por un pasillo libre (no la atraviesa ninguna pieza): lo que queda a un lado se aparta
+    d/2 y lo del otro, -d/2. Las piezas se mueven enteras y los caminos de las mangueras se estiran solo en el tramo que
+    cruza el pasillo, asi que nada nuevo se atraviesa y los codos en angulo recto siguen rectos. Devuelve avisos."""
+    av = []
+    if not largo or largo <= 0: return av
+    piezas = g.get("piezas") or []
+    flujo = mangueras_flujo(g)
+    if not flujo: return av
+    mang = {p["id"]: p for p in piezas if p.get("forma") == "manguera" and len(p.get("camino") or []) >= 2}
+    solidas = [p for p in piezas if p.get("forma") != "manguera"]
+    def pasillos(eje, m=0.015):
+        iv = sorted((aabb_pieza(p)[0][eje] - m, aabb_pieza(p)[1][eje] + m) for p in solidas)
+        out, fin = [], None
+        for a, b in iv:
+            if fin is not None and a > fin: out.append((fin, a))
+            fin = b if fin is None else max(fin, b)
+        return out
+    def mover(cam, eje, c, d):
+        return [[v + ((d / 2 if pt[eje] > c else -d / 2) if i == eje else 0) for i, v in enumerate(pt)] for pt in cam]
+    for _ in range(max_cortes):
+        cortas = sorted((largo - _largo(mang[h]["camino"]), h) for h in flujo if _largo(mang[h]["camino"]) < largo - 0.005)
+        if not cortas: break
+        falta, hid = cortas[-1]                    # la que mas lejos esta
+        cam = mang[hid]["camino"]; mejor = None
+        for eje in (0, 1):
+            for a, b in pasillos(eje):
+                c = (a + b) / 2
+                if not any(min(p[eje], q[eje]) < c < max(p[eje], q[eje]) for p, q in zip(cam, cam[1:])): continue
+                lo, hi = 0.0, 3.0
+                if _largo(mover(cam, eje, c, hi)) < largo: continue
+                for _ in range(40):
+                    mid = (lo + hi) / 2
+                    if _largo(mover(cam, eje, c, mid)) >= largo: hi = mid
+                    else: lo = mid
+                d = round(hi + 0.0005, 3)
+                crece = sum(_largo(mover(q["camino"], eje, c, d)) - _largo(q["camino"]) for k, q in mang.items() if k != hid)
+                resto = sum(max(0.0, largo - _largo(mover(mang[h]["camino"], eje, c, d))) for h in flujo)
+                clave = (round(resto, 2), round(d, 2), round(crece, 2), -(b - a))
+                if mejor is None or clave < mejor[0]: mejor = (clave, eje, c, d)
+        if mejor is None:
+            av.append(f"manguera {hid}: mide {_largo(cam):.2f} m y no hay pasillo libre que cruce para alargarla a {largo:g} m"); break
+        _, eje, c, d = mejor; k = "xy"[eje]
+        for p in piezas:
+            if p.get("forma") == "manguera":
+                p["camino"] = [[round(v, 4) for v in pt] for pt in mover(p["camino"], eje, c, d)] if p.get("camino") else p.get("camino")
+            else:
+                p[k] = round(p[k] + (d / 2 if p[k] > c else -d / 2), 4)
+        for a in g.get("accesorios") or []:
+            a[k] = round(a[k] + (d / 2 if a[k] > c else -d / 2), 4)
+        av.append(f"separo las peanas {d:.2f} m en {k.upper()} (pasillo {k}={c:.2f}) para que {hid} mida {largo:g} m: "
+                  + ", ".join(f"{h} {_largo(mang[h]['camino']):.2f}" for h in sorted(flujo)))
+    return av
+
+def mangueras_tras_extremos(g):
+    """Una manguera no aparece antes que los componentes que une: si aparece en una escena anterior a la de alguno de sus
+    extremos (la peana o pieza mas cercana a cada punta), pasa a esa escena, al final de su lista; sus flujos de la escena
+    original pasan con ella (salen cuando ya se ha revelado). Devuelve avisos."""
+    av = []
+    escenas = g.get("escenas") or []
+    if not escenas: return av
+    piezas = {p["id"]: p for p in g.get("piezas") or []}
+    def escena_de(pid):
+        return next((k for k, e in enumerate(escenas) if pid in (e.get("aparecen") or [])), 0)
+    peanas = [p for p in piezas.values() if p.get("forma") == "peana"]
+    solidas = [p for p in piezas.values() if p.get("forma") not in ("manguera", "peana")]
+    def extremo(pt, m=0.06):
+        for q in peanas:
+            (x0, y0, _), (x1, y1, _) = aabb_pieza(q)
+            if x0 - m <= pt[0] <= x1 + m and y0 - m <= pt[1] <= y1 + m:
+                # el componente es la peana y lo que lleva encima: aparece con lo primero que aparezca de ese grupo
+                encima = [s["id"] for s in solidas if x0 <= s["x"] <= x1 and y0 <= s["y"] <= y1]
+                return min([escena_de(q["id"])] + [escena_de(s) for s in encima]) if encima else escena_de(q["id"])
+        cerca = [(math.dist(pt[:2], aabb_cerca(s, pt)), s["id"]) for s in solidas]
+        cerca = [c for c in cerca if c[0] < 0.12]
+        return escena_de(min(cerca)[1]) if cerca else 0
+    def aabb_cerca(s, pt):
+        (x0, y0, _), (x1, y1, _) = aabb_pieza(s)
+        return (min(max(pt[0], x0), x1), min(max(pt[1], y0), y1))
+    for hid, p in piezas.items():
+        if p.get("forma") != "manguera" or len(p.get("camino") or []) < 2: continue
+        k = escena_de(hid); necesita = max(extremo(p["camino"][0]), extremo(p["camino"][-1]))
+        if necesita <= k: continue
+        if hid in (escenas[k].get("aparecen") or []): escenas[k]["aparecen"].remove(hid)
+        escenas[necesita].setdefault("aparecen", []).append(hid)
+        movidos = [ef for ef in escenas[k].get("efectos") or [] if ef.get("pieza") == hid and ef.get("tipo") in ("flujo", "flujo_vuelta")]
+        for ef in movidos:
+            escenas[k]["efectos"].remove(ef); escenas[necesita].setdefault("efectos", []).append(dict(ef, momento=max(ef.get("momento", 0.3), 0.5)))
+        av.append(f"manguera {hid}: pasa de la escena {escenas[k]['id']} a la {escenas[necesita]['id']}, cuando ya estan sus dos extremos"
+                  + (f" (con {len(movidos)} flujo)" if movidos else ""))
+    return av
+
+def ajustar_maqueta(g, params=None):
+    """Ajustes del estilo tecnico que no dependen de Gemini: mangueras que no aparecen antes que lo que unen y mangueras
+    con flujo de al menos `largo_flujo`. Idempotente (un guion ya ajustado no cambia). Devuelve (guion, avisos)."""
+    g = copy.deepcopy(g); av = mangueras_tras_extremos(g)
+    av += separar_por_mangueras(g, float((params or {}).get("largo_flujo", 1.0) or 0))
+    t = tema_tecnico(params)
+    # colores del tema: un guion escrito con otro tema (o cambiado de tema) pasa a los colores que este admite
+    cambiados = []
+    for p in g.get("piezas") or []:
+        if p.get("forma") in ("peana", "manguera", "malla"): continue
+        c = color_tema(p.get("color"), params, p.get("color") or "metal")
+        if c != p.get("color"): cambiados.append(f"{p['id']} {p.get('color')}->{c}"); p["color"] = c
+    if cambiados: av.append("colores del tema " + str((params or {}).get("tema")) + ": " + ", ".join(cambiados))
+    if t.get("manguera"):
+        for p in g.get("piezas") or []:
+            if p.get("forma") == "manguera" and p.get("color") != t["manguera"]: p["color"] = t["manguera"]
+    # tema con cintas transportadoras: el eje de las mangueras a la altura de la cinta (las fichas viajan por encima)
+    if t.get("cinta"):
+        zc = t["cinta"]["z"]; subidas = []
+        for p in g.get("piezas") or []:
+            if p.get("forma") == "manguera" and any(abs(pt[2] - zc) > 1e-6 for pt in p.get("camino") or []):
+                p["camino"] = [[pt[0], pt[1], zc] for pt in p["camino"]]; subidas.append(p["id"])
+        if subidas: av.append(f"cintas a z={zc:g}: {', '.join(subidas)}")
+    return g, av
 
 def guion_ejemplo_tecnico():
     return {
@@ -764,7 +1112,7 @@ def guion_ejemplo_tecnico():
 
 # ---------------------------------------------------------------- comprobaciones de geometria (sin bpy)
 MEDIDAS_FORMA = {"caja": ("ancho", "fondo", "alto"), "panel": ("ancho", "alto", "grosor"), "cilindro": ("radio", "alto"),
-                 "tubo": ("radio", "alto"), "cono": ("radio", "radio2", "alto"), "esfera": ("radio",), "anillo": ("radio", "grosor"),
+                 "tubo": ("radio", "alto"), "cono": ("radio", "radio2", "alto"), "esfera": ("radio",), "cerebro": ("radio",), "biohazard": ("alto",), "anillo": ("radio", "grosor"),
                  "disco": ("radio", "alto"), "muelle": ("radio", "alto"), "varilla": ("radio", "alto"), "manguera": ("radio",),
                  "icono": ("alto",), "peana": ("ancho", "fondo", "alto")}
 
@@ -801,6 +1149,10 @@ def aabb_pieza(p):
         a = p["ancho"] / 2; b = (p["fondo"] if f in ("caja", "peana") else p["grosor"]) / 2; h = p["alto"]
         loc = [(x, y, z) for x in (-a, a) for y in (-b, b) for z in (0, h)]
     elif f == "esfera": r = p["radio"]; loc = [(x, y, z) for x in (-r, r) for y in (-r, r) for z in (0, 2 * r)]
+    elif f == "biohazard": w = p["alto"]; loc = [(x, y, z) for x in (-w / 2, w / 2) for y in (-0.01, 0.01) for z in (0, w)]
+    elif f == "cerebro":
+        (x0, y0, z0), (x1, y1, z1) = caja_cerebro(); r = p["radio"]
+        loc = [(x * r, y * r, z * r) for x in (x0, x1) for y in (y0, y1) for z in (z0, z1)]
     elif f == "anillo": r = p["radio"] + p["grosor"]; loc = [(x, y, z) for x in (-r, r) for y in (-r, r) for z in (0, 2 * p["grosor"])]
     else:
         r = max(p.get("radio", 0.1), p.get("radio2", 0) if f == "cono" else 0); h = p.get("alto", 0.1)
@@ -810,7 +1162,7 @@ def aabb_pieza(p):
     return [min(q[i] for q in w) for i in range(3)], [max(q[i] for q in w) for i in range(3)]
 
 def revisar_geometria(g, tol=0.04):
-    """Avisos numericos para el guion tecnico: piezas que flotan sin apoyo y palancas o brazos de pie."""
+    """Avisos numericos para el guion tecnico: apoyo, colisiones y movimientos imposibles."""
     av = []; cajas = {p["id"]: aabb_pieza(p) for p in g["piezas"]}
     for p in g["piezas"]:
         (x0, y0, z0), (x1, y1, z1) = cajas[p["id"]]
@@ -828,21 +1180,22 @@ def revisar_geometria(g, tol=0.04):
                 and abs(p["rot_x"]) < 30 and abs(p["rot_y"]) < 30:
             (x0, y0, z0), (x1, y1, z1) = cajas[p["id"]]
             if z1 - z0 > 2 * max(x1 - x0, y1 - y0): av.append(f"'{p['id']}' esta de pie (alto {z1 - z0:.2f}); una palanca o brazo suele ir tumbado (rot_y=90 o rot_x=90)")
-    # mangueras: que no atraviesen otras piezas y que sus extremos lleguen a alguna
+    # mangueras: que no atraviesen otras piezas (incluyendo su grosor/radio) y que sus extremos lleguen a alguna
     solidas = [q for q in g["piezas"] if q["forma"] != "manguera" and q["material"] != "liquido"]
     def dentro(pt, caja, m=0.02):      # pegada al suelo por debajo de una pieza tambien cuenta como atravesarla
         return all(caja[0][i] + m < pt[i] < caja[1][i] - m for i in range(2)) and caja[0][2] - 0.03 < pt[2] < caja[1][2] - m
     def dist(pt, caja): return math.sqrt(sum(max(caja[0][i] - pt[i], 0, pt[i] - caja[1][i]) ** 2 for i in range(3)))
     for p in g["piezas"]:
         if p["forma"] != "manguera" or len(p.get("camino") or []) < 2: continue
-        cam = p["camino"]; pts = []
+        cam = p["camino"]; r_m = p.get("radio", 0.03); pts = []
         for a_, b_ in zip(cam, cam[1:]): pts += [[a_[i] + (b_[i] - a_[i]) * k / 12 for i in range(3)] for k in range(13)]
         L = len(pts); medio = pts[int(L * 0.15):int(L * 0.85) + 1]
         familia = {p["id"], p.get("padre")} | {q["id"] for q in solidas if min(dist(cam[0], cajas[q["id"]]), dist(cam[-1], cajas[q["id"]])) < 0.08}
         for q in solidas:
-            if q["id"] in familia or q.get("padre") == p["id"]: continue
-            if any(dentro(pt, cajas[q["id"]]) for pt in medio):
-                av.append(f"la manguera '{p['id']}' atraviesa '{q['id']}': rodeala con mas puntos en 'camino'")
+            if q["id"] in familia or q.get("padre") == p["id"] or q["forma"] == "peana": continue
+            margen = -r_m * 0.4     # tiene en cuenta el radio del tubo para no rozar paredes
+            if any(dentro(pt, cajas[q["id"]], margen) for pt in medio):
+                av.append(f"la manguera '{p['id']}' atraviesa o roza '{q['id']}': rodeala con mas puntos en 'camino' dejando margen >= {r_m + 0.01:.2f} m")
         for nombre, pt in (("primer", cam[0]), ("ultimo", cam[-1])):
             empalme = any(math.dist(pt, e) < 0.04 for o in g["piezas"] if o["forma"] == "manguera" and o["id"] != p["id"]
                           for e in ((o.get("camino") or [[9, 9, 9]])[0], (o.get("camino") or [[9, 9, 9]])[-1]))
@@ -860,6 +1213,24 @@ def revisar_geometria(g, tol=0.04):
             cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
             if not any(cajas[q["id"]][0][0] < cx < cajas[q["id"]][1][0] and cajas[q["id"]][0][1] < cy < cajas[q["id"]][1][1] for q in peanas):
                 av.append(f"'{p['id']}' esta en el suelo sin peana: ponle una peana debajo (z de la pieza = alto de la peana)")
+    # Colisiones iniciales: se dejan pasar las relaciones que representan una
+    # composicion intencional (pieza sobre su peana, contenido de un recipiente
+    # transparente, mangueras, liquidos, hijos y grupos de esferas). El resto
+    # suele ser un objeto generado encima de otro por falta de separacion.
+    for i, p in enumerate(g["piezas"]):
+        for q in g["piezas"][i + 1:]:
+            if p["forma"] == "manguera" or q["forma"] == "manguera" or p["material"] == "liquido" or q["material"] == "liquido": continue
+            if p.get("padre") == q["id"] or q.get("padre") == p["id"]: continue
+            if p["forma"] == q["forma"] == "esfera": continue       # nubes y racimos
+            if p["forma"] == "peana" or q["forma"] == "peana": continue
+            if p["material"] == "transparente" or q["material"] == "transparente": continue  # contenido visible en un contenedor
+            a, b = cajas[p["id"]], cajas[q["id"]]
+            if not _solapan(a, b, tol): continue
+            inter = 1.0
+            for eje in range(3): inter *= max(0.0, min(a[1][eje], b[1][eje]) - max(a[0][eje], b[0][eje]))
+            va = math.prod(a[1][eje] - a[0][eje] for eje in range(3)); vb = math.prod(b[1][eje] - b[0][eje] for eje in range(3))
+            if inter / max(1e-8, min(va, vb)) > 0.12:
+                av.append(f"'{p['id']}' y '{q['id']}' se solapan: separa sus cajas o declara una relacion padre/contenedor")
     return av + revisar_movimientos(g, cajas)
 
 def _solapan(a, b, m=0.02):
@@ -947,17 +1318,19 @@ ADORNOS = {
     "boton": "boton redondo",
     "teclado": "teclado de teclas pequenas (portatiles, consolas)",
     "icono": "'icono' pintado sobre la cara en 'color'",
-    "cartel": "cartel encima de la pieza (cara 'arriba') que mira a camara, con un 'icono' en 'color'",
+    "barras": "indicador LED: 'cantidad' barras horizontales apiladas de color vivo (estado, nivel de una cola)",
+    "cartel": "cartel encima de la pieza (cara 'arriba') que mira a camara, con un 'icono' en 'color', o con un 'texto' corto "
+              "(una sigla de 2-6 letras, p. ej. LLM, API, SQS) cuando el icono no basta para saber que es",
     "conector": "brida metalica en los extremos de una manguera (se anade sola)",
 }
 ICONOS = ["sobre", "lambda", "candado", "engranaje", "nube", "base_datos", "grafo", "ojo", "rayo", "llave", "documento",
-          "chip", "escudo", "check", "cruz", "barras", "traza", "onda", "persona", "reloj", "ninguno"]   # ninguno: pantalla vacia
+          "chip", "escudo", "check", "cruz", "barras", "traza", "onda", "persona", "reloj", "grafica", "ninguno"]   # ninguno: pantalla vacia
 CARAS_FORMA = {"caja": ["frente", "izquierda", "arriba", "derecha", "atras"], "panel": ["frente", "izquierda", "arriba", "derecha", "atras"],
                "cilindro": ["lado", "arriba"], "tubo": ["lado"], "cono": ["lado", "arriba"], "disco": ["lado", "arriba"],
-               "esfera": ["lado"], "varilla": [], "muelle": [], "anillo": [], "manguera": [], "malla": [], "peana": []}
+               "esfera": ["lado"], "cerebro": ["arriba"], "biohazard": [], "varilla": [], "muelle": [], "anillo": [], "manguera": [], "malla": [], "peana": []}
 CARAS_ADORNO = ["frente", "izquierda", "derecha", "atras", "arriba", "lado"]
 COLOR_ADORNO = {"pantalla": "lima", "leds": "lima", "ranuras": "lima", "tirador": "metal", "tornillos": "metal", "franja": "mostaza",
-                "placa": None, "boton": "rojo", "teclado": "gris_oscuro", "icono": "blanco_hueso", "cartel": "naranja", "rejilla": None}
+                "placa": None, "boton": "rojo", "teclado": "gris_oscuro", "icono": "blanco_hueso", "cartel": "naranja", "rejilla": None, "barras": "verde"}
 DENSIDADES = {"baja": "1-3 adornos por componente principal", "media": "3-6 adornos por componente principal",
               "alta": "5-9 adornos por componente principal, muy detallado"}
 
@@ -965,9 +1338,9 @@ def esquema_adornos():
     S, N, I = {"type": "STRING"}, {"type": "NUMBER"}, {"type": "INTEGER"}
     item = {"type": "OBJECT", "properties": {
         "pieza": S, "tipo": _enum([k for k in ADORNOS if k != "conector"]), "cara": _enum(CARAS_ADORNO), "u": N, "v": N,
-        "ancho": N, "alto": N, "color": _enum(COLORES_TECNICOS), "icono": _enum(ICONOS), "cantidad": I},
+        "ancho": N, "alto": N, "color": _enum(COLORES_TECNICOS), "icono": _enum(ICONOS), "cantidad": I, "texto": S},
         "required": ["pieza", "tipo", "cara", "u", "v", "ancho", "alto", "color"],
-        "propertyOrdering": ["pieza", "tipo", "cara", "u", "v", "ancho", "alto", "color", "icono", "cantidad"]}
+        "propertyOrdering": ["pieza", "tipo", "cara", "u", "v", "ancho", "alto", "color", "icono", "cantidad", "texto"]}
     return {"type": "OBJECT", "properties": {"adornos": {"type": "ARRAY", "items": item}}, "required": ["adornos"]}
 
 def vocabulario_adornos(params=None):
@@ -996,9 +1369,275 @@ def validar_adornos(bruto, guion, max_pieza=10, params=None):
         v = _num(a.get("v"), 0.5, al / 2, 1 - al / 2) if al < 1 else 0.5
         col = color_tema(a.get("color") if a.get("color") in PALETA_TECNICA else (COLOR_ADORNO.get(t) or p["color"]), params)
         ico = a.get("icono") if a.get("icono") in ICONOS else ("sobre" if t in ("icono", "cartel") else None)
-        out.append(dict(pieza=pid, tipo=t, cara=cara, u=round(u, 3), v=round(v, 3), ancho=round(an, 3), alto=round(al, 3),
-                        color=col, icono=ico, cantidad=int(_num(a.get("cantidad"), 3, 1, 12))))
+        ad = dict(pieza=pid, tipo=t, cara=cara, u=round(u, 3), v=round(v, 3), ancho=round(an, 3), alto=round(al, 3),
+                  color=col, icono=ico, cantidad=int(_num(a.get("cantidad"), 3, 1, 12)))
+        texto = re.sub(r"[^0-9A-Z&+./-]", "", str(a.get("texto") or "").upper())[:6] if t == "cartel" else ""
+        if texto: ad["texto"] = texto              # sigla en el cartel, en lugar del icono
+        out.append(ad)
     for p in guion["piezas"]:         # bridas en los extremos de todas las mangueras opacas
         if p["forma"] == "manguera" and p["material"] in ("solido", "metal"):
             out.append(dict(pieza=p["id"], tipo="conector", cara="extremos", u=0.5, v=0.5, ancho=1, alto=1, color="metal", icono=None, cantidad=2))
     return out, av
+
+# ---------------------------------------------------------------- paneles con Motion Canvas (estilo tecnico)
+# Un panel por escena con datos: titular cinetico (2-6 palabras de la narracion, la clave en color) y un visual de un
+# catalogo cerrado. Los dibuja comic/motion (Motion Canvas) en la franja superior (vertical) o la columna izquierda
+# (horizontal). paneles.json guarda el diseno validado; paneles_mc.construir_motion lo pasa a fotogramas (motion.json).
+TIPOS_VISUAL = {
+    "ninguno": "solo el titular (ganchos y frases sin cifra)",
+    "contador": "una cifra grande que rueda de 'valor' a 'hasta' (fija si no hay 'hasta') con 'etiqueta' pequena debajo",
+    "cifras": "dos cifras enormes enfrentadas: 'items' = 2 {etiqueta, valor, color} (antes / despues, minimo / maximo, A / B)",
+    "barras": "2-4 barras que crecen: 'items' {etiqueta, valor, color}, 'titulo' y 'resultado' (p. ej. '+15 %')",
+    "linea": "1-2 series que se dibujan punto a punto: 'items' {etiqueta, color, puntos: 4-12 numeros}, 'titulo'",
+    "unidades": "rejilla de 'total' puntos (20, 50 o 100) con 'valor' encendidos ('12 DE CADA 100'), 'etiqueta'",
+    "pasos": "los pasos del ciclo como fichas numeradas con el de la escena encendido (sale del guion: no rellenes nada; "
+             "si la escena es el ciclo rapido, 'etiqueta', 'valor' y 'hasta' son su contador)",
+    "tarjeta": "ventana con 'titulo' (archivo o registro, p. ej. 'vuelo-MAD-PAR.json') y 2-4 lineas 'items' {etiqueta = clave, "
+               "valor, color}: el EJEMPLO concreto del caso, como un registro de datos",
+    "medidor": "semicirculo con aguja: 'valor' de 0 a 100 (un porcentaje del guion) y 'etiqueta'",
+    "cola": "fichas que se apilan o se vacian de 'valor' a 'hasta' unidades (colas, pendientes, alertas), con 'etiqueta'",
+}
+COLORES_PANEL = ["bueno", "problema", "espera", "neutro"]
+COLOR_DATO_PANEL = {"lima": "bueno", "rojo": "problema", "azul": "espera", "blanco": "neutro"}
+# estilo hibrido: tipografia y maquetacion de los shorts de referencia (fondo oscuro propio) con los acentos del tema
+PALETA_PANELES = {
+    "clasico": dict(fondo="#1A1814", texto="#F3F0E8", bueno="#D7EE57", problema="#E8573F", espera="#7EA6E6", neutro="#F3F0E8",
+                    tenue="#57524A", acento="#EDB42F"),
+    "iconos": dict(fondo="#1B1C1E", texto="#FFFFFF", bueno="#A6D63E", problema="#F0604D", espera="#8EC3E6", neutro="#FFFFFF",
+                   tenue="#4A4E55", acento="#A6D63E"),
+    "neon": dict(fondo="#0B1630", texto="#F4F7FC", bueno="#B9E94A", problema="#FF5A4A", espera="#21B8FF", neutro="#F4F7FC",
+                 tenue="#2D3B5A", acento="#21B8FF"),
+    "cyberpunk": dict(fondo="#090D18", texto="#F4F1EA", bueno="#C8FF2E", problema="#FF4D2E", espera="#36D6FF", neutro="#F4F1EA",
+                      tenue="#2A3550", acento="#2ED2E8"),
+    "cristal": dict(fondo="#061029", texto="#E4F1FF", bueno="#2EF29B", problema="#FF2E88", espera="#46C8FF", neutro="#E4F1FF",
+                    tenue="#1C2E5A", acento="#3D8BFF"),
+    # arcilla: banda clara (blanco roto), texto grafito, turquesa para lo bueno y naranja para estados y datos
+    "arcilla": dict(fondo="#F4F7F9", texto="#1F2A33", bueno="#139C98", problema="#E5484D", espera="#F07F2E", neutro="#1F2A33",
+                    tenue="#C7D2DA", acento="#16A9A5"),
+}
+FUENTE_PANEL_MONO = os.path.join(DESCARGAS, "fuentes", "JetBrainsMono-Variable.ttf")
+
+def paneles_activos(params):
+    p = params or {}
+    return p.get("estilo") == "tecnico" and bool(p.get("paneles_mc", True))
+
+def escenas_con_panel(guion, params=None):
+    """Ids de las escenas que llevan panel (y por tanto franja libre en la camara): la 1 si hay gancho, las que traen datos,
+    paso del ciclo o ciclo rapido, y la de la comparativa. Es la unica regla: la usan la camara (b_tecnico) y el diseno."""
+    if not paneles_activos(params) or not guion: return []
+    comp = (guion.get("comparativa") or {}).get("escena")
+    out = []
+    for i, e in enumerate(guion.get("escenas") or []):
+        if (i == 0 and guion.get("gancho")) or e.get("datos") or e.get("paso") or e.get("ciclo_rapido") or e.get("id") == comp:
+            out.append(e["id"])
+    return out
+
+def numero_texto(s):
+    """'+16.800 €' -> ('+', 16800.0, ' €', 0 decimales); formato espanol (punto de miles, coma decimal). None si no hay."""
+    m = re.search(r"\d[\d.]*(?:,\d+)?", str(s or ""))
+    if not m: return None
+    txt = m.group().rstrip("."); dec = len(txt.split(",")[1]) if "," in txt else 0
+    try: v = float(txt.replace(".", "").replace(",", "."))
+    except ValueError: return None
+    pre = str(s)[:m.start()]
+    if pre.endswith("-") or pre.endswith("−"): v = -v; pre = pre[:-1]
+    return pre, v, str(s)[m.start() + len(txt):], dec
+
+def numeros_guion(g):
+    """Todas las cifras que dice o muestra el guion (los paneles no pueden inventar otras)."""
+    textos = [g.get("caso"), (g.get("gancho") or {}).get("pregunta"), (g.get("gancho") or {}).get("texto_pantalla")]
+    for e in g.get("escenas") or []:
+        textos += [l.get("texto") for l in e.get("lineas") or []]
+        for d in e.get("datos") or []: textos += [d.get("valor"), d.get("hasta")]
+    c = g.get("comparativa") or {}
+    textos += [c.get("resultado"), c.get("titulo")]
+    out = {abs(float(x)) for x in (c.get("a_valor"), c.get("b_valor")) if isinstance(x, (int, float))}
+    for t in textos:
+        for m in re.finditer(r"\d[\d.]*(?:,\d+)?", str(t or "")):
+            n = numero_texto(m.group())
+            if n: out.add(abs(n[1]))
+    return out
+
+def _palabras(t): return re.findall(r"[^\s]+", re.sub(r"\s+", " ", str(t or "")).strip())
+
+def _norm_palabra(w):
+    w = unicodedata.normalize("NFD", str(w).lower())
+    return re.sub(r"[^a-z0-9ñ%€$]", "", "".join(c for c in w if unicodedata.category(c) != "Mn"))
+
+def esquema_paneles():
+    S, N, I, B = {"type": "STRING"}, {"type": "NUMBER"}, {"type": "INTEGER"}, {"type": "BOOLEAN"}
+    item = {"type": "OBJECT", "properties": {"etiqueta": S, "valor": S, "color": _enum(COLORES_PANEL),
+                                             "puntos": {"type": "ARRAY", "items": N}},
+            "required": ["etiqueta", "valor", "color"], "propertyOrdering": ["etiqueta", "valor", "color", "puntos"]}
+    visual = {"type": "OBJECT", "properties": {
+        "tipo": _enum(TIPOS_VISUAL), "titulo": S, "etiqueta": S, "valor": S, "hasta": S, "resultado": S,
+        "color": _enum(COLORES_PANEL), "total": I, "items": {"type": "ARRAY", "items": item}},
+        "required": ["tipo"], "propertyOrdering": ["tipo", "titulo", "etiqueta", "valor", "hasta", "resultado", "color", "total", "items"]}
+    titular = {"type": "OBJECT", "properties": {"texto": S, "clave": {"type": "ARRAY", "items": S}, "color": _enum(COLORES_PANEL),
+                                                "bloque": B},
+               "required": ["texto", "clave", "color"], "propertyOrdering": ["texto", "clave", "color", "bloque"]}
+    panel = {"type": "OBJECT", "properties": {"escena": I, "pieza": S, "titular": titular, "visual": visual},
+             "required": ["escena", "titular", "visual"], "propertyOrdering": ["escena", "pieza", "titular", "visual"]}
+    return {"type": "OBJECT", "properties": {"paneles": {"type": "ARRAY", "items": panel}}, "required": ["paneles"]}
+
+def _titular(texto, clave=None, color="neutro", bloque=False, max_pal=6):
+    pal = _palabras(texto)[:max_pal]
+    claves = {_norm_palabra(c) for c in (clave or []) for c in _palabras(c)}
+    clave = [w for w in pal if _norm_palabra(w) in claves][:2]
+    if not clave and pal: clave = [max(pal, key=lambda w: len(_norm_palabra(w)))]
+    return dict(texto=" ".join(pal), clave=clave, color=color if color in COLORES_PANEL else "neutro", bloque=bool(bloque))
+
+def _visual_reglas(g, e):
+    """Visual por reglas fijas a partir de los datos de la escena (el mismo contenido que dibujaba el 3D)."""
+    comp = g.get("comparativa") or {}
+    datos = e.get("datos") or []
+    col = lambda d: COLOR_DATO_PANEL.get(d.get("color"), "neutro")
+    con_hasta = next((d for d in datos if d.get("hasta")), None)
+    if comp and comp.get("escena") == e["id"]:
+        fmt = lambda v: f"{v:,.0f}".replace(",", ".") if float(v).is_integer() else f"{v:.1f}".replace(".", ",")
+        return dict(tipo="barras", titulo=comp.get("titulo", ""), resultado=comp.get("resultado", ""),
+                    items=[dict(etiqueta=comp["a_etiqueta"], valor=fmt(comp["a_valor"]), color="espera"),
+                           dict(etiqueta=comp["b_etiqueta"], valor=fmt(comp["b_valor"]), color="bueno")])
+    if e.get("ciclo_rapido") and g.get("ciclo"):
+        v = dict(tipo="pasos")
+        if con_hasta: v.update(etiqueta=con_hasta["etiqueta"], valor=con_hasta["valor"], hasta=con_hasta["hasta"], color=col(con_hasta))
+        return v
+    if con_hasta:
+        return dict(tipo="contador", etiqueta=con_hasta["etiqueta"], valor=con_hasta["valor"], hasta=con_hasta["hasta"], color=col(con_hasta))
+    if len(datos) >= 2:
+        return dict(tipo="cifras", items=[dict(etiqueta=d["etiqueta"], valor=d["valor"], color=col(d)) for d in datos[:2]])
+    if datos:
+        d = datos[0]
+        if numero_texto(d["valor"]): return dict(tipo="contador", etiqueta=d["etiqueta"], valor=d["valor"], hasta="", color=col(d))
+        return dict(tipo="tarjeta", titulo=slug(d.get("pieza") or "estado", 24) + ".log",
+                    items=[dict(etiqueta=d["etiqueta"], valor=d["valor"], color=col(d))])
+    if e.get("paso") and g.get("ciclo"): return dict(tipo="pasos")
+    return dict(tipo="ninguno")
+
+def _panel_reglas(g, e, i):
+    gancho = g.get("gancho") or {}
+    if i == 0 and gancho.get("texto_pantalla"):
+        return dict(escena=e["id"], pieza=None, titular=_titular(gancho["texto_pantalla"], None, "problema", max_pal=8),
+                    visual=dict(tipo="ninguno"))
+    v = _visual_reglas(g, e)
+    datos = e.get("datos") or []; ciclo = g.get("ciclo") or []
+    if v["tipo"] == "barras": tit = _titular(v.get("titulo") or "El resultado", None, "bueno")
+    elif datos: tit = _titular(datos[0]["etiqueta"], None, COLOR_DATO_PANEL.get(datos[0].get("color"), "neutro"))
+    elif e.get("paso") and 0 < e["paso"] <= len(ciclo): tit = _titular(f"Paso {e['paso']}: {ciclo[e['paso'] - 1]['texto']}", None, "bueno")
+    else: tit = _titular(e.get("descripcion") or "", None, "neutro")
+    return dict(escena=e["id"], pieza=(datos[0]["pieza"] if datos else None), titular=tit, visual=v)
+
+def paneles_por_reglas(guion, params=None):
+    """Diseno sin IA: un panel por escena de escenas_con_panel con el visual que sale de sus datos."""
+    ids = set(escenas_con_panel(guion, params))
+    return [_panel_reglas(guion, e, i) for i, e in enumerate(guion.get("escenas") or []) if e["id"] in ids]
+
+def validar_paneles(bruto, guion, params=None):
+    """Paneles de Gemini -> lista limpia: solo escenas de escenas_con_panel (las que falten salen por reglas), titular de
+    6 palabras como mucho (8 el gancho), campos segun el tipo y ninguna cifra que no este en el guion."""
+    av = []; g = guion; escenas = {e["id"]: (i, e) for i, e in enumerate(g.get("escenas") or [])}
+    ids = escenas_con_panel(g, params); permitidos = set(ids); numeros = numeros_guion(g)
+    piezas = {p["id"] for p in g.get("piezas") or []}
+    corto = lambda t, n: re.sub(r"\s+", " ", str(t or "")).strip()[:n]
+    colp = lambda c, d="neutro": c if c in COLORES_PANEL else d
+    def cifra_ok(s, vacio=False):
+        if not str(s or "").strip(): return vacio
+        n = numero_texto(s)
+        return n is None or abs(n[1]) in numeros or any(abs(abs(n[1]) - x) < 1e-6 for x in numeros)
+    por_escena = {}
+    for p in (bruto or {}).get("paneles") or []:
+        try: eid = int(p.get("escena"))
+        except (TypeError, ValueError): continue
+        if eid not in permitidos: av.append(f"panel en la escena {eid}, que no tiene datos: fuera"); continue
+        if eid in por_escena: continue
+        i, e = escenas[eid]; reglas = _panel_reglas(g, e, i)
+        t = p.get("titular") or {}
+        gancho = (g.get("gancho") or {}).get("texto_pantalla") if i == 0 else None
+        if gancho: tit = _titular(gancho, t.get("clave"), colp(t.get("color"), "problema"), t.get("bloque"), max_pal=8)
+        elif _palabras(t.get("texto")): tit = _titular(t.get("texto"), t.get("clave"), colp(t.get("color")), t.get("bloque"))
+        else: tit = reglas["titular"]; av.append(f"escena {eid}: titular vacio, por reglas")
+        v = p.get("visual") or {}; tipo = v.get("tipo") if v.get("tipo") in TIPOS_VISUAL else "ninguno"
+        items = [dict(etiqueta=corto(it.get("etiqueta"), 22), valor=corto(it.get("valor"), 16), color=colp(it.get("color")),
+                      puntos=[float(x) for x in (it.get("puntos") or []) if isinstance(x, (int, float))][:12])
+                 for it in (v.get("items") or []) if isinstance(it, dict)]
+        out = dict(tipo=tipo)
+        if tipo == "contador":
+            out.update(etiqueta=corto(v.get("etiqueta"), 26), valor=corto(v.get("valor"), 16), hasta=corto(v.get("hasta"), 16), color=colp(v.get("color")))
+            ok = bool(out["valor"]) and cifra_ok(out["valor"]) and cifra_ok(out["hasta"], True)
+        elif tipo == "cifras":
+            out.update(items=items[:2]); ok = len(items) >= 2 and all(cifra_ok(it["valor"]) for it in items[:2])
+        elif tipo == "barras":
+            out.update(titulo=corto(v.get("titulo"), 34), resultado=corto(v.get("resultado"), 10), items=items[:4])
+            ok = 2 <= len(out["items"]) and all(numero_texto(it["valor"]) and cifra_ok(it["valor"]) for it in out["items"]) and cifra_ok(out["resultado"], True)
+        elif tipo == "linea":
+            series = [it for it in items if len(it["puntos"]) >= 3][:2]
+            out.update(titulo=corto(v.get("titulo"), 34), items=series); ok = bool(series)
+        elif tipo == "unidades":
+            tot = int(_num(v.get("total"), 100, 20, 100)); tot = min((20, 50, 100), key=lambda x: abs(x - tot))
+            n = numero_texto(v.get("valor"))
+            out.update(total=tot, valor=corto(v.get("valor"), 8), etiqueta=corto(v.get("etiqueta"), 26), color=colp(v.get("color"), "bueno"))
+            ok = bool(n) and 0 <= n[1] <= tot and cifra_ok(out["valor"])
+        elif tipo == "pasos":
+            ok = bool(g.get("ciclo")) and (e.get("paso") or e.get("ciclo_rapido"))
+            if ok and e.get("ciclo_rapido"):
+                rv = _visual_reglas(g, e); out.update({k: rv[k] for k in ("etiqueta", "valor", "hasta", "color") if k in rv})
+        elif tipo == "tarjeta":
+            out.update(titulo=corto(v.get("titulo"), 28) or "registro.json", items=items[:4])
+            ok = bool(out["items"]) and all(cifra_ok(it["valor"], True) for it in out["items"])
+        elif tipo == "medidor":
+            n = numero_texto(v.get("valor"))
+            out.update(valor=corto(v.get("valor"), 8), etiqueta=corto(v.get("etiqueta"), 26), color=colp(v.get("color"), "bueno"))
+            ok = bool(n) and 0 <= n[1] <= 100 and cifra_ok(out["valor"])
+        elif tipo == "cola":
+            out.update(etiqueta=corto(v.get("etiqueta"), 26), valor=corto(v.get("valor"), 8), hasta=corto(v.get("hasta"), 8), color=colp(v.get("color"), "problema"))
+            a, b = numero_texto(out["valor"]), numero_texto(out["hasta"] or out["valor"])
+            ok = bool(a and b) and 0 <= a[1] <= 999 and 0 <= b[1] <= 999 and cifra_ok(out["valor"]) and cifra_ok(out["hasta"], True)
+        else:
+            ok = True
+        comp = g.get("comparativa") or {}
+        if comp and comp.get("escena") == eid and tipo != "barras":
+            out = _visual_reglas(g, e); ok = True; av.append(f"escena {eid}: la comparativa va siempre en barras")
+        if not ok:
+            av.append(f"escena {eid}: visual {tipo} no valido (cifra que no esta en el guion o faltan campos): por reglas")
+            out = reglas["visual"]
+        pz = slug(p.get("pieza"), 30) if p.get("pieza") else None
+        por_escena[eid] = dict(escena=eid, pieza=pz if pz in piezas else reglas["pieza"], titular=tit, visual=out)
+    for eid in ids:
+        if eid not in por_escena:
+            i, e = escenas[eid]; por_escena[eid] = _panel_reglas(g, e, i); av.append(f"escena {eid}: sin panel de la IA, por reglas")
+    return [por_escena[eid] for eid in ids], av
+
+def usa_paneles(proy, params):
+    """True si el proyecto pinta los datos con Motion Canvas: parametro activo y etapa 'paneles' ya hecha. Sin la etapa,
+    Blender sigue dibujando los datos en 3D (y el gancho y la comparativa en el secuenciador), como antes."""
+    return paneles_activos(params) and bool(((proy or {}).get("archivos") or {}).get("paneles"))
+
+# ---------------------------------------------------------------- subtitulos (Motion Canvas)
+# Bloques de 3-6 palabras en mayusculas (Archivo Black, contorno oscuro); la palabra que suena, en el color 'bueno' del
+# tema. Van en el tercio inferior, por encima del margen que tapa la interfaz de las redes (LinkedIn, Reels...): la camara
+# del estilo tecnico deja libre esa franja (hueco) cuando el proyecto tiene la etapa 'subtitulos'.
+SUBTITULOS = {
+    "vertical": dict(margen=0.12, fs=0.0575, lineas=2, max_pal=6, ancho=0.86),
+    "horizontal": dict(margen=0.07, fs=0.026, lineas=2, max_pal=8, ancho=0.70),
+}
+
+def zona_subtitulos(params):
+    """Medidas en pixeles del cuadro final: tamano de letra, ancho de linea, centro (x, y) y fraccion del alto que la camara
+    deja libre abajo (margen + dos lineas + aire). En horizontal con paneles, centrados en la parte libre de la derecha."""
+    w, h, _ = resolucion(params)
+    vert = params.get("orientacion") == "vertical"
+    z = SUBTITULOS["vertical" if vert else "horizontal"]
+    fs = round(z["fs"] * w); alto = round(z["lineas"] * fs * 1.14)
+    x0 = 0
+    if not vert and paneles_activos(params): x0 = round(w * float(params.get("tam_panel", 0.40)) * 0.95)
+    cy = round(h * (1 - z["margen"]) - alto / 2); ancho = round((w - x0) * z["ancho"])
+    return dict(fs=fs, ancho=ancho, x=round(x0 + (w - x0) / 2), y=cy, alto=alto,
+                car_linea=int(ancho / (fs * 0.8)), max_pal=z["max_pal"], lineas=z["lineas"],     # Archivo Black: ~0.8 em
+                hueco=round(z["margen"] + alto / h + 0.025, 3))
+
+def subtitulos_activos(params):
+    return bool((params or {}).get("subtitulos", True))
+
+def usa_subtitulos(proy, params):
+    """True si el video lleva los subtitulos de Motion Canvas: parametro activo y etapa 'subtitulos' hecha."""
+    return subtitulos_activos(params) and bool(((proy or {}).get("archivos") or {}).get("subtitulos"))

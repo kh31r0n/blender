@@ -17,3 +17,5 @@ __pycache__/
 comic/referencias/
 *.png
 *.jpg
+node_modules/
+comic/motion/output/
