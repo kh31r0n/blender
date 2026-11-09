@@ -1,0 +1,46 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-08T07:25:09",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 170.7,
+      "tokens_entrada": 7900,
+      "tokens_salida": 13817,
+      "tokens_razonamiento": 7382
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-08T07:27:24",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 135.4,
+      "tokens_entrada": 19376,
+      "tokens_salida": 16119,
+      "tokens_razonamiento": 2774
+    },
+    "problemas": [
+      "escena 12: 'ficha_1' al hacer bajar 0.1 atraviesa 'peana_5': cambia el destino o el camino (origen y destino uno al lado del otro, sin piezas en medio)",
+      "escena 14: 'ficha_3' al hacer subir 0.1 atraviesa 'ficha_2': cambia el destino o el camino (origen y destino uno al lado del otro, sin piezas en medio)"
+    ],
+    "quedan": []
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-08T07:41:23",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 88.6,
+      "tokens_entrada": 7301,
+      "tokens_salida": 4676,
+      "tokens_razonamiento": 6327
+    },
+    "avisos": [],
+    "adornos": 65
+  }
+]

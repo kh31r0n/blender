@@ -1,0 +1,173 @@
+{
+  "descripcion": "Vídeo 3 para Managers: Cómo funcionan los Asistentes de Chat con IA (How AI Chat Assistants Work) por dentro y cómo generan retorno de inversión seguro en la empresa. Explicación ejecutiva sin código para directivos, de unos 100 segundos en formato VERTICAL 9:16 para LinkedIn móvil, con una maqueta isométrica en el TEMA CYBERPUNK: cada componente principal sobre su peana luminosa (forma 'peana', z=0, alto=0.04, componente encima en z=0.04) y unidos por mangueras de neón de borde a borde sin atravesar piezas.\n\nDISPOSICIÓN COMPACTA Y ENCUADRE PARA VERTICAL 9:16: coloca los componentes en un área muy compacta de x entre -0.9 y 0.9 m e y entre -0.9 y 0.9 m, con alturas de 0.4 a 0.75 m. En las escenas usa preferentemente plano 'medio' y 'detalle' con camara.objetivos apuntando a los componentes activos para que la maqueta llene siempre la pantalla vertical sin dejar suelo vacío.\n\nCOMPONENTES Y CÓMO DIBUJARLOS:\n1. Terminal del Empleado o Cliente (arriba-izquierda, x=-0.65, y=-0.55): un portátil azul cielo (base y pantalla panel) sobre su peana que envía una consulta de soporte o de recursos humanos.\n2. Escudo de Privacidad y DLP Corporativo (abajo-izquierda, x=-0.65, y=0.45): una garita roja (caja roja con barra superior en bisagra) sobre su peana. Filtra y enmascara datos personales o confidenciales antes de que salgan hacia el modelo de IA.\n3. Ensamblador de Contexto y Memoria de Sesión (centro, x=0.0, y=-0.05): una repisa metálica sobre su peana junto a una base de datos morada (cilindro morado) de historial. Sobre la repisa se apilan tres fichas de colores: reglas de la empresa (lima), resumen de la conversación previa (cielo) y la pregunta actual (naranja). Explica al manager que el modelo no tiene memoria propia: lee esta bandeja en cada turno, y resumir el historial ahorra costes de tokens.\n4. Cerebro LLM Corporativo (arriba-derecha, x=0.65, y=-0.55): una esfera azul grande sobre un pedestal de metal en su peana, que procesa la bandeja y redacta la respuesta al instante.\n5. Verificador de Políticas y Entrega (abajo-derecha, x=0.65, y=0.45): un servidor verde con una baliza lima encima sobre su peana, que comprueba que la respuesta cumple las normas de la empresa y la devuelve al usuario.\n\nRECORRIDO Y VENTAJAS PARA EL MANAGER:\nA) Privacidad y Cero Fuga de Datos: entra la consulta del usuario; si lleva datos sensibles sin permiso, la garita DLP actúa (alerta/aprobado al anonimizar), garantizando que la información confidencial nunca entrene modelos públicos.\nB) Cómo recuerda el Chat y cómo controlar la factura: en el Ensamblador central se apilan las tres fichas (reglas lima, resumen cielo de la base de datos morada y pregunta naranja). Compactar el historial evita pagar por conversaciones eternas.\nC) Velocidad 24/7 y Cumplimiento de Marca: el paquete viaja al LLM (flujo, ondas, rayo) y pasa por el Verificador verde (aprobado, flujo_vuelta), absorbiendo hasta el 80 % de consultas repetitivas en segundos con total consistencia normativa.\n\nNARRACIÓN:\nTono ejecutivo, claro y enfocado a negocio para Managers. Explica qué ocurre detrás de la ventana de chat y cada una de sus ventajas: atención 24/7 con coste marginal mínimo, protección de datos confidenciales con pasarela DLP, ahorro de factura compactando el historial de conversación y control de calidad corporativo.",
+  "creado": "20261108-194337",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "cyberpunk",
+    "formato": "3d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "motor": "cycles",
+    "duracion": 100.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "icono_flujo": "sobre",
+    "gancho": "dolor",
+    "datos_vivos": true,
+    "pasos_ciclo": true,
+    "comparativa": true,
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.blend",
+    "rig": "02_rig.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.blend",
+    "efectos": "04b_efectos.blend",
+    "previa": "previa/iter_1",
+    "render": "render/animacion.mp4",
+    "montaje": "final/final.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T19:47:48",
+      "archivo": "guion.json",
+      "escenas": 14,
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T19:49:13",
+      "archivo": "adornos.json",
+      "adornos": 31,
+      "por_tipo": {
+        "teclado": 1,
+        "pantalla": 3,
+        "cartel": 5,
+        "rejilla": 1,
+        "franja": 4,
+        "leds": 3,
+        "tornillos": 2,
+        "icono": 4,
+        "ranuras": 2,
+        "placa": 1,
+        "conector": 5
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T19:49:27",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 23,
+        "rayos_x": 22,
+        "adornos": 31,
+        "avisos_adornos": [
+          "llm_base: el cartel chocaba con llm_esfera y no hay sitio libre; se quita",
+          "chk_server: el cartel chocaba con chk_baliza; movido a u=0.20 v=0.80, poste +0.06 m"
+        ],
+        "_segundos": 14.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T19:49:29",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 24,
+        "piezas": 23,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T19:51:19",
+      "archivo": "tiempos.json",
+      "duracion": 94.802,
+      "fotogramas": 2275,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T19:51:21",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 1482,
+        "fotogramas": 2275,
+        "cambios_de_sombra": 26,
+        "piezas": 23,
+        "_segundos": 1.3
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T19:51:22",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 47,
+        "avisos": [],
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T19:51:40",
+      "archivo": "previa/iter_1",
+      "imagenes": 14
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T20:24:05",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/vinetas/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-194337_video_3_para_managers_como_funcionan_los/render/animacion.mp4",
+        "fotogramas": 2275,
+        "segundos": 1895.9,
+        "_segundos": 1896.5
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T20:25:08",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    }
+  ],
+  "vinetas": "render/vinetas"
+}

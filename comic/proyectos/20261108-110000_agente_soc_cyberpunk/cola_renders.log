@@ -1,0 +1,40 @@
+=== cyberpunk bloom minimo: etapas 11:16:24
+[1 objetos] dibujando las piezas, sus versiones de rayos X y el entorno
+    {"piezas": 58, "rayos_x": 57, "adornos": 88, "avisos_adornos": [], "_segundos": 0.7}
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/01_objetos.v3.blend
+[2 rig] esqueletos para personajes y elementos
+    {"huesos": 59, "piezas": 58, "desvio_max": 0.0, "_segundos": 0.9}
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/02_rig.v3.blend
+[4 animacion] personajes, escenografia y camara al ritmo del audio
+    {"claves": 2110, "fotogramas": 3246, "cambios_de_sombra": 79, "piezas": 58, "_segundos": 1.0}
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/04_animacion.v3.blend
+[efectos] bocadillos, cartelas, onomatopeyas y lineas de accion
+    {"efectos": 26, "avisos": [], "_segundos": 0.9}
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/04b_efectos.v3.blend
+[5 render] EEVEE 1920x1080, 24 fps
+=== cyberpunk: fundido comun, tandas, carteles, biohazard 13:36:04
+[efectos] bocadillos, cartelas, onomatopeyas y lineas de accion
+    {"efectos": 26, "avisos": [], "_segundos": 1.8}
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/04b_efectos.v9.blend
+[5 render] EEVEE 1920x1080, 24 fps
+=== cyberpunk: alertas en malla (v10) 13:57:34
+[5 render] EEVEE 1920x1080, 24 fps
+=== cyberpunk: cerebro azul con surcos de neon, hijos ocultos con su pieza 14:25:10
+[5 render] EEVEE 1920x1080, 24 fps
+=== cyberpunk: cerebro azul con trazos de Line Art en cian, hijos ocultos con su pieza 14:27:38
+[5 render] EEVEE 1920x1080, 24 fps
+=== cyberpunk: cerebro azul, trazos cian, contraluz fria (sin vetas rosadas) 14:28:51
+[5 render] EEVEE 1920x1080, 24 fps
+=== cyberpunk: cerebro azul, trazos cian, contraluz fria, cartel LLM 14:31:32
+[5 render] EEVEE 1920x1080, 24 fps
+    3246 fotogramas en 1935.4 s
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/animacion.v2.mp4
+[montaje] cartelas, video final y pagina de comic
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/final/final.v2.mp4
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/final/pagina_comic.v2.png
+    -> /home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/final/animacion.v2.gif
+=== cyberpunk terminado 15:05:03
+=== cyberpunk: cola SQS nueva (biohazards en el canal), carteles sin z-fighting 15:39:16
+[5 render] EEVEE 1920x1080, 24 fps
+=== cyberpunk: cola SQS nueva, carteles sin z-fighting, rotulos con borde 15:41:12
+[5 render] EEVEE 1920x1080, 24 fps

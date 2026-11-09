@@ -1,0 +1,7 @@
+¿Cuántos miles de euros pierde tu aerolínea por usar reglas de precio fijas? El Aprendizaje por Refuerzo lo cambia.
+
+Imagina un vuelo Madrid-París de 180 asientos. Con reglas fijas, vendes muy barato en temporada alta y despegas con el avión vacío en baja. Un agente de IA aprende en un simulador ajustando precios entre 60 y 400 euros. Respeta siempre tus límites de negocio. El resultado es, por ejemplo, un 15 % más de ingresos por vuelo.
+
+¿En qué proceso de tu empresa crees que la IA podría optimizar los márgenes?
+
+#InteligenciaArtificial #Pricing #ReinforcementLearning #Management

@@ -1,0 +1,5 @@
+Aprendizaje por Refuerzo para Pricing: Caso Aerolínea
+
+¿Pierdes dinero con precios fijos? Descubre cómo el Aprendizaje por Refuerzo ayuda a una aerolínea a optimizar el precio de 180 asientos. Explicación ejecutiva de cómo un agente virtual aprende en un simulador para aumentar los ingresos un 15 %.
+
+#ReinforcementLearning #Pricing #InteligenciaArtificial #Vervux

@@ -1,0 +1,2020 @@
+{
+  "estilo": "tecnico",
+  "titulo": "LangGraph en Producción",
+  "sinopsis": "Descubre cómo LangGraph gestiona estados tipados, paralelismo, ciclos, persistencia y pausas asíncronas para flujos complejos.",
+  "objeto": {
+    "nombre": "Arquitectura LangGraph",
+    "alto": 1.0
+  },
+  "suelo": "baldosa",
+  "tema": "neon",
+  "piezas": [
+    {
+      "id": "peana_1",
+      "nombre": "Peana Cliente",
+      "forma": "peana",
+      "x": -2.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "base_portatil",
+      "nombre": "Base Portátil",
+      "forma": "caja",
+      "x": -2.0,
+      "y": -0.04,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_oscuro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.2,
+      "alto": 0.02
+    },
+    {
+      "id": "pant_portatil",
+      "nombre": "Pantalla Portátil",
+      "forma": "panel",
+      "x": -2.0,
+      "y": 0.06,
+      "z": 0.06,
+      "rot_x": 10.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_oscuro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "alto": 0.2,
+      "grosor": 0.02
+    },
+    {
+      "id": "manguera_1",
+      "nombre": "Conexión Cliente Grafo",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -1.75,
+          0.0,
+          0.08
+        ],
+        [
+          -1.35,
+          0.0,
+          0.08
+        ],
+        [
+          -0.9,
+          0.0,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "peana_3",
+      "nombre": "Peana Grafo",
+      "forma": "peana",
+      "x": -0.4,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 1.0,
+      "fondo": 0.8,
+      "alto": 0.04
+    },
+    {
+      "id": "carcasa_grafo",
+      "nombre": "Motor StateGraph",
+      "forma": "caja",
+      "x": -0.4,
+      "y": 0.0,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "verde",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.9,
+      "fondo": 0.7,
+      "alto": 0.65
+    },
+    {
+      "id": "nodo_in",
+      "nombre": "Nodo Entrada",
+      "forma": "esfera",
+      "x": -0.7,
+      "y": 0.0,
+      "z": 0.3,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "radio": 0.08
+    },
+    {
+      "id": "nodo_t1",
+      "nombre": "Nodo Validación 1",
+      "forma": "caja",
+      "x": -0.4,
+      "y": 0.15,
+      "z": 0.3,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "ancho": 0.15,
+      "fondo": 0.15,
+      "alto": 0.15
+    },
+    {
+      "id": "nodo_t2",
+      "nombre": "Nodo Validación 2",
+      "forma": "caja",
+      "x": -0.4,
+      "y": -0.15,
+      "z": 0.3,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "ancho": 0.15,
+      "fondo": 0.15,
+      "alto": 0.15
+    },
+    {
+      "id": "nodo_ag",
+      "nombre": "Nodo Agente",
+      "forma": "esfera",
+      "x": -0.1,
+      "y": 0.0,
+      "z": 0.3,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "radio": 0.1
+    },
+    {
+      "id": "arista_1",
+      "nombre": "Arista a Tool 1",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "radio": 0.01,
+      "camino": [
+        [
+          -0.62,
+          0.0,
+          0.37
+        ],
+        [
+          -0.48,
+          0.15,
+          0.37
+        ]
+      ]
+    },
+    {
+      "id": "arista_2",
+      "nombre": "Arista a Tool 2",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "radio": 0.01,
+      "camino": [
+        [
+          -0.62,
+          0.0,
+          0.37
+        ],
+        [
+          -0.48,
+          -0.15,
+          0.37
+        ]
+      ]
+    },
+    {
+      "id": "arista_3",
+      "nombre": "Arista desde Tool 1",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "radio": 0.01,
+      "camino": [
+        [
+          -0.32,
+          0.15,
+          0.37
+        ],
+        [
+          -0.18,
+          0.0,
+          0.37
+        ]
+      ]
+    },
+    {
+      "id": "arista_4",
+      "nombre": "Arista desde Tool 2",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "radio": 0.01,
+      "camino": [
+        [
+          -0.32,
+          -0.15,
+          0.37
+        ],
+        [
+          -0.18,
+          0.0,
+          0.37
+        ]
+      ]
+    },
+    {
+      "id": "arista_ciclo",
+      "nombre": "Arista Condicional Ciclo",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_grafo",
+      "bisagra": "ninguna",
+      "radio": 0.01,
+      "camino": [
+        [
+          -0.1,
+          0.1,
+          0.39
+        ],
+        [
+          -0.1,
+          0.28,
+          0.39
+        ],
+        [
+          -0.7,
+          0.28,
+          0.39
+        ],
+        [
+          -0.7,
+          0.08,
+          0.39
+        ]
+      ]
+    },
+    {
+      "id": "peana_2",
+      "nombre": "Peana Estado",
+      "forma": "peana",
+      "x": -1.25,
+      "y": -0.85,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.56,
+      "fondo": 0.44,
+      "alto": 0.04
+    },
+    {
+      "id": "bandeja",
+      "nombre": "Bandeja Estado",
+      "forma": "caja",
+      "x": -1.25,
+      "y": -0.85,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.42,
+      "fondo": 0.26,
+      "alto": 0.05
+    },
+    {
+      "id": "bloque_1",
+      "nombre": "Clave 1",
+      "forma": "caja",
+      "x": -1.38,
+      "y": -0.85,
+      "z": 0.09,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.09,
+      "fondo": 0.1,
+      "alto": 0.15
+    },
+    {
+      "id": "bloque_2",
+      "nombre": "Clave 2",
+      "forma": "caja",
+      "x": -1.25,
+      "y": -0.85,
+      "z": 0.09,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.09,
+      "fondo": 0.1,
+      "alto": 0.15
+    },
+    {
+      "id": "bloque_3",
+      "nombre": "Clave 3",
+      "forma": "caja",
+      "x": -1.12,
+      "y": -0.85,
+      "z": 0.09,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.09,
+      "fondo": 0.1,
+      "alto": 0.15
+    },
+    {
+      "id": "manguera_2",
+      "nombre": "Conexión Grafo Estado",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.4,
+          -0.4,
+          0.06
+        ],
+        [
+          -0.4,
+          -0.85,
+          0.06
+        ],
+        [
+          -0.97,
+          -0.85,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "peana_4",
+      "nombre": "Peana Tools",
+      "forma": "peana",
+      "x": -0.4,
+      "y": 1.05,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.76,
+      "fondo": 0.48,
+      "alto": 0.04
+    },
+    {
+      "id": "tool_1",
+      "nombre": "Microservicio Pedidos",
+      "forma": "caja",
+      "x": -0.58,
+      "y": 1.05,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.24,
+      "fondo": 0.24,
+      "alto": 0.36
+    },
+    {
+      "id": "tool_2",
+      "nombre": "Microservicio Antifraude",
+      "forma": "caja",
+      "x": -0.22,
+      "y": 1.05,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.24,
+      "fondo": 0.24,
+      "alto": 0.36
+    },
+    {
+      "id": "manguera_3",
+      "nombre": "Conexión Grafo Tool 1",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.55,
+          0.4,
+          0.06
+        ],
+        [
+          -0.58,
+          0.81,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "manguera_3b",
+      "nombre": "Conexión Grafo Tool 2",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.25,
+          0.4,
+          0.06
+        ],
+        [
+          -0.22,
+          0.81,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "peana_5",
+      "nombre": "Peana Checkpointer",
+      "forma": "peana",
+      "x": 0.35,
+      "y": -0.92,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.68,
+      "fondo": 0.56,
+      "alto": 0.04
+    },
+    {
+      "id": "bd_1",
+      "nombre": "BD Base",
+      "forma": "cilindro",
+      "x": 0.48,
+      "y": -0.92,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "morado",
+      "material": "solido",
+      "detalle": "nervado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.15
+    },
+    {
+      "id": "bd_2",
+      "nombre": "BD Medio",
+      "forma": "cilindro",
+      "x": 0.48,
+      "y": -0.92,
+      "z": 0.19,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "morado",
+      "material": "solido",
+      "detalle": "nervado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.15
+    },
+    {
+      "id": "bd_3",
+      "nombre": "BD Tope",
+      "forma": "cilindro",
+      "x": 0.48,
+      "y": -0.92,
+      "z": 0.34,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "morado",
+      "material": "solido",
+      "detalle": "nervado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.15
+    },
+    {
+      "id": "ficha_1",
+      "nombre": "Checkpoint 1",
+      "forma": "cilindro",
+      "x": 0.16,
+      "y": -1.04,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.04
+    },
+    {
+      "id": "ficha_2",
+      "nombre": "Checkpoint 2",
+      "forma": "cilindro",
+      "x": 0.16,
+      "y": -0.92,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.04
+    },
+    {
+      "id": "ficha_3",
+      "nombre": "Checkpoint 3",
+      "forma": "cilindro",
+      "x": 0.16,
+      "y": -0.8,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.04
+    },
+    {
+      "id": "manguera_4",
+      "nombre": "Conexión Grafo BD",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.05,
+          -0.38,
+          0.06
+        ],
+        [
+          0.05,
+          -0.64,
+          0.06
+        ],
+        [
+          0.35,
+          -0.64,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "peana_6",
+      "nombre": "Peana Garita",
+      "forma": "peana",
+      "x": 0.9,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "garita",
+      "nombre": "Garita Interrupt",
+      "forma": "caja",
+      "x": 0.9,
+      "y": 0.0,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.4
+    },
+    {
+      "id": "barrera",
+      "nombre": "Barrera",
+      "forma": "varilla",
+      "x": 0.9,
+      "y": -0.16,
+      "z": 0.26,
+      "rot_x": 90.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "atras",
+      "radio": 0.02,
+      "alto": 0.25
+    },
+    {
+      "id": "manguera_5",
+      "nombre": "Conexión Grafo Garita",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.1,
+          0.0,
+          0.06
+        ],
+        [
+          0.65,
+          0.0,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "peana_7",
+      "nombre": "Peana Monitor",
+      "forma": "peana",
+      "x": 0.9,
+      "y": 0.95,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "monitor_pie",
+      "nombre": "Pie Monitor",
+      "forma": "cilindro",
+      "x": 0.9,
+      "y": 0.95,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.2
+    },
+    {
+      "id": "monitor_pant",
+      "nombre": "Pantalla Monitor",
+      "forma": "panel",
+      "x": 0.9,
+      "y": 0.95,
+      "z": 0.26,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_oscuro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "alto": 0.2,
+      "grosor": 0.02
+    },
+    {
+      "id": "manguera_6",
+      "nombre": "Conexión Garita Monitor",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.9,
+          0.25,
+          0.06
+        ],
+        [
+          0.9,
+          0.75,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "peana_8",
+      "nombre": "Peana Pasarela",
+      "forma": "peana",
+      "x": 1.9,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.6,
+      "fondo": 0.6,
+      "alto": 0.04
+    },
+    {
+      "id": "pasarela",
+      "nombre": "Servidor Pasarela",
+      "forma": "caja",
+      "x": 1.9,
+      "y": 0.0,
+      "z": 0.04,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "rejilla",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.6
+    },
+    {
+      "id": "baliza",
+      "nombre": "Baliza Confirmación",
+      "forma": "cilindro",
+      "x": 1.9,
+      "y": 0.0,
+      "z": 0.64,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.1
+    },
+    {
+      "id": "manguera_7",
+      "nombre": "Conexión Garita Pasarela",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          1.15,
+          0.0,
+          0.06
+        ],
+        [
+          1.6,
+          0.0,
+          0.06
+        ]
+      ]
+    }
+  ],
+  "accesorios": [],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "Presentación del problema y aparición del cliente.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En producción, procesar un reembolso requiere orquestar múltiples pasos y validaciones.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_1",
+        "base_portatil",
+        "pant_portatil"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "base_portatil"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "pant_portatil",
+          "momento": 0.3,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "base_portatil",
+        "objetivos": [
+          "peana_1",
+          "base_portatil",
+          "pant_portatil"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 5.0
+    },
+    {
+      "id": 2,
+      "descripcion": "Aparición del motor del grafo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Las cadenas DAG rígidas y los agentes de caja negra se quedan cortos.",
+          "emocion": "neutral"
+        },
+        {
+          "quien": "narrador",
+          "texto": "Aquí entra LangGraph.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "peana_3",
+        "carcasa_grafo"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "carcasa_grafo"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "carcasa_grafo",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 3,
+      "descripcion": "Interior del grafo: StateGraph.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "LangGraph funciona como un StateGraph: un motor que ejecuta nodos y aristas de forma determinista.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "manguera_1",
+        "nodo_in",
+        "nodo_t1",
+        "nodo_t2",
+        "nodo_ag",
+        "arista_1",
+        "arista_2",
+        "arista_3",
+        "arista_4"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_grafo"
+      ],
+      "resaltar": [
+        "nodo_in",
+        "nodo_ag"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_1",
+          "momento": 0.2,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "carcasa_grafo",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 4,
+      "descripcion": "Aparición de la bandeja de estado.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El corazón del sistema es el State, un estado compartido y tipado.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_2",
+        "bandeja",
+        "manguera_2"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "bandeja"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "bandeja",
+        "objetivos": [
+          "peana_2",
+          "bandeja",
+          "carcasa_grafo"
+        ],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 5.0
+    },
+    {
+      "id": 5,
+      "descripcion": "Bloques del estado y reducers.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Cada nodo devuelve actualizaciones, que se combinan mediante reducers como add_messages.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "bloque_1",
+        "bloque_2",
+        "bloque_3"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "bloque_1",
+        "bloque_2",
+        "bloque_3"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "bandeja",
+        "objetivos": [
+          "peana_2",
+          "bandeja",
+          "bloque_1",
+          "bloque_2",
+          "bloque_3"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 6,
+      "descripcion": "Aparición de las tools para paralelismo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Para ganar velocidad, LangGraph permite paralelismo dinámico con la API Send.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "peana_4",
+        "tool_1",
+        "tool_2",
+        "manguera_3",
+        "manguera_3b"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "tool_1",
+        "tool_2"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_4",
+        "objetivos": [
+          "peana_4",
+          "tool_1",
+          "tool_2",
+          "carcasa_grafo"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 7,
+      "descripcion": "Ejecución paralela hacia las tools.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El grafo lanza consultas simultáneas a los microservicios de pedidos y antifraude.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_grafo"
+      ],
+      "resaltar": [
+        "nodo_t1",
+        "nodo_t2"
+      ],
+      "animaciones": [
+        {
+          "pieza": "tool_1",
+          "movimiento": "vibrar",
+          "inicio": 0.35,
+          "fin": 0.75,
+          "cantidad": 0.0
+        },
+        {
+          "pieza": "tool_2",
+          "movimiento": "vibrar",
+          "inicio": 0.35,
+          "fin": 0.75,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_3",
+          "momento": 0.1,
+          "duracion": 3.8
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_3b",
+          "momento": 0.15,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "carcasa_grafo",
+        "objetivos": [
+          "carcasa_grafo",
+          "tool_1",
+          "tool_2"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 8,
+      "descripcion": "Respuestas y combinación con reducers.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Las respuestas vuelven y los reducers integran los datos sin colisiones ni sobrescrituras.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_grafo"
+      ],
+      "resaltar": [
+        "bandeja"
+      ],
+      "animaciones": [
+        {
+          "pieza": "bloque_2",
+          "movimiento": "vibrar",
+          "inicio": 0.5,
+          "fin": 0.85,
+          "cantidad": 0.0
+        },
+        {
+          "pieza": "bloque_3",
+          "movimiento": "vibrar",
+          "inicio": 0.55,
+          "fin": 0.9,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_3",
+          "momento": 0.1,
+          "duracion": 3.8
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_3b",
+          "momento": 0.15,
+          "duracion": 3.8
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_2",
+          "momento": 0.3,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "carcasa_grafo",
+        "objetivos": [
+          "carcasa_grafo",
+          "bandeja",
+          "tool_1",
+          "tool_2"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 9,
+      "descripcion": "Introducción de la arista condicional.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Pero el mundo real es impredecible. ¿Qué pasa si falta información?",
+          "emocion": "misterioso"
+        }
+      ],
+      "aparecen": [
+        "arista_ciclo"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_grafo"
+      ],
+      "resaltar": [
+        "arista_ciclo"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "carcasa_grafo",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 5.0
+    },
+    {
+      "id": 10,
+      "descripcion": "Flujo por el ciclo controlado.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Las aristas condicionales permiten crear ciclos controlados, devolviendo el flujo para reintentos.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_grafo"
+      ],
+      "resaltar": [
+        "arista_ciclo",
+        "nodo_ag"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "arista_ciclo",
+          "momento": 0.1,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "carcasa_grafo",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 11,
+      "descripcion": "Aparición del Checkpointer.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La fiabilidad es clave. El Checkpointer guarda el estado completo en una base de datos.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_5",
+        "bd_1",
+        "bd_2",
+        "bd_3",
+        "manguera_4"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "bd_1"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_5",
+        "objetivos": [
+          "peana_5",
+          "bd_1",
+          "bd_2",
+          "bd_3",
+          "ficha_1",
+          "ficha_2",
+          "ficha_3"
+        ],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 12,
+      "descripcion": "Super-steps y fichas.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Cada super-step genera un checkpoint indexado por thread_id, creando un historial inmutable.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "ficha_1",
+        "ficha_2",
+        "ficha_3"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "ficha_1",
+        "ficha_2",
+        "ficha_3"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_4",
+          "momento": 0.1,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "peana_5",
+        "objetivos": [
+          "peana_5",
+          "bd_1",
+          "bd_2",
+          "bd_3",
+          "ficha_1",
+          "ficha_2",
+          "ficha_3"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 13,
+      "descripcion": "Tolerancia a fallos.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Si un worker falla, otro puede retomar la ejecución exactamente donde se quedó.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "carcasa_grafo"
+      ],
+      "animaciones": [
+        {
+          "pieza": "carcasa_grafo",
+          "movimiento": "vibrar",
+          "inicio": 0.1,
+          "fin": 0.5,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "alerta",
+          "pieza": "carcasa_grafo",
+          "momento": 0.2,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "carcasa_grafo",
+        "objetivos": [
+          "peana_1",
+          "peana_2",
+          "carcasa_grafo",
+          "tool_1",
+          "tool_2",
+          "peana_5",
+          "bd_3"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 14,
+      "descripcion": "Time-travel.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Además, permite hacer time-travel: rebobinar a un checkpoint anterior y bifurcar el flujo.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "ficha_2"
+      ],
+      "animaciones": [
+        {
+          "pieza": "ficha_2",
+          "movimiento": "subir",
+          "inicio": 0.15,
+          "fin": 0.65,
+          "cantidad": 0.08
+        },
+        {
+          "pieza": "ficha_2",
+          "movimiento": "volver",
+          "inicio": 0.75,
+          "fin": 0.95,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flecha_giro",
+          "pieza": "bd_3",
+          "momento": 0.2,
+          "duracion": 4.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "peana_5",
+        "objetivos": [
+          "peana_5",
+          "bd_1",
+          "bd_2",
+          "bd_3",
+          "ficha_1",
+          "ficha_2",
+          "ficha_3"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 15,
+      "descripcion": "Aparición de la Garita Human-in-the-loop.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Algunas decisiones requieren supervisión. LangGraph integra Human-in-the-loop de forma nativa.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_6",
+        "garita",
+        "barrera",
+        "manguera_5"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "garita"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "garita",
+        "objetivos": [
+          "peana_6",
+          "garita",
+          "barrera",
+          "carcasa_grafo"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 16,
+      "descripcion": "Aparición de la Consola del Supervisor.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Cuando el reembolso supera el umbral, el nodo ejecuta un interrupt.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_7",
+        "monitor_pie",
+        "monitor_pant",
+        "manguera_6"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "monitor_pant"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_5",
+          "momento": 0.2,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_7",
+        "objetivos": [
+          "peana_6",
+          "garita",
+          "peana_7",
+          "monitor_pant"
+        ],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 17,
+      "descripcion": "Liberación del worker.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El estado se pausa y el worker queda libre, sin quedarse bloqueado esperando.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "garita"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "garita",
+          "momento": 0.2,
+          "duracion": 4.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "garita",
+        "objetivos": [
+          "peana_6",
+          "garita",
+          "barrera",
+          "carcasa_grafo"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 18,
+      "descripcion": "Aprobación asíncrona.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El supervisor revisa el caso asíncronamente en su consola y lo aprueba.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "monitor_pant"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_6",
+          "momento": 0.1,
+          "duracion": 3.8
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "monitor_pant",
+          "momento": 0.3,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "monitor_pant",
+        "objetivos": [
+          "peana_6",
+          "garita",
+          "peana_7",
+          "monitor_pant"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 19,
+      "descripcion": "Command resume y apertura de barrera.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Al aprobar, se envía un Command resume. La barrera se abre y el grafo despierta.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_8",
+        "pasarela",
+        "baliza",
+        "manguera_7"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "barrera"
+      ],
+      "animaciones": [
+        {
+          "pieza": "barrera",
+          "movimiento": "abrir",
+          "inicio": 0.35,
+          "fin": 0.75,
+          "cantidad": 75.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_6",
+          "momento": 0.1,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "garita",
+        "objetivos": [
+          "garita",
+          "barrera",
+          "monitor_pant",
+          "pasarela"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 20,
+      "descripcion": "Ejecución del pago.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La ejecución se reanuda desde ese mismo punto y la pasarela procesa el reembolso.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "pasarela"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_7",
+          "momento": 0.1,
+          "duracion": 3.8
+        },
+        {
+          "tipo": "rayo",
+          "pieza": "baliza",
+          "momento": 0.3,
+          "duracion": 3.8
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "pasarela",
+          "momento": 0.35,
+          "duracion": 3.8
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "pasarela",
+        "objetivos": [
+          "carcasa_grafo",
+          "garita",
+          "monitor_pant",
+          "pasarela",
+          "baliza",
+          "peana_5"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 21,
+      "descripcion": "Resumen final con todo funcionando.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Con estado tipado, paralelismo seguro y persistencia, LangGraph lleva tus flujos a producción.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_grafo"
+      ],
+      "resaltar": [
+        "carcasa_grafo",
+        "bandeja",
+        "bd_3",
+        "garita",
+        "pasarela"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_1",
+          "momento": 0.1,
+          "duracion": 4.5
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_3",
+          "momento": 0.2,
+          "duracion": 4.5
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_3b",
+          "momento": 0.25,
+          "duracion": 4.5
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_4",
+          "momento": 0.3,
+          "duracion": 4.5
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_7",
+          "momento": 0.35,
+          "duracion": 4.5
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "objeto",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 8.0
+    }
+  ],
+  "personajes": [],
+  "escenarios": []
+}

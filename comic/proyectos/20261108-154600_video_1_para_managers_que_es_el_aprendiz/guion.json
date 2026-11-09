@@ -1,0 +1,1430 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Aprendizaje por Refuerzo para Pricing",
+  "sinopsis": "Explicación de cómo un agente de Reinforcement Learning optimiza los precios de un vuelo Madrid-París, maximizando ingresos y evitando asientos vacíos.",
+  "objeto": {
+    "nombre": "Sistema de Pricing con RL",
+    "alto": 0.8
+  },
+  "suelo": "cemento",
+  "tema": "cyberpunk",
+  "piezas": [
+    {
+      "id": "p_sim",
+      "nombre": "Peana del Simulador",
+      "forma": "peana",
+      "x": -0.75,
+      "y": -0.7505,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "sim_server",
+      "nombre": "Servidor del Simulador",
+      "forma": "caja",
+      "x": -0.86,
+      "y": -0.7505,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.15,
+      "fondo": 0.25,
+      "alto": 0.4
+    },
+    {
+      "id": "s1",
+      "nombre": "Asientos 1",
+      "forma": "caja",
+      "x": -0.71,
+      "y": -0.8705,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.08,
+      "alto": 0.1
+    },
+    {
+      "id": "s2",
+      "nombre": "Asientos 2",
+      "forma": "caja",
+      "x": -0.59,
+      "y": -0.8705,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.08,
+      "alto": 0.1
+    },
+    {
+      "id": "s3",
+      "nombre": "Asientos 3",
+      "forma": "caja",
+      "x": -0.71,
+      "y": -0.7505,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.08,
+      "alto": 0.1
+    },
+    {
+      "id": "s4",
+      "nombre": "Asientos 4",
+      "forma": "caja",
+      "x": -0.59,
+      "y": -0.7505,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.08,
+      "alto": 0.1
+    },
+    {
+      "id": "s5",
+      "nombre": "Asientos 5",
+      "forma": "caja",
+      "x": -0.71,
+      "y": -0.6305,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.08,
+      "alto": 0.1
+    },
+    {
+      "id": "s6",
+      "nombre": "Asientos 6",
+      "forma": "caja",
+      "x": -0.59,
+      "y": -0.6305,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.08,
+      "alto": 0.1
+    },
+    {
+      "id": "p_agent",
+      "nombre": "Peana del Agente",
+      "forma": "peana",
+      "x": -0.75,
+      "y": 0.6505,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "agent_server",
+      "nombre": "Servidor del Agente",
+      "forma": "caja",
+      "x": -0.75,
+      "y": 0.6505,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "verde",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.25,
+      "fondo": 0.25,
+      "alto": 0.5
+    },
+    {
+      "id": "p_guard",
+      "nombre": "Peana de Límites",
+      "forma": "peana",
+      "x": 0.65,
+      "y": 0.6505,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "guard_box",
+      "nombre": "Garita de Límites",
+      "forma": "caja",
+      "x": 0.65,
+      "y": 0.6505,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.3
+    },
+    {
+      "id": "guard_bar",
+      "nombre": "Barrera de Límites",
+      "forma": "varilla",
+      "x": 0.55,
+      "y": 0.5405,
+      "z": 0.25,
+      "rot_x": 0.0,
+      "rot_y": -90.0,
+      "rot_z": 0.0,
+      "color": "amarillo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "izquierda",
+      "radio": 0.02,
+      "alto": 0.25
+    },
+    {
+      "id": "p_reward",
+      "nombre": "Peana de Recompensa",
+      "forma": "peana",
+      "x": 0.0,
+      "y": -0.3005,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "reward_cyl",
+      "nombre": "Motor de Recompensa",
+      "forma": "cilindro",
+      "x": -0.08,
+      "y": -0.3005,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "morado",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.1,
+      "alto": 0.3
+    },
+    {
+      "id": "t1",
+      "nombre": "Ingreso 1",
+      "forma": "disco",
+      "x": 0.1,
+      "y": -0.3005,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.03
+    },
+    {
+      "id": "t2",
+      "nombre": "Ingreso 2",
+      "forma": "disco",
+      "x": 0.11,
+      "y": -0.2905,
+      "z": 0.0908,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.03
+    },
+    {
+      "id": "t3",
+      "nombre": "Ingreso 3",
+      "forma": "disco",
+      "x": 0.09,
+      "y": -0.3105,
+      "z": 0.1408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.03
+    },
+    {
+      "id": "p_prod",
+      "nombre": "Peana de Producción",
+      "forma": "peana",
+      "x": 0.75,
+      "y": -0.8505,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "prod_base",
+      "nombre": "Base del Monitor",
+      "forma": "caja",
+      "x": 0.65,
+      "y": -0.8505,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.08,
+      "fondo": 0.08,
+      "alto": 0.2
+    },
+    {
+      "id": "prod_screen",
+      "nombre": "Pantalla de Producción",
+      "forma": "panel",
+      "x": 0.65,
+      "y": -0.8505,
+      "z": 0.24,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "alto": 0.25,
+      "grosor": 0.04
+    },
+    {
+      "id": "prod_beacon",
+      "nombre": "Baliza de Producción",
+      "forma": "cilindro",
+      "x": 0.9,
+      "y": -0.8505,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.06,
+      "alto": 0.15
+    },
+    {
+      "id": "h_sim_ag",
+      "nombre": "Estado al Agente",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.85,
+          -0.5505,
+          0.06
+        ],
+        [
+          -0.85,
+          0.4505,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "h_ag_sim",
+      "nombre": "Acción al Simulador",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.65,
+          0.4505,
+          0.06
+        ],
+        [
+          -0.65,
+          -0.5505,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "h_ag_guard",
+      "nombre": "Acción a Límites",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.55,
+          0.6505,
+          0.06
+        ],
+        [
+          0.45,
+          0.6505,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "h_guard_rew",
+      "nombre": "Acción a Recompensa",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.65,
+          0.4505,
+          0.06
+        ],
+        [
+          0.65,
+          -0.3005,
+          0.06
+        ],
+        [
+          0.2,
+          -0.3005,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "h_rew_ag",
+      "nombre": "Recompensa al Agente",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.55,
+          0.6005,
+          0.06
+        ],
+        [
+          -0.4,
+          0.6005,
+          0.06
+        ],
+        [
+          -0.4,
+          -0.3005,
+          0.06
+        ],
+        [
+          -0.2,
+          -0.3005,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "h_guard_prod",
+      "nombre": "Acción a Producción",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.85,
+          0.6505,
+          0.06
+        ],
+        [
+          0.95,
+          0.6505,
+          0.06
+        ],
+        [
+          0.95,
+          -0.6505,
+          0.06
+        ],
+        [
+          0.75,
+          -0.6505,
+          0.06
+        ]
+      ]
+    }
+  ],
+  "accesorios": [
+    {
+      "tipo": "enchufe",
+      "x": -1.2,
+      "y": -0.2005,
+      "color": "gris_oscuro"
+    }
+  ],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "Presentación del problema con reglas fijas en el simulador.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "¿Cuántos miles de euros pierde tu aerolínea por usar reglas de precio fijas?",
+          "emocion": "misterioso"
+        }
+      ],
+      "aparecen": [
+        "p_sim",
+        "sim_server",
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "sim_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "alerta",
+          "pieza": "sim_server",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "sim_server",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [],
+      "paso": 0,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 2,
+      "descripcion": "El problema en temporada alta: llenado rápido y barato.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En tu vuelo Madrid-París, vendes los 180 asientos demasiado rápido y barato en temporada alta.",
+          "emocion": "enfadado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rechazo",
+          "pieza": "s1",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "s2",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "sim_server",
+          "etiqueta": "Asientos libres",
+          "valor": "180",
+          "hasta": "0",
+          "color": "rojo"
+        },
+        {
+          "pieza": "sim_server",
+          "etiqueta": "Precio",
+          "valor": "90 €",
+          "hasta": "",
+          "color": "blanco"
+        }
+      ],
+      "paso": 0,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 3,
+      "descripcion": "El problema en temporada baja: asientos vacíos.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Y en temporada baja, el avión despega con asientos vacíos.",
+          "emocion": "triste"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "vapor",
+          "pieza": "sim_server",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "s5",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "sim_server",
+          "etiqueta": "Asientos libres",
+          "valor": "85",
+          "hasta": "",
+          "color": "rojo"
+        }
+      ],
+      "paso": 0,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 4,
+      "descripcion": "Introducción del agente de Aprendizaje por Refuerzo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El Aprendizaje por Refuerzo cambia esto. Conoce a tu nuevo agente de precios.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "p_agent",
+        "agent_server"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agent_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "agent_server",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agent_server",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "agent_server",
+          "etiqueta": "Agente",
+          "valor": "Iniciando",
+          "hasta": "",
+          "color": "lima"
+        }
+      ],
+      "paso": 0,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 5,
+      "descripcion": "El agente observa el estado actual del vuelo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El agente mira el estado: cuántos asientos quedan libres y cuántos días faltan.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "h_sim_ag",
+        "h_ag_sim"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "sim_server",
+        "agent_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "h_sim_ag",
+          "momento": 0.2,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "agent_server",
+        "objetivos": [
+          "sim_server",
+          "agent_server"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "sim_server",
+          "etiqueta": "Asientos libres",
+          "valor": "120",
+          "hasta": "",
+          "color": "azul"
+        },
+        {
+          "pieza": "sim_server",
+          "etiqueta": "Días al vuelo",
+          "valor": "30",
+          "hasta": "",
+          "color": "azul"
+        }
+      ],
+      "paso": 1,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 6,
+      "descripcion": "El agente decide una acción de precio.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Y decide una acción: subir o bajar el precio del billete hoy.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agent_server"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agent_server",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "agent_server",
+          "etiqueta": "Precio propuesto",
+          "valor": "140 €",
+          "hasta": "",
+          "color": "blanco"
+        }
+      ],
+      "paso": 2,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 7,
+      "descripcion": "Aparición de los límites de negocio.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Pero la dirección manda. Pones límites de negocio estrictos.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "p_guard",
+        "guard_box",
+        "guard_bar",
+        "h_ag_guard"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "guard_box"
+      ],
+      "animaciones": [
+        {
+          "pieza": "guard_bar",
+          "movimiento": "abrir",
+          "inicio": 0.2,
+          "fin": 0.6,
+          "cantidad": 100.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "h_ag_guard",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "guard_box",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "guard_box",
+          "etiqueta": "Límite min",
+          "valor": "60 €",
+          "hasta": "",
+          "color": "azul"
+        },
+        {
+          "pieza": "guard_box",
+          "etiqueta": "Límite max",
+          "valor": "400 €",
+          "hasta": "",
+          "color": "azul"
+        }
+      ],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 8,
+      "descripcion": "Los límites bloquean un precio fuera de rango.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Por ejemplo, el precio nunca baja de 60 euros ni supera los 400.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "guard_bar"
+      ],
+      "animaciones": [
+        {
+          "pieza": "guard_bar",
+          "movimiento": "cerrar",
+          "inicio": 0.5,
+          "fin": 0.8,
+          "cantidad": 100.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "rechazo",
+          "pieza": "guard_box",
+          "momento": 0.4,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "guard_bar",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "guard_box",
+          "etiqueta": "Precio propuesto",
+          "valor": "520 €",
+          "hasta": "",
+          "color": "rojo"
+        }
+      ],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 9,
+      "descripcion": "Introducción del motor de recompensa.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Tú también defines qué se premia. El motor de recompensa.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "p_reward",
+        "reward_cyl",
+        "t1"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "reward_cyl"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "reward_cyl",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "reward_cyl",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "reward_cyl",
+          "etiqueta": "Ingreso",
+          "valor": "0 €",
+          "hasta": "",
+          "color": "blanco"
+        }
+      ],
+      "paso": 4,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 10,
+      "descripcion": "La recompensa calcula ingresos y penalizaciones y se envía al agente.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Cada billete vendido suma euros. Cada asiento vacío al despegar, resta.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "t2",
+        "t3",
+        "h_guard_rew",
+        "h_rew_ag"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "t2",
+        "t3"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "h_guard_rew",
+          "momento": 0.1,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "h_rew_ag",
+          "momento": 0.4,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "reward_cyl",
+        "objetivos": [
+          "guard_box",
+          "reward_cyl"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "reward_cyl",
+          "etiqueta": "Ingreso",
+          "valor": "0 €",
+          "hasta": "+140 €",
+          "color": "lima"
+        }
+      ],
+      "paso": 4,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 11,
+      "descripcion": "El agente practica en el simulador.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Antes de tocar un cliente real, el agente practica en el simulador.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agent_server",
+        "sim_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "agent_server",
+          "momento": 0.2,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "h_ag_sim",
+          "momento": 0.4,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agent_server",
+        "objetivos": [
+          "agent_server",
+          "sim_server"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "agent_server",
+          "etiqueta": "Vuelos simulados",
+          "valor": "1",
+          "hasta": "10.000",
+          "color": "azul"
+        }
+      ],
+      "paso": 1,
+      "ciclo_rapido": true
+    },
+    {
+      "id": 12,
+      "descripcion": "El agente aprende de los errores sin riesgo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Prueba precios en miles de vuelos virtuales. Si se equivoca, solo pierde dinero simulado.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agent_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "chispas",
+          "pieza": "agent_server",
+          "momento": 0.3,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "h_sim_ag",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agent_server",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "agent_server",
+          "etiqueta": "Vuelos simulados",
+          "valor": "10.000",
+          "hasta": "50.000",
+          "color": "azul"
+        },
+        {
+          "pieza": "reward_cyl",
+          "etiqueta": "Penalización",
+          "valor": "-100 €",
+          "hasta": "",
+          "color": "rojo"
+        }
+      ],
+      "paso": 2,
+      "ciclo_rapido": true
+    },
+    {
+      "id": 13,
+      "descripcion": "El agente pasa a producción.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Cuando aprende la estrategia perfecta, pasa a producción.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "p_prod",
+        "prod_base",
+        "prod_screen",
+        "prod_beacon",
+        "h_guard_prod"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "prod_screen"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "h_guard_prod",
+          "momento": 0.2,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "prod_screen",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "prod_screen",
+          "etiqueta": "Estado",
+          "valor": "Producción",
+          "hasta": "",
+          "color": "lima"
+        }
+      ],
+      "paso": 5,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 14,
+      "descripcion": "Resultado final: precios dinámicos y vuelos llenos.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Ahora adapta el precio a la demanda real, cada día.",
+          "emocion": "neutral"
+        },
+        {
+          "quien": "narrador",
+          "texto": "¿El resultado? Por ejemplo, un 15 % más de ingresos por vuelo, con menos asientos vacíos.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "prod_beacon",
+        "prod_screen"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "prod_beacon",
+          "momento": 0.2,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "prod_screen",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "prod_base",
+        "objetivos": [
+          "prod_base",
+          "agent_server"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 3.0,
+      "datos": [
+        {
+          "pieza": "prod_screen",
+          "etiqueta": "Ingreso extra",
+          "valor": "+15 %",
+          "hasta": "",
+          "color": "lima"
+        }
+      ],
+      "paso": 5,
+      "ciclo_rapido": false
+    }
+  ],
+  "personajes": [],
+  "escenarios": [],
+  "caso": "Una aerolínea que usa Aprendizaje por Refuerzo para fijar el precio diario de los 180 asientos de un vuelo Madrid-París, entre 60 y 400 euros.",
+  "gancho": {
+    "pregunta": "¿Cuántos miles de euros pierde tu aerolínea por usar reglas de precio fijas?",
+    "texto_pantalla": "¿Pierdes dinero con precios fijos?"
+  },
+  "ciclo": [
+    {
+      "pieza": "sim_server",
+      "texto": "Observa"
+    },
+    {
+      "pieza": "agent_server",
+      "texto": "Decide"
+    },
+    {
+      "pieza": "guard_box",
+      "texto": "Filtra"
+    },
+    {
+      "pieza": "reward_cyl",
+      "texto": "Premia"
+    },
+    {
+      "pieza": "prod_screen",
+      "texto": "Aplica"
+    }
+  ],
+  "comparativa": {
+    "escena": 14,
+    "titulo": "Ingreso por vuelo",
+    "a_etiqueta": "Reglas fijas",
+    "a_valor": 14000.0,
+    "b_etiqueta": "Agente RL",
+    "b_valor": 16100.0,
+    "resultado": "+15 %",
+    "curva_titulo": "Ingreso por vuelo simulado"
+  }
+}

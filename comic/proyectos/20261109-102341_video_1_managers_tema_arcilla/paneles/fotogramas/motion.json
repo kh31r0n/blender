@@ -1,0 +1,932 @@
+{
+  "ancho": 1080,
+  "alto": 1920,
+  "fps": 24,
+  "frames": 2001,
+  "orientacion": "vertical",
+  "banda": {
+    "x": 0,
+    "y": 0,
+    "w": 1080,
+    "h": 768
+  },
+  "paleta": {
+    "fondo": "#F4F7F9",
+    "texto": "#1F2A33",
+    "bueno": "#139C98",
+    "problema": "#E5484D",
+    "espera": "#F07F2E",
+    "neutro": "#1F2A33",
+    "tenue": "#C7D2DA",
+    "acento": "#16A9A5"
+  },
+  "icono_flujo": "sobre",
+  "tramos": [
+    {
+      "inicio": 0,
+      "fin": 2000,
+      "entra": true,
+      "sale": false
+    }
+  ],
+  "paneles": [
+    {
+      "escena": 1,
+      "inicio": 0,
+      "fin": 132,
+      "titular": {
+        "palabras": [
+          {
+            "t": "¿Pierdes",
+            "f": 37,
+            "clave": true
+          },
+          {
+            "t": "dinero",
+            "f": 40,
+            "clave": true
+          },
+          {
+            "t": "con",
+            "f": 43,
+            "clave": false
+          },
+          {
+            "t": "precios",
+            "f": 95,
+            "clave": false
+          },
+          {
+            "t": "fijos?",
+            "f": 98,
+            "clave": false
+          }
+        ],
+        "color": "problema",
+        "bloque": false,
+        "grande": true
+      },
+      "visual": {
+        "tipo": "ninguno",
+        "f": 33,
+        "f_accion": 41
+      },
+      "cinta": null,
+      "pieza": "sim_server"
+    },
+    {
+      "escena": 2,
+      "inicio": 133,
+      "fin": 307,
+      "titular": {
+        "palabras": [
+          {
+            "t": "DEMASIADO",
+            "f": 223,
+            "clave": false
+          },
+          {
+            "t": "RÁPIDO",
+            "f": 237,
+            "clave": true
+          },
+          {
+            "t": "Y",
+            "f": 248,
+            "clave": false
+          },
+          {
+            "t": "BARATO",
+            "f": 251,
+            "clave": true
+          }
+        ],
+        "color": "problema",
+        "bloque": true,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Asientos libres",
+        "valor": "180",
+        "hasta": "0",
+        "color": "problema",
+        "f": 176,
+        "f_accion": 188,
+        "valor_num": {
+          "pre": "",
+          "v": 180.0,
+          "suf": "",
+          "dec": 0
+        },
+        "hasta_num": {
+          "pre": "",
+          "v": 0.0,
+          "suf": "",
+          "dec": 0
+        }
+      },
+      "cinta": null,
+      "pieza": "s1"
+    },
+    {
+      "escena": 3,
+      "inicio": 308,
+      "fin": 434,
+      "titular": {
+        "palabras": [
+          {
+            "t": "DESPEGA",
+            "f": 376,
+            "clave": false
+          },
+          {
+            "t": "CON",
+            "f": 388,
+            "clave": false
+          },
+          {
+            "t": "ASIENTOS",
+            "f": 392,
+            "clave": true
+          },
+          {
+            "t": "VACÍOS",
+            "f": 404,
+            "clave": true
+          }
+        ],
+        "color": "problema",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "cola",
+        "etiqueta": "Asientos libres",
+        "valor": "85",
+        "hasta": "",
+        "color": "problema",
+        "f": 339,
+        "f_accion": 392,
+        "valor_num": {
+          "pre": "",
+          "v": 85.0,
+          "suf": "",
+          "dec": 0
+        }
+      },
+      "cinta": null,
+      "pieza": "s4"
+    },
+    {
+      "escena": 4,
+      "inicio": 435,
+      "fin": 583,
+      "titular": {
+        "palabras": [
+          {
+            "t": "NUEVO",
+            "f": 534,
+            "clave": true
+          },
+          {
+            "t": "AGENTE",
+            "f": 542,
+            "clave": true
+          },
+          {
+            "t": "DE",
+            "f": 553,
+            "clave": false
+          },
+          {
+            "t": "PRECIOS",
+            "f": 556,
+            "clave": false
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "agente_rl.json",
+        "items": [
+          {
+            "etiqueta": "Estado",
+            "valor": "Iniciando",
+            "color": "bueno",
+            "puntos": []
+          }
+        ],
+        "f": 472,
+        "f_accion": 480
+      },
+      "cinta": null,
+      "pieza": "agent_server"
+    },
+    {
+      "escena": 5,
+      "inicio": 584,
+      "fin": 723,
+      "titular": {
+        "palabras": [
+          {
+            "t": "MIRA",
+            "f": 607,
+            "clave": true
+          },
+          {
+            "t": "EL",
+            "f": 614,
+            "clave": false
+          },
+          {
+            "t": "ESTADO",
+            "f": 618,
+            "clave": true
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "cifras",
+        "items": [
+          {
+            "etiqueta": "Asientos libres",
+            "valor": "120",
+            "color": "espera",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 120.0,
+              "suf": "",
+              "dec": 0
+            }
+          },
+          {
+            "etiqueta": "Días al vuelo",
+            "valor": "30",
+            "color": "espera",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 30.0,
+              "suf": "",
+              "dec": 0
+            }
+          }
+        ],
+        "f": 613,
+        "f_accion": 621
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 1,
+        "hechos": [],
+        "rapido": false
+      },
+      "pieza": "sim_server"
+    },
+    {
+      "escena": 6,
+      "inicio": 724,
+      "fin": 853,
+      "titular": {
+        "palabras": [
+          {
+            "t": "DECIDE",
+            "f": 738,
+            "clave": true
+          },
+          {
+            "t": "UNA",
+            "f": 749,
+            "clave": false
+          },
+          {
+            "t": "ACCIÓN",
+            "f": 757,
+            "clave": true
+          }
+        ],
+        "color": "neutro",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "accion.json",
+        "items": [
+          {
+            "etiqueta": "Precio propuesto",
+            "valor": "140 €",
+            "color": "neutro",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 140.0,
+              "suf": " €",
+              "dec": 0
+            }
+          }
+        ],
+        "f": 744,
+        "f_accion": 752
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 2,
+        "hechos": [
+          1
+        ],
+        "rapido": false
+      },
+      "pieza": "agent_server"
+    },
+    {
+      "escena": 7,
+      "inicio": 854,
+      "fin": 975,
+      "titular": {
+        "palabras": [
+          {
+            "t": "LÍMITES",
+            "f": 917,
+            "clave": true
+          },
+          {
+            "t": "DE",
+            "f": 926,
+            "clave": false
+          },
+          {
+            "t": "NEGOCIO",
+            "f": 929,
+            "clave": false
+          },
+          {
+            "t": "ESTRICTOS",
+            "f": 939,
+            "clave": true
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "cifras",
+        "items": [
+          {
+            "etiqueta": "Límite min",
+            "valor": "60 €",
+            "color": "espera",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 60.0,
+              "suf": " €",
+              "dec": 0
+            }
+          },
+          {
+            "etiqueta": "Límite max",
+            "valor": "400 €",
+            "color": "espera",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 400.0,
+              "suf": " €",
+              "dec": 0
+            }
+          }
+        ],
+        "f": 884,
+        "f_accion": 892
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 3,
+        "hechos": [
+          1,
+          2
+        ],
+        "rapido": false
+      },
+      "pieza": "guard_box"
+    },
+    {
+      "escena": 8,
+      "inicio": 976,
+      "fin": 1122,
+      "titular": {
+        "palabras": [
+          {
+            "t": "NI",
+            "f": 1062,
+            "clave": false
+          },
+          {
+            "t": "SUPERA",
+            "f": 1065,
+            "clave": true
+          },
+          {
+            "t": "LOS",
+            "f": 1078,
+            "clave": false
+          },
+          {
+            "t": "400",
+            "f": 1082,
+            "clave": true
+          }
+        ],
+        "color": "problema",
+        "bloque": true,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Precio propuesto",
+        "valor": "520 €",
+        "hasta": "",
+        "color": "problema",
+        "f": 1012,
+        "f_accion": 1018,
+        "valor_num": {
+          "pre": "",
+          "v": 520.0,
+          "suf": " €",
+          "dec": 0
+        }
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 3,
+        "hechos": [
+          1,
+          2,
+          3
+        ],
+        "rapido": false
+      },
+      "pieza": "guard_bar"
+    },
+    {
+      "escena": 9,
+      "inicio": 1123,
+      "fin": 1236,
+      "titular": {
+        "palabras": [
+          {
+            "t": "MOTOR",
+            "f": 1192,
+            "clave": true
+          },
+          {
+            "t": "DE",
+            "f": 1199,
+            "clave": false
+          },
+          {
+            "t": "RECOMPENSA",
+            "f": 1203,
+            "clave": true
+          }
+        ],
+        "color": "neutro",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "recompensa.json",
+        "items": [
+          {
+            "etiqueta": "Ingreso",
+            "valor": "0 €",
+            "color": "neutro",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 0.0,
+              "suf": " €",
+              "dec": 0
+            }
+          }
+        ],
+        "f": 1151,
+        "f_accion": 1159
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 4,
+        "hechos": [
+          1,
+          2,
+          3
+        ],
+        "rapido": false
+      },
+      "pieza": "reward_cyl"
+    },
+    {
+      "escena": 10,
+      "inicio": 1237,
+      "fin": 1374,
+      "titular": {
+        "palabras": [
+          {
+            "t": "CADA",
+            "f": 1246,
+            "clave": false
+          },
+          {
+            "t": "BILLETE",
+            "f": 1252,
+            "clave": false
+          },
+          {
+            "t": "VENDIDO",
+            "f": 1262,
+            "clave": true
+          },
+          {
+            "t": "SUMA",
+            "f": 1274,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Ingreso",
+        "valor": "0 €",
+        "hasta": "+140 €",
+        "color": "bueno",
+        "f": 1252,
+        "f_accion": 1260,
+        "valor_num": {
+          "pre": "",
+          "v": 0.0,
+          "suf": " €",
+          "dec": 0
+        },
+        "hasta_num": {
+          "pre": "+",
+          "v": 140.0,
+          "suf": " €",
+          "dec": 0
+        }
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 4,
+        "hechos": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "rapido": false
+      },
+      "pieza": "t2"
+    },
+    {
+      "escena": 11,
+      "inicio": 1375,
+      "fin": 1501,
+      "titular": {
+        "palabras": [
+          {
+            "t": "PRACTICA",
+            "f": 1444,
+            "clave": true
+          },
+          {
+            "t": "EN",
+            "f": 1456,
+            "clave": false
+          },
+          {
+            "t": "EL",
+            "f": 1460,
+            "clave": false
+          },
+          {
+            "t": "SIMULADOR",
+            "f": 1464,
+            "clave": true
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "pasos",
+        "etiqueta": "Vuelos simulados",
+        "valor": "1",
+        "hasta": "10.000",
+        "color": "espera",
+        "f": 1406,
+        "f_accion": 1464,
+        "valor_num": {
+          "pre": "",
+          "v": 1.0,
+          "suf": "",
+          "dec": 0
+        },
+        "hasta_num": {
+          "pre": "",
+          "v": 10000.0,
+          "suf": "",
+          "dec": 0
+        },
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 1,
+        "rapido": true,
+        "hechos": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "cinta": null,
+      "pieza": "agent_server"
+    },
+    {
+      "escena": 12,
+      "inicio": 1502,
+      "fin": 1653,
+      "titular": {
+        "palabras": [
+          {
+            "t": "PIERDE",
+            "f": 1603,
+            "clave": true
+          },
+          {
+            "t": "DINERO",
+            "f": 1610,
+            "clave": false
+          },
+          {
+            "t": "SIMULADO",
+            "f": 1621,
+            "clave": true
+          }
+        ],
+        "color": "problema",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "cifras",
+        "items": [
+          {
+            "etiqueta": "Vuelos simulados",
+            "valor": "50.000",
+            "color": "espera",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 50000.0,
+              "suf": "",
+              "dec": 0
+            }
+          },
+          {
+            "etiqueta": "Penalización",
+            "valor": "-100 €",
+            "color": "problema",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": -100.0,
+              "suf": " €",
+              "dec": 0
+            }
+          }
+        ],
+        "f": 1539,
+        "f_accion": 1547
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 2,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rapido": true
+      },
+      "pieza": "agent_server"
+    },
+    {
+      "escena": 13,
+      "inicio": 1654,
+      "fin": 1751,
+      "titular": {
+        "palabras": [
+          {
+            "t": "PASA",
+            "f": 1712,
+            "clave": true
+          },
+          {
+            "t": "A",
+            "f": 1718,
+            "clave": false
+          },
+          {
+            "t": "PRODUCCIÓN",
+            "f": 1721,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "estado.json",
+        "items": [
+          {
+            "etiqueta": "Estado",
+            "valor": "Producción",
+            "color": "bueno",
+            "puntos": []
+          }
+        ],
+        "f": 1678,
+        "f_accion": 1686
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 5,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rapido": false
+      },
+      "pieza": "prod_screen"
+    },
+    {
+      "escena": 14,
+      "inicio": 1752,
+      "fin": 2000,
+      "titular": {
+        "palabras": [
+          {
+            "t": "MÁS",
+            "f": 1923,
+            "clave": true
+          },
+          {
+            "t": "INGRESOS",
+            "f": 1929,
+            "clave": true
+          },
+          {
+            "t": "POR",
+            "f": 1939,
+            "clave": false
+          },
+          {
+            "t": "VUELO",
+            "f": 1943,
+            "clave": false
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "barras",
+        "titulo": "Ingreso por vuelo",
+        "resultado": "+15 %",
+        "items": [
+          {
+            "etiqueta": "Reglas fijas",
+            "valor": "14.000 €",
+            "color": "neutro",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 14000.0,
+              "suf": " €",
+              "dec": 0
+            }
+          },
+          {
+            "etiqueta": "Agente RL",
+            "valor": "16.100 €",
+            "color": "bueno",
+            "puntos": [],
+            "num": {
+              "pre": "",
+              "v": 16100.0,
+              "suf": " €",
+              "dec": 0
+            }
+          }
+        ],
+        "f": 1814,
+        "f_accion": 1822
+      },
+      "cinta": {
+        "pasos": [
+          "Observa",
+          "Decide",
+          "Filtra",
+          "Premia",
+          "Aplica"
+        ],
+        "activo": 5,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rapido": false
+      },
+      "pieza": "prod_beacon"
+    }
+  ]
+}

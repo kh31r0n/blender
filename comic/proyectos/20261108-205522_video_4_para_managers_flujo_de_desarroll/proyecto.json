@@ -1,0 +1,273 @@
+{
+  "descripcion": "Vídeo 4 para Managers: Flujo de Desarrollo de Software con IA 101 (AI Coding Workflow 101) y cómo multiplicar la velocidad de entrega de tu equipo de ingeniería sin llenar producción de errores ni deuda técnica. Explicación ejecutiva sin código para directivos, de unos 100 segundos en formato VERTICAL 9:16 para LinkedIn móvil, con una maqueta isométrica en el TEMA CYBERPUNK: cada componente principal sobre su peana luminosa (forma 'peana', z=0, alto=0.04, componente encima en z=0.04) y unidos por mangueras de neón de borde a borde sin atravesar piezas.\n\nDISPOSICIÓN COMPACTA Y REGLAS PARA VERTICAL 9:16: coloca los componentes en un área compacta de x entre -0.9 y 0.9 m e y entre -0.9 y 0.9 m, con alturas de 0.35 a 0.75 m. Usa preferentemente plano 'medio' y 'detalle' con camara.objetivos apuntando a los componentes activos para llenar la pantalla vertical. NUNCA pongas bisagra ni movimiento 'abrir' o 'cerrar' en piezas de forma 'panel' (pantallas de portátiles o monitores), porque ya están de pie en vertical.\n\nCOMPONENTES Y CÓMO DIBUJARLOS:\n1. Bandeja de Requisitos de Producto (arriba-izquierda, x=-0.65, y=-0.55): una repisa metálica sobre su peana con dos bloques encima (blanco y amarillo) que representan las especificaciones de negocio y criterios de aceptación.\n2. Estación del Agente Codificador IA (abajo-izquierda, x=-0.65, y=0.45): un servidor azul cielo con una esfera azul encima sobre su peana. Recibe el requisito y genera en segundos tanto el borrador del software como su batería de pruebas automáticas.\n3. Túnel Automático de Calidad y Seguridad (centro, x=0.0, y=0.0): una carcasa grande morada (vista por dentro con rayos_x) sobre su peana, con dos escáneres internos (un cilindro naranja de pruebas unitarias y un cubo rojo de escaneo de vulnerabilidades). Si detecta un fallo, devuelve automáticamente el paquete por una manguera de retorno al Agente Codificador para que lo repare solo antes de molestar a un humano.\n4. Compuerta de Revisión del Tech Lead / Arquitecto (arriba-derecha, x=0.65, y=-0.45): una garita amarilla sobre su peana junto a un portátil de revisión (base caja y pantalla panel fija con bisagra='ninguna'). El ingeniero senior solo recibe código que ya pasó todas las pruebas automáticas.\n5. Servidor de Producción Corporativo (abajo-derecha, x=0.65, y=0.55): un servidor verde grande con una baliza cilíndrica lima encima sobre su peana, donde se despliega la funcionalidad validada.\n\nRECORRIDO Y VENTAJAS PARA EL MANAGER:\nA) Velocidad en el borrador y pruebas automáticas: entra el requisito de negocio; el Agente Codificador redacta el código repetitivo y los tests en segundos (flujo, rayo), ahorrando días de trabajo manual.\nB) Bucle de autocorrección sin gastar tiempo senior: el paquete entra al Túnel de Calidad (rayos_x); el escáner de seguridad detecta un error (alerta, rechazo) y lo devuelve automáticamente al Agente IA (flujo_vuelta), que lo corrige al instante y vuelve a pasar en verde (aprobado).\nC) Ingenieros enfocados en arquitectura y Time-to-Market: el Tech Lead revisa en su estación solo la lógica de negocio y arquitectura (aprobado) y se despliega en el servidor de Producción (rayo, aprobado), reduciendo el tiempo de entrega de semanas a días con cero deuda técnica oculta.\n\nNARRACIÓN:\nTono ejecutivo, claro y directo para Managers y Directores. Explica cada ventaja: aceleración del Time-to-Market, ahorro de horas de ingenieros senior gracias al bucle de pruebas y autocorrección automática, reducción de vulnerabilidades en producción y control humano sobre la arquitectura.",
+  "creado": "20261108-205522",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "cyberpunk",
+    "formato": "3d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "motor": "cycles",
+    "duracion": 100.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "icono_flujo": "sobre",
+    "gancho": "dolor",
+    "datos_vivos": true,
+    "pasos_ciclo": true,
+    "comparativa": true,
+    "paneles_mc": true,
+    "tam_panel": 0.4,
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.v2.blend",
+    "rig": "02_rig.v2.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v3.blend",
+    "efectos": "04b_efectos.v3.blend",
+    "previa": "previa/iter_1.v3",
+    "render": "render/animacion.mp4",
+    "montaje": "final/final.mp4",
+    "paneles": "paneles/fotogramas"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T20:57:22",
+      "archivo": "guion.json",
+      "escenas": 14,
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T20:58:27",
+      "archivo": "adornos.json",
+      "adornos": 33,
+      "por_tipo": {
+        "cartel": 5,
+        "franja": 2,
+        "tornillos": 1,
+        "icono": 3,
+        "ranuras": 2,
+        "pantalla": 4,
+        "leds": 3,
+        "rejilla": 4,
+        "barras": 2,
+        "boton": 1,
+        "teclado": 1,
+        "conector": 5
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T20:58:28",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 23,
+        "rayos_x": 21,
+        "adornos": 33,
+        "avisos_adornos": [
+          "repisa_req: el cartel chocaba con bloque_negocio (lo tapa); movido a u=0.50 v=0.80, poste +0.06 m",
+          "servidor_agente: el cartel chocaba con esfera_agente y no hay sitio libre; se quita",
+          "servidor_prod: el cartel chocaba con baliza_prod; movido a u=0.80 v=0.20"
+        ],
+        "_segundos": 1.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T20:58:30",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 24,
+        "piezas": 23,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T21:00:23",
+      "archivo": "tiempos.json",
+      "duracion": 95.309,
+      "fotogramas": 2287,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T21:00:24",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 2270,
+        "fotogramas": 2287,
+        "cambios_de_sombra": 26,
+        "piezas": 23,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T21:00:26",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 34,
+        "avisos": [
+          "dato Vulnerabilidades en carcasa_tunel: la pieza no se ve",
+          "dato Vulnerabilidades en carcasa_tunel: la pieza no se ve"
+        ],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T21:00:33",
+      "archivo": "previa/iter_1",
+      "imagenes": 14
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T21:11:47",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 23,
+        "rayos_x": 21,
+        "adornos": 33,
+        "avisos_adornos": [
+          "repisa_req: el cartel chocaba con bloque_negocio (lo tapa); movido a u=0.50 v=0.80, poste +0.06 m",
+          "servidor_agente: el cartel chocaba con esfera_agente y no hay sitio libre; se quita",
+          "servidor_prod: el cartel chocaba con baliza_prod; movido a u=0.80 v=0.20"
+        ],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T21:11:48",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 24,
+        "piezas": 23,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T21:11:49",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 2270,
+        "fotogramas": 2287,
+        "cambios_de_sombra": 26,
+        "piezas": 23,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T21:11:50",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 37,
+        "avisos": [],
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T21:11:57",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 14
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T21:34:15",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/vinetas/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-205522_video_4_para_managers_flujo_de_desarroll/render/animacion.mp4",
+        "fotogramas": 2287,
+        "segundos": 1028.3,
+        "_segundos": 1028.9
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T21:35:16",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "paneles",
+      "fecha": "2026-11-08T21:38:39",
+      "archivo": "paneles/fotogramas",
+      "paneles": 14,
+      "origen": "gemini",
+      "fotogramas": 2287,
+      "segundos": 37.9
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T21:38:40",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 2270,
+        "fotogramas": 2287,
+        "cambios_de_sombra": 26,
+        "piezas": 23,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T21:38:41",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 14,
+        "avisos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T21:38:49",
+      "archivo": "previa/iter_1.v3",
+      "imagenes": 14
+    }
+  ],
+  "vinetas": "render/vinetas"
+}

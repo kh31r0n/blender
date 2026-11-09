@@ -21,19 +21,20 @@
     "bocadillos": false,
     "cartelas": false,
     "saturacion": 1.1,
-    "brillo_fx": true
+    "brillo_fx": true,
+    "motor": "cycles"
   },
   "archivos": {
     "guion": "guion.json",
     "detalles": "adornos.json",
-    "objetos": "01_objetos.v6.blend",
-    "rig": "02_rig.v6.blend",
+    "objetos": "01_objetos.v10.blend",
+    "rig": "02_rig.v10.blend",
     "audio": "tiempos.json",
-    "animacion": "04_animacion.v7.blend",
-    "efectos": "04b_efectos.v7.blend",
-    "previa": "previa/iter_1.v4",
-    "render": "render/animacion.mp4",
-    "montaje": "final/final.mp4"
+    "animacion": "04_animacion.v12.blend",
+    "efectos": "04b_efectos.v14.blend",
+    "previa": "previa/iter_1.v5",
+    "render": "render/animacion.v3.mp4",
+    "montaje": "final/final.v3.mp4"
   },
   "historial": [
     {
@@ -529,8 +530,206 @@
       "fecha": "2026-11-08T05:16:23",
       "archivo": "previa/iter_1.v4",
       "imagenes": 21
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T05:24:18",
+      "archivo": "render/animacion.v2.mp4",
+      "vinetas": "render/vinetas.v4",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v4/escena_21.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/animacion.v2.mp4",
+        "fotogramas": 3246,
+        "segundos": 474.2,
+        "_segundos": 474.8
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T05:25:30",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T07:10:59",
+      "archivo": "01_objetos.v9.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T07:11:00",
+      "archivo": "02_rig.v9.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T07:11:00",
+      "archivo": "tiempos.json",
+      "duracion": 135.253,
+      "fotogramas": 3246,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T07:11:02",
+      "archivo": "04_animacion.v11.blend",
+      "informe": {
+        "claves": 6159,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T07:11:03",
+      "archivo": "04b_efectos.v13.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T07:18:49",
+      "archivo": "render/animacion.v3.mp4",
+      "vinetas": "render/vinetas.v8",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/vinetas.v8/escena_21.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/animacion.v3.mp4",
+        "fotogramas": 3246,
+        "segundos": 465.8,
+        "_segundos": 466.4
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T07:20:03",
+      "archivo": "final/final.v3.mp4",
+      "pagina": "final/pagina_comic.v3.png",
+      "gif": "final/animacion.v3.gif"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T10:02:46",
+      "archivo": "01_objetos.v10.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T10:02:46",
+      "archivo": "02_rig.v10.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T10:02:47",
+      "archivo": "tiempos.json",
+      "duracion": 135.253,
+      "fotogramas": 3246,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T10:02:48",
+      "archivo": "04_animacion.v12.blend",
+      "informe": {
+        "claves": 6159,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T10:02:49",
+      "archivo": "04b_efectos.v14.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T10:03:20",
+      "archivo": "previa/iter_1.v5",
+      "imagenes": 21
     }
   ],
   "referencia_detalles": "/home/kheiron/blender/comic/referencias/maqueta_neon/maqueta_bases_neon.png",
-  "vinetas": "render/vinetas.v3"
+  "vinetas": "render/vinetas.v8"
 }

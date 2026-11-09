@@ -1,0 +1,1408 @@
+{
+  "descripcion": "Cómo un agente de IA que tría alertas de seguridad (SOC) ahorra tiempo y dinero con tres técnicas: alertas correlacionadas en DynamoDB, reutilización de respuestas en DynamoDB y prompt caching en el LLM. Vídeo para desarrolladores, de unos 2 minutos y medio: una maqueta isométrica de la arquitectura en el TEMA NEON: componentes de infraestructura modelados con primitivas (servidores y armarios de metal con rejillas, cajas de colores vivos, cilindros de base de datos, cubos de Lambda, una nube), cada uno sobre su peana luminosa y unidos por mangueras de neón, que se monta componente a componente siguiendo el recorrido de las alertas de izquierda a derecha. Cada técnica tiene su propio bloque de escenas.\n\nESCALA: componentes de 0.3-0.7 m de alto, separados 0.3-0.5 m; fichas y bloques de unos 0.12-0.2 m; mangueras de radio 0.02-0.025 que van de borde a borde de los componentes que unen. La maqueta entera, menos de 5 m de ancho.\n\nCOMPONENTES (de izquierda a derecha) Y CÓMO DIBUJARLOS\n1. Fuentes de alertas: tres componentes a la izquierda, uno detrás de otro en Y: un portátil (EDR del endpoint: base y pantalla), un armario de red de metal (WAF) y una nube azul (logs de la nube: tres esferas azules sobre una caja baja). Disparan cientos de alertas, muchas repetidas del mismo incidente (la misma IP atacando, el mismo usuario).\n2. Cola de entrada (Amazon SQS): un tubo transparente tumbado con fichas blancas dentro (cajitas), unido a las tres fuentes por mangueras. Absorbe los picos.\n3. Correlador (una Lambda): un cubo naranja. Para cada alerta calcula la clave de correlación: la entidad (IP de origen, usuario o host) más el tipo de regla. Escribe en DynamoDB con una actualización condicional y un contador atómico (UpdateItem con ADD), así dos Lambdas a la vez no crean dos grupos.\n4. Tabla de correlación (DynamoDB): una base de datos morada (tres cilindros apilados) detrás del correlador, unida por manguera; el TTL de la ventana de correlación (por ejemplo 15 minutos) se muestra con el efecto reloj. Partición = clave de correlación; cada grupo guarda las alertas, el contador y la hora de la primera. Si el grupo es nuevo, se manda al agente; si ya existe dentro de la ventana, la alerta solo se suma al grupo y no se vuelve a analizar ni a notificar (salvo que suba la gravedad o el contador pase un umbral). El atributo TTL borra los grupos caducados, pero DynamoDB no borra al instante: el código comprueba la caducidad al leer.\n5. Agente SOC: un servidor verde grande en el centro (el worker del agente). Recibe un GRUPO, no una alerta, y redacta un veredicto (gravedad, resumen, acciones).\n6. Caché de respuestas (DynamoDB): otra base de datos morada detrás del agente (TTL de la caché, por ejemplo 24 horas, con el efecto reloj). Antes de llamar al LLM, el agente normaliza el prompt (quita marcas de tiempo e ids que cambian siempre) y calcula un hash de ese prompt + el id del modelo + la versión del prompt; con esa clave hace un GetItem. Acierto (efectos rayo y aprobado): reutiliza el veredicto al instante y no llama al LLM. Fallo: llama al LLM y guarda la respuesta con PutItem y su TTL. Meter el modelo y la versión en la clave evita reutilizar respuestas de otro modelo o de un prompt antiguo.\n7. LLM (por ejemplo Claude en Amazon Bedrock): una esfera grande azul cielo sobre un pedestal de metal, a la derecha del agente, unida por manguera. A su lado, la PILA DEL PROMPT: tres bloques lima apilados (instrucciones del sistema, definiciones de tools y playbooks del SOC: el PREFIJO, grande y siempre igual) y encima un bloque blanco (el grupo de alertas: lo que cambia). Al lado, una repisa (caja baja de metal sobre su peana) que es la caché de prompts del proveedor, con sitio libre entre la pila y la repisa para que los bloques pasen sin atravesar nada. Prompt caching: se marca el final del prefijo con un punto de caché (cachePoint en Bedrock, cache_control en la API de Anthropic). La primera llamada escribe el prefijo en la caché (cuesta un 25 % más); las siguientes con el mismo prefijo lo leen de caché, a una fracción del precio (en torno al 10 %) y con menos latencia (efecto reloj más corto). La caché dura 5 minutos y cada acierto la renueva (hay opción de 1 hora). El prefijo tiene que ser idéntico byte a byte, en orden tools, sistema y mensajes: cualquier cambio (una fecha en el sistema) la invalida, por eso lo variable va al final. Admite hasta 4 puntos de caché y hay un tamaño mínimo para cachear.\n8. Alerta correlacionada: una caja roja con una baliza (cilindro rojo pequeño encima) a la derecha y un monitor (la consola del analista: panel con pantalla sobre un pie) al final. En lugar de cincuenta avisos, el analista recibe una sola alerta con el grupo entero y el veredicto.\n\nRECORRIDO\nPrimero se monta la maqueta explicando para qué sirve cada componente. Después, tres bloques:\nA) Correlación: llueven alertas repetidas de la misma IP (flujo por las mangueras hacia la cola y el embudo); la primera crea el grupo en la tabla y va al agente; las siguientes solo suben el contador (fichas que se apilan) y el efecto reloj marca la ventana.\nB) Reutilización de respuestas: el agente busca la clave en la caché de respuestas; la primera vez falla y llama al LLM; después, un grupo equivalente acierta (rayo, aprobado) y se responde sin llamar al LLM.\nC) Prompt caching: el prefijo lima viaja al LLM y se guarda en la repisa; en la siguiente llamada solo viaja el bloque blanco, el prefijo se lee de la repisa y el reloj marca menos tiempo.\nCierre: una sola alerta correlacionada se enciende en la baliza roja y llega al monitor; la última escena muestra todo el sistema funcionando a la vez.\n\nNARRACIÓN\nTono divulgativo para desarrolladores, con los nombres técnicos reales (SQS, Lambda, DynamoDB, UpdateItem, contador atómico, escritura condicional, TTL, hash, GetItem, PutItem, prompt caching, prefijo, cachePoint, tokens). Que se entienda la diferencia: la correlación evita analizar duplicados; la reutilización de respuestas evita llamar al LLM; el prompt caching abarata y acelera las llamadas que sí se hacen. Explica también los riesgos: el TTL de DynamoDB no borra al instante, una clave de caché sin modelo ni versión devuelve respuestas obsoletas, y cualquier cambio en el prefijo invalida el prompt caching.",
+  "creado": "2026-11-08T10:43:28",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "cyberpunk",
+    "formato": "3d",
+    "orientacion": "horizontal",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "motor": "cycles",
+    "duracion": 150.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "icono_flujo": "biohazard",
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "audio": "tiempos.json",
+    "objetos": "01_objetos.v23.blend",
+    "rig": "02_rig.v24.blend",
+    "animacion": "04_animacion.v25.blend",
+    "efectos": "04b_efectos.v27.blend",
+    "previa": "previa/iter_1.v2",
+    "render": "render/animacion.v2.mp4",
+    "montaje": "final/final.v2.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "copia",
+      "fecha": "2026-11-08T10:43:28",
+      "origen": "copia de 20261108-042439_como_un_agente_de_ia_que_tria_alertas_de (guion, adornos, tiempos y voces) para el tema cyberpunk"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T10:43:35",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T10:43:47",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T10:43:48",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 2402,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T10:43:49",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T10:44:01",
+      "archivo": "previa/iter_1",
+      "imagenes": 21
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T10:44:43",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T10:44:44",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T10:44:45",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 2425,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T10:44:46",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T10:44:58",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T11:14:56",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas/escena_21.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/animacion.mp4",
+        "fotogramas": 3246,
+        "segundos": 1706.2,
+        "_segundos": 1706.8
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T11:16:22",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T11:16:25",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T11:16:26",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T11:16:27",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 2110,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 79,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T11:16:28",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T11:25:43",
+      "archivo": "01_objetos.v4.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.50 v=0.30",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.50 v=0.20"
+        ],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T11:25:44",
+      "archivo": "02_rig.v4.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T11:25:45",
+      "archivo": "04_animacion.v4.blend",
+      "informe": {
+        "claves": 3339,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T11:25:46",
+      "archivo": "04b_efectos.v4.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T11:28:22",
+      "archivo": "01_objetos.v5.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T11:28:23",
+      "archivo": "02_rig.v5.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T11:28:25",
+      "archivo": "04_animacion.v5.blend",
+      "informe": {
+        "claves": 3339,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T11:28:25",
+      "archivo": "04b_efectos.v5.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T13:33:10",
+      "archivo": "01_objetos.v6.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T13:33:11",
+      "archivo": "02_rig.v6.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T13:33:12",
+      "archivo": "04_animacion.v6.blend",
+      "informe": {
+        "claves": 3339,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T13:33:14",
+      "archivo": "04b_efectos.v6.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T13:33:41",
+      "archivo": "04_animacion.v7.blend",
+      "informe": {
+        "claves": 3402,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T13:33:42",
+      "archivo": "04b_efectos.v7.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T13:34:50",
+      "archivo": "01_objetos.v7.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T13:34:51",
+      "archivo": "02_rig.v7.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T13:34:52",
+      "archivo": "04_animacion.v8.blend",
+      "informe": {
+        "claves": 3402,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T13:34:53",
+      "archivo": "04b_efectos.v8.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T13:36:05",
+      "archivo": "04b_efectos.v9.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 1.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T13:56:15",
+      "archivo": "04b_efectos.v10.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T14:06:53",
+      "archivo": "guion.json",
+      "origen": "esf_llm: esfera -> cerebro procedural rosa_vivo (radio 0.3), a peticion del usuario (anterior en historial/guion.20261108-140748.json)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:07:23",
+      "archivo": "01_objetos.v8.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:07:24",
+      "archivo": "02_rig.v8.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:07:25",
+      "archivo": "04_animacion.v9.blend",
+      "informe": {
+        "claves": 3402,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:07:26",
+      "archivo": "04b_efectos.v11.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:07:49",
+      "archivo": "02_rig.v9.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:07:50",
+      "archivo": "04_animacion.v10.blend",
+      "informe": {
+        "claves": 3402,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:07:51",
+      "archivo": "04b_efectos.v12.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:08:06",
+      "archivo": "01_objetos.v9.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:08:07",
+      "archivo": "02_rig.v10.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:08:08",
+      "archivo": "04_animacion.v11.blend",
+      "informe": {
+        "claves": 3411,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:08:09",
+      "archivo": "04b_efectos.v13.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T14:10:12",
+      "archivo": "guion.json",
+      "origen": "cerebro del LLM con radio 0.36 (se traga el bloque del prompt, como la esfera)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:10:14",
+      "archivo": "01_objetos.v10.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:10:15",
+      "archivo": "02_rig.v11.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:10:16",
+      "archivo": "04_animacion.v12.blend",
+      "informe": {
+        "claves": 3411,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:10:17",
+      "archivo": "04b_efectos.v14.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T14:10:51",
+      "archivo": "guion.json",
+      "origen": "bloque_v sube 0.15 (no 0.3): acaba dentro del cerebro del LLM"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:10:52",
+      "archivo": "01_objetos.v11.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:10:54",
+      "archivo": "02_rig.v12.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:10:55",
+      "archivo": "04_animacion.v13.blend",
+      "informe": {
+        "claves": 3411,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:10:55",
+      "archivo": "04b_efectos.v15.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:11:39",
+      "archivo": "01_objetos.v12.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:11:40",
+      "archivo": "02_rig.v13.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.3
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:11:41",
+      "archivo": "04_animacion.v14.blend",
+      "informe": {
+        "claves": 3411,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:11:42",
+      "archivo": "04b_efectos.v16.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T14:19:32",
+      "archivo": "guion.json",
+      "origen": "cerebro descargado (NIH 3D 3DPX-002739, CC BY 4.0) con radio 0.33; bloque_v vuelve a subir 0.3"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:19:33",
+      "archivo": "01_objetos.v13.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:19:35",
+      "archivo": "02_rig.v14.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:19:36",
+      "archivo": "04_animacion.v15.blend",
+      "informe": {
+        "claves": 3413,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:19:37",
+      "archivo": "04b_efectos.v17.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T14:20:04",
+      "archivo": "guion.json",
+      "origen": "cerebro girado -30 grados: de perfil hacia la camara, como la referencia"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:20:05",
+      "archivo": "01_objetos.v14.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:20:06",
+      "archivo": "02_rig.v15.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:20:08",
+      "archivo": "04_animacion.v16.blend",
+      "informe": {
+        "claves": 3411,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:20:08",
+      "archivo": "04b_efectos.v18.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T14:23:01",
+      "archivo": "guion.json",
+      "origen": "cerebro azul con surcos de neon (menos realista)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:23:02",
+      "archivo": "01_objetos.v15.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:23:04",
+      "archivo": "02_rig.v16.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:23:05",
+      "archivo": "04_animacion.v17.blend",
+      "informe": {
+        "claves": 3411,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:23:06",
+      "archivo": "04b_efectos.v19.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:24:36",
+      "archivo": "01_objetos.v16.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:24:37",
+      "archivo": "02_rig.v17.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:24:38",
+      "archivo": "04_animacion.v18.blend",
+      "informe": {
+        "claves": 3639,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:24:39",
+      "archivo": "04b_efectos.v20.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:27:15",
+      "archivo": "01_objetos.v17.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:27:17",
+      "archivo": "02_rig.v18.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:27:18",
+      "archivo": "04_animacion.v19.blend",
+      "informe": {
+        "claves": 3646,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:27:19",
+      "archivo": "04b_efectos.v21.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:28:29",
+      "archivo": "01_objetos.v18.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:28:30",
+      "archivo": "02_rig.v19.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:28:31",
+      "archivo": "04_animacion.v20.blend",
+      "informe": {
+        "claves": 3646,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:28:32",
+      "archivo": "04b_efectos.v22.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T14:31:02",
+      "archivo": "adornos.json",
+      "origen": "cartel 'LLM' encima del cerebro (el rayo de la esfera ya no vale)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T14:31:03",
+      "archivo": "01_objetos.v19.blend",
+      "informe": {
+        "piezas": 58,
+        "rayos_x": 57,
+        "adornos": 88,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80"
+        ],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T14:31:05",
+      "archivo": "02_rig.v20.blend",
+      "informe": {
+        "huesos": 59,
+        "piezas": 58,
+        "desvio_max": 0.0,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T14:31:06",
+      "archivo": "04_animacion.v21.blend",
+      "informe": {
+        "claves": 3650,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 58,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T14:31:07",
+      "archivo": "04b_efectos.v23.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T15:03:47",
+      "archivo": "render/animacion.v2.mp4",
+      "vinetas": "render/vinetas.v8",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/vinetas.v8/escena_21.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-110000_agente_soc_cyberpunk/render/animacion.v2.mp4",
+        "fotogramas": 3246,
+        "segundos": 1934.8,
+        "_segundos": 1935.4
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T15:05:03",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T15:35:58",
+      "archivo": "guion.json",
+      "origen": "cola SQS como la referencia: caja oscura con tapas moradas, puerto, canal de cristal y alertas biohazard dentro"
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T15:35:58",
+      "archivo": "adornos.json",
+      "origen": "cola SQS: cartel 'SQS' arriba y barras LED verdes en el frente"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T15:36:08",
+      "archivo": "01_objetos.v20.blend",
+      "informe": {
+        "piezas": 62,
+        "rayos_x": 61,
+        "adornos": 87,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80",
+          "tubo_sqs: el cartel chocaba con canal_sqs y no hay sitio libre; se quita"
+        ],
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T15:36:10",
+      "archivo": "02_rig.v21.blend",
+      "informe": {
+        "huesos": 63,
+        "piezas": 62,
+        "desvio_max": 0.0,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T15:36:11",
+      "archivo": "04_animacion.v22.blend",
+      "informe": {
+        "claves": 3847,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 62,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T15:36:12",
+      "archivo": "04b_efectos.v24.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T15:37:10",
+      "archivo": "adornos.json",
+      "origen": "cartel 'SQS' encima del canal de cristal (encima del cuerpo no cabia)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T15:37:11",
+      "archivo": "01_objetos.v21.blend",
+      "informe": {
+        "piezas": 62,
+        "rayos_x": 61,
+        "adornos": 87,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80",
+          "canal_sqs: el cartel chocaba con f_sqs2; movido a u=0.50 v=0.70"
+        ],
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T15:37:13",
+      "archivo": "02_rig.v22.blend",
+      "informe": {
+        "huesos": 63,
+        "piezas": 62,
+        "desvio_max": 0.0,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T15:37:14",
+      "archivo": "04_animacion.v23.blend",
+      "informe": {
+        "claves": 3882,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 62,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T15:37:15",
+      "archivo": "04b_efectos.v25.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T15:38:19",
+      "archivo": "adornos.json",
+      "origen": "cola SQS: barras LED verdes (adorno 'barras') en lugar de franjas"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T15:38:20",
+      "archivo": "01_objetos.v22.blend",
+      "informe": {
+        "piezas": 62,
+        "rayos_x": 61,
+        "adornos": 85,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80",
+          "canal_sqs: el cartel chocaba con f_sqs2; movido a u=0.50 v=0.70"
+        ],
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T15:38:22",
+      "archivo": "02_rig.v23.blend",
+      "informe": {
+        "huesos": 63,
+        "piezas": 62,
+        "desvio_max": 0.0,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T15:38:23",
+      "archivo": "04_animacion.v24.blend",
+      "informe": {
+        "claves": 3882,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 62,
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T15:38:24",
+      "archivo": "04b_efectos.v26.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T15:40:48",
+      "archivo": "01_objetos.v23.blend",
+      "informe": {
+        "piezas": 62,
+        "rayos_x": 61,
+        "adornos": 85,
+        "avisos_adornos": [
+          "base_cloud: el cartel chocaba con esf_cloud1 y no hay sitio libre; se quita",
+          "ddb1_3: el cartel chocaba con f_ddb1_2; movido a u=0.08 v=0.50, poste +0.18 m",
+          "caja_alerta: el cartel chocaba con baliza_alerta; movido a u=0.80 v=0.80",
+          "canal_sqs: el cartel chocaba con f_sqs2; movido a u=0.50 v=0.70"
+        ],
+        "_segundos": 1.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T15:40:50",
+      "archivo": "02_rig.v24.blend",
+      "informe": {
+        "huesos": 63,
+        "piezas": 62,
+        "desvio_max": 0.0,
+        "_segundos": 1.8
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T15:40:52",
+      "archivo": "04_animacion.v25.blend",
+      "informe": {
+        "claves": 3882,
+        "fotogramas": 3246,
+        "cambios_de_sombra": 37,
+        "piezas": 62,
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T15:40:53",
+      "archivo": "04b_efectos.v27.blend",
+      "informe": {
+        "efectos": 26,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    }
+  ],
+  "vinetas": "render/vinetas.v8"
+}

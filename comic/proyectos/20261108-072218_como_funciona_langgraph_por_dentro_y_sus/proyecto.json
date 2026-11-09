@@ -1,0 +1,241 @@
+{
+  "descripcion": "Cómo funciona LangGraph por dentro y sus ventajas en producción mediante un caso de uso de operaciones y reembolsos: estado compartido tipado con reducers (StateGraph), ejecución paralela dinámica (Send API), ciclos controlados con aristas condicionales, persistencia paso a paso con Checkpointer (tolerancia a fallos y time-travel) y aprobación humana nativa (interrupt y Command resume) sin bloquear workers. Vídeo para desarrolladores, de unos 2 minutos y medio: una maqueta isométrica de la arquitectura en el TEMA NEON: componentes modelados con primitivas (portátil, bandeja de estado con bloques apilados, carcasa del grafo con nodos y aristas internas vistas con rayos X, cajas de microservicios con tapa, base de datos de checkpoints morada, garita con barrera para human-in-the-loop, consola de supervisor y pasarela de pagos), cada uno sobre su peana luminosa azul y unidos por mangueras de neón de borde a borde, que se monta componente a componente de izquierda a derecha.\n\nESCALA: componentes principales de 0.3-0.75 m de alto, separados 0.35-0.55 m; fichas y bloques de unos 0.12-0.18 m; mangueras de radio 0.02-0.025 que van de borde a borde de los componentes que unen sin atravesar ninguna pieza. La maqueta entera, menos de 5 m de ancho (x entre -2.2 y 2.2 m).\n\nCOMPONENTES (de izquierda a derecha) Y CÓMO DIBUJARLOS\n1. Cliente (Solicitud de reembolso): a la izquierda (x≈-2.0, y=0.0), un portátil (base caja y pantalla panel en gris_oscuro) sobre su peana azul. Envía la solicitud de reembolso con su thread_id.\n2. Estado compartido (State + Reducers): detrás a la izquierda (x≈-1.2, y=-0.75), una repisa metálica baja sobre su peana con tres bloques apilados encima de distintos colores (lima, cielo, naranja) que representan las claves del esquema tipado y la lista de mensajes con su reducer (como add_messages u operator.add). Cada nodo lee el estado y devuelve solo su actualización; el reducer combina las escrituras paralelas sin pisar datos.\n3. Motor del Grafo (StateGraph de LangGraph): en el centro-izquierda (x≈-0.4, y=0.0), una carcasa grande verde (caja de unos 0.9x0.7x0.65 m) sobre una peana amplia. Con rayos_x sobre la carcasa se ven dentro los nodos del grafo y sus aristas (mangueras finas internas): un nodo de entrada/fan-out (esfera cielo a la izquierda), dos nodos de validación en paralelo (dos cubos naranjas separados en Y para consultar pedido y fraude con Send), un nodo agente/evaluador (esfera azul en el centro-derecha) y una arista condicional en arco que vuelve hacia atrás formando un ciclo controlado cuando falta información, antes de salir hacia la derecha.\n4. Tools / Microservicios de Pedidos y Antifraude: delante del servidor (x≈-0.4, y=0.85), dos cajas pequeñas (una metal y una naranja, con tapa en bisagra) sobre sus peanas, unidas al servidor del grafo por mangueras. Cuando el grafo lanza ramas paralelas con Send, viajan flujos a la vez hacia ambas tools y regresan con flujo_vuelta.\n5. Checkpointer (Persistencia en Postgres / DynamoDB): detrás del servidor a la derecha (x≈0.55, y=-0.8), una base de datos morada (tres cilindros apilados) sobre su peana, unida al grafo por manguera, con tres fichas pequeñas al lado (los checkpoints por super-step). Guarda el estado completo en cada paso indexado por thread_id y checkpoint_id: permite recuperar la ejecución en otro worker si uno cae, y hacer time-travel (rebobinar a un checkpoint anterior y bifurcar la ejecución para depurar).\n6. Compuerta Human-in-the-loop (interrupt y Command resume) y Consola del Supervisor: en x≈0.75, y=0.0, una garita roja (caja roja con barra/barrera en bisagra encima) sobre su peana, unida por manguera a la salida del grafo y también hacia delante (x≈0.75, y=0.85) a la Consola del Supervisor (un monitor panel sobre un pie en su peana). Cuando el reembolso supera el umbral, el nodo ejecuta interrupt(): el estado queda guardado en el checkpointer, el worker queda libre sin esperar bloqueado (efecto reloj) y el supervisor revisa el caso en su monitor. Al aprobar (efecto aprobado), envía Command(resume=True), la barrera se abre y el grafo reanuda desde ese mismo punto.\n7. Nodo de Ejecución / Pasarela de Pagos: a la derecha del todo (x≈1.8, y=0.0), un servidor de pagos (caja verde/metal con un cilindro lima encima como baliza de confirmación) sobre su peana, unido desde la garita por manguera. Ejecuta el reembolso autorizado (efectos rayo y aprobado).\n\nRECORRIDO\nPrimero se monta la maqueta componente a componente explicando qué problema resuelve LangGraph frente a cadenas DAG rígidas y agentes de caja negra. Después, cuatro bloques:\nA) Paralelismo con Send y Estado con Reducers: entra la solicitud del cliente; el grafo (visto con rayos_x) dispara en paralelo las consultas a las dos tools con Send; las respuestas vuelven y apilan bloques en el State mediante reducers sin sobrescribirse.\nB) Ciclos controlados y Aristas condicionales: el nodo evaluador detecta una discrepancia, la arista condicional devuelve el flujo hacia atrás dentro del grafo para una segunda comprobación acotada, y luego avanza.\nC) Checkpointer, tolerancia a fallos y Time-Travel: cada super-step guarda una ficha de checkpoint en la base de datos morada; ante un fallo de worker o una auditoría (alerta), se restaura o se hace time-travel a un checkpoint_id previo sin repetir todo el flujo.\nD) Human-in-the-loop con interrupt(): al superar el importe umbral, el grafo se pausa en la garita roja con interrupt() liberando el servidor (reloj); el supervisor aprueba en su consola (aprobado), envía Command(resume), la barrera se abre y la pasarela de pagos ejecuta el reembolso (rayo, aprobado). La última escena muestra todo el sistema funcionando en conjunto.\n\nNARRACIÓN\nTono divulgativo y preciso para desarrolladores, usando los términos técnicos reales (LangGraph, StateGraph, State, reducers, add_messages, Send, fan-out, aristas condicionales, ciclos, super-step, Checkpointer, thread_id, checkpoint_id, time-travel, interrupt, Command resume). Destaca las ventajas en producción: control determinista sobre bucles, paralelismo seguro gracias a los reducers, tolerancia a fallos y depuración con time-travel, y aprobaciones humanas asíncronas sin dejar procesos bloqueados.",
+  "creado": "20261108-072218",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "neon",
+    "formato": "3d",
+    "orientacion": "horizontal",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "duracion": 150.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.v3.blend",
+    "rig": "02_rig.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v3.blend",
+    "efectos": "04b_efectos.v3.blend",
+    "previa": "previa/iter_1.v3",
+    "render": "render/animacion.mp4",
+    "montaje": "final/final.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T07:27:24",
+      "archivo": "guion.json",
+      "escenas": 21,
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T07:41:23",
+      "archivo": "adornos.json",
+      "adornos": 65,
+      "por_tipo": {
+        "teclado": 1,
+        "pantalla": 6,
+        "cartel": 9,
+        "placa": 2,
+        "tornillos": 3,
+        "leds": 7,
+        "rejilla": 3,
+        "tirador": 2,
+        "icono": 10,
+        "franja": 6,
+        "ranuras": 2,
+        "boton": 1,
+        "conector": 13
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T07:41:24",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 46,
+        "rayos_x": 46,
+        "adornos": 65,
+        "avisos_adornos": [],
+        "_segundos": 1.5
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T07:52:35",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 46,
+        "rayos_x": 46,
+        "adornos": 65,
+        "avisos_adornos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T07:52:36",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 47,
+        "piezas": 46,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T07:56:04",
+      "archivo": "tiempos.json",
+      "duracion": 140.129,
+      "fotogramas": 3363,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T07:56:06",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 6161,
+        "fotogramas": 3363,
+        "cambios_de_sombra": 67,
+        "piezas": 46,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T07:56:06",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 22,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T07:56:11",
+      "archivo": "previa/iter_1",
+      "imagenes": 21
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T08:03:12",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 6174,
+        "fotogramas": 3363,
+        "cambios_de_sombra": 67,
+        "piezas": 46,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T08:03:14",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 24,
+        "avisos": [],
+        "_segundos": 1.1
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T08:03:18",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 21
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T08:07:22",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 6268,
+        "fotogramas": 3363,
+        "cambios_de_sombra": 67,
+        "piezas": 46,
+        "_segundos": 1.4
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T08:07:24",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 24,
+        "avisos": [],
+        "_segundos": 1.2
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T08:07:28",
+      "archivo": "previa/iter_1.v3",
+      "imagenes": 21
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T08:17:56",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1920x1080",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_14.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_15.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_16.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_17.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_18.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_19.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_20.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/vinetas/escena_21.png"
+        ],
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-072218_como_funciona_langgraph_por_dentro_y_sus/render/animacion.mp4",
+        "fotogramas": 3363,
+        "segundos": 497.5,
+        "_segundos": 498.1
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T08:19:16",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    }
+  ],
+  "referencia_detalles": "/home/kheiron/blender/comic/referencias/maqueta_neon/maqueta_bases_neon.png",
+  "vinetas": "render/vinetas"
+}

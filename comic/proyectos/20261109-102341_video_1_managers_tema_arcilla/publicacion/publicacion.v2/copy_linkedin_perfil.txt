@@ -1,0 +1,11 @@
+He visto cómo muchas empresas pierden dinero por no adaptar sus precios a tiempo.
+
+El caso de las aerolíneas es el ejemplo perfecto de este problema.
+Venden 180 asientos muy barato en temporada alta o vuelan vacíos en baja.
+Con el equipo de @Vervux, explicamos cómo el Aprendizaje por Refuerzo cambia esto.
+Un agente virtual entrena en un simulador para encontrar el precio óptimo cada día.
+Logrando, por ejemplo, un 15 % más de ingresos sin romper las reglas de negocio.
+
+¿Confiarías la estrategia de precios de tu empresa a un agente virtual?
+
+#IA #EstrategiaDePrecios #MachineLearning #Innovacion

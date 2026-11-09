@@ -1,0 +1,76 @@
+{
+  "origen": "gemini",
+  "variantes": [
+    {
+      "enfoque": "dolor",
+      "titular": "Peligro de precios fijos",
+      "clave": [
+        "precios",
+        "fijos"
+      ],
+      "cifra": "",
+      "etiqueta": "",
+      "color": "problema"
+    },
+    {
+      "enfoque": "cifra",
+      "titular": "Aumenta tus ingresos",
+      "clave": [
+        "Aumenta",
+        "ingresos"
+      ],
+      "cifra": "+15 %",
+      "etiqueta": "por vuelo",
+      "color": "bueno"
+    },
+    {
+      "enfoque": "curiosidad",
+      "titular": "¿El precio perfecto?",
+      "clave": [
+        "precio",
+        "perfecto"
+      ],
+      "cifra": "180",
+      "etiqueta": "asientos diarios",
+      "color": "espera"
+    }
+  ],
+  "ranking": {
+    "orden": [
+      2,
+      1,
+      3
+    ],
+    "notas": [
+      {
+        "variante": 2,
+        "puntuacion": 9,
+        "motivo": "Destaca un beneficio claro y cuantificable (+15% ingresos) que capta instantáneamente la atención de directivos enfocados en el ROI.",
+        "mejora": "Cambiar 'por vuelo' por un término más universal como 'en tu sector' si el video no es exclusivo de aerolíneas para ampliar el alcance."
+      },
+      {
+        "variante": 1,
+        "puntuacion": 7,
+        "motivo": "Utiliza la aversión a la pérdida ('Peligro') de forma efectiva con alta legibilidad, pero carece de la promesa de una solución.",
+        "mejora": "Añadir un pequeño subtítulo o etiqueta que diga 'Cómo la IA lo soluciona' para conectar el problema con el valor del video."
+      },
+      {
+        "variante": 3,
+        "puntuacion": 5,
+        "motivo": "La pregunta genera curiosidad, pero el dato '180 asientos diarios' es confuso y no comunica un beneficio de negocio directo.",
+        "mejora": "Sustituir el texto de la etiqueta naranja por una métrica de rentabilidad o margen de beneficio para que resuene mejor con los managers."
+      }
+    ]
+  },
+  "orden": [
+    2,
+    1,
+    3
+  ],
+  "avisos": [],
+  "fondos": {
+    "vertical": "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/miniaturas/miniaturas.v2/fondo_vertical.png",
+    "horizontal": "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/miniaturas/miniaturas.v2/fondo_horizontal.png"
+  },
+  "dispositivo": "OPTIX: NVIDIA GeForce RTX 4060"
+}

@@ -1,0 +1,190 @@
+1
+00:00:00,333 --> 00:00:01,500
+¿Cuántos miles de euros
+
+2
+00:00:01,500 --> 00:00:03,375
+pierde tu aerolínea por usar
+
+3
+00:00:03,375 --> 00:00:05,083
+reglas de precio fijas?
+
+4
+00:00:05,917 --> 00:00:07,208
+En tu vuelo Madrid-París,
+
+5
+00:00:07,208 --> 00:00:09,833
+vendes los 180
+asientos demasiado
+
+6
+00:00:09,833 --> 00:00:12,333
+rápido y barato
+en temporada alta.
+
+7
+00:00:13,167 --> 00:00:15,083
+Y en temporada baja,
+
+8
+00:00:15,083 --> 00:00:16,292
+el avión despega con
+
+9
+00:00:16,292 --> 00:00:17,667
+asientos vacíos.
+
+10
+00:00:18,500 --> 00:00:19,542
+El Aprendizaje por
+
+11
+00:00:19,542 --> 00:00:21,458
+Refuerzo cambia esto.
+
+12
+00:00:21,458 --> 00:00:22,542
+Conoce a tu nuevo
+
+13
+00:00:22,542 --> 00:00:23,833
+agente de precios.
+
+14
+00:00:24,667 --> 00:00:26,833
+El agente mira el estado:
+
+15
+00:00:26,833 --> 00:00:27,917
+cuántos asientos quedan
+
+16
+00:00:27,917 --> 00:00:29,667
+libres y cuántos días faltan.
+
+17
+00:00:30,500 --> 00:00:32,500
+Y decide una acción:
+
+18
+00:00:32,500 --> 00:00:33,708
+subir o bajar el precio
+
+19
+00:00:33,708 --> 00:00:35,083
+del billete hoy.
+
+20
+00:00:35,917 --> 00:00:37,083
+Pero la dirección manda.
+
+21
+00:00:37,083 --> 00:00:38,667
+Pones límites de
+
+22
+00:00:38,667 --> 00:00:40,167
+negocio estrictos.
+
+23
+00:00:41,125 --> 00:00:42,667
+Por ejemplo, el precio
+
+24
+00:00:42,667 --> 00:00:44,208
+nunca baja de 60 euros
+
+25
+00:00:44,208 --> 00:00:46,292
+ni supera los 400.
+
+26
+00:00:47,125 --> 00:00:48,792
+Tú también defines
+qué se premia.
+
+27
+00:00:48,792 --> 00:00:51,042
+El motor de recompensa.
+
+28
+00:00:51,875 --> 00:00:53,708
+Cada billete vendido suma euros.
+
+29
+00:00:53,708 --> 00:00:55,167
+Cada asiento vacío
+
+30
+00:00:55,167 --> 00:00:56,792
+al despegar, resta.
+
+31
+00:00:57,625 --> 00:00:59,250
+Antes de tocar un cliente real,
+
+32
+00:00:59,250 --> 00:01:00,625
+el agente practica
+
+33
+00:01:00,625 --> 00:01:02,083
+en el simulador.
+
+34
+00:01:02,958 --> 00:01:03,958
+Prueba precios en miles
+
+35
+00:01:03,958 --> 00:01:04,958
+de vuelos virtuales.
+
+36
+00:01:04,958 --> 00:01:06,292
+Si se equivoca,
+
+37
+00:01:06,292 --> 00:01:08,417
+solo pierde dinero simulado.
+
+38
+00:01:09,250 --> 00:01:10,125
+Cuando aprende la
+
+39
+00:01:10,125 --> 00:01:11,292
+estrategia perfecta,
+
+40
+00:01:11,292 --> 00:01:12,542
+pasa a producción.
+
+41
+00:01:13,375 --> 00:01:14,833
+Ahora adapta el precio
+
+42
+00:01:14,833 --> 00:01:15,833
+a la demanda real,
+
+43
+00:01:15,833 --> 00:01:17,083
+cada día.
+
+44
+00:01:17,208 --> 00:01:18,417
+¿El resultado?
+
+45
+00:01:18,417 --> 00:01:20,208
+Por ejemplo, un 15 % más
+
+46
+00:01:20,208 --> 00:01:21,292
+de ingresos por vuelo,
+
+47
+00:01:21,292 --> 00:01:22,875
+con menos asientos vacíos.

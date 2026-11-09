@@ -1,0 +1,50 @@
+=== objetos 07:10:58
+[1 objetos] dibujando las piezas, sus versiones de rayos X y el entorno
+    {"piezas": 58, "rayos_x": 57, "adornos": 88, "avisos_adornos": [], "_segundos": 1.0}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/01_objetos.v9.blend
+=== rig 07:10:59
+[2 rig] esqueletos para personajes y elementos
+    {"huesos": 59, "piezas": 58, "desvio_max": 0.0, "_segundos": 0.7}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/02_rig.v9.blend
+=== audio 07:11:00
+[3 audio] voces Gemini TTS gemini-2.5-pro-tts
+    135.3 s, 3246 fotogramas a 24 fps
+    E1: 0.0-6.4 s, 1 lineas
+    E2: 6.4-11.6 s, 1 lineas
+    E3: 11.6-17.6 s, 1 lineas
+    E4: 17.6-24.2 s, 1 lineas
+    E5: 24.2-31.4 s, 1 lineas
+    E6: 31.4-36.4 s, 1 lineas
+    E7: 36.4-43.6 s, 1 lineas
+    E8: 43.6-51.5 s, 1 lineas
+    E9: 51.5-57.2 s, 1 lineas
+    E10: 57.2-64.1 s, 1 lineas
+    E11: 64.1-70.1 s, 1 lineas
+    E12: 70.1-77.6 s, 1 lineas
+    E13: 77.6-83.6 s, 1 lineas
+    E14: 83.6-89.1 s, 1 lineas
+    E15: 89.1-95.1 s, 1 lineas
+    E16: 95.1-102.3 s, 1 lineas
+    E17: 102.3-109.0 s, 1 lineas
+    E18: 109.0-115.1 s, 1 lineas
+    E19: 115.1-122.3 s, 1 lineas
+    E20: 122.3-128.3 s, 1 lineas
+    E21: 128.3-135.3 s, 1 lineas
+=== animacion 07:11:00
+[4 animacion] personajes, escenografia y camara al ritmo del audio
+    {"claves": 6159, "fotogramas": 3246, "cambios_de_sombra": 79, "piezas": 58, "_segundos": 1.6}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/04_animacion.v11.blend
+=== efectos 07:11:02
+[efectos] bocadillos, cartelas, onomatopeyas y lineas de accion
+    {"efectos": 26, "avisos": [], "_segundos": 0.8}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/04b_efectos.v13.blend
+=== render 07:11:03
+[5 render] EEVEE 1920x1080, 24 fps
+    3246 fotogramas en 466.4 s
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/render/animacion.v3.mp4
+=== montaje 07:18:49
+[montaje] cartelas, video final y pagina de comic
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/final/final.v3.mp4
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/final/pagina_comic.v3.png
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/final/animacion.v3.gif
+=== FIN 07:20:03

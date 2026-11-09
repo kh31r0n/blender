@@ -1,0 +1,1233 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Cómo funcionan los Asistentes de Chat con IA",
+  "sinopsis": "Explicación ejecutiva de la arquitectura de un asistente de IA corporativo, destacando la privacidad de datos, la gestión del contexto para ahorrar costes y la validación de políticas.",
+  "objeto": {
+    "nombre": "Arquitectura IA Corporativa",
+    "alto": 0.8
+  },
+  "suelo": "cemento",
+  "tema": "cyberpunk",
+  "piezas": [
+    {
+      "id": "peana_term",
+      "nombre": "Peana Terminal",
+      "forma": "peana",
+      "x": -0.65,
+      "y": -0.55,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "term_base",
+      "nombre": "Base Portátil",
+      "forma": "caja",
+      "x": -0.65,
+      "y": -0.55,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "peana_term",
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.3,
+      "alto": 0.03
+    },
+    {
+      "id": "term_pantalla",
+      "nombre": "Pantalla Portátil",
+      "forma": "panel",
+      "x": -0.65,
+      "y": -0.4,
+      "z": 0.07,
+      "rot_x": 10.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "term_base",
+      "bisagra": "atras",
+      "ancho": 0.4,
+      "alto": 0.3,
+      "grosor": 0.02
+    },
+    {
+      "id": "peana_dlp",
+      "nombre": "Peana Privacidad",
+      "forma": "peana",
+      "x": -0.65,
+      "y": 0.45,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "dlp_caja",
+      "nombre": "Garita DLP",
+      "forma": "caja",
+      "x": -0.65,
+      "y": 0.45,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "rayado",
+      "padre": "peana_dlp",
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.4
+    },
+    {
+      "id": "dlp_barra",
+      "nombre": "Barrera DLP",
+      "forma": "varilla",
+      "x": -0.5,
+      "y": 0.45,
+      "z": 0.25,
+      "rot_x": 0.0,
+      "rot_y": 90.0,
+      "rot_z": 0.0,
+      "color": "amarillo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "dlp_caja",
+      "bisagra": "izquierda",
+      "radio": 0.02,
+      "alto": 0.3
+    },
+    {
+      "id": "peana_ctx",
+      "nombre": "Peana Ensamblador",
+      "forma": "peana",
+      "x": 0.0,
+      "y": -0.05,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.6,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "ctx_db",
+      "nombre": "Base de Datos",
+      "forma": "cilindro",
+      "x": -0.15,
+      "y": -0.05,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "morado",
+      "material": "solido",
+      "detalle": "nervado",
+      "padre": "peana_ctx",
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.3
+    },
+    {
+      "id": "ctx_bandeja",
+      "nombre": "Bandeja Contexto",
+      "forma": "caja",
+      "x": 0.15,
+      "y": -0.05,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "peana_ctx",
+      "bisagra": "ninguna",
+      "ancho": 0.25,
+      "fondo": 0.25,
+      "alto": 0.05
+    },
+    {
+      "id": "ficha_reglas",
+      "nombre": "Reglas Negocio",
+      "forma": "caja",
+      "x": 0.15,
+      "y": -0.05,
+      "z": 0.09,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "ctx_bandeja",
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.03
+    },
+    {
+      "id": "ficha_historial",
+      "nombre": "Resumen Historial",
+      "forma": "caja",
+      "x": 0.15,
+      "y": -0.05,
+      "z": 0.14,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "ctx_bandeja",
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.03
+    },
+    {
+      "id": "ficha_pregunta",
+      "nombre": "Nueva Pregunta",
+      "forma": "caja",
+      "x": 0.15,
+      "y": -0.05,
+      "z": 0.19,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "ctx_bandeja",
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.03
+    },
+    {
+      "id": "peana_llm",
+      "nombre": "Peana LLM",
+      "forma": "peana",
+      "x": 0.65,
+      "y": -0.55,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "llm_base",
+      "nombre": "Pedestal LLM",
+      "forma": "cilindro",
+      "x": 0.65,
+      "y": -0.55,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "peana_llm",
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.2
+    },
+    {
+      "id": "llm_esfera",
+      "nombre": "Cerebro LLM",
+      "forma": "esfera",
+      "x": 0.65,
+      "y": -0.55,
+      "z": 0.24,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "llm_base",
+      "bisagra": "ninguna",
+      "radio": 0.2
+    },
+    {
+      "id": "peana_chk",
+      "nombre": "Peana Verificador",
+      "forma": "peana",
+      "x": 0.65,
+      "y": 0.45,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "chk_server",
+      "nombre": "Servidor Políticas",
+      "forma": "caja",
+      "x": 0.65,
+      "y": 0.45,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "verde",
+      "material": "solido",
+      "detalle": "rejilla",
+      "padre": "peana_chk",
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.4
+    },
+    {
+      "id": "chk_baliza",
+      "nombre": "Baliza Conformidad",
+      "forma": "cilindro",
+      "x": 0.65,
+      "y": 0.45,
+      "z": 0.44,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "transparente",
+      "detalle": "liso",
+      "padre": "chk_server",
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.08
+    },
+    {
+      "id": "mang_term_dlp",
+      "nombre": "Conexión Terminal-DLP",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.65,
+          -0.28,
+          0.06
+        ],
+        [
+          -0.65,
+          0.18,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "mang_dlp_ctx",
+      "nombre": "Conexión DLP-Contexto",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.38,
+          0.45,
+          0.06
+        ],
+        [
+          -0.2,
+          0.45,
+          0.06
+        ],
+        [
+          -0.2,
+          0.22,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "mang_ctx_llm",
+      "nombre": "Conexión Contexto-LLM",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.32,
+          -0.05,
+          0.06
+        ],
+        [
+          0.45,
+          -0.05,
+          0.06
+        ],
+        [
+          0.45,
+          -0.4,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "mang_llm_chk",
+      "nombre": "Conexión LLM-Verificador",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.65,
+          -0.28,
+          0.06
+        ],
+        [
+          0.65,
+          0.18,
+          0.06
+        ]
+      ]
+    },
+    {
+      "id": "mang_chk_term",
+      "nombre": "Conexión Verificador-Terminal",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.85,
+          0.45,
+          0.06
+        ],
+        [
+          0.85,
+          0.65,
+          0.06
+        ],
+        [
+          -0.85,
+          0.65,
+          0.06
+        ],
+        [
+          -0.876,
+          -0.55,
+          0.06
+        ],
+        [
+          -0.8,
+          -0.55,
+          0.06
+        ]
+      ]
+    }
+  ],
+  "accesorios": [],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "El empleado envía una consulta repetitiva desde el terminal.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "¿Tus empleados pierden horas respondiendo las mismas dudas internas una y otra vez?",
+          "emocion": "misterioso"
+        }
+      ],
+      "aparecen": [
+        "peana_term",
+        "term_base",
+        "term_pantalla"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "term_pantalla"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "term_pantalla",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "term_base",
+        "objetivos": [
+          "term_base",
+          "term_pantalla"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "term_pantalla",
+          "etiqueta": "Dudas Nómina",
+          "valor": "120/día",
+          "hasta": "",
+          "color": "rojo"
+        }
+      ],
+      "paso": 1,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 2,
+      "descripcion": "Aparece la barrera DLP para proteger la privacidad.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Un asistente IA puede absorberlo. Pero, ¿es seguro para los datos de tu empresa?",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_dlp",
+        "dlp_caja",
+        "dlp_barra",
+        "mang_term_dlp"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "dlp_caja"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "mang_term_dlp",
+          "momento": 0.2,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "dlp_caja",
+        "objetivos": [
+          "term_base",
+          "dlp_caja"
+        ],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 2,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 3,
+      "descripcion": "La barrera DLP filtra los datos sensibles.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Todo empieza en la pasarela de privacidad. Este filtro bloquea datos confidenciales al instante.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "dlp_barra"
+      ],
+      "animaciones": [
+        {
+          "pieza": "dlp_barra",
+          "movimiento": "abrir",
+          "inicio": 0.4,
+          "fin": 0.6,
+          "cantidad": 90.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "dlp_caja",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "dlp_caja",
+        "objetivos": [
+          "dlp_caja"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "dlp_caja",
+          "etiqueta": "Riesgo Fuga",
+          "valor": "0%",
+          "hasta": "",
+          "color": "lima"
+        }
+      ],
+      "paso": 2,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 4,
+      "descripcion": "Aparece el ensamblador de contexto.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Una vez seguro, pasa al Ensamblador de Contexto. El modelo no tiene memoria propia.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_ctx",
+        "ctx_db",
+        "ctx_bandeja",
+        "mang_dlp_ctx"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "ctx_bandeja"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "mang_dlp_ctx",
+          "momento": 0.1,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "ctx_bandeja",
+        "objetivos": [
+          "dlp_caja",
+          "ctx_bandeja"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 5,
+      "descripcion": "Se añade la ficha de reglas de negocio.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Primero, inyectamos las reglas de negocio: cómo debe responder y qué tono usar.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "ficha_reglas"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "ficha_reglas"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "ctx_bandeja",
+        "objetivos": [
+          "ctx_bandeja",
+          "ficha_reglas"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 5.0,
+      "datos": [],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 6,
+      "descripcion": "Se añade la ficha del historial comprimido.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Luego, sumamos un resumen del historial. Comprimir la charla reduce drásticamente tu factura.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "ficha_historial"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "ctx_db",
+        "ficha_historial"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "ctx_db",
+          "momento": 0.2,
+          "duracion": 1.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "ctx_bandeja",
+        "objetivos": [
+          "ctx_db",
+          "ctx_bandeja"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "ctx_db",
+          "etiqueta": "Coste Tokens",
+          "valor": "-60%",
+          "hasta": "",
+          "color": "lima"
+        }
+      ],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 7,
+      "descripcion": "Se añade la nueva pregunta al paquete.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Finalmente, añadimos la nueva consulta. Este paquete completo es lo que procesa la IA.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "ficha_pregunta"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "ficha_pregunta"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "ctx_bandeja",
+        "objetivos": [
+          "ctx_bandeja"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 5.0,
+      "datos": [],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 8,
+      "descripcion": "Aparece el cerebro LLM.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El paquete viaja al motor central: el Gran Modelo de Lenguaje o LLM.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "peana_llm",
+        "llm_base",
+        "llm_esfera",
+        "mang_ctx_llm"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "llm_esfera"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "mang_ctx_llm",
+          "momento": 0.2,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "llm_esfera",
+        "objetivos": [
+          "ctx_bandeja",
+          "llm_esfera"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 4,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 9,
+      "descripcion": "El LLM procesa la información vibrando.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Aquí, la IA analiza todo el contexto en milisegundos para redactar la respuesta ideal.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "llm_esfera"
+      ],
+      "animaciones": [
+        {
+          "pieza": "llm_esfera",
+          "movimiento": "vibrar",
+          "inicio": 0.1,
+          "fin": 0.8,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "chispas",
+          "pieza": "llm_esfera",
+          "momento": 0.3,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "llm_esfera",
+        "objetivos": [
+          "llm_esfera"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 4,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 10,
+      "descripcion": "El LLM genera la respuesta instantánea.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Genera una solución precisa, disponible veinticuatro siete, sin costes por horas extra.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "llm_esfera"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "llm_esfera",
+          "momento": 0.1,
+          "duracion": 1.0
+        },
+        {
+          "tipo": "ondas",
+          "pieza": "llm_esfera",
+          "momento": 0.4,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "llm_esfera",
+        "objetivos": [
+          "llm_esfera"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "llm_esfera",
+          "etiqueta": "Tiempo",
+          "valor": "0.8s",
+          "hasta": "",
+          "color": "azul"
+        }
+      ],
+      "paso": 4,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 11,
+      "descripcion": "Aparece el verificador de políticas.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Pero antes de entregarla, pasa por el Verificador de Políticas Corporativas.",
+          "emocion": "misterioso"
+        }
+      ],
+      "aparecen": [
+        "peana_chk",
+        "chk_server",
+        "chk_baliza",
+        "mang_llm_chk",
+        "mang_chk_term"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "chk_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "mang_llm_chk",
+          "momento": 0.2,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "chk_server",
+        "objetivos": [
+          "llm_esfera",
+          "chk_server"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 5,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 12,
+      "descripcion": "El verificador aprueba la respuesta corporativa.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Este servidor confirma que la respuesta cumple con tu marca. Cero alucinaciones.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "chk_baliza"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "chk_baliza",
+          "momento": 0.4,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "chk_baliza",
+        "objetivos": [
+          "chk_server",
+          "chk_baliza"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "chk_server",
+          "etiqueta": "Cumplimiento",
+          "valor": "100%",
+          "hasta": "",
+          "color": "lima"
+        }
+      ],
+      "paso": 5,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 13,
+      "descripcion": "La respuesta vuelve al usuario.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Finalmente, la respuesta validada llega al usuario. Una experiencia fluida y sin esperas.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "term_pantalla"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "mang_chk_term",
+          "momento": 0.1,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "term_pantalla",
+          "momento": 0.75,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "peana_ctx",
+        "objetivos": [
+          "term_base",
+          "chk_server"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0,
+      "datos": [],
+      "paso": 1,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 14,
+      "descripcion": "Vista general de la arquitectura operando rápidamente, mostrando el ROI.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Así automatizas el ochenta por ciento de consultas, protegiendo datos y hundiendo tu coste operativo.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "term_pantalla",
+        "llm_esfera"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "mang_ctx_llm",
+          "momento": 0.1,
+          "duracion": 1.5
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "mang_chk_term",
+          "momento": 0.4,
+          "duracion": 1.5
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "peana_ctx",
+        "objetivos": [
+          "peana_term",
+          "peana_chk",
+          "peana_llm"
+        ],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 8.0,
+      "datos": [
+        {
+          "pieza": "term_pantalla",
+          "etiqueta": "Tickets Automatizados",
+          "valor": "0",
+          "hasta": "80%",
+          "color": "lima"
+        }
+      ],
+      "paso": 0,
+      "ciclo_rapido": true
+    }
+  ],
+  "personajes": [],
+  "escenarios": [],
+  "caso": "Una empresa que implementa un asistente de RRHH para responder dudas sobre nóminas y vacaciones, reduciendo el coste operativo y protegiendo datos sensibles.",
+  "gancho": {
+    "pregunta": "¿Tus empleados pierden horas respondiendo las mismas dudas internas una y otra vez?",
+    "texto_pantalla": "¿Pierdes horas en dudas internas?"
+  },
+  "ciclo": [
+    {
+      "pieza": "term_base",
+      "texto": "Consulta"
+    },
+    {
+      "pieza": "dlp_caja",
+      "texto": "Privacidad"
+    },
+    {
+      "pieza": "ctx_bandeja",
+      "texto": "Contexto"
+    },
+    {
+      "pieza": "llm_esfera",
+      "texto": "Procesado"
+    },
+    {
+      "pieza": "chk_server",
+      "texto": "Validación"
+    }
+  ],
+  "comparativa": {
+    "escena": 14,
+    "titulo": "Coste Operativo",
+    "a_etiqueta": "Humano",
+    "a_valor": 15.0,
+    "b_etiqueta": "IA Chat",
+    "b_valor": 1.5,
+    "resultado": "-90%",
+    "curva_titulo": "Coste por ticket"
+  }
+}

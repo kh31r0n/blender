@@ -1,0 +1,295 @@
+{
+  "origen": "gemini",
+  "paneles": [
+    {
+      "escena": 1,
+      "pieza": "sim_server",
+      "titular": {
+        "texto": "¿Pierdes dinero con precios fijos?",
+        "clave": [
+          "¿Pierdes",
+          "dinero"
+        ],
+        "color": "problema",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "ninguno"
+      }
+    },
+    {
+      "escena": 2,
+      "pieza": "s1",
+      "titular": {
+        "texto": "VENDES DEMASIADO RÁPIDO Y BARATO",
+        "clave": [
+          "DEMASIADO",
+          "RÁPIDO"
+        ],
+        "color": "problema",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "cola",
+        "etiqueta": "Asientos libres",
+        "valor": "180",
+        "hasta": "0",
+        "color": "problema"
+      }
+    },
+    {
+      "escena": 3,
+      "pieza": "s4",
+      "titular": {
+        "texto": "DESPEGA CON ASIENTOS VACÍOS",
+        "clave": [
+          "ASIENTOS",
+          "VACÍOS"
+        ],
+        "color": "problema",
+        "bloque": true
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Asientos libres",
+        "valor": "85",
+        "hasta": "",
+        "color": "problema"
+      }
+    },
+    {
+      "escena": 4,
+      "pieza": "agent_server",
+      "titular": {
+        "texto": "NUEVO AGENTE DE PRECIOS",
+        "clave": [
+          "AGENTE"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "agente.json",
+        "items": [
+          {
+            "etiqueta": "Agente",
+            "valor": "Iniciando",
+            "color": "bueno",
+            "puntos": []
+          }
+        ]
+      }
+    },
+    {
+      "escena": 5,
+      "pieza": "sim_server",
+      "titular": {
+        "texto": "MIRA EL ESTADO",
+        "clave": [
+          "ESTADO"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 6,
+      "pieza": "agent_server",
+      "titular": {
+        "texto": "DECIDE UNA ACCIÓN",
+        "clave": [
+          "ACCIÓN"
+        ],
+        "color": "neutro",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 7,
+      "pieza": "guard_box",
+      "titular": {
+        "texto": "LÍMITES DE NEGOCIO ESTRICTOS",
+        "clave": [
+          "LÍMITES"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "cifras",
+        "items": [
+          {
+            "etiqueta": "Límite min",
+            "valor": "60 €",
+            "color": "espera",
+            "puntos": []
+          },
+          {
+            "etiqueta": "Límite max",
+            "valor": "400 €",
+            "color": "espera",
+            "puntos": []
+          }
+        ]
+      }
+    },
+    {
+      "escena": 8,
+      "pieza": "guard_bar",
+      "titular": {
+        "texto": "NUNCA SUPERA LOS 400",
+        "clave": [
+          "NUNCA",
+          "SUPERA"
+        ],
+        "color": "problema",
+        "bloque": true
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Precio propuesto",
+        "valor": "520 €",
+        "hasta": "",
+        "color": "problema"
+      }
+    },
+    {
+      "escena": 9,
+      "pieza": "reward_cyl",
+      "titular": {
+        "texto": "QUÉ SE PREMIA",
+        "clave": [
+          "PREMIA"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 10,
+      "pieza": "t2",
+      "titular": {
+        "texto": "CADA BILLETE VENDIDO SUMA",
+        "clave": [
+          "SUMA"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Ingreso",
+        "valor": "0 €",
+        "hasta": "+140 €",
+        "color": "bueno"
+      }
+    },
+    {
+      "escena": 11,
+      "pieza": "agent_server",
+      "titular": {
+        "texto": "PRACTICA EN EL SIMULADOR",
+        "clave": [
+          "PRACTICA"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos",
+        "etiqueta": "Vuelos simulados",
+        "valor": "1",
+        "hasta": "10.000",
+        "color": "espera"
+      }
+    },
+    {
+      "escena": 12,
+      "pieza": "agent_server",
+      "titular": {
+        "texto": "SOLO PIERDE DINERO SIMULADO",
+        "clave": [
+          "PIERDE",
+          "DINERO"
+        ],
+        "color": "problema",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "simulacion.log",
+        "items": [
+          {
+            "etiqueta": "Vuelos simulados",
+            "valor": "50.000",
+            "color": "espera",
+            "puntos": []
+          },
+          {
+            "etiqueta": "Penalización",
+            "valor": "-100 €",
+            "color": "problema",
+            "puntos": []
+          }
+        ]
+      }
+    },
+    {
+      "escena": 13,
+      "pieza": "prod_screen",
+      "titular": {
+        "texto": "PASA A PRODUCCIÓN",
+        "clave": [
+          "PRODUCCIÓN"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 14,
+      "pieza": "prod_screen",
+      "titular": {
+        "texto": "MÁS INGRESOS POR VUELO",
+        "clave": [
+          "MÁS",
+          "INGRESOS"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "barras",
+        "titulo": "Ingreso por vuelo",
+        "resultado": "+15 %",
+        "items": [
+          {
+            "etiqueta": "Reglas fijas",
+            "valor": "14.000 €",
+            "color": "neutro",
+            "puntos": []
+          },
+          {
+            "etiqueta": "Agente RL",
+            "valor": "16.100 €",
+            "color": "bueno",
+            "puntos": []
+          }
+        ]
+      }
+    }
+  ]
+}

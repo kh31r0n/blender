@@ -1,0 +1,1275 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Arquitecturas Multi-Agente para Managers",
+  "sinopsis": "Explicación ejecutiva de por qué un equipo de agentes de IA especializados es más eficiente, barato y seguro que un único modelo gigante.",
+  "objeto": {
+    "nombre": "Arquitectura Multi-Agente",
+    "alto": 0.8
+  },
+  "suelo": "cemento",
+  "tema": "cyberpunk",
+  "piezas": [
+    {
+      "id": "peana_entrada",
+      "nombre": "Peana Bandeja Entrada",
+      "forma": "peana",
+      "x": -0.75,
+      "y": -0.65,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "portatil_base",
+      "nombre": "Base Portatil",
+      "forma": "caja",
+      "x": -0.75,
+      "y": -0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "gris_claro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.2,
+      "alto": 0.02
+    },
+    {
+      "id": "portatil_pantalla",
+      "nombre": "Pantalla Portatil",
+      "forma": "panel",
+      "x": -0.75,
+      "y": -0.55,
+      "z": 0.06,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "alto": 0.2,
+      "grosor": 0.03
+    },
+    {
+      "id": "manguera_in_orq",
+      "nombre": "Conexion Entrada Orquestador",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          -0.75,
+          -0.45,
+          0.02
+        ],
+        [
+          -0.75,
+          0.05,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "peana_orq",
+      "nombre": "Peana Orquestador",
+      "forma": "peana",
+      "x": -0.75,
+      "y": 0.25,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "orquestador",
+      "nombre": "Agente Orquestador",
+      "forma": "caja",
+      "x": -0.75,
+      "y": 0.25,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "verde",
+      "material": "solido",
+      "detalle": "rejilla",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.25,
+      "fondo": 0.3,
+      "alto": 0.5
+    },
+    {
+      "id": "manguera_orq_fin",
+      "nombre": "Conexion Orquestador Finanzas",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          -0.55,
+          0.25,
+          0.02
+        ],
+        [
+          -0.3,
+          0.25,
+          0.02
+        ],
+        [
+          -0.3,
+          -0.65,
+          0.02
+        ],
+        [
+          -0.2,
+          -0.65,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "manguera_orq_leg",
+      "nombre": "Conexion Orquestador Legal",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          -0.55,
+          0.15,
+          0.02
+        ],
+        [
+          -0.15,
+          0.0,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "manguera_orq_op",
+      "nombre": "Conexion Orquestador Operaciones",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          -0.55,
+          0.35,
+          0.02
+        ],
+        [
+          -0.3,
+          0.35,
+          0.02
+        ],
+        [
+          -0.3,
+          0.65,
+          0.02
+        ],
+        [
+          -0.15,
+          0.65,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "peana_fin",
+      "nombre": "Peana Finanzas",
+      "forma": "peana",
+      "x": 0.05,
+      "y": -0.65,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "cubo_fin",
+      "nombre": "Agente Finanzas",
+      "forma": "caja",
+      "x": -0.05,
+      "y": -0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.2
+    },
+    {
+      "id": "datos_fin",
+      "nombre": "Datos Contables",
+      "forma": "cilindro",
+      "x": 0.15,
+      "y": -0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "morado",
+      "material": "solido",
+      "detalle": "nervado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.25
+    },
+    {
+      "id": "peana_leg",
+      "nombre": "Peana Legal",
+      "forma": "peana",
+      "x": 0.05,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "cubo_leg",
+      "nombre": "Agente Legal",
+      "forma": "caja",
+      "x": 0.05,
+      "y": 0.0,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.2
+    },
+    {
+      "id": "peana_op",
+      "nombre": "Peana Operaciones",
+      "forma": "peana",
+      "x": 0.05,
+      "y": 0.65,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "cubo_op",
+      "nombre": "Agente Operaciones",
+      "forma": "caja",
+      "x": 0.05,
+      "y": 0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.2
+    },
+    {
+      "id": "manguera_fin_aud",
+      "nombre": "Conexion Finanzas Auditor",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          0.3,
+          -0.65,
+          0.02
+        ],
+        [
+          0.55,
+          -0.65,
+          0.02
+        ],
+        [
+          0.55,
+          -0.2,
+          0.02
+        ],
+        [
+          0.6,
+          -0.2,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "manguera_leg_aud",
+      "nombre": "Conexion Legal Auditor",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          0.25,
+          0.0,
+          0.02
+        ],
+        [
+          0.6,
+          -0.1,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "manguera_op_aud",
+      "nombre": "Conexion Operaciones Auditor",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          0.25,
+          0.65,
+          0.02
+        ],
+        [
+          0.55,
+          0.65,
+          0.02
+        ],
+        [
+          0.55,
+          0.0,
+          0.02
+        ],
+        [
+          0.6,
+          0.0,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "peana_aud",
+      "nombre": "Peana Auditor",
+      "forma": "peana",
+      "x": 0.8,
+      "y": -0.1,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "auditor",
+      "nombre": "Agente Auditor",
+      "forma": "caja",
+      "x": 0.8,
+      "y": -0.1,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "amarillo",
+      "material": "solido",
+      "detalle": "rayado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.25,
+      "fondo": 0.25,
+      "alto": 0.3
+    },
+    {
+      "id": "manguera_aud_out",
+      "nombre": "Conexion Auditor Consola",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.015,
+      "camino": [
+        [
+          0.8,
+          0.1,
+          0.02
+        ],
+        [
+          0.8,
+          0.45,
+          0.02
+        ]
+      ]
+    },
+    {
+      "id": "peana_out",
+      "nombre": "Peana Consola",
+      "forma": "peana",
+      "x": 0.8,
+      "y": 0.65,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "monitor_pie",
+      "nombre": "Pie Monitor",
+      "forma": "cilindro",
+      "x": 0.8,
+      "y": 0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.04,
+      "alto": 0.15
+    },
+    {
+      "id": "monitor_pantalla",
+      "nombre": "Pantalla Monitor",
+      "forma": "caja",
+      "x": 0.8,
+      "y": 0.65,
+      "z": 0.19,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.05,
+      "alto": 0.2
+    },
+    {
+      "id": "baliza_out",
+      "nombre": "Baliza Confirmacion",
+      "forma": "cilindro",
+      "x": 0.9,
+      "y": 0.75,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.1
+    }
+  ],
+  "accesorios": [],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "Aparece la bandeja de entrada y recibe una petición.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En el día a día corporativo, procesar una operación compleja requiere analizar múltiples factores a la vez.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_entrada",
+        "portatil_base",
+        "portatil_pantalla"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "portatil_pantalla"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "portatil_pantalla",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "portatil_base",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 2,
+      "descripcion": "Explicar el problema del modelo gigante.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Usar un único modelo de IA gigante para todo es caro, lento y propenso a alucinaciones.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "portatil_pantalla"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rechazo",
+          "pieza": "portatil_pantalla",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "portatil_pantalla",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 3,
+      "descripcion": "Aparece el Orquestador.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La solución es una Arquitectura Multi-Agente. Todo empieza con un Agente Orquestador.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "peana_orq",
+        "orquestador",
+        "manguera_in_orq"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "orquestador"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_in_orq",
+          "momento": 0.3,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "orquestador",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 4,
+      "descripcion": "El Orquestador descompone el problema.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En lugar de resolverlo todo de golpe, este director de tráfico descompone el problema en áreas.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "orquestador"
+      ],
+      "animaciones": [
+        {
+          "pieza": "orquestador",
+          "movimiento": "oscilar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 15
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "orquestador",
+          "momento": 0.4,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "orquestador",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 5,
+      "descripcion": "Aparecen los especialistas y sus mangueras.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Y delega cada parte a un equipo de agentes especialistas: Finanzas, Legal y Operaciones.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_fin",
+        "cubo_fin",
+        "datos_fin",
+        "peana_leg",
+        "cubo_leg",
+        "peana_op",
+        "cubo_op",
+        "manguera_orq_fin",
+        "manguera_orq_leg",
+        "manguera_orq_op"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "cubo_fin",
+        "cubo_leg",
+        "cubo_op"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "cubo_leg",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 6,
+      "descripcion": "Ejecución en paralelo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Primera ventaja: Velocidad. Al trabajar en paralelo, el tiempo de respuesta se reduce a un tercio.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "manguera_orq_fin",
+        "manguera_orq_leg",
+        "manguera_orq_op"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_orq_fin",
+          "momento": 0.2,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_orq_leg",
+          "momento": 0.2,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_orq_op",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "orquestador",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 7,
+      "descripcion": "Modelos pequeños y económicos.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Segunda ventaja: Costes. Cada especialista usa un modelo ligero, solo con el contexto que necesita.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "cubo_fin",
+        "cubo_leg",
+        "cubo_op"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "cubo_fin",
+          "momento": 0.3,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "rayo",
+          "pieza": "cubo_leg",
+          "momento": 0.4,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "rayo",
+          "pieza": "cubo_op",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "cubo_leg",
+        "objetivos": [
+          "cubo_fin",
+          "cubo_leg",
+          "cubo_op"
+        ],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 8,
+      "descripcion": "Aparece el Auditor.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Mientras trabajan, el Agente Auditor espera las respuestas para consolidar el resultado.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_aud",
+        "auditor",
+        "manguera_fin_aud",
+        "manguera_leg_aud",
+        "manguera_op_aud"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "auditor"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "auditor",
+          "momento": 0.4,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "auditor",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 9,
+      "descripcion": "Finanzas y Operaciones terminan.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Operaciones y Finanzas terminan sus comprobaciones rápidamente.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "cubo_fin",
+        "cubo_op"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "cubo_fin",
+          "momento": 0.1,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "cubo_op",
+          "momento": 0.1,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_fin_aud",
+          "momento": 0.3,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_op_aud",
+          "momento": 0.3,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "auditor",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 10,
+      "descripcion": "Legal encuentra un problema.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Pero, ¿qué pasa si Legal detecta un problema normativo en el expediente?",
+          "emocion": "sorprendido"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "cubo_leg"
+      ],
+      "animaciones": [
+        {
+          "pieza": "cubo_leg",
+          "movimiento": "vibrar",
+          "inicio": 0.2,
+          "fin": 0.6,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "alerta",
+          "pieza": "cubo_leg",
+          "momento": 0.3,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "rechazo",
+          "pieza": "cubo_leg",
+          "momento": 0.6,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "cubo_leg",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 11,
+      "descripcion": "Ventaja modular.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Tercera ventaja: Mantenimiento modular. El agente legal itera y corrige sin bloquear al resto del sistema.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "cubo_leg"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "cubo_leg",
+          "momento": 0.1,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flecha_giro",
+          "pieza": "cubo_leg",
+          "momento": 0.3,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "cubo_leg",
+          "momento": 0.5,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_leg_aud",
+          "momento": 0.6,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "cubo_leg",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 12,
+      "descripcion": "El Auditor ensambla la respuesta.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El Auditor recibe todas las piezas, verifica la coherencia y ensambla la respuesta final.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "auditor"
+      ],
+      "animaciones": [
+        {
+          "pieza": "auditor",
+          "movimiento": "oscilar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 15
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "auditor",
+          "momento": 0.4,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "auditor",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 13,
+      "descripcion": "Entrega en la Consola Ejecutiva.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Entregando una resolución precisa y trazable directamente en el ERP de tu empresa.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "peana_out",
+        "monitor_pie",
+        "monitor_pantalla",
+        "baliza_out",
+        "manguera_aud_out"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "monitor_pantalla"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_aud_out",
+          "momento": 0.1,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "rayo",
+          "pieza": "baliza_out",
+          "momento": 0.5,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "monitor_pantalla",
+          "momento": 0.6,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "monitor_pantalla",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 14,
+      "descripcion": "Conclusión.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Equipos de IA especializados y coordinados. Esa es la verdadera escalabilidad empresarial.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "orquestador",
+        "auditor"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_in_orq",
+          "momento": 0.1,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_orq_fin",
+          "momento": 0.3,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_orq_leg",
+          "momento": 0.3,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_orq_op",
+          "momento": 0.3,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "orquestador",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 6.0
+    }
+  ],
+  "personajes": [],
+  "escenarios": []
+}

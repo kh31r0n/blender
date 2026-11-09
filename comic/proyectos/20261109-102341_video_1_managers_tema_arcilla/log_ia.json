@@ -1,0 +1,91 @@
+[
+  {
+    "etapa": "miniatura",
+    "fecha": "2026-11-09T16:47:36",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 25.8,
+      "tokens_entrada": 1633,
+      "tokens_salida": 167,
+      "tokens_razonamiento": 2008
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "miniatura",
+    "fecha": "2026-11-09T16:48:32",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 33.3,
+      "tokens_entrada": 1633,
+      "tokens_salida": 254,
+      "tokens_razonamiento": 2613
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "miniatura_ranking",
+    "fecha": "2026-11-09T16:49:26",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 36.2,
+      "tokens_entrada": 3640,
+      "tokens_salida": 254,
+      "tokens_razonamiento": 2022
+    }
+  },
+  {
+    "etapa": "miniatura",
+    "fecha": "2026-11-09T16:51:31",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 46.8,
+      "tokens_entrada": 1633,
+      "tokens_salida": 257,
+      "tokens_razonamiento": 3661
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "miniatura_ranking",
+    "fecha": "2026-11-09T16:52:26",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 37.5,
+      "tokens_entrada": 3640,
+      "tokens_salida": 378,
+      "tokens_razonamiento": 1515
+    }
+  },
+  {
+    "etapa": "publicacion",
+    "fecha": "2026-11-09T16:53:01",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 34.7,
+      "tokens_entrada": 10972,
+      "tokens_salida": 743,
+      "tokens_razonamiento": 2070
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "publicacion",
+    "fecha": "2026-11-09T17:20:10",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 32.1,
+      "tokens_entrada": 11288,
+      "tokens_salida": 986,
+      "tokens_razonamiento": 2084
+    },
+    "avisos": []
+  }
+]

@@ -1,0 +1,5 @@
+Aprendizaje por Refuerzo: Optimiza el Pricing de tu Aerolínea
+
+El Aprendizaje por Refuerzo permite a las aerolíneas fijar precios dinámicos. En este caso práctico, vemos cómo un agente de IA ajusta el valor de 180 asientos entre 60 y 400 euros. El resultado es, por ejemplo, un 15 % más de ingresos por vuelo sin romper las reglas de negocio.
+
+#InteligenciaArtificial #ReinforcementLearning #Pricing #Estrategia

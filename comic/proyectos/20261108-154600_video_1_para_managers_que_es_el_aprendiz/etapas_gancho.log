@@ -1,0 +1,130 @@
+=== gancho + caso vuelo Madrid-Paris 18:35:21
+[detalles] adornos sobre las piezas (densidad media)
+    gemini-3.1-pro-preview decide los adornos…
+    33 adornos: icono 7, conector 6, cartel 5, leds 3, pantalla 3, rejilla 2, franja 2, ranuras 1, placa 1, boton 1, barras 1, tornillos 1
+[1 objetos] dibujando las piezas, sus versiones de rayos X y el entorno
+    {"piezas": 28, "rayos_x": 28, "adornos": 33, "avisos_adornos": ["guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70"], "_segundos": 1.9}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/01_objetos.v2.blend
+    aviso: guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/detalles.v2/comparativa.png
+[3 audio] voces Gemini TTS gemini-2.5-pro-tts
+    voz Charon (misterioso): ¿Cuántos miles de euros pierde tu aerolínea por usar reglas 
+    voz Charon (enfadado): En tu vuelo Madrid-París, vendes los 180 asientos demasiado 
+    voz Charon (triste): Y en temporada baja, el avión despega con asientos vacíos.
+    voz Charon (emocionado): El Aprendizaje por Refuerzo cambia esto. Conoce a tu nuevo a
+    voz Charon (neutral): El agente mira el estado: cuántos asientos quedan libres y c
+      ritmo 4.1 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ritmo 4.4 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ritmo 4.6 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ajuste atempo x1.15 -> 5.3 silabas/s
+    voz Charon (neutral): Y decide una acción: subir o bajar el precio del billete hoy
+      ritmo 4.3 silabas/s (objetivo 5.7): arrastrada, otra toma
+    voz Charon (alegre): Pero la dirección manda. Pones límites de negocio estrictos.
+    voz Charon (neutral): Por ejemplo, el precio nunca baja de 60 euros ni supera los 
+  Vertex AI 429, reintento en 5 s
+    voz Charon (alegre): Tú también defines qué se premia. El motor de recompensa.
+      ritmo 4.0 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ritmo 4.3 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ritmo 3.1 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ajuste atempo x1.23 -> 5.3 silabas/s
+    voz Charon (neutral): Cada billete vendido suma euros. Cada asiento vacío al despe
+      ritmo 4.2 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ritmo 4.6 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ritmo 4.6 silabas/s (objetivo 5.7): arrastrada, otra toma
+      ajuste atempo x1.15 -> 5.3 silabas/s
+    voz Charon (neutral): Antes de tocar un cliente real, el agente practica en el sim
+    voz Charon (alegre): Prueba precios en miles de vuelos virtuales. Si se equivoca,
+    voz Charon (emocionado): Cuando aprende la estrategia perfecta, pasa a producción.
+    voz Charon (neutral): Ahora adapta el precio a la demanda real, cada día.
+    voz Charon (neutral): ¿El resultado? Por ejemplo, un 15 % más de ingresos por vuel
+    82.0 s, 1969 fotogramas a 24 fps
+    E1: 0.0-4.9 s, 1 lineas
+    E2: 4.9-11.8 s, 1 lineas
+    E3: 11.8-17.1 s, 1 lineas
+    E4: 17.1-22.6 s, 1 lineas
+    E5: 22.6-28.4 s, 1 lineas
+    E6: 28.4-33.9 s, 1 lineas
+    E7: 33.9-38.7 s, 1 lineas
+    E8: 38.7-44.9 s, 1 lineas
+    E9: 44.9-49.4 s, 1 lineas
+    E10: 49.4-55.1 s, 1 lineas
+    E11: 55.1-60.2 s, 1 lineas
+    E12: 60.2-67.4 s, 1 lineas
+    E13: 67.4-71.7 s, 1 lineas
+    E14: 71.7-82.0 s, 2 lineas
+[1 objetos] dibujando las piezas, sus versiones de rayos X y el entorno
+    {"piezas": 28, "rayos_x": 28, "adornos": 33, "avisos_adornos": ["guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70"], "_segundos": 0.6}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/01_objetos.v3.blend
+    aviso: guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70
+[2 rig] esqueletos para personajes y elementos
+    {"huesos": 29, "piezas": 28, "desvio_max": 0.0, "_segundos": 0.7}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/02_rig.v2.blend
+[4 animacion] personajes, escenografia y camara al ritmo del audio
+    {"claves": 1634, "fotogramas": 1969, "cambios_de_sombra": 25, "piezas": 28, "_segundos": 0.8}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/04_animacion.v2.blend
+[efectos] bocadillos, cartelas, onomatopeyas y lineas de accion
+    {"efectos": 16, "avisos": [], "_segundos": 0.8}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/04b_efectos.v2.blend
+[previa] iteracion 1: un fotograma por escena
+    14 imagenes en /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/previa/iter_1.v2  (hoja: /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/previa/iter_1.v2/hoja.png)
+    revision de gemini-3.1-pro-preview…
+    puntuacion 8/10, cumple=False
+      - La barrera de límites (guard_bar) atravesaba el centro de la garita (guard_box) debido a que su base estaba en el centro y no en el borde.
+      - El motor de recompensa (reward_cyl) y las fichas de ingreso (t1, t2, t3) se solapaban en el eje X.
+      - Las fichas de ingreso (t1, t2, t3) se atravesaban verticalmente porque no tenían el hueco obligatorio de 0.02 m entre piezas apiladas.
+      - Los asientos del simulador (s1 a s6) estaban demasiado juntos (0.02 m), incumpliendo la separación visual obligatoria de 0.03 m.
+      - Las mangueras de recompensa (h_guard_rew y h_rew_ag) no llegaban o se metían dentro del cilindro de recompensa tras moverlo.
+    aplicado el guion corregido (sin cambios de audio); rehaciendo 1-4
+[detalles] todas las piezas tienen ya sus adornos
+[1 objetos] dibujando las piezas, sus versiones de rayos X y el entorno
+    {"piezas": 28, "rayos_x": 28, "adornos": 33, "avisos_adornos": ["guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70, poste +0.06 m"], "_segundos": 0.6}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/01_objetos.v4.blend
+    aviso: guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70, poste +0.06 m
+[2 rig] esqueletos para personajes y elementos
+    {"huesos": 29, "piezas": 28, "desvio_max": 0.0, "_segundos": 0.7}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/02_rig.v3.blend
+[3 audio] voces Gemini TTS gemini-2.5-pro-tts
+    82.0 s, 1969 fotogramas a 24 fps
+    E1: 0.0-4.9 s, 1 lineas
+    E2: 4.9-11.8 s, 1 lineas
+    E3: 11.8-17.1 s, 1 lineas
+    E4: 17.1-22.6 s, 1 lineas
+    E5: 22.6-28.4 s, 1 lineas
+    E6: 28.4-33.9 s, 1 lineas
+    E7: 33.9-38.7 s, 1 lineas
+    E8: 38.7-44.9 s, 1 lineas
+    E9: 44.9-49.4 s, 1 lineas
+    E10: 49.4-55.1 s, 1 lineas
+    E11: 55.1-60.2 s, 1 lineas
+    E12: 60.2-67.4 s, 1 lineas
+    E13: 67.4-71.7 s, 1 lineas
+    E14: 71.7-82.0 s, 2 lineas
+[4 animacion] personajes, escenografia y camara al ritmo del audio
+    {"claves": 1634, "fotogramas": 1969, "cambios_de_sombra": 25, "piezas": 28, "_segundos": 0.8}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/04_animacion.v3.blend
+[efectos] bocadillos, cartelas, onomatopeyas y lineas de accion
+    {"efectos": 17, "avisos": [], "_segundos": 0.8}
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/04b_efectos.v3.blend
+[previa] iteracion 2: un fotograma por escena
+    14 imagenes en /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/previa/iter_2  (hoja: /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/previa/iter_2/hoja.png)
+    revision de gemini-3.1-pro-preview…
+    puntuacion 10/10, cumple=True
+=== previa lista 18:41:39
+=== render con gancho y caso del vuelo 19:14:09
+[5 render] EEVEE 1080x1920, 24 fps
+    1969 fotogramas en 917.8 s
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/animacion.v2.mp4
+[montaje] cartelas, video final y pagina de comic
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/final/final.v2.mp4
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/final/pagina_comic.v2.png
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/final/animacion.v2.gif
+=== video terminado 19:30:13
+=== render con gancho, caso del vuelo y workflow visible 19:48:01
+[5 render] EEVEE 1080x1920, 24 fps
+    1969 fotogramas en 1627.2 s
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/animacion.v3.mp4
+[montaje] cartelas, video final y pagina de comic
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/final/final.v3.mp4
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/final/pagina_comic.v3.png
+    -> /home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/final/animacion.v3.gif
+=== video terminado 20:16:22

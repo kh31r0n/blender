@@ -1,0 +1,814 @@
+{
+  "descripcion": "Vídeo 1 para Managers: Qué es el Aprendizaje por Refuerzo (Reinforcement Learning) y qué gana el negocio, contado con UN caso concreto de principio a fin: una aerolínea que pone precio, cada día, a los 180 asientos de su vuelo Madrid–París. Explicación ejecutiva sin código ni fórmulas para directivos, de unos 100 segundos en formato VERTICAL 9:16 para LinkedIn móvil, con una maqueta isométrica en el TEMA ARCILLA: cada componente principal sobre su peana luminosa (forma 'peana', z=0, alto=0.04, componente encima en z=0.04) y unidos por mangueras de neón de borde a borde sin atravesar piezas.\n\nGANCHO: abre con una pregunta de DOLOR para el directivo sobre ese vuelo (dinero que se pierde con asientos que despegan vacíos o que se vendieron demasiado baratos porque el precio se fija con reglas fijas). El final responde a la pregunta con el resultado del caso.\n\nDISPOSICIÓN COMPACTA PARA VERTICAL 9:16: reparte los componentes en un área compacta de x entre -1.1 y 1.1 m e y entre -1.0 y 1.0 m (en dos filas de profundidad Y, no en una línea horizontal larga), con alturas de 0.35 a 0.75 m, para que tanto los planos medios como el plano general llenen la pantalla vertical del móvil.\n\nCOMPONENTES (todos son parte del caso del vuelo) Y CÓMO DIBUJARLOS:\n1. Simulador del vuelo Madrid–París (arriba-izquierda, x=-0.75, y=-0.55): un servidor azul cielo sobre su peana y, a su lado en la misma peana, una fila de 6 bloques blancos pequeños, los asientos (cada bloque = 30 asientos), que se van ocupando cuando se venden; reproduce días de demanda (vacaciones, un congreso, una huelga) para practicar sin pasajeros reales.\n2. Agente de Aprendizaje por Refuerzo (centro-izquierda, x=-0.75, y=0.45): un servidor verde grande sobre su peana. Mira el estado (asientos libres y días que faltan para el vuelo) y decide la acción: subir o bajar el precio del billete. Envía su precio por la manguera.\n3. Límites de negocio / Guardrails (centro-derecha, x=0.65, y=0.45): una garita roja (caja roja con barra superior en bisagra) sobre su peana. Aplica los límites que fija la dirección: precio entre 60 € y 400 €, y nunca más de un 20 % de subida en un día; bloquea (rechazo) un precio de 520 € y deja pasar (aprobado) uno de 140 €.\n4. Motor de recompensa (centro, x=0.0, y=-0.1): un cilindro morado con fichas lima que se apilan al lado sobre la peana: el ingreso del vuelo. Cada asiento vendido suma su precio; cada asiento que despega vacío resta. Devuelve ese resultado al agente (flujo_vuelta) para que aprenda qué precios funcionan.\n5. Sistema de precios en producción (abajo-derecha, x=0.75, y=-0.65): un monitor grande de metal con pantalla sobre un pie en su peana, junto a una baliza cilíndrica lima, donde la estrategia ya entrenada pone el precio real de cada billete.\n\nRECORRIDO:\nPrimero el problema: con reglas fijas (por ejemplo, 'a 30 días, 90 €') el vuelo se llena demasiado pronto y barato en temporada alta, o despega con asientos vacíos en temporada baja. Después, tres bloques:\nA) Practicar sin riesgo: en el simulador el agente prueba precios en miles de vuelos simulados; cuando se equivoca, solo pierde dinero simulado.\nB) La dirección manda: tú decides qué se premia (ingreso del vuelo) y qué límites nunca se cruzan (la garita roja).\nC) Producción: la estrategia aprendida pone el precio real cada día y se adapta sola cuando cambia la demanda.\nCierre: responde a la pregunta del gancho con el resultado del vuelo (más asientos vendidos y a mejor precio; di 'por ejemplo' en las cifras, son ilustrativas).\n\nNARRACIÓN:\nTono ejecutivo, claro y directo para Managers y Directores. Siempre con el caso del vuelo y sus números (180 asientos, 60–400 €, días que faltan), nunca con abstracciones ('reglas de negocio', 'operaciones') sin aterrizar.",
+  "creado": "20261109-102341",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "arcilla",
+    "formato": "3d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "motor": "cycles",
+    "duracion": 100.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "icono_flujo": "sobre",
+    "gancho": "dolor",
+    "datos_vivos": true,
+    "pasos_ciclo": true,
+    "comparativa": true,
+    "paneles_mc": true,
+    "tam_panel": 0.4,
+    "subtitulos": true,
+    "marca": "/home/kheiron/Pictures/logo/vervux",
+    "web_marca": "vervux.com",
+    "largo_flujo": 1.0,
+    "toma_voz": 1,
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "audio": "tiempos.json",
+    "objetos": "01_objetos.v13.blend",
+    "rig": "02_rig.v12.blend",
+    "paneles": "paneles/fotogramas",
+    "subtitulos": "subtitulos/fotogramas",
+    "animacion": "04_animacion.v14.blend",
+    "efectos": "04b_efectos.v13.blend",
+    "previa": "previa/iter_1.v3",
+    "render": "render/animacion.mp4",
+    "montaje": "final/final.v2.mp4",
+    "miniatura": "miniaturas/miniaturas.v4",
+    "publicacion": "publicacion/publicacion.v2/publicacion.md"
+  },
+  "historial": [
+    {
+      "etapa": "copia",
+      "fecha": "2026-11-09T10:23:41",
+      "archivo": null,
+      "origen": "proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz",
+      "nota": "copia del video 1 para managers (guion, voz y diseno de paneles) para probar el tema arcilla"
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-09T10:23:45",
+      "archivo": "guion.json",
+      "origen": "ajuste de maqueta",
+      "avisos": [
+        "colores del tema arcilla: sim_server cielo->turquesa, agent_server verde->turquesa, guard_bar amarillo->naranja, reward_cyl morado->turquesa, t1 lima->naranja, t2 lima->naranja, t3 lima->naranja, prod_base metal->gris_claro, prod_screen metal->gris_claro, prod_beacon lima->naranja",
+        "cintas a z=0.085: h_sim_ag, h_ag_sim, h_ag_guard, h_guard_rew, h_rew_ag, h_guard_prod"
+      ]
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T10:23:46",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T10:24:53",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T10:24:54",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "paneles",
+      "fecha": "2026-11-09T10:25:25",
+      "archivo": "paneles/fotogramas",
+      "paneles": 14,
+      "origen": "gemini",
+      "fotogramas": 2001,
+      "segundos": 31.2
+    },
+    {
+      "etapa": "subtitulos",
+      "fecha": "2026-11-09T10:25:56",
+      "archivo": "subtitulos/fotogramas",
+      "bloques": 47,
+      "fotogramas": 2001,
+      "segundos": 30.9
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T10:25:57",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T10:25:57",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-09T10:26:13",
+      "archivo": "previa/iter_1",
+      "imagenes": 14
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T10:27:08",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T10:27:09",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-09T10:42:13",
+      "archivo": "guion.json",
+      "origen": "colores originales del video 1 (la paleta nueva de arcilla los vuelve a mapear)",
+      "cambios": [
+        "sim_server: turquesa -> cielo",
+        "agent_server: turquesa -> verde",
+        "guard_bar: naranja -> amarillo",
+        "reward_cyl: turquesa -> morado",
+        "t1: naranja -> lima",
+        "t2: naranja -> lima",
+        "t3: naranja -> lima",
+        "prod_base: gris_claro -> metal",
+        "prod_screen: gris_claro -> metal",
+        "prod_beacon: naranja -> lima"
+      ]
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-09T10:42:17",
+      "archivo": "guion.json",
+      "origen": "ajuste de maqueta",
+      "avisos": [
+        "colores del tema arcilla: sim_server cielo->cian, agent_server verde->lima, prod_base metal->gris_claro, prod_screen metal->gris_claro"
+      ]
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T10:42:18",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T10:42:19",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T10:42:19",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T10:42:20",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T10:43:49",
+      "archivo": "01_objetos.v4.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T10:43:50",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T10:43:50",
+      "archivo": "04_animacion.v4.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T10:43:51",
+      "archivo": "04b_efectos.v4.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T10:44:44",
+      "archivo": "01_objetos.v5.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T10:44:45",
+      "archivo": "02_rig.v4.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T10:44:46",
+      "archivo": "04_animacion.v5.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T10:44:47",
+      "archivo": "04b_efectos.v5.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-09T10:46:43",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 14
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:01:14",
+      "archivo": "01_objetos.v6.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:01:15",
+      "archivo": "02_rig.v5.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:01:16",
+      "archivo": "04_animacion.v6.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:01:16",
+      "archivo": "04b_efectos.v6.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:02:36",
+      "archivo": "01_objetos.v7.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:02:37",
+      "archivo": "02_rig.v6.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:02:38",
+      "archivo": "04_animacion.v7.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:02:39",
+      "archivo": "04b_efectos.v7.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:03:12",
+      "archivo": "01_objetos.v8.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:03:13",
+      "archivo": "02_rig.v7.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:03:14",
+      "archivo": "04_animacion.v8.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:03:15",
+      "archivo": "04b_efectos.v8.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:05:46",
+      "archivo": "01_objetos.v9.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.8
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:05:47",
+      "archivo": "02_rig.v8.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:05:48",
+      "archivo": "04_animacion.v9.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:05:49",
+      "archivo": "04b_efectos.v9.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:13:12",
+      "archivo": "01_objetos.v10.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:13:12",
+      "archivo": "02_rig.v9.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:13:13",
+      "archivo": "04_animacion.v10.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:13:14",
+      "archivo": "04b_efectos.v10.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:14:41",
+      "archivo": "01_objetos.v11.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:14:42",
+      "archivo": "02_rig.v10.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:14:43",
+      "archivo": "04_animacion.v11.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:14:44",
+      "archivo": "04b_efectos.v11.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:15:42",
+      "archivo": "01_objetos.v12.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:15:43",
+      "archivo": "02_rig.v11.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:15:44",
+      "archivo": "04_animacion.v12.blend",
+      "informe": {
+        "claves": 2075,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:15:45",
+      "archivo": "04b_efectos.v12.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-09T11:16:10",
+      "archivo": "previa/iter_1.v3",
+      "imagenes": 14
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:46:36",
+      "archivo": "04_animacion.v13.blend",
+      "informe": {
+        "claves": 2078,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T11:47:00",
+      "archivo": "01_objetos.v13.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T11:47:01",
+      "archivo": "02_rig.v12.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.5
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T11:47:01",
+      "archivo": "04_animacion.v14.blend",
+      "informe": {
+        "claves": 2083,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T11:47:02",
+      "archivo": "04b_efectos.v13.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-09T16:16:19",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas.v2",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/vinetas.v2/escena_14.png"
+        ],
+        "dispositivo": "OPTIX: NVIDIA GeForce RTX 4060",
+        "video": "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/render/animacion.mp4",
+        "fotogramas": 2001,
+        "segundos": 8708.3,
+        "_segundos": 8708.9
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-09T16:17:41",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif",
+      "srt": "final/final.srt"
+    },
+    {
+      "etapa": "miniatura",
+      "fecha": "2026-11-09T16:49:26",
+      "archivo": "miniaturas/miniaturas.v2",
+      "origen": "gemini",
+      "orden": [
+        2,
+        1,
+        3
+      ]
+    },
+    {
+      "etapa": "miniatura",
+      "fecha": "2026-11-09T16:52:26",
+      "archivo": "miniaturas/miniaturas.v3",
+      "origen": "gemini",
+      "orden": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "etapa": "publicacion",
+      "fecha": "2026-11-09T16:53:01",
+      "archivo": "publicacion/publicacion/publicacion.md",
+      "avisos": []
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-09T16:59:23",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif",
+      "srt": "final/final.v2.srt"
+    },
+    {
+      "etapa": "miniatura",
+      "fecha": "2026-11-09T16:59:41",
+      "archivo": "miniaturas/miniaturas.v4",
+      "origen": "gemini",
+      "orden": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "etapa": "publicacion",
+      "fecha": "2026-11-09T17:20:10",
+      "archivo": "publicacion/publicacion.v2/publicacion.md",
+      "avisos": []
+    }
+  ],
+  "vinetas": "render/vinetas.v2"
+}

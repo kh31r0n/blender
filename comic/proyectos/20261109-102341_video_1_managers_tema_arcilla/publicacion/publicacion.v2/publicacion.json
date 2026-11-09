@@ -1,0 +1,72 @@
+{
+  "linkedin_empresa": {
+    "primera_linea": "¿Cuántos miles de euros pierde tu negocio por usar reglas de precio fijas?",
+    "texto": "En Vervux sabemos que fijar precios estáticos deja dinero en la mesa.\nImagina un vuelo con 180 asientos donde el precio no se adapta a la demanda real.\nEl Aprendizaje por Refuerzo permite crear un agente que ajusta el precio diariamente.\nTodo esto respetando los límites de negocio, por ejemplo, entre 60 y 400 euros.\nEl resultado en simulaciones muestra hasta un 15 % más de ingresos por vuelo.",
+    "cta": "¿Qué reglas de negocio limitarían a la IA en tu sector? Descubre más en vervux.com.",
+    "hashtags": [
+      "#InteligenciaArtificial",
+      "#Pricing",
+      "#ReinforcementLearning",
+      "#Vervux"
+    ]
+  },
+  "linkedin_perfil": {
+    "primera_linea": "He visto cómo muchas empresas pierden dinero por no adaptar sus precios a tiempo.",
+    "texto": "El caso de las aerolíneas es el ejemplo perfecto de este problema.\nVenden 180 asientos muy barato en temporada alta o vuelan vacíos en baja.\nCon el equipo de @Vervux, explicamos cómo el Aprendizaje por Refuerzo cambia esto.\nUn agente virtual entrena en un simulador para encontrar el precio óptimo cada día.\nLogrando, por ejemplo, un 15 % más de ingresos sin romper las reglas de negocio.",
+    "cta": "¿Confiarías la estrategia de precios de tu empresa a un agente virtual?",
+    "hashtags": [
+      "#IA",
+      "#EstrategiaDePrecios",
+      "#MachineLearning",
+      "#Innovacion"
+    ]
+  },
+  "shorts": {
+    "titulo": "IA para Pricing: Aprendizaje por Refuerzo ✈️",
+    "descripcion": "Descubre cómo una aerolínea aumenta un 15 % sus ingresos ajustando precios con Inteligencia Artificial. 📈",
+    "hashtags": [
+      "#Pricing",
+      "#IA",
+      "#ReinforcementLearning",
+      "#Aerolineas",
+      "#Negocios"
+    ]
+  },
+  "youtube": {
+    "titulo": "Aprendizaje por Refuerzo para Pricing: Caso Aerolínea",
+    "descripcion": "¿Pierdes dinero con precios fijos? Descubre cómo el Aprendizaje por Refuerzo ayuda a una aerolínea a optimizar el precio de 180 asientos. Explicación ejecutiva de cómo un agente virtual aprende en un simulador para aumentar los ingresos un 15 %.",
+    "hashtags": [
+      "#ReinforcementLearning",
+      "#Pricing",
+      "#InteligenciaArtificial",
+      "#Vervux"
+    ]
+  },
+  "titulos_alternativos": [
+    "¿Por qué los precios fijos hacen perder dinero a tu empresa?",
+    "Cómo aumentar un 15 % los ingresos por vuelo con IA",
+    "Precios fijos vs. Aprendizaje por Refuerzo en aerolíneas",
+    "El error de fijar precios sin mirar la demanda real",
+    "Optimiza tu estrategia de pricing con un agente virtual"
+  ],
+  "revision": {
+    "puntuaciones": {
+      "gancho": 8,
+      "claridad": 9,
+      "retencion": 9,
+      "miniatura": 8
+    },
+    "fortalezas": [
+      "Explicación ejecutiva sin tecnicismos ni código, ideal para directivos.",
+      "Uso de un caso muy tangible con límites de negocio claros.",
+      "Diseño isométrico limpio que encaja perfectamente en el formato vertical."
+    ],
+    "cambios": [
+      "En los fotogramas del 0 al 3 (segundos 0 a 1.5), acelerar la aparición del texto para retener la atención del usuario más rápido.",
+      "Añadir un ligero movimiento de cámara (zoom in) en el segundo 1 hacia el servidor 'SIM' para dar más dinamismo visual al inicio.",
+      "En la escena 14 (comparativa), resaltar visualmente el texto '+15 %' con un color de acento para enfatizar el beneficio final."
+    ]
+  },
+  "avisos": [],
+  "miniatura": "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/miniaturas/miniaturas.v4/mejor_vertical.png"
+}

@@ -1,0 +1,1209 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Flujo de Desarrollo con IA 101",
+  "sinopsis": "Descubre cómo un flujo de desarrollo impulsado por IA acelera el Time-to-Market y libera a tus ingenieros senior, garantizando código seguro y sin deuda técnica.",
+  "objeto": {
+    "nombre": "Maqueta de Flujo de Software",
+    "alto": 0.8
+  },
+  "suelo": "cemento",
+  "tema": "cyberpunk",
+  "piezas": [
+    {
+      "id": "peana_req",
+      "nombre": "Peana Requisitos",
+      "forma": "peana",
+      "x": -0.65,
+      "y": -0.55,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "repisa_req",
+      "nombre": "Bandeja de Requisitos",
+      "forma": "caja",
+      "x": -0.65,
+      "y": -0.55,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "peana_req",
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.05
+    },
+    {
+      "id": "bloque_negocio",
+      "nombre": "Especificaciones",
+      "forma": "caja",
+      "x": -0.72,
+      "y": -0.55,
+      "z": 0.09,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "repisa_req",
+      "bisagra": "ninguna",
+      "ancho": 0.1,
+      "fondo": 0.15,
+      "alto": 0.05
+    },
+    {
+      "id": "bloque_criterios",
+      "nombre": "Criterios Aceptación",
+      "forma": "caja",
+      "x": -0.58,
+      "y": -0.55,
+      "z": 0.09,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "amarillo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "repisa_req",
+      "bisagra": "ninguna",
+      "ancho": 0.1,
+      "fondo": 0.15,
+      "alto": 0.05
+    },
+    {
+      "id": "peana_agente",
+      "nombre": "Peana Agente IA",
+      "forma": "peana",
+      "x": -0.65,
+      "y": 0.45,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "servidor_agente",
+      "nombre": "Estación Agente IA",
+      "forma": "caja",
+      "x": -0.65,
+      "y": 0.45,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "cielo",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "peana_agente",
+      "bisagra": "ninguna",
+      "ancho": 0.25,
+      "fondo": 0.25,
+      "alto": 0.4
+    },
+    {
+      "id": "esfera_agente",
+      "nombre": "Núcleo IA",
+      "forma": "esfera",
+      "x": -0.65,
+      "y": 0.45,
+      "z": 0.44,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "cielo",
+      "material": "transparente",
+      "detalle": "liso",
+      "padre": "servidor_agente",
+      "bisagra": "ninguna",
+      "radio": 0.1
+    },
+    {
+      "id": "manguera_req_agente",
+      "nombre": "Flujo Requisitos",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.65,
+          -0.35,
+          0.08
+        ],
+        [
+          -0.65,
+          0.25,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "peana_tunel",
+      "nombre": "Peana Túnel",
+      "forma": "peana",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "carcasa_tunel",
+      "nombre": "Túnel de Calidad",
+      "forma": "caja",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "morado",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "peana_tunel",
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.3
+    },
+    {
+      "id": "cilindro_test",
+      "nombre": "Escáner Unitario",
+      "forma": "cilindro",
+      "x": -0.1,
+      "y": 0.0,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_tunel",
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.2
+    },
+    {
+      "id": "cubo_vuln",
+      "nombre": "Escáner Seguridad",
+      "forma": "caja",
+      "x": 0.12,
+      "y": 0.0,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "carcasa_tunel",
+      "bisagra": "ninguna",
+      "ancho": 0.15,
+      "fondo": 0.15,
+      "alto": 0.2
+    },
+    {
+      "id": "manguera_agente_tunel",
+      "nombre": "Flujo a Túnel",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.45,
+          0.45,
+          0.08
+        ],
+        [
+          -0.25,
+          0.0,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "manguera_tunel_agente",
+      "nombre": "Retorno Autocorrección",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.25,
+          0.1,
+          0.08
+        ],
+        [
+          -0.45,
+          0.55,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "peana_tech",
+      "nombre": "Peana Tech Lead",
+      "forma": "peana",
+      "x": 0.65,
+      "y": -0.45,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.52,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "garita_tech",
+      "nombre": "Compuerta Tech Lead",
+      "forma": "caja",
+      "x": 0.76,
+      "y": -0.45,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "amarillo",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "peana_tech",
+      "bisagra": "ninguna",
+      "ancho": 0.2,
+      "fondo": 0.2,
+      "alto": 0.3
+    },
+    {
+      "id": "portatil_base",
+      "nombre": "Teclado Revisión",
+      "forma": "caja",
+      "x": 0.52,
+      "y": -0.48,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "metal",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "peana_tech",
+      "bisagra": "ninguna",
+      "ancho": 0.18,
+      "fondo": 0.14,
+      "alto": 0.02
+    },
+    {
+      "id": "portatil_pantalla",
+      "nombre": "Pantalla Revisión",
+      "forma": "panel",
+      "x": 0.52,
+      "y": -0.40,
+      "z": 0.06,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "cielo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": "peana_tech",
+      "bisagra": "ninguna",
+      "ancho": 0.18,
+      "alto": 0.13,
+      "grosor": 0.02
+    },
+    {
+      "id": "manguera_tunel_tech",
+      "nombre": "Flujo a Revisión",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.25,
+          0.0,
+          0.08
+        ],
+        [
+          0.39,
+          -0.45,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "peana_prod",
+      "nombre": "Peana Producción",
+      "forma": "peana",
+      "x": 0.65,
+      "y": 0.55,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "fondo": 0.4,
+      "alto": 0.04
+    },
+    {
+      "id": "servidor_prod",
+      "nombre": "Servidor Producción",
+      "forma": "caja",
+      "x": 0.65,
+      "y": 0.55,
+      "z": 0.0408,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "verde",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": "peana_prod",
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.3,
+      "alto": 0.5
+    },
+    {
+      "id": "baliza_prod",
+      "nombre": "Baliza Despliegue",
+      "forma": "cilindro",
+      "x": 0.65,
+      "y": 0.55,
+      "z": 0.54,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "lima",
+      "material": "transparente",
+      "detalle": "liso",
+      "padre": "servidor_prod",
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.1
+    },
+    {
+      "id": "manguera_tech_prod",
+      "nombre": "Flujo a Producción",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0,
+      "rot_y": 0,
+      "rot_z": 0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.65,
+          -0.25,
+          0.08
+        ],
+        [
+          0.65,
+          0.35,
+          0.08
+        ]
+      ]
+    }
+  ],
+  "accesorios": [],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "Plano medio de la bandeja de requisitos vacía.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "¿Tus ingenieros senior pierden semanas arreglando código en lugar de lanzar nuevos productos?",
+          "emocion": "misterioso"
+        }
+      ],
+      "aparecen": [
+        "peana_req",
+        "repisa_req",
+        "bloque_negocio"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "repisa_req"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_req",
+        "objetivos": [
+          "peana_req"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 1,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 2,
+      "descripcion": "Aparece el segundo bloque de requisitos.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Imagina una fintech que necesita lanzar pagos instantáneos. Aquí entran los requisitos de negocio.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "bloque_criterios"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "bloque_criterios"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "repisa_req",
+        "objetivos": [
+          "repisa_req"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 1,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 3,
+      "descripcion": "El flujo viaja al Agente IA.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El Agente Codificador IA recibe las reglas y genera el borrador del software.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_agente",
+        "servidor_agente",
+        "esfera_agente",
+        "manguera_req_agente"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "servidor_agente"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_req_agente",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_agente",
+        "objetivos": [
+          "peana_req",
+          "peana_agente"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 2,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 4,
+      "descripcion": "La esfera del Agente IA trabaja rápido.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En segundos, escribe el código y sus pruebas automáticas, ahorrando días de trabajo manual.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "esfera_agente"
+      ],
+      "animaciones": [
+        {
+          "pieza": "esfera_agente",
+          "movimiento": "girar",
+          "inicio": 0.1,
+          "fin": 0.9,
+          "cantidad": 3.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "esfera_agente",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "esfera_agente",
+        "objetivos": [
+          "servidor_agente"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "servidor_agente",
+          "etiqueta": "Días desarrollo",
+          "valor": "14",
+          "hasta": "2",
+          "color": "lima"
+        }
+      ],
+      "paso": 2,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 5,
+      "descripcion": "El código pasa al Túnel de Calidad.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El paquete viaja al Túnel Automático de Calidad y Seguridad.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_tunel",
+        "carcasa_tunel",
+        "manguera_agente_tunel"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "carcasa_tunel"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_agente_tunel",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_tunel",
+        "objetivos": [
+          "peana_agente",
+          "peana_tunel"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 6,
+      "descripcion": "Escáner unitario analiza el código.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Primero, los escáneres comprueban que la lógica funcione sin romper nada.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "cilindro_test"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_tunel"
+      ],
+      "resaltar": [
+        "cilindro_test"
+      ],
+      "animaciones": [
+        {
+          "pieza": "cilindro_test",
+          "movimiento": "vibrar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "cilindro_test",
+          "momento": 0.7,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "carcasa_tunel",
+        "objetivos": [
+          "carcasa_tunel"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 7,
+      "descripcion": "El escáner de seguridad detecta un fallo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Pero el escáner de seguridad detecta una vulnerabilidad crítica.",
+          "emocion": "sorprendido"
+        }
+      ],
+      "aparecen": [
+        "cubo_vuln"
+      ],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_tunel"
+      ],
+      "resaltar": [
+        "cubo_vuln"
+      ],
+      "animaciones": [
+        {
+          "pieza": "cubo_vuln",
+          "movimiento": "vibrar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "alerta",
+          "pieza": "cubo_vuln",
+          "momento": 0.4,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "rechazo",
+          "pieza": "cubo_vuln",
+          "momento": 0.7,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "cubo_vuln",
+        "objetivos": [
+          "cubo_vuln"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "cubo_vuln",
+          "etiqueta": "Vulnerabilidades",
+          "valor": "1",
+          "hasta": "",
+          "color": "rojo"
+        }
+      ],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 8,
+      "descripcion": "El código se devuelve automáticamente al Agente.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En un flujo tradicional, esto bloquearía a un humano. Aquí, se devuelve automáticamente al Agente IA.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "manguera_tunel_agente"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "manguera_tunel_agente"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_tunel_agente",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "manguera_tunel_agente",
+        "objetivos": [
+          "peana_tunel",
+          "peana_agente"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0,
+      "datos": [],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 9,
+      "descripcion": "El Agente IA corrige el error al instante.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "La IA analiza el error, lo corrige al instante y lo reenvía. Bucle de autocorrección sin gastar tiempo senior.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "esfera_agente"
+      ],
+      "animaciones": [
+        {
+          "pieza": "esfera_agente",
+          "movimiento": "girar",
+          "inicio": 0.1,
+          "fin": 0.5,
+          "cantidad": 2.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "esfera_agente",
+          "momento": 0.3,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_agente_tunel",
+          "momento": 0.6,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "servidor_agente",
+        "objetivos": [
+          "servidor_agente"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0,
+      "datos": [],
+      "paso": 2,
+      "ciclo_rapido": true
+    },
+    {
+      "id": 10,
+      "descripcion": "El código pasa limpio por el escáner de seguridad.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Ahora sí, el código pasa las pruebas en verde, limpio y seguro.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [
+        "carcasa_tunel"
+      ],
+      "resaltar": [
+        "cubo_vuln"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "cubo_vuln",
+          "momento": 0.3,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "carcasa_tunel",
+        "objetivos": [
+          "carcasa_tunel"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [
+        {
+          "pieza": "cubo_vuln",
+          "etiqueta": "Vulnerabilidades",
+          "valor": "1",
+          "hasta": "0",
+          "color": "lima"
+        }
+      ],
+      "paso": 3,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 11,
+      "descripcion": "El código llega al Tech Lead.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Llega a la Compuerta de Revisión. El Tech Lead solo recibe código validado.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_tech",
+        "garita_tech",
+        "portatil_base",
+        "portatil_pantalla",
+        "manguera_tunel_tech"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "garita_tech",
+        "portatil_pantalla"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_tunel_tech",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_tech",
+        "objetivos": [
+          "peana_tunel",
+          "peana_tech"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 4,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 12,
+      "descripcion": "El Tech Lead revisa y aprueba enfocado en el negocio.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Los ingenieros se enfocan en la arquitectura y el valor del negocio, no en buscar comas perdidas.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "portatil_pantalla"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "aprobado",
+          "pieza": "portatil_pantalla",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "portatil_pantalla",
+        "objetivos": [
+          "portatil_base",
+          "portatil_pantalla"
+        ],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 4,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 13,
+      "descripcion": "Despliegue a Producción.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Aprobado. La funcionalidad se despliega en el Servidor de Producción Corporativo.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [
+        "peana_prod",
+        "servidor_prod",
+        "baliza_prod",
+        "manguera_tech_prod"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "servidor_prod"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_tech_prod",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "peana_prod",
+        "objetivos": [
+          "peana_tech",
+          "peana_prod"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 6.0,
+      "datos": [],
+      "paso": 5,
+      "ciclo_rapido": false
+    },
+    {
+      "id": 14,
+      "descripcion": "La baliza de producción brilla, indicando éxito.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Multiplicas tu velocidad de entrega, reduces el Time-to-Market y mantienes cero deuda técnica.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "baliza_prod"
+      ],
+      "animaciones": [
+        {
+          "pieza": "baliza_prod",
+          "movimiento": "girar",
+          "inicio": 0.1,
+          "fin": 0.9,
+          "cantidad": 4.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "ondas",
+          "pieza": "baliza_prod",
+          "momento": 0.3,
+          "duracion": 4.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "peana_prod",
+        "objetivos": [
+          "peana_req",
+          "peana_agente",
+          "peana_tunel",
+          "peana_tech",
+          "peana_prod"
+        ],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0,
+      "datos": [],
+      "paso": 5,
+      "ciclo_rapido": false
+    }
+  ],
+  "personajes": [],
+  "escenarios": [],
+  "caso": "Una fintech que desarrolla una nueva función de pagos instantáneos.",
+  "gancho": {
+    "pregunta": "¿Tus ingenieros senior pierden semanas arreglando código en lugar de lanzar nuevos productos?",
+    "texto_pantalla": "¿Semanas arreglando código roto?"
+  },
+  "ciclo": [
+    {
+      "pieza": "peana_req",
+      "texto": "Requisitos"
+    },
+    {
+      "pieza": "peana_agente",
+      "texto": "Código IA"
+    },
+    {
+      "pieza": "peana_tunel",
+      "texto": "Calidad"
+    },
+    {
+      "pieza": "peana_tech",
+      "texto": "Revisión"
+    },
+    {
+      "pieza": "peana_prod",
+      "texto": "Producción"
+    }
+  ],
+  "comparativa": {
+    "escena": 14,
+    "titulo": "Tiempo de Entrega",
+    "a_etiqueta": "Semanas sin IA",
+    "a_valor": 4.0,
+    "b_etiqueta": "Semanas con IA",
+    "b_valor": 1.0,
+    "resultado": "-75 %",
+    "curva_titulo": "Time-to-Market"
+  }
+}

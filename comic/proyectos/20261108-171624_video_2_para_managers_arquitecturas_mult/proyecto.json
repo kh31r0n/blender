@@ -1,0 +1,259 @@
+{
+  "descripcion": "Vídeo 2 para Managers: Arquitecturas Multi-Agente (Multi-Agent Architectures) y por qué un equipo de especialistas digitales coordinados supera a un único modelo gigante. Explicación ejecutiva sin código para directivos, de unos 100 segundos en formato VERTICAL 9:16 para LinkedIn móvil, con una maqueta isométrica en el TEMA CYBERPUNK: cada componente principal sobre su peana luminosa (forma 'peana', z=0, alto=0.04, componente encima en z=0.04) y unidos por mangueras de neón de borde a borde sin atravesar piezas.\n\nDISPOSICIÓN COMPACTA PARA VERTICAL 9:16: coloca los componentes en un área compacta de x entre -1.0 y 1.0 m e y entre -1.0 y 1.0 m, con alturas de 0.35 a 0.75 m, para que encuadren grande y nítido en la pantalla vertical del móvil.\n\nCOMPONENTES Y CÓMO DIBUJARLOS:\n1. Bandeja de Entrada de Operaciones (arriba-izquierda, x=-0.75, y=-0.65): un portátil azul cielo sobre su peana (base y pantalla panel) que recibe un expediente complejo de negocio (por ejemplo, alta de proveedor o reclamación corporativa).\n2. Agente Orquestador / Director de Tráfico (centro-izquierda, x=-0.75, y=0.25): un servidor verde grande sobre su peana. En lugar de intentar resolver todo con un prompt gigante, descompone el caso y reparte subtareas por tres mangueras hacia tres especialistas.\n3. Tres Agentes Especialistas en Paralelo (columna central, x=0.05, separados en Y: y=-0.65, y=0.0, y=0.65):\n   - Especialista Financiero (y=-0.65): un cubo naranja junto a un cilindro morado de datos contables sobre su peana.\n   - Especialista de Cumplimiento y Legal (y=0.0): un cubo rojo sobre su peana que valida contratos y normativa.\n   - Especialista de Operaciones y Stock (y=0.65): un cubo azul cielo sobre su peana que comprueba logística.\n4. Agente Auditor / Consolidador (abajo-derecha, x=0.8, y=-0.1): una garita amarilla (caja amarilla con barra superior) sobre su peana que reúne las tres respuestas.\n5. Consola Ejecutiva / ERP Corporativo (abajo-derecha delante, x=0.8, y=0.65): un monitor de metal con pantalla sobre un pie y una baliza cilíndrica lima de confirmación sobre su peana.\n\nRECORRIDO Y VENTAJAS PARA EL MANAGER:\nPrimero se muestra por qué pedir todo a un solo modelo gigante es lento, caro y propenso a errores. Luego se monta la arquitectura Multi-Agente en tres bloques:\nA) Especialización y ahorro de costes: el Orquestador divide el trabajo; cada especialista usa únicamente el contexto de su área y un modelo más pequeño y económico, reduciendo drásticamente la factura por operación.\nB) Velocidad por ejecución en paralelo: los tres flujos viajan a la vez hacia Finanzas, Legal y Operaciones (flujo y rayo en los tres cubos), resolviendo en un tercio del tiempo lo que antes iba en serie (flujo_vuelta hacia el Auditor).\nC) Mantenimiento modular y control de calidad: si Legal detecta un problema (rechazo/alerta en el cubo rojo), solo se repite o actualiza ese agente sin romper ni tocar Finanzas ni Operaciones, hasta que el Auditor da aprobado y entrega el expediente listo en el monitor ejecutivo.\n\nNARRACIÓN:\nTono ejecutivo y directo para Managers. Destaca cada ventaja: reducción de costes de IA al usar modelos ligeros especializados, reducción del tiempo de respuesta gracias al trabajo en paralelo, trazabilidad clara de qué agente tomó cada decisión y facilidad para actualizar un área de negocio sin rehacer todo el sistema.",
+  "creado": "20261108-171624",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "cyberpunk",
+    "formato": "3d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "motor": "cycles",
+    "duracion": 100.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "icono_flujo": "sobre",
+    "gancho": "dolor",
+    "datos_vivos": true,
+    "pasos_ciclo": true,
+    "comparativa": true,
+    "paneles_mc": true,
+    "tam_panel": 0.4,
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.v2.blend",
+    "rig": "02_rig.v2.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v2.blend",
+    "efectos": "04b_efectos.v2.blend",
+    "previa": "previa/iter_1.v2",
+    "render": "render/animacion.v2.mp4",
+    "montaje": "final/final.v2.mp4"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T17:21:31",
+      "archivo": "guion.json",
+      "escenas": 14,
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T17:27:33",
+      "archivo": "adornos.json",
+      "adornos": 33,
+      "por_tipo": {
+        "teclado": 1,
+        "pantalla": 6,
+        "cartel": 7,
+        "ranuras": 2,
+        "leds": 3,
+        "rejilla": 3,
+        "placa": 1,
+        "franja": 1,
+        "icono": 1,
+        "conector": 8
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T17:27:35",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 26,
+        "rayos_x": 26,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 2.0
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T17:27:36",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 27,
+        "piezas": 26,
+        "desvio_max": 0.0,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T17:29:14",
+      "archivo": "tiempos.json",
+      "duracion": 104.275,
+      "fotogramas": 2503,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T17:29:15",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 2009,
+        "fotogramas": 2503,
+        "cambios_de_sombra": 22,
+        "piezas": 26,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T17:29:16",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 29,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T17:29:24",
+      "archivo": "previa/iter_1",
+      "imagenes": 14
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T17:53:09",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/animacion.mp4",
+        "fotogramas": 2503,
+        "segundos": 1197.9,
+        "_segundos": 1198.5
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T17:54:15",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T20:25:37",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 26,
+        "rayos_x": 26,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T20:25:37",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 27,
+        "piezas": 26,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T20:25:38",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 1956,
+        "fotogramas": 2503,
+        "cambios_de_sombra": 22,
+        "piezas": 26,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T20:25:39",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 29,
+        "avisos": [],
+        "_segundos": 0.9
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T20:25:47",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 14
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T20:47:07",
+      "archivo": "render/animacion.v2.mp4",
+      "vinetas": "render/vinetas.v2",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/vinetas.v2/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-171624_video_2_para_managers_arquitecturas_mult/render/animacion.v2.mp4",
+        "fotogramas": 2503,
+        "segundos": 1192.5,
+        "_segundos": 1193.1
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T20:48:21",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    }
+  ],
+  "vinetas": "render/vinetas.v2"
+}

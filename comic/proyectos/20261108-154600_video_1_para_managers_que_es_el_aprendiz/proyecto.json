@@ -1,0 +1,1162 @@
+{
+  "descripcion": "Vídeo 1 para Managers: Qué es el Aprendizaje por Refuerzo (Reinforcement Learning) y qué gana el negocio, contado con UN caso concreto de principio a fin: una aerolínea que pone precio, cada día, a los 180 asientos de su vuelo Madrid–París. Explicación ejecutiva sin código ni fórmulas para directivos, de unos 100 segundos en formato VERTICAL 9:16 para LinkedIn móvil, con una maqueta isométrica en el TEMA CYBERPUNK: cada componente principal sobre su peana luminosa (forma 'peana', z=0, alto=0.04, componente encima en z=0.04) y unidos por mangueras de neón de borde a borde sin atravesar piezas.\n\nGANCHO: abre con una pregunta de DOLOR para el directivo sobre ese vuelo (dinero que se pierde con asientos que despegan vacíos o que se vendieron demasiado baratos porque el precio se fija con reglas fijas). El final responde a la pregunta con el resultado del caso.\n\nDISPOSICIÓN COMPACTA PARA VERTICAL 9:16: reparte los componentes en un área compacta de x entre -1.1 y 1.1 m e y entre -1.0 y 1.0 m (en dos filas de profundidad Y, no en una línea horizontal larga), con alturas de 0.35 a 0.75 m, para que tanto los planos medios como el plano general llenen la pantalla vertical del móvil.\n\nCOMPONENTES (todos son parte del caso del vuelo) Y CÓMO DIBUJARLOS:\n1. Simulador del vuelo Madrid–París (arriba-izquierda, x=-0.75, y=-0.55): un servidor azul cielo sobre su peana y, a su lado en la misma peana, una fila de 6 bloques blancos pequeños, los asientos (cada bloque = 30 asientos), que se van ocupando cuando se venden; reproduce días de demanda (vacaciones, un congreso, una huelga) para practicar sin pasajeros reales.\n2. Agente de Aprendizaje por Refuerzo (centro-izquierda, x=-0.75, y=0.45): un servidor verde grande sobre su peana. Mira el estado (asientos libres y días que faltan para el vuelo) y decide la acción: subir o bajar el precio del billete. Envía su precio por la manguera.\n3. Límites de negocio / Guardrails (centro-derecha, x=0.65, y=0.45): una garita roja (caja roja con barra superior en bisagra) sobre su peana. Aplica los límites que fija la dirección: precio entre 60 € y 400 €, y nunca más de un 20 % de subida en un día; bloquea (rechazo) un precio de 520 € y deja pasar (aprobado) uno de 140 €.\n4. Motor de recompensa (centro, x=0.0, y=-0.1): un cilindro morado con fichas lima que se apilan al lado sobre la peana: el ingreso del vuelo. Cada asiento vendido suma su precio; cada asiento que despega vacío resta. Devuelve ese resultado al agente (flujo_vuelta) para que aprenda qué precios funcionan.\n5. Sistema de precios en producción (abajo-derecha, x=0.75, y=-0.65): un monitor grande de metal con pantalla sobre un pie en su peana, junto a una baliza cilíndrica lima, donde la estrategia ya entrenada pone el precio real de cada billete.\n\nRECORRIDO:\nPrimero el problema: con reglas fijas (por ejemplo, 'a 30 días, 90 €') el vuelo se llena demasiado pronto y barato en temporada alta, o despega con asientos vacíos en temporada baja. Después, tres bloques:\nA) Practicar sin riesgo: en el simulador el agente prueba precios en miles de vuelos simulados; cuando se equivoca, solo pierde dinero simulado.\nB) La dirección manda: tú decides qué se premia (ingreso del vuelo) y qué límites nunca se cruzan (la garita roja).\nC) Producción: la estrategia aprendida pone el precio real cada día y se adapta sola cuando cambia la demanda.\nCierre: responde a la pregunta del gancho con el resultado del vuelo (más asientos vendidos y a mejor precio; di 'por ejemplo' en las cifras, son ilustrativas).\n\nNARRACIÓN:\nTono ejecutivo, claro y directo para Managers y Directores. Siempre con el caso del vuelo y sus números (180 asientos, 60–400 €, días que faltan), nunca con abstracciones ('reglas de negocio', 'operaciones') sin aterrizar.",
+  "creado": "20261108-154600",
+  "parametros": {
+    "estilo": "tecnico",
+    "tema": "cyberpunk",
+    "formato": "3d",
+    "orientacion": "vertical",
+    "fps": 24,
+    "en_dos": true,
+    "calidad": "final",
+    "motor": "cycles",
+    "duracion": 100.0,
+    "idioma": "es",
+    "voz_narrador": "Charon",
+    "modelo_tts": "gemini-2.5-pro-tts",
+    "ritmo_voz": 2.6,
+    "icono_flujo": "sobre",
+    "gancho": "dolor",
+    "datos_vivos": true,
+    "pasos_ciclo": true,
+    "comparativa": true,
+    "paneles_mc": true,
+    "tam_panel": 0.4,
+    "subtitulos": true,
+    "largo_flujo": 1.0,
+    "toma_voz": 1,
+    "grosor_tinta": 1.0,
+    "temblor_linea": 0.4,
+    "semitono": true,
+    "papel": true,
+    "bocadillos": false,
+    "cartelas": false,
+    "saturacion": 1.1,
+    "brillo_fx": true
+  },
+  "archivos": {
+    "guion": "guion.json",
+    "detalles": "adornos.json",
+    "objetos": "01_objetos.v12.blend",
+    "rig": "02_rig.v11.blend",
+    "audio": "tiempos.json",
+    "animacion": "04_animacion.v17.blend",
+    "efectos": "04b_efectos.v18.blend",
+    "previa": "previa/iter_1.v10",
+    "render": "render/animacion.v4.mp4",
+    "montaje": "final/final.v4.mp4",
+    "paneles": "paneles/fotogramas.v5",
+    "subtitulos": "subtitulos/fotogramas"
+  },
+  "historial": [
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T15:50:27",
+      "archivo": "guion.json",
+      "escenas": 14,
+      "avisos": []
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T15:52:03",
+      "archivo": "adornos.json",
+      "adornos": 30,
+      "por_tipo": {
+        "cartel": 5,
+        "pantalla": 4,
+        "ranuras": 2,
+        "rejilla": 2,
+        "icono": 3,
+        "leds": 3,
+        "placa": 1,
+        "tornillos": 1,
+        "franja": 2,
+        "barras": 1,
+        "boton": 1,
+        "conector": 5
+      },
+      "carpeta": "detalles"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T15:52:05",
+      "archivo": "01_objetos.blend",
+      "informe": {
+        "piezas": 23,
+        "rayos_x": 22,
+        "adornos": 30,
+        "avisos_adornos": [
+          "guard_base: el cartel chocaba con guard_bar; movido a u=0.92 v=0.80, poste +0.06 m"
+        ],
+        "_segundos": 1.9
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T15:52:06",
+      "archivo": "02_rig.blend",
+      "informe": {
+        "huesos": 24,
+        "piezas": 23,
+        "desvio_max": 0.0,
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T15:54:06",
+      "archivo": "tiempos.json",
+      "duracion": 106.495,
+      "fotogramas": 2556,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T15:54:07",
+      "archivo": "04_animacion.blend",
+      "informe": {
+        "claves": 2119,
+        "fotogramas": 2556,
+        "cambios_de_sombra": 24,
+        "piezas": 23,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T15:54:07",
+      "archivo": "04b_efectos.blend",
+      "informe": {
+        "efectos": 18,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T15:54:14",
+      "archivo": "previa/iter_1",
+      "imagenes": 14
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T17:01:12",
+      "archivo": "render/animacion.mp4",
+      "vinetas": "render/vinetas",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/animacion.mp4",
+        "fotogramas": 2556,
+        "segundos": 1150.6,
+        "_segundos": 1151.1
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T17:02:15",
+      "archivo": "final/final.mp4",
+      "pagina": "final/pagina_comic.png",
+      "gif": "final/animacion.gif"
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T18:34:53",
+      "archivo": "guion.json",
+      "escenas": 14,
+      "avisos": []
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T18:35:09",
+      "archivo": "guion.json",
+      "origen": "cierre con la cifra como ejemplo (ilustrativa), sin prometer cero asientos vacios"
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T18:36:10",
+      "archivo": "adornos.json",
+      "adornos": 33,
+      "por_tipo": {
+        "cartel": 5,
+        "ranuras": 1,
+        "leds": 3,
+        "rejilla": 2,
+        "icono": 7,
+        "pantalla": 3,
+        "placa": 1,
+        "boton": 1,
+        "barras": 1,
+        "franja": 2,
+        "tornillos": 1,
+        "conector": 6
+      },
+      "carpeta": "detalles.v2"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T18:36:12",
+      "archivo": "01_objetos.v2.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [
+          "guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70"
+        ],
+        "_segundos": 1.9
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T18:38:31",
+      "archivo": "tiempos.json",
+      "duracion": 82.035,
+      "fotogramas": 1969,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T18:38:31",
+      "archivo": "01_objetos.v3.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [
+          "guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70"
+        ],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T18:38:32",
+      "archivo": "02_rig.v2.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:38:33",
+      "archivo": "04_animacion.v2.blend",
+      "informe": {
+        "claves": 1634,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:38:34",
+      "archivo": "04b_efectos.v2.blend",
+      "informe": {
+        "efectos": 16,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T18:38:41",
+      "archivo": "previa/iter_1.v2",
+      "imagenes": 14
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T18:41:01",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T18:41:01",
+      "archivo": "01_objetos.v4.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [
+          "guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70, poste +0.06 m"
+        ],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T18:41:02",
+      "archivo": "02_rig.v3.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T18:41:02",
+      "archivo": "tiempos.json",
+      "duracion": 82.035,
+      "fotogramas": 1969,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:41:03",
+      "archivo": "04_animacion.v3.blend",
+      "informe": {
+        "claves": 1634,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:41:04",
+      "archivo": "04b_efectos.v3.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T18:41:11",
+      "archivo": "previa/iter_2",
+      "imagenes": 14
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T18:42:52",
+      "archivo": "adornos.json",
+      "origen": "carteles del caso: IA en el agente (no lambda), SIM en el simulador, barras de ingresos en la recompensa"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T18:42:59",
+      "archivo": "01_objetos.v5.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [
+          "guard_box: el cartel chocaba con guard_bar; movido a u=0.50 v=0.70, poste +0.06 m"
+        ],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T18:43:00",
+      "archivo": "02_rig.v4.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:43:01",
+      "archivo": "04_animacion.v4.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:43:02",
+      "archivo": "04b_efectos.v4.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T18:43:09",
+      "archivo": "previa/iter_1.v3",
+      "imagenes": 14
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T18:45:34",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T18:45:35",
+      "archivo": "01_objetos.v6.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T18:45:36",
+      "archivo": "02_rig.v5.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T18:45:36",
+      "archivo": "tiempos.json",
+      "duracion": 82.035,
+      "fotogramas": 1969,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:45:37",
+      "archivo": "04_animacion.v5.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:45:38",
+      "archivo": "04b_efectos.v5.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T18:45:45",
+      "archivo": "previa/iter_2.v2",
+      "imagenes": 14
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T18:48:02",
+      "archivo": "guion.json",
+      "origen": "h_rew_ag llega hasta el borde de la peana del agente (quedaba suelta a 0.15 m)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T18:48:03",
+      "archivo": "01_objetos.v7.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T18:48:04",
+      "archivo": "02_rig.v6.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:48:04",
+      "archivo": "04_animacion.v6.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:48:05",
+      "archivo": "04b_efectos.v6.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T18:48:13",
+      "archivo": "previa/iter_1.v4",
+      "imagenes": 14
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T18:50:57",
+      "archivo": "guion.json",
+      "origen": "revision 1",
+      "avisos": []
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T18:50:58",
+      "archivo": "01_objetos.v8.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T18:50:59",
+      "archivo": "02_rig.v7.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-08T18:50:59",
+      "archivo": "tiempos.json",
+      "duracion": 82.035,
+      "fotogramas": 1969,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:51:00",
+      "archivo": "04_animacion.v7.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:51:00",
+      "archivo": "04b_efectos.v7.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T18:51:08",
+      "archivo": "previa/iter_2.v3",
+      "imagenes": 14
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:52:30",
+      "archivo": "04_animacion.v8.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:52:31",
+      "archivo": "04b_efectos.v8.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T18:52:57",
+      "archivo": "04_animacion.v9.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T18:52:58",
+      "archivo": "04b_efectos.v9.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T19:03:45",
+      "archivo": "01_objetos.v9.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.6
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T19:03:46",
+      "archivo": "02_rig.v8.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T19:03:47",
+      "archivo": "04_animacion.v10.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T19:03:48",
+      "archivo": "04b_efectos.v10.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T19:04:26",
+      "archivo": "04b_efectos.v11.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "detalles",
+      "fecha": "2026-11-08T19:04:53",
+      "archivo": "adornos.json",
+      "origen": "pantalla del sistema de precios con una grafica que sube (el icono 'traza' parecia una bandera)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T19:04:54",
+      "archivo": "01_objetos.v10.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T19:04:55",
+      "archivo": "02_rig.v9.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T19:04:56",
+      "archivo": "04_animacion.v11.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T19:04:57",
+      "archivo": "04b_efectos.v12.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T19:29:27",
+      "archivo": "render/animacion.v2.mp4",
+      "vinetas": "render/vinetas.v2",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v2/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/animacion.v2.mp4",
+        "fotogramas": 1969,
+        "segundos": 917.2,
+        "_segundos": 917.8
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T19:30:13",
+      "archivo": "final/final.v2.mp4",
+      "pagina": "final/pagina_comic.v2.png",
+      "gif": "final/animacion.v2.gif"
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T19:39:07",
+      "archivo": "guion.json",
+      "origen": "enriquecer: datos vivos, pasos del ciclo y comparativa",
+      "avisos": []
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-08T19:39:20",
+      "archivo": "guion.json",
+      "origen": "el ciclo empieza cuando entra el agente (E1-E4 sin paso); E1 sin datos (el gancho limpio)"
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-08T19:40:16",
+      "archivo": "01_objetos.v11.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-08T19:40:16",
+      "archivo": "02_rig.v10.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T19:40:17",
+      "archivo": "04_animacion.v12.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T19:40:18",
+      "archivo": "04b_efectos.v13.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T19:43:41",
+      "archivo": "04_animacion.v13.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 2.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T19:43:45",
+      "archivo": "04b_efectos.v14.blend",
+      "informe": {
+        "efectos": 116,
+        "avisos": [],
+        "_segundos": 3.3
+      }
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T19:44:27",
+      "archivo": "04_animacion.v14.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 2.6
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T19:44:30",
+      "archivo": "04b_efectos.v15.blend",
+      "informe": {
+        "efectos": 116,
+        "avisos": [],
+        "_segundos": 3.2
+      }
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-08T20:15:09",
+      "archivo": "render/animacion.v3.mp4",
+      "vinetas": "render/vinetas.v3",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v3/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/animacion.v3.mp4",
+        "fotogramas": 1969,
+        "segundos": 1626.1,
+        "_segundos": 1627.2
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-08T20:16:22",
+      "archivo": "final/final.v3.mp4",
+      "pagina": "final/pagina_comic.v3.png",
+      "gif": "final/animacion.v3.gif"
+    },
+    {
+      "etapa": "paneles",
+      "fecha": "2026-11-08T20:54:42",
+      "archivo": "paneles/fotogramas",
+      "paneles": 14,
+      "origen": "gemini",
+      "fotogramas": 1969,
+      "segundos": 35.5
+    },
+    {
+      "etapa": "paneles",
+      "fecha": "2026-11-08T20:55:48",
+      "archivo": "paneles/fotogramas.v2",
+      "paneles": 14,
+      "origen": "gemini",
+      "fotogramas": 1969,
+      "segundos": 34.9
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-08T20:55:49",
+      "archivo": "04_animacion.v15.blend",
+      "informe": {
+        "claves": 1636,
+        "fotogramas": 1969,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-08T20:55:50",
+      "archivo": "04b_efectos.v16.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T20:55:59",
+      "archivo": "previa/iter_1.v5",
+      "imagenes": 14
+    },
+    {
+      "etapa": "paneles",
+      "fecha": "2026-11-08T21:00:55",
+      "archivo": "paneles/fotogramas.v3",
+      "paneles": 14,
+      "origen": "gemini",
+      "fotogramas": 1969,
+      "segundos": 32.7
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T21:01:03",
+      "archivo": "previa/iter_1.v6",
+      "imagenes": 14
+    },
+    {
+      "etapa": "paneles",
+      "fecha": "2026-11-08T21:05:13",
+      "archivo": "paneles/fotogramas.v4",
+      "paneles": 14,
+      "origen": "gemini",
+      "fotogramas": 1969,
+      "segundos": 32.7
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-08T21:05:22",
+      "archivo": "previa/iter_1.v7",
+      "imagenes": 14
+    },
+    {
+      "etapa": "guion",
+      "fecha": "2026-11-09T08:11:44",
+      "archivo": "guion.json",
+      "origen": "ajuste de maqueta",
+      "avisos": [
+        "manguera h_ag_guard: pasa de la escena 6 a la 7, cuando ya estan sus dos extremos (con 1 flujo)",
+        "separo las peanas 0.40 m en Y (pasillo y=0.17) para que h_sim_ag mida 1 m: h_ag_guard 1.00, h_ag_sim 1.00, h_guard_prod 1.60, h_guard_rew 1.20, h_rew_ag 1.25, h_sim_ag 1.00"
+      ]
+    },
+    {
+      "etapa": "objetos",
+      "fecha": "2026-11-09T08:11:45",
+      "archivo": "01_objetos.v12.blend",
+      "informe": {
+        "piezas": 28,
+        "rayos_x": 28,
+        "adornos": 33,
+        "avisos_adornos": [],
+        "_segundos": 1.0
+      }
+    },
+    {
+      "etapa": "rig",
+      "fecha": "2026-11-09T08:11:45",
+      "archivo": "02_rig.v11.blend",
+      "informe": {
+        "huesos": 29,
+        "piezas": 28,
+        "desvio_max": 0.0,
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "audio",
+      "fecha": "2026-11-09T08:13:56",
+      "archivo": "tiempos.json",
+      "duracion": 83.362,
+      "fotogramas": 2001,
+      "fuente": "tts"
+    },
+    {
+      "etapa": "paneles",
+      "fecha": "2026-11-09T08:16:01",
+      "archivo": "paneles/fotogramas.v5",
+      "paneles": 14,
+      "origen": "gemini",
+      "fotogramas": 2001,
+      "segundos": 31
+    },
+    {
+      "etapa": "subtitulos",
+      "fecha": "2026-11-09T08:16:32",
+      "archivo": "subtitulos/fotogramas",
+      "bloques": 47,
+      "fotogramas": 2001,
+      "segundos": 30.8
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T08:16:33",
+      "archivo": "04_animacion.v16.blend",
+      "informe": {
+        "claves": 2108,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T08:16:33",
+      "archivo": "04b_efectos.v17.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-09T08:17:01",
+      "archivo": "previa/iter_1.v9",
+      "imagenes": 14
+    },
+    {
+      "etapa": "animacion",
+      "fecha": "2026-11-09T08:17:48",
+      "archivo": "04_animacion.v17.blend",
+      "informe": {
+        "claves": 2108,
+        "fotogramas": 2001,
+        "cambios_de_sombra": 25,
+        "piezas": 28,
+        "_segundos": 0.8
+      }
+    },
+    {
+      "etapa": "efectos",
+      "fecha": "2026-11-09T08:17:49",
+      "archivo": "04b_efectos.v18.blend",
+      "informe": {
+        "efectos": 17,
+        "avisos": [],
+        "_segundos": 0.7
+      }
+    },
+    {
+      "etapa": "previa",
+      "fecha": "2026-11-09T08:17:59",
+      "archivo": "previa/iter_1.v10",
+      "imagenes": 14
+    },
+    {
+      "etapa": "render",
+      "fecha": "2026-11-09T08:33:42",
+      "archivo": "render/animacion.v4.mp4",
+      "vinetas": "render/vinetas.v4",
+      "informe": {
+        "resolucion": "1080x1920",
+        "vinetas": [
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_1.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_2.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_3.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_4.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_5.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_6.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_7.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_8.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_9.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_10.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_11.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_12.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_13.png",
+          "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/vinetas.v4/escena_14.png"
+        ],
+        "dispositivo": null,
+        "video": "/home/kheiron/blender/comic/proyectos/20261108-154600_video_1_para_managers_que_es_el_aprendiz/render/animacion.v4.mp4",
+        "fotogramas": 2001,
+        "segundos": 906.1,
+        "_segundos": 906.5
+      }
+    },
+    {
+      "etapa": "montaje",
+      "fecha": "2026-11-09T08:35:09",
+      "archivo": "final/final.v4.mp4",
+      "pagina": "final/pagina_comic.v4.png",
+      "gif": "final/animacion.v4.gif",
+      "srt": "final/final.v4.srt"
+    }
+  ],
+  "vinetas": "render/vinetas.v4",
+  "descripciones_anteriores": [
+    "Vídeo 1 para Managers: Qué es el Aprendizaje por Refuerzo (Reinforcement Learning) y sus ventajas estratégicas para el negocio. Explicación ejecutiva sin código ni fórmulas para directivos, de unos 100 segundos en formato VERTICAL 9:16 para LinkedIn móvil, con una maqueta isométrica en el TEMA CYBERPUNK: cada componente principal sobre su peana luminosa (forma 'peana', z=0, alto=0.04, componente encima en z=0.04) y unidos por mangueras de neón de borde a borde sin atravesar piezas.\n\nDISPOSICIÓN COMPACTA PARA VERTICAL 9:16: reparte los componentes en un área compacta de x entre -1.1 y 1.1 m e y entre -1.0 y 1.0 m (en dos filas de profundidad Y, no en una línea horizontal larga), con alturas de 0.35 a 0.75 m, para que tanto los planos medios como el plano general llenen la pantalla vertical del móvil.\n\nCOMPONENTES Y CÓMO DIBUJARLOS:\n1. Simulador del Mercado y Operaciones (arriba-izquierda, x=-0.75, y=-0.55): una plataforma con un servidor azul cielo y dos bloques pequeños (naranja y blanco) que representan la demanda cambiante, rutas logísticas y precios dinámicos donde las reglas manuales fijas fracasan.\n2. Agente de Aprendizaje por Refuerzo (centro-izquierda, x=-0.75, y=0.45): un servidor verde grande sobre su peana que observa el estado del mercado y prueba decisiones (ajustar tarifa, asignar inventario o priorizar ruta) enviando flujo por manguera.\n3. Cortafuegos de Políticas de Negocio / Guardrails (centro-derecha, x=0.65, y=0.45): una garita roja (caja roja con barra superior en bisagra) sobre su peana. Bloquea cualquier acción que supere el riesgo permitido o rompa el margen mínimo antes de que toque la operación real.\n4. Motor de Recompensa y KPIs de Negocio (centro, x=0.0, y=-0.1): un cilindro morado con tres fichas lima apiladas al lado sobre la peana (las recompensas por subir el margen, entregar a tiempo y retener al cliente). Si una acción da mal resultado recibe rechazo y alerta; si mejora el KPI suma fichas lima y envía flujo_vuelta de aprendizaje al agente.\n5. Consola Ejecutiva de Retorno / Producción (abajo-derecha, x=0.75, y=-0.65): un monitor grande de metal con pantalla sobre un pie en su peana, junto a una baliza cilíndrica lima de confirmación, donde se despliega la política ya entrenada y validada.\n\nRECORRIDO Y VENTAJAS PARA EL MANAGER:\nPrimero se monta la maqueta explicando por qué las reglas fijas quedan obsoletas cuando cambia el mercado. Después, tres bloques claros:\nA) Entrenamiento sin riesgo en el Simulador: el agente prueba decisiones en el simulador; cuando una acción es ineficiente recibe rechazo y ajusta su estrategia sin haber afectado a un solo cliente real ni gastado presupuesto operativo.\nB) Alineación con KPIs reales y Guardrails: la dirección define qué se premia (fichas lima de margen y velocidad) y qué límites nunca se cruzan en la garita roja (aprobado/rechazo), logrando que la IA optimice exactamente el objetivo financiero de la empresa.\nC) Optimización continua en Producción: una vez madura, la estrategia pasa a la consola ejecutiva (rayo, aprobado), descubriendo ahorros logísticos y comerciales que ningún árbol de reglas manual podría mantener al día.\n\nNARRACIÓN:\nTono ejecutivo, claro y directo para Managers y Directores. Explica cada ventaja de negocio: reducción de riesgo al entrenar en simulación, ahorro de costes operativos, adaptación automática a cambios de demanda y control total mediante límites de negocio."
+  ]
+}

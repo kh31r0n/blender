@@ -1,0 +1,76 @@
+{
+  "origen": "gemini",
+  "variantes": [
+    {
+      "enfoque": "dolor",
+      "titular": "Precios fijos pierden dinero",
+      "clave": [
+        "pierden",
+        "dinero"
+      ],
+      "cifra": "",
+      "etiqueta": "",
+      "color": "problema"
+    },
+    {
+      "enfoque": "cifra",
+      "titular": "Aumenta ingresos por vuelo",
+      "clave": [
+        "Aumenta",
+        "ingresos"
+      ],
+      "cifra": "+15 %",
+      "etiqueta": "más ingresos",
+      "color": "bueno"
+    },
+    {
+      "enfoque": "curiosidad",
+      "titular": "Descubre el precio perfecto",
+      "clave": [
+        "precio",
+        "perfecto"
+      ],
+      "cifra": "400 €",
+      "etiqueta": "precio máximo",
+      "color": "espera"
+    }
+  ],
+  "ranking": {
+    "orden": [
+      1,
+      2,
+      3
+    ],
+    "notas": [
+      {
+        "variante": 1,
+        "puntuacion": 9,
+        "motivo": "Apela a la aversión a la pérdida, un sesgo psicológico muy potente para directivos, utilizando un texto corto, directo y de alta legibilidad en pantallas pequeñas.",
+        "mejora": "Añadir un elemento visual sutil, como una flecha roja hacia abajo o un gráfico en declive, para reforzar el concepto de pérdida de dinero de un vistazo."
+      },
+      {
+        "variante": 2,
+        "puntuacion": 7,
+        "motivo": "Destacar una métrica concreta (+15%) es excelente para captar la atención de perfiles analíticos y de negocio, aunque la especificación 'por vuelo' podría alienar a quienes no son de ese sector.",
+        "mejora": "Eliminar o cambiar 'por vuelo' por un término más universal (como 'en tu sector') y aumentar el tamaño de la fuente del texto principal para mejorar su impacto."
+      },
+      {
+        "variante": 3,
+        "puntuacion": 5,
+        "motivo": "La promesa de 'precio perfecto' suena a cliché de marketing genérico, y la cifra de '400 €' carece del contexto necesario para despertar la curiosidad de un manager.",
+        "mejora": "Cambiar el enfoque del texto hacia la ventaja competitiva (ej. 'IA para optimizar precios') y sustituir el valor absoluto por un porcentaje de incremento de margen."
+      }
+    ]
+  },
+  "orden": [
+    1,
+    2,
+    3
+  ],
+  "avisos": [],
+  "fondos": {
+    "vertical": "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/miniaturas/miniaturas.v4/fondo_vertical.png",
+    "horizontal": "/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/miniaturas/miniaturas.v4/fondo_horizontal.png"
+  },
+  "dispositivo": "OPTIX: NVIDIA GeForce RTX 4060"
+}

@@ -1,0 +1,65 @@
+{
+  "tipo": "miniatura",
+  "ancho": 1920,
+  "alto": 1080,
+  "fps": 24,
+  "frames": 3,
+  "orientacion": "horizontal",
+  "paleta": {
+    "fondo": "#F4F7F9",
+    "texto": "#1F2A33",
+    "bueno": "#139C98",
+    "problema": "#E5484D",
+    "espera": "#F07F2E",
+    "neutro": "#1F2A33",
+    "tenue": "#C7D2DA",
+    "acento": "#16A9A5"
+  },
+  "icono_flujo": "sobre",
+  "banda": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+  },
+  "tramos": [],
+  "paneles": [],
+  "miniaturas": {
+    "fondo": "/@fs/home/kheiron/blender/comic/proyectos/20261109-102341_video_1_managers_tema_arcilla/miniaturas/miniaturas.v3/fondo_horizontal.png",
+    "variantes": [
+      {
+        "enfoque": "dolor",
+        "titular": "Precios fijos pierden dinero",
+        "clave": [
+          "pierden",
+          "dinero"
+        ],
+        "cifra": "",
+        "etiqueta": "",
+        "color": "problema"
+      },
+      {
+        "enfoque": "cifra",
+        "titular": "Aumenta ingresos por vuelo",
+        "clave": [
+          "Aumenta",
+          "ingresos"
+        ],
+        "cifra": "+15 %",
+        "etiqueta": "más ingresos",
+        "color": "bueno"
+      },
+      {
+        "enfoque": "curiosidad",
+        "titular": "Descubre el precio perfecto",
+        "clave": [
+          "precio",
+          "perfecto"
+        ],
+        "cifra": "400 €",
+        "etiqueta": "precio máximo",
+        "color": "espera"
+      }
+    ]
+  }
+}

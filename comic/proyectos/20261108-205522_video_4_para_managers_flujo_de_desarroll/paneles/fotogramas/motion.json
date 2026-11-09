@@ -1,0 +1,857 @@
+{
+  "ancho": 1080,
+  "alto": 1920,
+  "fps": 24,
+  "frames": 2287,
+  "orientacion": "vertical",
+  "banda": {
+    "x": 0,
+    "y": 0,
+    "w": 1080,
+    "h": 768
+  },
+  "paleta": {
+    "fondo": "#090D18",
+    "texto": "#F4F1EA",
+    "bueno": "#C8FF2E",
+    "problema": "#FF4D2E",
+    "espera": "#36D6FF",
+    "neutro": "#F4F1EA",
+    "tenue": "#2A3550",
+    "acento": "#2ED2E8"
+  },
+  "icono_flujo": "sobre",
+  "tramos": [
+    {
+      "inicio": 0,
+      "fin": 2286,
+      "entra": true,
+      "sale": false
+    }
+  ],
+  "paneles": [
+    {
+      "escena": 1,
+      "inicio": 0,
+      "fin": 157,
+      "titular": {
+        "palabras": [
+          {
+            "t": "¿Semanas",
+            "f": 42,
+            "clave": true
+          },
+          {
+            "t": "arreglando",
+            "f": 54,
+            "clave": false
+          },
+          {
+            "t": "código",
+            "f": 69,
+            "clave": false
+          },
+          {
+            "t": "roto?",
+            "f": 72,
+            "clave": true
+          }
+        ],
+        "color": "problema",
+        "bloque": false,
+        "grande": true
+      },
+      "visual": {
+        "tipo": "ninguno",
+        "f": 39,
+        "f_accion": 47
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 1,
+        "hechos": [],
+        "rapido": false
+      },
+      "pieza": "repisa_req"
+    },
+    {
+      "escena": 2,
+      "inicio": 158,
+      "fin": 340,
+      "titular": {
+        "palabras": [
+          {
+            "t": "LANZAR",
+            "f": 221,
+            "clave": false
+          },
+          {
+            "t": "PAGOS",
+            "f": 228,
+            "clave": true
+          },
+          {
+            "t": "INSTANTÁNEOS",
+            "f": 235,
+            "clave": true
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "req-pagos.json",
+        "items": [
+          {
+            "etiqueta": "tipo",
+            "valor": "pagos",
+            "color": "espera",
+            "puntos": []
+          },
+          {
+            "etiqueta": "modo",
+            "valor": "instantáneo",
+            "color": "espera",
+            "puntos": []
+          }
+        ],
+        "f": 203,
+        "f_accion": 211
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 1,
+        "hechos": [
+          1
+        ],
+        "rapido": false
+      },
+      "pieza": "bloque_criterios"
+    },
+    {
+      "escena": 3,
+      "inicio": 341,
+      "fin": 494,
+      "titular": {
+        "palabras": [
+          {
+            "t": "AGENTE",
+            "f": 353,
+            "clave": true
+          },
+          {
+            "t": "CODIFICADOR",
+            "f": 364,
+            "clave": false
+          },
+          {
+            "t": "IA",
+            "f": 381,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "pasos",
+        "f": 359,
+        "f_accion": 367,
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 2,
+        "rapido": false,
+        "hechos": [
+          1
+        ]
+      },
+      "cinta": null,
+      "pieza": "servidor_agente"
+    },
+    {
+      "escena": 4,
+      "inicio": 495,
+      "fin": 673,
+      "titular": {
+        "palabras": [
+          {
+            "t": "AHORRANDO",
+            "f": 606,
+            "clave": true
+          },
+          {
+            "t": "DÍAS",
+            "f": 623,
+            "clave": true
+          },
+          {
+            "t": "DE",
+            "f": 627,
+            "clave": false
+          },
+          {
+            "t": "TRABAJO",
+            "f": 631,
+            "clave": false
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Días desarrollo",
+        "valor": "14",
+        "hasta": "2",
+        "color": "bueno",
+        "f": 539,
+        "f_accion": 623,
+        "valor_num": {
+          "pre": "",
+          "v": 14.0,
+          "suf": "",
+          "dec": 0
+        },
+        "hasta_num": {
+          "pre": "",
+          "v": 2.0,
+          "suf": "",
+          "dec": 0
+        }
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 2,
+        "hechos": [
+          1,
+          2
+        ],
+        "rapido": false
+      },
+      "pieza": "esfera_agente"
+    },
+    {
+      "escena": 5,
+      "inicio": 674,
+      "fin": 817,
+      "titular": {
+        "palabras": [
+          {
+            "t": "TÚNEL",
+            "f": 706,
+            "clave": true
+          },
+          {
+            "t": "AUTOMÁTICO",
+            "f": 712,
+            "clave": false
+          },
+          {
+            "t": "DE",
+            "f": 728,
+            "clave": false
+          },
+          {
+            "t": "CALIDAD",
+            "f": 731,
+            "clave": true
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "pasos",
+        "f": 709,
+        "f_accion": 717,
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 3,
+        "rapido": false,
+        "hechos": [
+          1,
+          2
+        ]
+      },
+      "cinta": null,
+      "pieza": "carcasa_tunel"
+    },
+    {
+      "escena": 6,
+      "inicio": 818,
+      "fin": 961,
+      "titular": {
+        "palabras": [
+          {
+            "t": "LÓGICA",
+            "f": 888,
+            "clave": true
+          },
+          {
+            "t": "FUNCIONE",
+            "f": 900,
+            "clave": false
+          },
+          {
+            "t": "SIN",
+            "f": 912,
+            "clave": false
+          },
+          {
+            "t": "ROMPER",
+            "f": 916,
+            "clave": true
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "test-logica.sh",
+        "items": [
+          {
+            "etiqueta": "estado",
+            "valor": "comprobando",
+            "color": "espera",
+            "puntos": []
+          }
+        ],
+        "f": 853,
+        "f_accion": 861
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 3,
+        "hechos": [
+          1,
+          2,
+          3
+        ],
+        "rapido": false
+      },
+      "pieza": "cilindro_test"
+    },
+    {
+      "escena": 7,
+      "inicio": 962,
+      "fin": 1105,
+      "titular": {
+        "palabras": [
+          {
+            "t": "DETECTA",
+            "f": 1006,
+            "clave": false
+          },
+          {
+            "t": "UNA",
+            "f": 1016,
+            "clave": false
+          },
+          {
+            "t": "VULNERABILIDAD",
+            "f": 1025,
+            "clave": true
+          },
+          {
+            "t": "CRÍTICA",
+            "f": 1044,
+            "clave": true
+          }
+        ],
+        "color": "problema",
+        "bloque": true,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Vulnerabilidades",
+        "valor": "1",
+        "hasta": "",
+        "color": "problema",
+        "f": 997,
+        "f_accion": 1025,
+        "valor_num": {
+          "pre": "",
+          "v": 1.0,
+          "suf": "",
+          "dec": 0
+        }
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 3,
+        "hechos": [
+          1,
+          2,
+          3
+        ],
+        "rapido": false
+      },
+      "pieza": "cubo_vuln"
+    },
+    {
+      "escena": 8,
+      "inicio": 1106,
+      "fin": 1282,
+      "titular": {
+        "palabras": [
+          {
+            "t": "DEVUELVE",
+            "f": 1205,
+            "clave": true
+          },
+          {
+            "t": "AUTOMÁTICAMENTE",
+            "f": 1221,
+            "clave": true
+          },
+          {
+            "t": "AL",
+            "f": 1241,
+            "clave": false
+          },
+          {
+            "t": "AGENTE",
+            "f": 1244,
+            "clave": false
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": true
+      },
+      "visual": {
+        "tipo": "ninguno",
+        "f": 1150,
+        "f_accion": 1158
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 3,
+        "hechos": [
+          1,
+          2,
+          3
+        ],
+        "rapido": false
+      },
+      "pieza": "manguera_tunel_agente"
+    },
+    {
+      "escena": 9,
+      "inicio": 1283,
+      "fin": 1489,
+      "titular": {
+        "palabras": [
+          {
+            "t": "BUCLE",
+            "f": 1411,
+            "clave": true
+          },
+          {
+            "t": "DE",
+            "f": 1418,
+            "clave": false
+          },
+          {
+            "t": "AUTOCORRECCIÓN",
+            "f": 1421,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "pasos",
+        "f": 1334,
+        "f_accion": 1342,
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 2,
+        "rapido": true,
+        "hechos": [
+          1,
+          2,
+          3
+        ]
+      },
+      "cinta": null,
+      "pieza": "esfera_agente"
+    },
+    {
+      "escena": 10,
+      "inicio": 1490,
+      "fin": 1633,
+      "titular": {
+        "palabras": [
+          {
+            "t": "PRUEBAS",
+            "f": 1548,
+            "clave": true
+          },
+          {
+            "t": "EN",
+            "f": 1554,
+            "clave": false
+          },
+          {
+            "t": "VERDE",
+            "f": 1558,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Vulnerabilidades",
+        "valor": "1",
+        "hasta": "0",
+        "color": "bueno",
+        "f": 1525,
+        "f_accion": 1533,
+        "valor_num": {
+          "pre": "",
+          "v": 1.0,
+          "suf": "",
+          "dec": 0
+        },
+        "hasta_num": {
+          "pre": "",
+          "v": 0.0,
+          "suf": "",
+          "dec": 0
+        }
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 3,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rapido": false
+      },
+      "pieza": "cubo_vuln"
+    },
+    {
+      "escena": 11,
+      "inicio": 1634,
+      "fin": 1782,
+      "titular": {
+        "palabras": [
+          {
+            "t": "COMPUERTA",
+            "f": 1657,
+            "clave": true
+          },
+          {
+            "t": "DE",
+            "f": 1668,
+            "clave": false
+          },
+          {
+            "t": "REVISIÓN",
+            "f": 1671,
+            "clave": true
+          }
+        ],
+        "color": "espera",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "pasos",
+        "f": 1663,
+        "f_accion": 1671,
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 4,
+        "rapido": false,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "cinta": null,
+      "pieza": "garita_tech"
+    },
+    {
+      "escena": 12,
+      "inicio": 1783,
+      "fin": 1958,
+      "titular": {
+        "palabras": [
+          {
+            "t": "ENFOCAN",
+            "f": 1813,
+            "clave": false
+          },
+          {
+            "t": "EN",
+            "f": 1823,
+            "clave": false
+          },
+          {
+            "t": "LA",
+            "f": 1827,
+            "clave": false
+          },
+          {
+            "t": "ARQUITECTURA",
+            "f": 1831,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": true
+      },
+      "visual": {
+        "tipo": "ninguno",
+        "f": 1819,
+        "f_accion": 1827
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 4,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rapido": false
+      },
+      "pieza": "portatil_pantalla"
+    },
+    {
+      "escena": 13,
+      "inicio": 1959,
+      "fin": 2102,
+      "titular": {
+        "palabras": [
+          {
+            "t": "DESPLIEGA",
+            "f": 2018,
+            "clave": true
+          },
+          {
+            "t": "EN",
+            "f": 2028,
+            "clave": false
+          },
+          {
+            "t": "EL",
+            "f": 2031,
+            "clave": false
+          },
+          {
+            "t": "SERVIDOR",
+            "f": 2034,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "deploy-prod.log",
+        "items": [
+          {
+            "etiqueta": "estado",
+            "valor": "desplegado",
+            "color": "bueno",
+            "puntos": []
+          }
+        ],
+        "f": 1994,
+        "f_accion": 2002
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 5,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rapido": false
+      },
+      "pieza": "servidor_prod"
+    },
+    {
+      "escena": 14,
+      "inicio": 2103,
+      "fin": 2286,
+      "titular": {
+        "palabras": [
+          {
+            "t": "MULTIPLICAS",
+            "f": 2112,
+            "clave": true
+          },
+          {
+            "t": "TU",
+            "f": 2127,
+            "clave": false
+          },
+          {
+            "t": "VELOCIDAD",
+            "f": 2131,
+            "clave": true
+          }
+        ],
+        "color": "bueno",
+        "bloque": false,
+        "grande": false
+      },
+      "visual": {
+        "tipo": "barras",
+        "titulo": "Tiempo de Entrega",
+        "resultado": "-75 %",
+        "items": [
+          {
+            "etiqueta": "Semanas sin IA",
+            "valor": "4",
+            "color": "espera",
+            "num": {
+              "pre": "",
+              "v": 4.0,
+              "suf": "",
+              "dec": 0
+            }
+          },
+          {
+            "etiqueta": "Semanas con IA",
+            "valor": "1",
+            "color": "bueno",
+            "num": {
+              "pre": "",
+              "v": 1.0,
+              "suf": "",
+              "dec": 0
+            }
+          }
+        ],
+        "f": 2118,
+        "f_accion": 2126
+      },
+      "cinta": {
+        "pasos": [
+          "Requisitos",
+          "Código IA",
+          "Calidad",
+          "Revisión",
+          "Producción"
+        ],
+        "activo": 5,
+        "hechos": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "rapido": false
+      },
+      "pieza": "baliza_prod"
+    }
+  ]
+}

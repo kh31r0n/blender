@@ -1,0 +1,45 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-08T20:57:22",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 120.3,
+      "tokens_entrada": 9078,
+      "tokens_salida": 9188,
+      "tokens_razonamiento": 5079
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-08T20:58:27",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 62.9,
+      "tokens_entrada": 4973,
+      "tokens_salida": 2564,
+      "tokens_razonamiento": 5292
+    },
+    "avisos": [],
+    "adornos": 33
+  },
+  {
+    "etapa": "paneles",
+    "fecha": "2026-11-08T21:38:01",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 60.8,
+      "tokens_entrada": 5207,
+      "tokens_salida": 1972,
+      "tokens_razonamiento": 5127
+    },
+    "avisos": [
+      "escena 14: visual barras no valido (cifra que no esta en el guion o faltan campos): por reglas"
+    ],
+    "paneles": 14
+  }
+]

@@ -1,0 +1,11 @@
+¿Cuántos miles de euros pierde tu negocio por usar reglas de precio fijas?
+
+En Vervux sabemos que fijar precios estáticos deja dinero en la mesa.
+Imagina un vuelo con 180 asientos donde el precio no se adapta a la demanda real.
+El Aprendizaje por Refuerzo permite crear un agente que ajusta el precio diariamente.
+Todo esto respetando los límites de negocio, por ejemplo, entre 60 y 400 euros.
+El resultado: por ejemplo, un 15 % más de ingresos por vuelo.
+
+¿Qué reglas de negocio limitarían a la IA en tu sector? Descubre más en vervux.com.
+
+#InteligenciaArtificial #Pricing #ReinforcementLearning #Vervux

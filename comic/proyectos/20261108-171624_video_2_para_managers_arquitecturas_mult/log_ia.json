@@ -1,0 +1,45 @@
+[
+  {
+    "etapa": "guion",
+    "fecha": "2026-11-08T17:18:51",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 146.7,
+      "tokens_entrada": 7442,
+      "tokens_salida": 9452,
+      "tokens_razonamiento": 8518
+    },
+    "avisos": []
+  },
+  {
+    "etapa": "guion_geometria",
+    "fecha": "2026-11-08T17:21:31",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 160.6,
+      "tokens_entrada": 15151,
+      "tokens_salida": 10542,
+      "tokens_razonamiento": 9976
+    },
+    "problemas": [
+      "'portatil_pantalla' (panel) sin grosor: se usaria grosor=0.03"
+    ],
+    "quedan": []
+  },
+  {
+    "etapa": "detalles",
+    "fecha": "2026-11-08T17:27:33",
+    "meta": {
+      "modelo": "gemini-3.1-pro-preview",
+      "fin": "STOP",
+      "segundos": 37.6,
+      "tokens_entrada": 5056,
+      "tokens_salida": 2279,
+      "tokens_razonamiento": 2323
+    },
+    "avisos": [],
+    "adornos": 33
+  }
+]

@@ -1,0 +1,1050 @@
+{
+  "fps": 24,
+  "bloques": [
+    {
+      "inicio": 9,
+      "fin": 36,
+      "palabras": [
+        {
+          "t": "¿Cuántos",
+          "f": 10
+        },
+        {
+          "t": "miles",
+          "f": 18
+        },
+        {
+          "t": "de",
+          "f": 26
+        },
+        {
+          "t": "euros",
+          "f": 30
+        }
+      ],
+      "texto": "¿Cuántos miles de euros"
+    },
+    {
+      "inicio": 37,
+      "fin": 81,
+      "palabras": [
+        {
+          "t": "pierde",
+          "f": 38
+        },
+        {
+          "t": "tu",
+          "f": 47
+        },
+        {
+          "t": "aerolínea",
+          "f": 51
+        },
+        {
+          "t": "por",
+          "f": 67
+        },
+        {
+          "t": "usar",
+          "f": 71
+        }
+      ],
+      "texto": "pierde tu aerolínea por usar"
+    },
+    {
+      "inicio": 82,
+      "fin": 122,
+      "palabras": [
+        {
+          "t": "reglas",
+          "f": 83
+        },
+        {
+          "t": "de",
+          "f": 92
+        },
+        {
+          "t": "precio",
+          "f": 96
+        },
+        {
+          "t": "fijas?",
+          "f": 104
+        }
+      ],
+      "texto": "reglas de precio fijas?"
+    },
+    {
+      "inicio": 143,
+      "fin": 173,
+      "palabras": [
+        {
+          "t": "En",
+          "f": 144
+        },
+        {
+          "t": "tu",
+          "f": 147
+        },
+        {
+          "t": "vuelo",
+          "f": 151
+        },
+        {
+          "t": "Madrid-París,",
+          "f": 158
+        }
+      ],
+      "texto": "En tu vuelo Madrid-París,"
+    },
+    {
+      "inicio": 174,
+      "fin": 236,
+      "palabras": [
+        {
+          "t": "vendes",
+          "f": 175
+        },
+        {
+          "t": "los",
+          "f": 186
+        },
+        {
+          "t": "180",
+          "f": 189
+        },
+        {
+          "t": "asientos",
+          "f": 213
+        },
+        {
+          "t": "demasiado",
+          "f": 224
+        }
+      ],
+      "texto": "vendes los 180 asientos demasiado"
+    },
+    {
+      "inicio": 237,
+      "fin": 296,
+      "palabras": [
+        {
+          "t": "rápido",
+          "f": 238
+        },
+        {
+          "t": "y",
+          "f": 249
+        },
+        {
+          "t": "barato",
+          "f": 252
+        },
+        {
+          "t": "en",
+          "f": 263
+        },
+        {
+          "t": "temporada",
+          "f": 266
+        },
+        {
+          "t": "alta.",
+          "f": 281
+        }
+      ],
+      "texto": "rápido y barato en temporada alta."
+    },
+    {
+      "inicio": 317,
+      "fin": 362,
+      "palabras": [
+        {
+          "t": "Y",
+          "f": 318
+        },
+        {
+          "t": "en",
+          "f": 324
+        },
+        {
+          "t": "temporada",
+          "f": 328
+        },
+        {
+          "t": "baja,",
+          "f": 347
+        }
+      ],
+      "texto": "Y en temporada baja,"
+    },
+    {
+      "inicio": 363,
+      "fin": 391,
+      "palabras": [
+        {
+          "t": "el",
+          "f": 364
+        },
+        {
+          "t": "avión",
+          "f": 368
+        },
+        {
+          "t": "despega",
+          "f": 377
+        },
+        {
+          "t": "con",
+          "f": 389
+        }
+      ],
+      "texto": "el avión despega con"
+    },
+    {
+      "inicio": 392,
+      "fin": 424,
+      "palabras": [
+        {
+          "t": "asientos",
+          "f": 393
+        },
+        {
+          "t": "vacíos.",
+          "f": 405
+        }
+      ],
+      "texto": "asientos vacíos."
+    },
+    {
+      "inicio": 445,
+      "fin": 469,
+      "palabras": [
+        {
+          "t": "El",
+          "f": 446
+        },
+        {
+          "t": "Aprendizaje",
+          "f": 449
+        },
+        {
+          "t": "por",
+          "f": 468
+        }
+      ],
+      "texto": "El Aprendizaje por"
+    },
+    {
+      "inicio": 470,
+      "fin": 515,
+      "palabras": [
+        {
+          "t": "Refuerzo",
+          "f": 471
+        },
+        {
+          "t": "cambia",
+          "f": 482
+        },
+        {
+          "t": "esto.",
+          "f": 490
+        }
+      ],
+      "texto": "Refuerzo cambia esto."
+    },
+    {
+      "inicio": 516,
+      "fin": 541,
+      "palabras": [
+        {
+          "t": "Conoce",
+          "f": 517
+        },
+        {
+          "t": "a",
+          "f": 528
+        },
+        {
+          "t": "tu",
+          "f": 532
+        },
+        {
+          "t": "nuevo",
+          "f": 535
+        }
+      ],
+      "texto": "Conoce a tu nuevo"
+    },
+    {
+      "inicio": 542,
+      "fin": 572,
+      "palabras": [
+        {
+          "t": "agente",
+          "f": 543
+        },
+        {
+          "t": "de",
+          "f": 554
+        },
+        {
+          "t": "precios.",
+          "f": 557
+        }
+      ],
+      "texto": "agente de precios."
+    },
+    {
+      "inicio": 593,
+      "fin": 644,
+      "palabras": [
+        {
+          "t": "El",
+          "f": 594
+        },
+        {
+          "t": "agente",
+          "f": 597
+        },
+        {
+          "t": "mira",
+          "f": 608
+        },
+        {
+          "t": "el",
+          "f": 615
+        },
+        {
+          "t": "estado:",
+          "f": 619
+        }
+      ],
+      "texto": "El agente mira el estado:"
+    },
+    {
+      "inicio": 645,
+      "fin": 670,
+      "palabras": [
+        {
+          "t": "cuántos",
+          "f": 646
+        },
+        {
+          "t": "asientos",
+          "f": 654
+        },
+        {
+          "t": "quedan",
+          "f": 665
+        }
+      ],
+      "texto": "cuántos asientos quedan"
+    },
+    {
+      "inicio": 671,
+      "fin": 712,
+      "palabras": [
+        {
+          "t": "libres",
+          "f": 672
+        },
+        {
+          "t": "y",
+          "f": 684
+        },
+        {
+          "t": "cuántos",
+          "f": 688
+        },
+        {
+          "t": "días",
+          "f": 695
+        },
+        {
+          "t": "faltan.",
+          "f": 698
+        }
+      ],
+      "texto": "libres y cuántos días faltan."
+    },
+    {
+      "inicio": 733,
+      "fin": 780,
+      "palabras": [
+        {
+          "t": "Y",
+          "f": 734
+        },
+        {
+          "t": "decide",
+          "f": 739
+        },
+        {
+          "t": "una",
+          "f": 750
+        },
+        {
+          "t": "acción:",
+          "f": 758
+        }
+      ],
+      "texto": "Y decide una acción:"
+    },
+    {
+      "inicio": 781,
+      "fin": 809,
+      "palabras": [
+        {
+          "t": "subir",
+          "f": 782
+        },
+        {
+          "t": "o",
+          "f": 789
+        },
+        {
+          "t": "bajar",
+          "f": 793
+        },
+        {
+          "t": "el",
+          "f": 800
+        },
+        {
+          "t": "precio",
+          "f": 804
+        }
+      ],
+      "texto": "subir o bajar el precio"
+    },
+    {
+      "inicio": 810,
+      "fin": 842,
+      "palabras": [
+        {
+          "t": "del",
+          "f": 811
+        },
+        {
+          "t": "billete",
+          "f": 815
+        },
+        {
+          "t": "hoy.",
+          "f": 826
+        }
+      ],
+      "texto": "del billete hoy."
+    },
+    {
+      "inicio": 863,
+      "fin": 890,
+      "palabras": [
+        {
+          "t": "Pero",
+          "f": 864
+        },
+        {
+          "t": "la",
+          "f": 870
+        },
+        {
+          "t": "dirección",
+          "f": 873
+        },
+        {
+          "t": "manda.",
+          "f": 883
+        }
+      ],
+      "texto": "Pero la dirección manda."
+    },
+    {
+      "inicio": 891,
+      "fin": 928,
+      "palabras": [
+        {
+          "t": "Pones",
+          "f": 892
+        },
+        {
+          "t": "límites",
+          "f": 918
+        },
+        {
+          "t": "de",
+          "f": 927
+        }
+      ],
+      "texto": "Pones límites de"
+    },
+    {
+      "inicio": 929,
+      "fin": 964,
+      "palabras": [
+        {
+          "t": "negocio",
+          "f": 930
+        },
+        {
+          "t": "estrictos.",
+          "f": 940
+        }
+      ],
+      "texto": "negocio estrictos."
+    },
+    {
+      "inicio": 988,
+      "fin": 1024,
+      "palabras": [
+        {
+          "t": "Por",
+          "f": 989
+        },
+        {
+          "t": "ejemplo,",
+          "f": 992
+        },
+        {
+          "t": "el",
+          "f": 1016
+        },
+        {
+          "t": "precio",
+          "f": 1019
+        }
+      ],
+      "texto": "Por ejemplo, el precio"
+    },
+    {
+      "inicio": 1025,
+      "fin": 1061,
+      "palabras": [
+        {
+          "t": "nunca",
+          "f": 1026
+        },
+        {
+          "t": "baja",
+          "f": 1032
+        },
+        {
+          "t": "de",
+          "f": 1039
+        },
+        {
+          "t": "60",
+          "f": 1043
+        },
+        {
+          "t": "euros",
+          "f": 1056
+        }
+      ],
+      "texto": "nunca baja de 60 euros"
+    },
+    {
+      "inicio": 1062,
+      "fin": 1111,
+      "palabras": [
+        {
+          "t": "ni",
+          "f": 1063
+        },
+        {
+          "t": "supera",
+          "f": 1066
+        },
+        {
+          "t": "los",
+          "f": 1079
+        },
+        {
+          "t": "400.",
+          "f": 1083
+        }
+      ],
+      "texto": "ni supera los 400."
+    },
+    {
+      "inicio": 1132,
+      "fin": 1171,
+      "palabras": [
+        {
+          "t": "Tú",
+          "f": 1133
+        },
+        {
+          "t": "también",
+          "f": 1136
+        },
+        {
+          "t": "defines",
+          "f": 1143
+        },
+        {
+          "t": "qué",
+          "f": 1153
+        },
+        {
+          "t": "se",
+          "f": 1157
+        },
+        {
+          "t": "premia.",
+          "f": 1163
+        }
+      ],
+      "texto": "Tú también defines qué se premia."
+    },
+    {
+      "inicio": 1172,
+      "fin": 1225,
+      "palabras": [
+        {
+          "t": "El",
+          "f": 1173
+        },
+        {
+          "t": "motor",
+          "f": 1193
+        },
+        {
+          "t": "de",
+          "f": 1200
+        },
+        {
+          "t": "recompensa.",
+          "f": 1204
+        }
+      ],
+      "texto": "El motor de recompensa."
+    },
+    {
+      "inicio": 1246,
+      "fin": 1289,
+      "palabras": [
+        {
+          "t": "Cada",
+          "f": 1247
+        },
+        {
+          "t": "billete",
+          "f": 1253
+        },
+        {
+          "t": "vendido",
+          "f": 1263
+        },
+        {
+          "t": "suma",
+          "f": 1275
+        },
+        {
+          "t": "euros.",
+          "f": 1282
+        }
+      ],
+      "texto": "Cada billete vendido suma euros."
+    },
+    {
+      "inicio": 1290,
+      "fin": 1324,
+      "palabras": [
+        {
+          "t": "Cada",
+          "f": 1291
+        },
+        {
+          "t": "asiento",
+          "f": 1310
+        },
+        {
+          "t": "vacío",
+          "f": 1320
+        }
+      ],
+      "texto": "Cada asiento vacío"
+    },
+    {
+      "inicio": 1325,
+      "fin": 1363,
+      "palabras": [
+        {
+          "t": "al",
+          "f": 1326
+        },
+        {
+          "t": "despegar,",
+          "f": 1329
+        },
+        {
+          "t": "resta.",
+          "f": 1348
+        }
+      ],
+      "texto": "al despegar, resta."
+    },
+    {
+      "inicio": 1384,
+      "fin": 1422,
+      "palabras": [
+        {
+          "t": "Antes",
+          "f": 1385
+        },
+        {
+          "t": "de",
+          "f": 1392
+        },
+        {
+          "t": "tocar",
+          "f": 1396
+        },
+        {
+          "t": "un",
+          "f": 1404
+        },
+        {
+          "t": "cliente",
+          "f": 1408
+        },
+        {
+          "t": "real,",
+          "f": 1416
+        }
+      ],
+      "texto": "Antes de tocar un cliente real,"
+    },
+    {
+      "inicio": 1423,
+      "fin": 1455,
+      "palabras": [
+        {
+          "t": "el",
+          "f": 1424
+        },
+        {
+          "t": "agente",
+          "f": 1428
+        },
+        {
+          "t": "practica",
+          "f": 1445
+        }
+      ],
+      "texto": "el agente practica"
+    },
+    {
+      "inicio": 1456,
+      "fin": 1490,
+      "palabras": [
+        {
+          "t": "en",
+          "f": 1457
+        },
+        {
+          "t": "el",
+          "f": 1461
+        },
+        {
+          "t": "simulador.",
+          "f": 1465
+        }
+      ],
+      "texto": "en el simulador."
+    },
+    {
+      "inicio": 1512,
+      "fin": 1535,
+      "palabras": [
+        {
+          "t": "Prueba",
+          "f": 1513
+        },
+        {
+          "t": "precios",
+          "f": 1519
+        },
+        {
+          "t": "en",
+          "f": 1526
+        },
+        {
+          "t": "miles",
+          "f": 1530
+        }
+      ],
+      "texto": "Prueba precios en miles"
+    },
+    {
+      "inicio": 1536,
+      "fin": 1559,
+      "palabras": [
+        {
+          "t": "de",
+          "f": 1537
+        },
+        {
+          "t": "vuelos",
+          "f": 1540
+        },
+        {
+          "t": "virtuales.",
+          "f": 1547
+        }
+      ],
+      "texto": "de vuelos virtuales."
+    },
+    {
+      "inicio": 1560,
+      "fin": 1591,
+      "palabras": [
+        {
+          "t": "Si",
+          "f": 1561
+        },
+        {
+          "t": "se",
+          "f": 1564
+        },
+        {
+          "t": "equivoca,",
+          "f": 1568
+        }
+      ],
+      "texto": "Si se equivoca,"
+    },
+    {
+      "inicio": 1592,
+      "fin": 1642,
+      "palabras": [
+        {
+          "t": "solo",
+          "f": 1593
+        },
+        {
+          "t": "pierde",
+          "f": 1604
+        },
+        {
+          "t": "dinero",
+          "f": 1611
+        },
+        {
+          "t": "simulado.",
+          "f": 1622
+        }
+      ],
+      "texto": "solo pierde dinero simulado."
+    },
+    {
+      "inicio": 1663,
+      "fin": 1683,
+      "palabras": [
+        {
+          "t": "Cuando",
+          "f": 1664
+        },
+        {
+          "t": "aprende",
+          "f": 1670
+        },
+        {
+          "t": "la",
+          "f": 1679
+        }
+      ],
+      "texto": "Cuando aprende la"
+    },
+    {
+      "inicio": 1684,
+      "fin": 1711,
+      "palabras": [
+        {
+          "t": "estrategia",
+          "f": 1685
+        },
+        {
+          "t": "perfecta,",
+          "f": 1697
+        }
+      ],
+      "texto": "estrategia perfecta,"
+    },
+    {
+      "inicio": 1712,
+      "fin": 1741,
+      "palabras": [
+        {
+          "t": "pasa",
+          "f": 1713
+        },
+        {
+          "t": "a",
+          "f": 1719
+        },
+        {
+          "t": "producción.",
+          "f": 1722
+        }
+      ],
+      "texto": "pasa a producción."
+    },
+    {
+      "inicio": 1762,
+      "fin": 1796,
+      "palabras": [
+        {
+          "t": "Ahora",
+          "f": 1763
+        },
+        {
+          "t": "adapta",
+          "f": 1773
+        },
+        {
+          "t": "el",
+          "f": 1787
+        },
+        {
+          "t": "precio",
+          "f": 1790
+        }
+      ],
+      "texto": "Ahora adapta el precio"
+    },
+    {
+      "inicio": 1797,
+      "fin": 1820,
+      "palabras": [
+        {
+          "t": "a",
+          "f": 1798
+        },
+        {
+          "t": "la",
+          "f": 1801
+        },
+        {
+          "t": "demanda",
+          "f": 1805
+        },
+        {
+          "t": "real,",
+          "f": 1815
+        }
+      ],
+      "texto": "a la demanda real,"
+    },
+    {
+      "inicio": 1821,
+      "fin": 1850,
+      "palabras": [
+        {
+          "t": "cada",
+          "f": 1822
+        },
+        {
+          "t": "día.",
+          "f": 1838
+        }
+      ],
+      "texto": "cada día."
+    },
+    {
+      "inicio": 1854,
+      "fin": 1882,
+      "palabras": [
+        {
+          "t": "¿El",
+          "f": 1855
+        },
+        {
+          "t": "resultado?",
+          "f": 1858
+        }
+      ],
+      "texto": "¿El resultado?"
+    },
+    {
+      "inicio": 1883,
+      "fin": 1925,
+      "palabras": [
+        {
+          "t": "Por",
+          "f": 1884
+        },
+        {
+          "t": "ejemplo,",
+          "f": 1888
+        },
+        {
+          "t": "un",
+          "f": 1904
+        },
+        {
+          "t": "15",
+          "f": 1907
+        },
+        {
+          "t": "%",
+          "f": 1921
+        },
+        {
+          "t": "más",
+          "f": 1924
+        }
+      ],
+      "texto": "Por ejemplo, un 15 % más"
+    },
+    {
+      "inicio": 1926,
+      "fin": 1951,
+      "palabras": [
+        {
+          "t": "de",
+          "f": 1927
+        },
+        {
+          "t": "ingresos",
+          "f": 1930
+        },
+        {
+          "t": "por",
+          "f": 1940
+        },
+        {
+          "t": "vuelo,",
+          "f": 1944
+        }
+      ],
+      "texto": "de ingresos por vuelo,"
+    },
+    {
+      "inicio": 1952,
+      "fin": 1989,
+      "palabras": [
+        {
+          "t": "con",
+          "f": 1953
+        },
+        {
+          "t": "menos",
+          "f": 1956
+        },
+        {
+          "t": "asientos",
+          "f": 1963
+        },
+        {
+          "t": "vacíos.",
+          "f": 1972
+        }
+      ],
+      "texto": "con menos asientos vacíos."
+    }
+  ]
+}

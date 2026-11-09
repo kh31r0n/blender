@@ -1,0 +1,287 @@
+{
+  "origen": "gemini",
+  "paneles": [
+    {
+      "escena": 1,
+      "pieza": "repisa_req",
+      "titular": {
+        "texto": "¿Semanas arreglando código roto?",
+        "clave": [
+          "¿Semanas",
+          "roto?"
+        ],
+        "color": "problema",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "ninguno"
+      }
+    },
+    {
+      "escena": 2,
+      "pieza": "bloque_criterios",
+      "titular": {
+        "texto": "LANZAR PAGOS INSTANTÁNEOS",
+        "clave": [
+          "PAGOS",
+          "INSTANTÁNEOS"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "req-pagos.json",
+        "items": [
+          {
+            "etiqueta": "tipo",
+            "valor": "pagos",
+            "color": "espera",
+            "puntos": []
+          },
+          {
+            "etiqueta": "modo",
+            "valor": "instantáneo",
+            "color": "espera",
+            "puntos": []
+          }
+        ]
+      }
+    },
+    {
+      "escena": 3,
+      "pieza": "servidor_agente",
+      "titular": {
+        "texto": "AGENTE CODIFICADOR IA",
+        "clave": [
+          "AGENTE",
+          "IA"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 4,
+      "pieza": "esfera_agente",
+      "titular": {
+        "texto": "AHORRANDO DÍAS DE TRABAJO",
+        "clave": [
+          "AHORRANDO",
+          "DÍAS"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Días desarrollo",
+        "valor": "14",
+        "hasta": "2",
+        "color": "bueno"
+      }
+    },
+    {
+      "escena": 5,
+      "pieza": "carcasa_tunel",
+      "titular": {
+        "texto": "TÚNEL AUTOMÁTICO DE CALIDAD",
+        "clave": [
+          "TÚNEL",
+          "CALIDAD"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 6,
+      "pieza": "cilindro_test",
+      "titular": {
+        "texto": "LÓGICA FUNCIONE SIN ROMPER",
+        "clave": [
+          "LÓGICA",
+          "ROMPER"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "test-logica.sh",
+        "items": [
+          {
+            "etiqueta": "estado",
+            "valor": "comprobando",
+            "color": "espera",
+            "puntos": []
+          }
+        ]
+      }
+    },
+    {
+      "escena": 7,
+      "pieza": "cubo_vuln",
+      "titular": {
+        "texto": "DETECTA UNA VULNERABILIDAD CRÍTICA",
+        "clave": [
+          "VULNERABILIDAD",
+          "CRÍTICA"
+        ],
+        "color": "problema",
+        "bloque": true
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Vulnerabilidades",
+        "valor": "1",
+        "hasta": "",
+        "color": "problema"
+      }
+    },
+    {
+      "escena": 8,
+      "pieza": "manguera_tunel_agente",
+      "titular": {
+        "texto": "DEVUELVE AUTOMÁTICAMENTE AL AGENTE",
+        "clave": [
+          "DEVUELVE",
+          "AUTOMÁTICAMENTE"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "ninguno"
+      }
+    },
+    {
+      "escena": 9,
+      "pieza": "esfera_agente",
+      "titular": {
+        "texto": "BUCLE DE AUTOCORRECCIÓN",
+        "clave": [
+          "BUCLE",
+          "AUTOCORRECCIÓN"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 10,
+      "pieza": "cubo_vuln",
+      "titular": {
+        "texto": "PRUEBAS EN VERDE",
+        "clave": [
+          "PRUEBAS",
+          "VERDE"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "contador",
+        "etiqueta": "Vulnerabilidades",
+        "valor": "1",
+        "hasta": "0",
+        "color": "bueno"
+      }
+    },
+    {
+      "escena": 11,
+      "pieza": "garita_tech",
+      "titular": {
+        "texto": "COMPUERTA DE REVISIÓN",
+        "clave": [
+          "COMPUERTA",
+          "REVISIÓN"
+        ],
+        "color": "espera",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "pasos"
+      }
+    },
+    {
+      "escena": 12,
+      "pieza": "portatil_pantalla",
+      "titular": {
+        "texto": "ENFOCAN EN LA ARQUITECTURA",
+        "clave": [
+          "ARQUITECTURA"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "ninguno"
+      }
+    },
+    {
+      "escena": 13,
+      "pieza": "servidor_prod",
+      "titular": {
+        "texto": "DESPLIEGA EN EL SERVIDOR",
+        "clave": [
+          "DESPLIEGA",
+          "SERVIDOR"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "tarjeta",
+        "titulo": "deploy-prod.log",
+        "items": [
+          {
+            "etiqueta": "estado",
+            "valor": "desplegado",
+            "color": "bueno",
+            "puntos": []
+          }
+        ]
+      }
+    },
+    {
+      "escena": 14,
+      "pieza": "baliza_prod",
+      "titular": {
+        "texto": "MULTIPLICAS TU VELOCIDAD",
+        "clave": [
+          "MULTIPLICAS",
+          "VELOCIDAD"
+        ],
+        "color": "bueno",
+        "bloque": false
+      },
+      "visual": {
+        "tipo": "barras",
+        "titulo": "Tiempo de Entrega",
+        "resultado": "-75 %",
+        "items": [
+          {
+            "etiqueta": "Semanas sin IA",
+            "valor": "4",
+            "color": "espera"
+          },
+          {
+            "etiqueta": "Semanas con IA",
+            "valor": "1",
+            "color": "bueno"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+=== objetos 10:02:45
+[1 objetos] dibujando las piezas, sus versiones de rayos X y el entorno
+    {"piezas": 58, "rayos_x": 57, "adornos": 88, "avisos_adornos": [], "_segundos": 1.1}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/01_objetos.v10.blend
+=== rig 10:02:46
+[2 rig] esqueletos para personajes y elementos
+    {"huesos": 59, "piezas": 58, "desvio_max": 0.0, "_segundos": 0.7}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/02_rig.v10.blend
+=== audio 10:02:46
+[3 audio] voces Gemini TTS gemini-2.5-pro-tts
+    135.3 s, 3246 fotogramas a 24 fps
+    E1: 0.0-6.4 s, 1 lineas
+    E2: 6.4-11.6 s, 1 lineas
+    E3: 11.6-17.6 s, 1 lineas
+    E4: 17.6-24.2 s, 1 lineas
+    E5: 24.2-31.4 s, 1 lineas
+    E6: 31.4-36.4 s, 1 lineas
+    E7: 36.4-43.6 s, 1 lineas
+    E8: 43.6-51.5 s, 1 lineas
+    E9: 51.5-57.2 s, 1 lineas
+    E10: 57.2-64.1 s, 1 lineas
+    E11: 64.1-70.1 s, 1 lineas
+    E12: 70.1-77.6 s, 1 lineas
+    E13: 77.6-83.6 s, 1 lineas
+    E14: 83.6-89.1 s, 1 lineas
+    E15: 89.1-95.1 s, 1 lineas
+    E16: 95.1-102.3 s, 1 lineas
+    E17: 102.3-109.0 s, 1 lineas
+    E18: 109.0-115.1 s, 1 lineas
+    E19: 115.1-122.3 s, 1 lineas
+    E20: 122.3-128.3 s, 1 lineas
+    E21: 128.3-135.3 s, 1 lineas
+=== animacion 10:02:47
+[4 animacion] personajes, escenografia y camara al ritmo del audio
+    {"claves": 6159, "fotogramas": 3246, "cambios_de_sombra": 79, "piezas": 58, "_segundos": 1.7}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/04_animacion.v12.blend
+=== efectos 10:02:48
+[efectos] bocadillos, cartelas, onomatopeyas y lineas de accion
+    {"efectos": 26, "avisos": [], "_segundos": 0.8}
+    -> /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/04b_efectos.v14.blend
+=== previa --sin-revision --iteraciones 1 10:02:49
+[previa] iteracion 1: un fotograma por escena
+    21 imagenes en /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/previa/iter_1.v5  (hoja: /home/kheiron/blender/comic/proyectos/20261108-042439_como_un_agente_de_ia_que_tria_alertas_de/previa/iter_1.v5/hoja.png)
+=== render 10:07:48
+[5 render] EEVEE 1920x1080, 24 fps
+Blender fallo en b_render.py (codigo -15):
+ 41
+05:22.322  render           | Video append frame 42
+05:27.288  render           | Video append frame 43
+05:32.314  render           | Video append frame 44
+05:37.312  render           | Video append frame 45
+05:42.451  render           | Video append frame 46
+05:47.514  render           | Video append frame 47
+05:52.613  render           | Video append frame 48
+05:57.693  render           | Video append frame 49
+06:02.796  render           | Video append frame 50
+06:07.901  render           | Video append frame 51
+06:12.977  render           | Video append frame 52
+06:18.083  render           | Video append frame 53
+06:23.116  render           | Video append frame 54
+06:28.297  render           | Video append frame 55
+06:33.431  render           | Video append frame 56
+06:38.492  render           | Video append frame 57
+06:43.626  render           | Video append frame 58
+06:48.695  render           | Video append frame 59
+06:53.777  render           | Video append frame 60
+06:58.887  render           | Video append frame 61
+07:03.876  render           | Video append frame 62
+07:09.068  render           | Video append frame 63
+07:14.130  render           | Video append frame 64
+07:19.272  render           | Video append frame 65
+07:24.324  render           | Video append frame 66
+07:29.468  render           | Video append frame 67
+07:34.451  render           | Video append frame 68
+07:39.476  render           | Video append frame 69
+07:44.667  render           | Video append frame 70
+07:49.733  render           | Video append frame 71
+07:54.861  render           | Video append frame 72
+07:59.833  render           | Video append frame 73
+08:04.873  render           | Video append frame 74
+08:09.924  render           | Video append frame 75
+08:15.053  render           | Video append frame 76
+08:20.036  render           | Video append frame 77
+08:25.068  render           | Video append frame 78
+08:30.206  render           | Video append frame 79
+08:35.241  render           | Video append frame 80
+08:40.257  render           | Video append frame 81
+08:45.218  render           | Video append frame 82
+08:53.408  render           | Video append frame 83
+08:59.202  render           | Video append frame 84
+09:04.445  render           | Video append frame 85
+09:09.591  render           | Video append frame 86
+09:14.785  render           | Video append frame 87
+09:20.056  render           | Video append frame 88
+09:25.210  render           | Video append frame 89
+

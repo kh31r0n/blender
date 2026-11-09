@@ -1,0 +1,1123 @@
+{
+  "estilo": "tecnico",
+  "titulo": "Aprendizaje por Refuerzo para Managers",
+  "sinopsis": "Explicación ejecutiva de cómo el Reinforcement Learning optimiza decisiones de negocio complejas, superando a las reglas fijas mediante simulación, límites de seguridad y alineación con KPIs.",
+  "objeto": {
+    "nombre": "Arquitectura de Aprendizaje por Refuerzo",
+    "alto": 0.8
+  },
+  "suelo": "cemento",
+  "tema": "cyberpunk",
+  "piezas": [
+    {
+      "id": "peana_sim",
+      "nombre": "Peana Simulador",
+      "forma": "peana",
+      "x": -0.75,
+      "y": -0.55,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.6,
+      "fondo": 0.6,
+      "alto": 0.04
+    },
+    {
+      "id": "sim_server",
+      "nombre": "Servidor Simulador",
+      "forma": "caja",
+      "x": -0.75,
+      "y": -0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "cielo",
+      "material": "metal",
+      "detalle": "rejilla",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.3,
+      "fondo": 0.25,
+      "alto": 0.5
+    },
+    {
+      "id": "sim_block1",
+      "nombre": "Bloque Demanda",
+      "forma": "caja",
+      "x": -0.9,
+      "y": -0.35,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "naranja",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.15,
+      "fondo": 0.15,
+      "alto": 0.2
+    },
+    {
+      "id": "sim_block2",
+      "nombre": "Bloque Logistica",
+      "forma": "caja",
+      "x": -0.6,
+      "y": -0.35,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "blanco",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.15,
+      "fondo": 0.15,
+      "alto": 0.15
+    },
+    {
+      "id": "peana_agente",
+      "nombre": "Peana Agente",
+      "forma": "peana",
+      "x": -0.75,
+      "y": 0.45,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "agente_server",
+      "nombre": "Servidor Agente",
+      "forma": "caja",
+      "x": -0.75,
+      "y": 0.45,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "verde",
+      "material": "metal",
+      "detalle": "rayado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.35,
+      "fondo": 0.35,
+      "alto": 0.6
+    },
+    {
+      "id": "peana_guard",
+      "nombre": "Peana Guardrails",
+      "forma": "peana",
+      "x": 0.65,
+      "y": 0.45,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.5,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "guard_base",
+      "nombre": "Base Cortafuegos",
+      "forma": "caja",
+      "x": 0.65,
+      "y": 0.45,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "rojo",
+      "material": "solido",
+      "detalle": "nervado",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.25,
+      "fondo": 0.25,
+      "alto": 0.4
+    },
+    {
+      "id": "guard_bar",
+      "nombre": "Barrera Cortafuegos",
+      "forma": "caja",
+      "x": 0.65,
+      "y": 0.45,
+      "z": 0.47,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "amarillo",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "izquierda",
+      "ancho": 0.4,
+      "fondo": 0.05,
+      "alto": 0.05
+    },
+    {
+      "id": "peana_rec",
+      "nombre": "Peana Recompensa",
+      "forma": "peana",
+      "x": 0.0,
+      "y": -0.1,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.6,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "rec_cil",
+      "nombre": "Motor Recompensa",
+      "forma": "cilindro",
+      "x": -0.1,
+      "y": -0.1,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "morado",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.15,
+      "alto": 0.4
+    },
+    {
+      "id": "rec_tok1",
+      "nombre": "Ficha KPI 1",
+      "forma": "disco",
+      "x": 0.18,
+      "y": -0.1,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.02
+    },
+    {
+      "id": "rec_tok2",
+      "nombre": "Ficha KPI 2",
+      "forma": "disco",
+      "x": 0.19,
+      "y": -0.09,
+      "z": 0.08,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.02
+    },
+    {
+      "id": "rec_tok3",
+      "nombre": "Ficha KPI 3",
+      "forma": "disco",
+      "x": 0.17,
+      "y": -0.11,
+      "z": 0.12,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.08,
+      "alto": 0.02
+    },
+    {
+      "id": "peana_cons",
+      "nombre": "Peana Consola",
+      "forma": "peana",
+      "x": 0.75,
+      "y": -0.65,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_base",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.6,
+      "fondo": 0.5,
+      "alto": 0.04
+    },
+    {
+      "id": "cons_pie",
+      "nombre": "Pie Consola",
+      "forma": "cilindro",
+      "x": 0.65,
+      "y": -0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "metal",
+      "material": "metal",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.05,
+      "alto": 0.3
+    },
+    {
+      "id": "cons_mon",
+      "nombre": "Monitor Consola",
+      "forma": "panel",
+      "x": 0.65,
+      "y": -0.65,
+      "z": 0.37,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "negro",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "ancho": 0.4,
+      "alto": 0.3,
+      "grosor": 0.05
+    },
+    {
+      "id": "cons_baliza",
+      "nombre": "Baliza Produccion",
+      "forma": "cilindro",
+      "x": 0.9,
+      "y": -0.65,
+      "z": 0.0408,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "lima",
+      "material": "transparente",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.06,
+      "alto": 0.2
+    },
+    {
+      "id": "manguera_sim",
+      "nombre": "Conexion Simulador",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.75,
+          0.2,
+          0.08
+        ],
+        [
+          -0.75,
+          -0.25,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "manguera_guard",
+      "nombre": "Conexion Cortafuegos",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.5,
+          0.45,
+          0.08
+        ],
+        [
+          0.4,
+          0.45,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "manguera_rec",
+      "nombre": "Conexion Recompensa",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.65,
+          0.2,
+          0.08
+        ],
+        [
+          0.65,
+          -0.1,
+          0.08
+        ],
+        [
+          0.3,
+          -0.1,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "manguera_fb",
+      "nombre": "Conexion Feedback",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          -0.3,
+          -0.1,
+          0.08
+        ],
+        [
+          -0.55,
+          -0.1,
+          0.08
+        ],
+        [
+          -0.55,
+          0.2,
+          0.08
+        ]
+      ]
+    },
+    {
+      "id": "manguera_cons",
+      "nombre": "Conexion Produccion",
+      "forma": "manguera",
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_x": 0.0,
+      "rot_y": 0.0,
+      "rot_z": 0.0,
+      "color": "azul_neon",
+      "material": "solido",
+      "detalle": "liso",
+      "padre": null,
+      "bisagra": "ninguna",
+      "radio": 0.02,
+      "camino": [
+        [
+          0.0,
+          -0.35,
+          0.08
+        ],
+        [
+          0.0,
+          -0.65,
+          0.08
+        ],
+        [
+          0.45,
+          -0.65,
+          0.08
+        ]
+      ]
+    }
+  ],
+  "accesorios": [],
+  "escenas": [
+    {
+      "id": 1,
+      "descripcion": "Introducción al problema de las reglas fijas mostrando el simulador del mercado.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Las reglas de negocio fijas fallan cuando el mercado, la demanda y los costes cambian cada día.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_sim",
+        "sim_server",
+        "sim_block1",
+        "sim_block2"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "sim_server"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "sim_server",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 6.0
+    },
+    {
+      "id": 2,
+      "descripcion": "Detalle de los bloques de demanda y logística cambiando dinámicamente.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Aquí entra el Aprendizaje por Refuerzo, una inteligencia artificial que toma decisiones estratégicas en tiempo real.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "sim_block1",
+        "sim_block2"
+      ],
+      "animaciones": [
+        {
+          "pieza": "sim_block1",
+          "movimiento": "oscilar",
+          "inicio": 0.1,
+          "fin": 0.9,
+          "cantidad": 15.0
+        },
+        {
+          "pieza": "sim_block2",
+          "movimiento": "oscilar",
+          "inicio": 0.2,
+          "fin": 0.8,
+          "cantidad": -15.0
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "sim_server",
+        "objetivos": [
+          "sim_server",
+          "sim_block1"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 3,
+      "descripcion": "Aparece el agente de IA conectándose al simulador.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "En lugar de programar cada regla, desplegamos un Agente que aprende interactuando con un simulador de tu negocio.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_agente",
+        "agente_server",
+        "manguera_sim"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agente_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_sim",
+          "momento": 0.4,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agente_server",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 4,
+      "descripcion": "El agente comete un error en simulación y ajusta sin riesgo.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Prueba miles de escenarios logísticos. Si se equivoca, ajusta su estrategia sin arriesgar dinero real.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agente_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo_vuelta",
+          "pieza": "manguera_sim",
+          "momento": 0.1,
+          "duracion": 2.5
+        },
+        {
+          "tipo": "rechazo",
+          "pieza": "agente_server",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "agente_server",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 5,
+      "descripcion": "Introducción de los guardrails o cortafuegos de negocio.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Pero, ¿cómo controlamos que no tome decisiones peligrosas? Para eso existen los cortafuegos de políticas.",
+          "emocion": "misterioso"
+        }
+      ],
+      "aparecen": [
+        "peana_guard",
+        "guard_base",
+        "guard_bar",
+        "manguera_guard"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "guard_base",
+        "guard_bar"
+      ],
+      "animaciones": [],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "guard_base",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 6,
+      "descripcion": "El cortafuegos bloquea una acción arriesgada.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Estos límites de negocio bloquean cualquier acción que supere el riesgo permitido o rompa tus márgenes mínimos.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "guard_base"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_guard",
+          "momento": 0.1,
+          "duracion": 2.5
+        },
+        {
+          "tipo": "rechazo",
+          "pieza": "guard_base",
+          "momento": 0.6,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "guard_base",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 7,
+      "descripcion": "El cortafuegos aprueba una acción válida y la deja pasar.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Solo las decisiones seguras pasan al siguiente nivel, garantizando que la IA siempre respete las reglas.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "guard_bar"
+      ],
+      "animaciones": [
+        {
+          "pieza": "guard_bar",
+          "movimiento": "abrir",
+          "inicio": 0.4,
+          "fin": 0.7,
+          "cantidad": 90.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_guard",
+          "momento": 0.1,
+          "duracion": 2.5
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "guard_base",
+          "momento": 0.5,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "guard_bar",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 8,
+      "descripcion": "Aparece el motor de recompensa donde se evalúan los KPIs.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Las acciones válidas llegan al Motor de Recompensa, el núcleo donde alineamos la IA con tus KPIs.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_rec",
+        "rec_cil",
+        "manguera_rec"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "rec_cil"
+      ],
+      "animaciones": [
+        {
+          "pieza": "guard_bar",
+          "movimiento": "cerrar",
+          "inicio": 0,
+          "fin": 0.3,
+          "cantidad": 90.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_rec",
+          "momento": 0.2,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "rec_cil",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 9,
+      "descripcion": "Se muestran los tokens de recompensa (margen, velocidad, etc.).",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Tú defines qué se premia: aumentar el margen de beneficio, entregar a tiempo o retener al cliente.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [
+        "rec_tok1",
+        "rec_tok2",
+        "rec_tok3"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "rec_tok1",
+        "rec_tok2",
+        "rec_tok3"
+      ],
+      "animaciones": [
+        {
+          "pieza": "rec_tok3",
+          "movimiento": "subir",
+          "inicio": 0.2,
+          "fin": 0.4,
+          "cantidad": 0.05
+        },
+        {
+          "pieza": "rec_tok3",
+          "movimiento": "volver",
+          "inicio": 0.6,
+          "fin": 0.8,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "rec_tok2",
+        "objetivos": [
+          "rec_tok1",
+          "rec_tok2",
+          "rec_tok3"
+        ],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 10,
+      "descripcion": "El feedback positivo vuelve al agente.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Si la acción mejora el KPI, el motor suma puntos y envía el aprendizaje de vuelta al Agente.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "manguera_fb"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agente_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_fb",
+          "momento": 0.2,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "aprobado",
+          "pieza": "agente_server",
+          "momento": 0.7,
+          "duracion": 2.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agente_server",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 8.0
+    },
+    {
+      "id": 11,
+      "descripcion": "El paso del tiempo y millones de iteraciones.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Tras millones de iteraciones guiadas, el Agente descubre estrategias óptimas que ningún humano podría calcular.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agente_server",
+        "sim_server"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "reloj",
+          "pieza": "agente_server",
+          "momento": 0.1,
+          "duracion": 4.0
+        },
+        {
+          "tipo": "ondas",
+          "pieza": "sim_server",
+          "momento": 0.3,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "agente_server",
+        "objetivos": [],
+        "movimiento": "fijo"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 12,
+      "descripcion": "Despliegue de la política en la consola de producción.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Una vez entrenada y validada, la política ganadora se despliega en producción a través de la consola ejecutiva.",
+          "emocion": "neutral"
+        }
+      ],
+      "aparecen": [
+        "peana_cons",
+        "cons_pie",
+        "cons_mon",
+        "cons_baliza",
+        "manguera_cons"
+      ],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "cons_mon"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_cons",
+          "momento": 0.3,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "medio",
+        "objetivo": "cons_mon",
+        "objetivos": [],
+        "movimiento": "acercar"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 13,
+      "descripcion": "Impacto real en producción con decisiones instantáneas.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "Allí ejecuta las operaciones reales, logrando ahorros masivos y adaptándose al instante a cualquier imprevisto.",
+          "emocion": "alegre"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "cons_baliza"
+      ],
+      "animaciones": [
+        {
+          "pieza": "cons_baliza",
+          "movimiento": "vibrar",
+          "inicio": 0.4,
+          "fin": 0.9,
+          "cantidad": 0.0
+        }
+      ],
+      "efectos": [
+        {
+          "tipo": "rayo",
+          "pieza": "cons_mon",
+          "momento": 0.2,
+          "duracion": 2.0
+        },
+        {
+          "tipo": "ondas",
+          "pieza": "cons_baliza",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "detalle",
+        "objetivo": "cons_baliza",
+        "objetivos": [],
+        "movimiento": "rodear"
+      },
+      "duracion_minima": 7.0
+    },
+    {
+      "id": 14,
+      "descripcion": "Vista general del sistema completo funcionando.",
+      "lineas": [
+        {
+          "quien": "narrador",
+          "texto": "El Aprendizaje por Refuerzo no es magia, es optimización matemática continua bajo tu control absoluto.",
+          "emocion": "emocionado"
+        }
+      ],
+      "aparecen": [],
+      "desaparecen": [],
+      "rayos_x": [],
+      "resaltar": [
+        "agente_server",
+        "guard_base",
+        "rec_cil",
+        "cons_mon"
+      ],
+      "animaciones": [],
+      "efectos": [
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_sim",
+          "momento": 0.1,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_guard",
+          "momento": 0.3,
+          "duracion": 3.0
+        },
+        {
+          "tipo": "flujo",
+          "pieza": "manguera_rec",
+          "momento": 0.5,
+          "duracion": 3.0
+        }
+      ],
+      "acciones": [],
+      "presentes": [],
+      "camara": {
+        "plano": "general",
+        "objetivo": "rec_cil",
+        "objetivos": [],
+        "movimiento": "alejar"
+      },
+      "duracion_minima": 7.0
+    }
+  ],
+  "personajes": [],
+  "escenarios": []
+}
